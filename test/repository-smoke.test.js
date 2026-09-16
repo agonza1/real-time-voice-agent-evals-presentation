@@ -25,7 +25,7 @@ test("README documents the local static server command and URL", async () => {
   assert.match(readme, /http:\/\/localhost:8080/);
 });
 
-test("repository documents and enforces its no-install contract", async () => {
+test("repository documents and enforces its dependency-free contract", async () => {
   const [readme, packageSource] = await Promise.all([
     readRepositoryFile("README.md"),
     readRepositoryFile("package.json"),
@@ -34,15 +34,20 @@ test("repository documents and enforces its no-install contract", async () => {
 
   assert.match(
     readme,
-    /No framework, build tool, package install, or external font dependency/,
+    /No framework, build step, package installation, or external runtime dependency/,
   );
-  assert.equal(packageJson.scripts.test, "node --test test/*.test.js");
+  assert.match(readme, /no-build,\s+no-external-dependency contract/);
+  assert.deepEqual(packageJson.scripts, {
+    test: "node --test test/*.test.js",
+  });
 
   for (const dependencyField of [
     "dependencies",
     "devDependencies",
     "optionalDependencies",
     "peerDependencies",
+    "bundleDependencies",
+    "bundledDependencies",
   ]) {
     assert.equal(
       packageJson[dependencyField],

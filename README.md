@@ -22,7 +22,7 @@ The repository includes a GitHub Actions workflow that deploys every push to `ma
 - Interactive cancellation/tool-timeout fixture
 - Explicit current-vs-roadmap engineering boundaries
 - Linked standards, papers, and open-source projects
-- No framework, build tool, package install, or external font dependency
+- No framework, build step, package installation, or external runtime dependency
 - Print styles for PDF fallback
 
 ## Controls
@@ -54,7 +54,8 @@ npm test
 
 The smoke test uses only Node.js built-ins, so it succeeds on a clean checkout
 without `npm install`, a build step, or network access. It verifies the canonical
-GitHub Pages URL, the local serving instructions, and this no-install contract.
+GitHub Pages URL, the local serving instructions, and this no-build,
+no-external-dependency contract.
 
 ## Architecture and evidence boundary
 
