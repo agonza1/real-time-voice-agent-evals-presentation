@@ -44,6 +44,19 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
+## Smoke test
+
+With Node.js 18 or newer, run the repository smoke test from a clean
+checkout:
+
+```bash
+npm test
+```
+
+No package installation is required. The test uses only Node.js built-ins and
+checks the canonical GitHub Pages URL, the local serving instructions, and the
+no-build/no-external-dependency contract above.
+
 ## Architecture and evidence boundary
 
 This repository contains the interactive presentation—not a second evaluation engine.
