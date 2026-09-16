@@ -33,8 +33,21 @@ test("keeps the smoke test installation-free", async () => {
   const packageJson = JSON.parse(packageJsonSource);
 
   assert.equal(packageJson.scripts?.test, "node --test test/smoke.test.js");
-  assert.deepEqual(packageJson.dependencies ?? {}, {});
-  assert.deepEqual(packageJson.devDependencies ?? {}, {});
+  for (const dependencyField of [
+    "dependencies",
+    "devDependencies",
+    "optionalDependencies",
+    "peerDependencies",
+    "bundledDependencies",
+  ]) {
+    assert.equal(
+      Object.keys(packageJson[dependencyField] ?? {}).length,
+      0,
+      `${dependencyField} must remain empty`,
+    );
+  }
+  assert.match(readme, /```bash\s+npm test\s+```/);
+  assert.match(readme, /No package installation is required/);
   assert.match(
     readme,
     /No framework, build tool, package install, or external font dependency/,
