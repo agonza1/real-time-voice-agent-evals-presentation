@@ -44,6 +44,18 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
+The presentation has no build step and no external runtime dependencies.
+
+## Test
+
+Run the deterministic repository smoke test with Node.js 18 or newer:
+
+```bash
+npm test
+```
+
+The smoke test uses only Node.js built-ins and requires no package installation.
+
 ## Architecture and evidence boundary
 
 This repository contains the interactive presentation—not a second evaluation engine.
