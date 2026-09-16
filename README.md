@@ -22,7 +22,7 @@ The repository includes a GitHub Actions workflow that deploys every push to `ma
 - Interactive cancellation/tool-timeout fixture
 - Explicit current-vs-roadmap engineering boundaries
 - Linked standards, papers, and open-source projects
-- No framework, build tool, package install, or external font dependency
+- No framework, build tool, package install, external font, or other external runtime dependency
 - Print styles for PDF fallback
 
 ## Controls
@@ -43,6 +43,17 @@ python3 -m http.server 8080
 ```
 
 Then open `http://localhost:8080`.
+
+## Test the repository
+
+Run the deterministic repository smoke test with Node.js 18 or newer:
+
+```bash
+npm test
+```
+
+The test uses only Node.js built-ins. It works on a clean checkout without
+`npm install`, a build step, or access to external services.
 
 ## Architecture and evidence boundary
 
