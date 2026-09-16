@@ -44,6 +44,16 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
+## Test the repository
+
+Run the deterministic repository smoke test with the standard Node command:
+
+```bash
+npm test
+```
+
+No build step, package installation, or external runtime dependencies are required.
+
 ## Architecture and evidence boundary
 
 This repository contains the interactive presentation—not a second evaluation engine.
