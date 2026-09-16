@@ -35,6 +35,7 @@ test("repository declares its no-build and no-external-dependency contract", asy
     readme,
     /No framework, build tool, package install, or external font dependency/,
   );
+  assert.equal(packageJson.scripts.test, "node --test");
   assert.equal(packageJson.dependencies, undefined);
   assert.equal(packageJson.devDependencies, undefined);
 });
