@@ -12,10 +12,18 @@ async function readRepositoryFile(fileName) {
 test("the standard test command has no install-time dependencies", async () => {
   const packageJson = JSON.parse(await readRepositoryFile("package.json"));
 
-  assert.equal(packageJson.scripts.test, "node --test");
-  assert.equal(packageJson.dependencies, undefined);
-  assert.equal(packageJson.devDependencies, undefined);
-  assert.equal(packageJson.optionalDependencies, undefined);
+  assert.deepEqual(packageJson.scripts, { test: "node --test" });
+
+  for (const dependencyField of [
+    "dependencies",
+    "devDependencies",
+    "optionalDependencies",
+    "peerDependencies",
+    "bundledDependencies",
+    "bundleDependencies",
+  ]) {
+    assert.equal(packageJson[dependencyField], undefined, dependencyField);
+  }
 });
 
 test("README documents the canonical GitHub Pages URL", async () => {
