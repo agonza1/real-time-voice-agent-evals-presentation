@@ -38,11 +38,23 @@ The repository includes a GitHub Actions workflow that deploys every push to `ma
 
 ## Run locally
 
+No build or package installation is required. The presentation has no external runtime dependencies.
+
 ```bash
 python3 -m http.server 8080
 ```
 
 Then open `http://localhost:8080`.
+
+## Test
+
+Run the deterministic repository smoke test with the Node.js runtime already installed:
+
+```bash
+npm test
+```
+
+The test uses only Node.js built-in modules, so it succeeds on a clean checkout without running `npm install`.
 
 ## Architecture and evidence boundary
 
