@@ -16,7 +16,10 @@ const staticSiteContract =
 test("README documents the canonical GitHub Pages URL", async () => {
   const readme = await readRepositoryFile("README.md");
 
-  assert.match(readme, new RegExp(`\\*\\*${pagesUrl}\\*\\*`));
+  assert.ok(
+    readme.includes(`**${pagesUrl}**`),
+    `README must emphasize the exact GitHub Pages URL: ${pagesUrl}`,
+  );
 });
 
 test("README documents the local static server command", async () => {
@@ -43,7 +46,7 @@ test("repository declares and preserves its dependency-free static-site contract
     readme.includes(staticSiteContract),
     "README must state the complete static-site contract",
   );
-  assert.equal(packageJson.scripts?.test, "node --test test/*.test.mjs");
+  assert.equal(packageJson.scripts?.test, "node --test");
   assert.equal(packageJson.scripts?.build, undefined, "no build script is needed");
   assert.equal(packageJson.dependencies, undefined, "runtime dependencies are not allowed");
   assert.equal(
