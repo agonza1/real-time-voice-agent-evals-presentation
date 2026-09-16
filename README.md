@@ -38,11 +38,25 @@ The repository includes a GitHub Actions workflow that deploys every push to `ma
 
 ## Run locally
 
+No package installation is required. Serve the repository directly with:
+
 ```bash
 python3 -m http.server 8080
 ```
 
 Then open `http://localhost:8080`.
+
+## Run the repository smoke test
+
+The smoke test uses only Node.js built-ins, so it also runs on a clean checkout
+without installing packages:
+
+```bash
+npm test
+```
+
+It checks the canonical GitHub Pages URL, the local serving instructions, and
+the repository's no-build/no-external-dependency contract.
 
 ## Architecture and evidence boundary
 
