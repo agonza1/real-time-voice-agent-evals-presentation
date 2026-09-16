@@ -46,13 +46,13 @@ Then open `http://localhost:8080`.
 
 ## Repository smoke test
 
-Run the deterministic repository smoke test with the standard Node command:
+With Node.js 18 or newer available, run the deterministic repository smoke test with the standard Node command:
 
 ```bash
 npm test
 ```
 
-The smoke test uses only built-in Node.js modules and does not require `npm install` or any other setup step. It checks the canonical GitHub Pages URL, local serving instructions, and the repository's no-build/no-external-dependency contract.
+The presentation requires no build step or external runtime dependency. The smoke test uses only built-in Node.js modules and does not require `npm install` or any other setup step. It checks the canonical GitHub Pages URL, local serving instructions, and these repository contracts.
 
 ## Architecture and evidence boundary
 

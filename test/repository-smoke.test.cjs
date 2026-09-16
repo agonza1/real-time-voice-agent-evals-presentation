@@ -25,13 +25,11 @@ test("README documents the local static-server command and URL", async () => {
   assert.match(readme, /http:\/\/localhost:8080/);
 });
 
-test("README documents the no-build and no-install contract", async () => {
+test("README documents the no-build and no-external-dependency contract", async () => {
   const readme = await readRepositoryFile("README.md");
 
-  assert.match(
-    readme,
-    /No framework, build tool, package install, or external font dependency/,
-  );
+  assert.match(readme, /requires no build step or external runtime dependency/);
+  assert.match(readme, /uses only built-in Node\.js modules/);
   assert.match(readme, /does not require `npm install`/);
 });
 
