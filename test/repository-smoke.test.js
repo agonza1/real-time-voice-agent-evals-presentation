@@ -28,7 +28,7 @@ test('documentation provides the local static-server command', async () => {
   assert.ok(readme.includes(`Then open \`${localUrl}\`.`));
 });
 
-test('smoke test preserves the no-build and no-external-dependency contract', async () => {
+test('documentation and metadata preserve the dependency-free contract', async () => {
   const [readme, packageSource] = await Promise.all([
     readRepositoryFile('README.md'),
     readRepositoryFile('package.json'),
@@ -52,6 +52,8 @@ test('smoke test preserves the no-build and no-external-dependency contract', as
     readme,
     /No framework, build tool, package install, or external font dependency/,
   );
+  assert.ok(readme.includes('\n```bash\nnpm test\n```\n'));
+  assert.match(readme, /clean checkout\s+without running `npm install`/);
   assert.equal(packageMetadata.scripts?.test, 'node --test');
   assert.deepEqual(
     dependencySections.filter((section) => packageMetadata[section] != null),
