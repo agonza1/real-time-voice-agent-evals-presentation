@@ -44,6 +44,16 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
+## Repository contract
+
+The presentation is served directly from repository files: it has no build step and no external runtime dependencies. The repository smoke test also uses only the Node.js built-in test runner, so it runs on a clean checkout without installing packages.
+
+Run the smoke test with:
+
+```bash
+npm test
+```
+
 ## Architecture and evidence boundary
 
 This repository contains the interactive presentation—not a second evaluation engine.
