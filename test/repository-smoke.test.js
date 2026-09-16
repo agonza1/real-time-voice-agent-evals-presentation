@@ -27,9 +27,23 @@ test("documents and preserves the no-build, dependency-free contract", () => {
     readme,
     /The presentation has no build step and no external runtime dependencies\./,
   );
-  assert.equal(packageJson.scripts?.build, undefined);
-  assert.deepEqual(packageJson.dependencies ?? {}, {});
-  assert.deepEqual(packageJson.devDependencies ?? {}, {});
+
+  const buildScripts = Object.keys(packageJson.scripts ?? {}).filter((script) =>
+    script.toLowerCase().includes("build"),
+  );
+  assert.deepEqual(buildScripts, []);
+
+  const dependencyFields = [
+    "dependencies",
+    "devDependencies",
+    "optionalDependencies",
+    "peerDependencies",
+    "bundleDependencies",
+    "bundledDependencies",
+  ];
+  for (const field of dependencyFields) {
+    assert.equal(packageJson[field], undefined, `${field} must remain absent`);
+  }
 });
 
 test("exposes the smoke test through the standard Node test command", () => {
