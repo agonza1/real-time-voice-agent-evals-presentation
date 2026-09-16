@@ -44,6 +44,16 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
+## Smoke test
+
+Run the deterministic repository smoke test with Node.js:
+
+```bash
+npm test
+```
+
+No package installation is required. The presentation has no build step or external runtime dependencies, and the test uses only Node.js built-in modules. The smoke test verifies this contract together with the documented GitHub Pages URL and local serving command.
+
 ## Architecture and evidence boundary
 
 This repository contains the interactive presentation—not a second evaluation engine.
