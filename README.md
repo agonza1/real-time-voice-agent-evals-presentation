@@ -44,6 +44,15 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
+## Run the repository smoke test
+
+The smoke test uses only Node.js built-ins, so a clean checkout does not need
+`npm install` or any other package installation:
+
+```bash
+npm test
+```
+
 ## Architecture and evidence boundary
 
 This repository contains the interactive presentation—not a second evaluation engine.
