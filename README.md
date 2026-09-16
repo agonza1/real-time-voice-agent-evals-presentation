@@ -22,8 +22,10 @@ The repository includes a GitHub Actions workflow that deploys every push to `ma
 - Interactive cancellation/tool-timeout fixture
 - Explicit current-vs-roadmap engineering boundaries
 - Linked standards, papers, and open-source projects
-- No framework, build tool, package install, or external font dependency
+- No framework, build tool, package install, or external runtime dependency
 - Print styles for PDF fallback
+
+The presentation requires no build step, package installation, or external runtime dependencies.
 
 ## Controls
 
@@ -43,6 +45,17 @@ python3 -m http.server 8080
 ```
 
 Then open `http://localhost:8080`.
+
+## Smoke test
+
+With Node.js 18 or newer, run:
+
+```bash
+npm test
+```
+
+The smoke test uses only Node.js built-in modules; run it directly after checkout without `npm install`.
+It verifies the canonical GitHub Pages URL, local serving instructions, and the installation-free presentation contract documented above.
 
 ## Architecture and evidence boundary
 
