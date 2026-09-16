@@ -30,18 +30,26 @@ test("README documents the canonical hosted and local URLs", () => {
   );
 });
 
-test("repository keeps its no-build and no-install contract", () => {
+test("repository keeps its no-build and no-external-dependency contract", () => {
   const readme = readText("README.md");
   const packageJson = JSON.parse(readText("package.json"));
 
   assert.match(
     readme,
-    /No framework, build tool, package install, or external font dependency/,
+    /No framework, build tool, package install, external font, or other external runtime dependency/,
     "README must state the dependency-free presentation contract",
   );
   assert.deepEqual(packageJson.scripts, {
     test: "node --test test/smoke.test.js",
   });
-  assert.equal("dependencies" in packageJson, false);
-  assert.equal("devDependencies" in packageJson, false);
+  for (const field of [
+    "dependencies",
+    "devDependencies",
+    "optionalDependencies",
+    "peerDependencies",
+    "bundledDependencies",
+    "bundleDependencies",
+  ]) {
+    assert.equal(field in packageJson, false, `${field} must remain absent`);
+  }
 });

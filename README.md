@@ -22,7 +22,7 @@ The repository includes a GitHub Actions workflow that deploys every push to `ma
 - Interactive cancellation/tool-timeout fixture
 - Explicit current-vs-roadmap engineering boundaries
 - Linked standards, papers, and open-source projects
-- No framework, build tool, package install, or external font dependency
+- No framework, build tool, package install, external font, or other external runtime dependency
 - Print styles for PDF fallback
 
 ## Controls
