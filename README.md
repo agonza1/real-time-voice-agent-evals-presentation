@@ -44,6 +44,21 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
+No build step or external runtime dependencies are required.
+
+## Smoke test
+
+Run the repository smoke test with the standard Node test command:
+
+```bash
+npm test
+```
+
+The smoke test uses only Node.js built-in modules, so it works on a clean
+checkout without running `npm install`. It checks this documentation's GitHub
+Pages URL, local serving instructions, and no-build/no-external-dependency
+contract.
+
 ## Architecture and evidence boundary
 
 This repository contains the interactive presentation—not a second evaluation engine.
