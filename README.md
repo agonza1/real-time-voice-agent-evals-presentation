@@ -38,6 +38,7 @@ The repository includes a GitHub Actions workflow that deploys every push to `ma
 
 ## Run locally
 
+The presentation has no build step or external runtime dependencies.
 No package installation is required. Serve the repository directly with:
 
 ```bash
