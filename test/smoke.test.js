@@ -26,8 +26,26 @@ test("documents and enforces the no-build, no-install contract", () => {
     readme,
     /No framework, build tool, package install, or external font dependency/,
   );
-  assert.match(readme, /npm test/);
-  assert.deepEqual(packageJson.dependencies, undefined);
-  assert.deepEqual(packageJson.devDependencies, undefined);
-  assert.equal(packageJson.scripts.test, "node --test test/smoke.test.js");
+  assert.match(readme, /```bash\nnpm test\n```/);
+  assert.match(
+    readme,
+    /A clean checkout needs no `npm install`,\nbuild step, or external package download\./,
+  );
+
+  const dependencyFields = [
+    "dependencies",
+    "devDependencies",
+    "optionalDependencies",
+    "peerDependencies",
+    "bundledDependencies",
+    "bundleDependencies",
+  ];
+
+  for (const field of dependencyFields) {
+    assert.equal(packageJson[field], undefined, `${field} must remain absent`);
+  }
+
+  assert.deepEqual(packageJson.scripts, {
+    test: "node --test test/smoke.test.js",
+  });
 });
