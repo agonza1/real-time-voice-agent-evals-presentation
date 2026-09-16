@@ -44,6 +44,18 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
+## Test the repository contract
+
+Run the deterministic smoke test with the standard Node test command:
+
+```bash
+npm test
+```
+
+The test uses only built-in Node.js modules. It succeeds on a clean checkout
+without running `npm install`, and verifies the published URL, local serving
+instructions, and no-build/no-external-dependency contract.
+
 ## Architecture and evidence boundary
 
 This repository contains the interactive presentation—not a second evaluation engine.
