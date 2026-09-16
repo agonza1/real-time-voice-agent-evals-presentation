@@ -44,6 +44,17 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
+The presentation has no build step and no external runtime dependencies.
+
+## Repository smoke test
+
+Node.js 18 or newer can verify the published URL, local serving instructions,
+and no-build contract. No package installation is required:
+
+```bash
+npm test
+```
+
 ## Architecture and evidence boundary
 
 This repository contains the interactive presentation—not a second evaluation engine.
