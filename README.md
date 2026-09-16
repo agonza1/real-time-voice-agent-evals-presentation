@@ -44,6 +44,16 @@ python3 -m http.server 8080
 
 Then open `http://localhost:8080`.
 
+## Test the repository
+
+Run the deterministic documentation smoke test with Node.js 18 or newer. It uses
+only Node's built-in test runner, so a clean checkout does not need `npm install`
+or any build step:
+
+```bash
+npm test
+```
+
 ## Architecture and evidence boundary
 
 This repository contains the interactive presentation—not a second evaluation engine.
