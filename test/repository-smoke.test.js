@@ -70,5 +70,7 @@ test("the deployable presentation entry point exists and is self-contained", asy
   assert.match(html, /section\.active \{ display:grid; overflow-y:auto; align-content:start; \}/);
   assert.match(html, /body\.presenting section, body\.presenting section\.active \{ display:grid; width:auto; height:auto; min-height:0; overflow:visible; align-content:start;/);
   assert.match(html, /id="fixture-status" class="status" role="status" aria-live="polite"/);
+  assert.match(html, /slides\.forEach\(\(slide\) => slide\.setAttribute\("tabindex", "-1"\)\)/);
+  assert.match(html, /if \(document\.body\.classList\.contains\("presenting"\)\) slides\[current\]\.focus\(\{ preventScroll:true \}\)/);
   assert.doesNotMatch(html, /<(?:script|link)[^>]+(?:src|href)=["']https?:\/\//i);
 });
