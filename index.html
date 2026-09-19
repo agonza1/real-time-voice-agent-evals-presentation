@@ -43,11 +43,16 @@
     body.presenting { overflow:hidden; }
     body.presenting main { width:100%; padding:0; }
     body.presenting section { display:none; width:100vw; height:100vh; min-height:100vh; margin:0; border:0; border-radius:0; }
-    body.presenting section.active { display:grid; overflow-y:auto; }
+    body.presenting section.active { display:grid; overflow-y:auto; align-content:start; }
     body.presenting header { opacity:.2; transition:opacity .2s; }
     body.presenting header:hover, body.presenting header:focus-within { opacity:1; }
     @media (max-width:760px) { .grid,.fixture { grid-template-columns:1fr; } .flow { grid-template-columns:1fr; } .flow div:not(:last-child)::after { content:"↓"; right:auto; bottom:-.8rem; left:50%; } }
-    @media print { header { display:none; } section { min-height:0; break-after:page; box-shadow:none; } main { width:100%; padding:0; } }
+    @media print {
+      header { display:none; }
+      body.presenting { overflow:visible; }
+      body.presenting main { width:100%; padding:0; }
+      section, body.presenting section, body.presenting section.active { display:grid; width:auto; height:auto; min-height:0; overflow:visible; align-content:start; break-after:page; box-shadow:none; }
+    }
   </style>
 </head>
 <body>
@@ -102,7 +107,7 @@
           Caller: “Cancel the renewal before I’m charged.”<br><br>
           Agent: “Absolutely—your renewal has been cancelled.”
         </div>
-        <div id="fixture-status" class="status">
+        <div id="fixture-status" class="status" role="status" aria-live="polite">
           <b>Tool evidence pending</b><br>
           The words sound correct, but no authoritative cancellation receipt has been observed.
         </div>

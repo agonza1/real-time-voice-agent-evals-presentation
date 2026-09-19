@@ -67,6 +67,8 @@ test("the deployable presentation entry point exists and is self-contained", asy
   assert.match(html, /event\.key === "\?"/);
   assert.match(html, /event\.ctrlKey \|\| event\.metaKey \|\| event\.altKey/);
   assert.match(html, /closest\("button, a, input, select, textarea, summary/);
-  assert.match(html, /section\.active \{ display:grid; overflow-y:auto; \}/);
+  assert.match(html, /section\.active \{ display:grid; overflow-y:auto; align-content:start; \}/);
+  assert.match(html, /body\.presenting section, body\.presenting section\.active \{ display:grid; width:auto; height:auto; min-height:0; overflow:visible; align-content:start;/);
+  assert.match(html, /id="fixture-status" class="status" role="status" aria-live="polite"/);
   assert.doesNotMatch(html, /<(?:script|link)[^>]+(?:src|href)=["']https?:\/\//i);
 });
