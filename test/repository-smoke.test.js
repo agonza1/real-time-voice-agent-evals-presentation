@@ -65,5 +65,8 @@ test("the deployable presentation entry point exists and is self-contained", asy
   assert.match(html, /vCon/);
   assert.match(html, /<dialog id="keyboard-help"/);
   assert.match(html, /event\.key === "\?"/);
+  assert.match(html, /event\.ctrlKey \|\| event\.metaKey \|\| event\.altKey/);
+  assert.match(html, /closest\("button, a, input, select, textarea, summary/);
+  assert.match(html, /section\.active \{ display:grid; overflow-y:auto; \}/);
   assert.doesNotMatch(html, /<(?:script|link)[^>]+(?:src|href)=["']https?:\/\//i);
 });

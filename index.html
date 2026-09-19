@@ -43,7 +43,7 @@
     body.presenting { overflow:hidden; }
     body.presenting main { width:100%; padding:0; }
     body.presenting section { display:none; width:100vw; height:100vh; min-height:100vh; margin:0; border:0; border-radius:0; }
-    body.presenting section.active { display:grid; }
+    body.presenting section.active { display:grid; overflow-y:auto; }
     body.presenting header { opacity:.2; transition:opacity .2s; }
     body.presenting header:hover, body.presenting header:focus-within { opacity:1; }
     @media (max-width:760px) { .grid,.fixture { grid-template-columns:1fr; } .flow { grid-template-columns:1fr; } .flow div:not(:last-child)::after { content:"↓"; right:auto; bottom:-.8rem; left:50%; } }
@@ -159,14 +159,16 @@
     });
     addEventListener("keydown", (event) => {
       const help = document.querySelector("#keyboard-help");
-      if (event.key === "?") { event.preventDefault(); help.showModal(); return; }
+      const modified = event.ctrlKey || event.metaKey || event.altKey;
+      const interactive = event.target instanceof Element && Boolean(event.target.closest("button, a, input, select, textarea, summary, [contenteditable='true']"));
+      if (event.key === "?" && !modified && !interactive) { event.preventDefault(); help.showModal(); return; }
       if (event.key === "Escape" && help.open) { help.close(); return; }
-      if (event.key.toLowerCase() === "p") togglePresentation();
+      if (event.key.toLowerCase() === "p" && !modified && !interactive) togglePresentation();
       if (event.key === "Escape") togglePresentation(false);
-      if (document.body.classList.contains("presenting") && ["ArrowRight", " "].includes(event.key)) { event.preventDefault(); show(current + 1); }
-      if (document.body.classList.contains("presenting") && event.key === "ArrowLeft") show(current - 1);
-      if (document.body.classList.contains("presenting") && event.key === "Home") show(0);
-      if (document.body.classList.contains("presenting") && event.key === "End") show(slides.length - 1);
+      if (document.body.classList.contains("presenting") && !interactive && ["ArrowRight", " "].includes(event.key)) { event.preventDefault(); show(current + 1); }
+      if (document.body.classList.contains("presenting") && !interactive && event.key === "ArrowLeft") show(current - 1);
+      if (document.body.classList.contains("presenting") && !interactive && event.key === "Home") show(0);
+      if (document.body.classList.contains("presenting") && !interactive && event.key === "End") show(slides.length - 1);
     });
     if (new URLSearchParams(location.search).get("present") === "1") togglePresentation(true);
   </script>
