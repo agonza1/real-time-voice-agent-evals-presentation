@@ -33,6 +33,12 @@
     .fixture { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
     .status { padding:1rem; border-left:4px solid var(--gold); background:#1a2730; }
     .status[data-state="failed"] { border-color:var(--coral); }
+    dialog { width:min(34rem,calc(100% - 2rem)); color:var(--ink); background:#10222d; border:1px solid var(--cyan); border-radius:20px; padding:1.5rem; box-shadow:0 24px 80px #000c; }
+    dialog::backdrop { background:#02080dcc; backdrop-filter:blur(4px); }
+    dialog h2 { font-size:2rem; }
+    dialog dl { display:grid; grid-template-columns:max-content 1fr; gap:.65rem 1rem; }
+    dialog dt { color:var(--gold); font-weight:750; }
+    dialog dd { margin:0; color:var(--muted); }
     footer { color:var(--muted); text-align:center; }
     body.presenting { overflow:hidden; }
     body.presenting main { width:100%; padding:0; }
@@ -122,6 +128,18 @@
       <footer>Press P to present · Arrow keys or Space to navigate · Esc to exit</footer>
     </section>
   </main>
+  <dialog id="keyboard-help" aria-labelledby="keyboard-help-title">
+    <h2 id="keyboard-help-title">Keyboard controls</h2>
+    <dl>
+      <dt>P</dt><dd>Toggle presentation mode</dd>
+      <dt>← / →</dt><dd>Previous or next slide</dd>
+      <dt>Space</dt><dd>Next slide</dd>
+      <dt>Home / End</dt><dd>First or last slide</dd>
+      <dt>Esc</dt><dd>Close help or exit presentation mode</dd>
+      <dt>?</dt><dd>Open this keyboard help</dd>
+    </dl>
+    <form method="dialog"><button type="submit">Close</button></form>
+  </dialog>
   <script>
     const slides = [...document.querySelectorAll("main > section")];
     let current = 0;
@@ -140,6 +158,9 @@
       status.innerHTML = "<b>Evaluation failed: unverified outcome</b><br>The cancellation tool timed out and authoritative subscription state did not change.";
     });
     addEventListener("keydown", (event) => {
+      const help = document.querySelector("#keyboard-help");
+      if (event.key === "?") { event.preventDefault(); help.showModal(); return; }
+      if (event.key === "Escape" && help.open) { help.close(); return; }
       if (event.key.toLowerCase() === "p") togglePresentation();
       if (event.key === "Escape") togglePresentation(false);
       if (document.body.classList.contains("presenting") && ["ArrowRight", " "].includes(event.key)) { event.preventDefault(); show(current + 1); }
