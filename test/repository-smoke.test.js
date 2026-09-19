@@ -88,6 +88,7 @@ test("the deployable presentation entry point exists and is self-contained", asy
   assert.match(html, /body \{ color:#111; background:#fff; \}/);
   assert.match(html, /\.card, \.status, \.flow div \{ color:#111; background:#fff; \}/);
   assert.match(html, /body\.presenting #slide-controls \{ display:none; \}/);
+  assert.match(html, /dialog, dialog\[open\] \{ display:none !important; \}/);
   assert.match(html, /body\.presenting header \{ inset:auto \.75rem 4\.75rem auto; \}/);
   assert.match(html, /body\.presenting #slide-controls \{ inset:auto 50% \.5rem auto; width:calc\(100% - 1rem\);/);
   assert.match(html, /h1,h2 \{[^}]*overflow-wrap:anywhere;/);
