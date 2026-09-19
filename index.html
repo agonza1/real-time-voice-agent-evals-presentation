@@ -50,10 +50,14 @@
     body.presenting header:hover, body.presenting header:focus-within { opacity:1; }
     @media (max-width:760px) { .grid,.fixture { grid-template-columns:1fr; } .flow { grid-template-columns:1fr; } .flow div:not(:last-child)::after { content:"↓"; right:auto; bottom:-.8rem; left:50%; } }
     @media print {
+      :root { color-scheme:light; --ink:#111; --muted:#333; --cyan:#005f5a; --gold:#6b4a00; --panel:#fff; --line:#777; }
       header { display:none; }
+      body { color:#111; background:#fff; }
       body.presenting { overflow:visible; }
       body.presenting main { width:100%; padding:0; }
-      section, body.presenting section, body.presenting section.active { display:grid; width:auto; height:auto; min-height:0; overflow:visible; align-content:start; break-after:page; box-shadow:none; }
+      section, body.presenting section, body.presenting section.active { display:grid; width:auto; height:auto; min-height:0; overflow:visible; align-content:start; break-after:page; background:#fff; border-color:#777; box-shadow:none; }
+      .card, .status { color:#111; background:#fff; }
+      a { color:#0055aa; text-decoration:underline; }
     }
   </style>
 </head>
@@ -178,11 +182,11 @@
       if (event.key === "Escape" && help.open) { help.close(); return; }
       if (event.key.toLowerCase() === "p" && !modified && !textEntry) togglePresentation();
       if (event.key === "Escape") togglePresentation(false);
-      if (document.body.classList.contains("presenting") && !textEntry && event.key === "ArrowRight") { event.preventDefault(); show(current + 1); }
-      if (document.body.classList.contains("presenting") && !spaceConsumer && event.key === " ") { event.preventDefault(); show(current + 1); }
-      if (document.body.classList.contains("presenting") && !textEntry && event.key === "ArrowLeft") show(current - 1);
-      if (document.body.classList.contains("presenting") && !textEntry && event.key === "Home") show(0);
-      if (document.body.classList.contains("presenting") && !textEntry && event.key === "End") show(slides.length - 1);
+      if (document.body.classList.contains("presenting") && !modified && !textEntry && event.key === "ArrowRight") { event.preventDefault(); show(current + 1); }
+      if (document.body.classList.contains("presenting") && !modified && !spaceConsumer && event.key === " ") { event.preventDefault(); show(current + 1); }
+      if (document.body.classList.contains("presenting") && !modified && !textEntry && event.key === "ArrowLeft") show(current - 1);
+      if (document.body.classList.contains("presenting") && !modified && !textEntry && event.key === "Home") show(0);
+      if (document.body.classList.contains("presenting") && !modified && !textEntry && event.key === "End") show(slides.length - 1);
     });
     if (new URLSearchParams(location.search).get("present") === "1") togglePresentation(true);
   </script>
