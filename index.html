@@ -170,14 +170,16 @@
       const help = document.querySelector("#keyboard-help");
       const modified = event.ctrlKey || event.metaKey || event.altKey;
       const interactive = event.target instanceof Element && Boolean(event.target.closest("button, a, input, select, textarea, summary, [contenteditable='true']"));
-      if (event.key === "?" && !modified && !interactive) { event.preventDefault(); help.showModal(); return; }
+      const textEntry = event.target instanceof Element && Boolean(event.target.closest("input, select, textarea, [contenteditable='true']"));
+      if (event.key === "?" && !modified && !textEntry) { event.preventDefault(); help.showModal(); return; }
       if (event.key === "Escape" && help.open) { help.close(); return; }
-      if (event.key.toLowerCase() === "p" && !modified && !interactive) togglePresentation();
+      if (event.key.toLowerCase() === "p" && !modified && !textEntry) togglePresentation();
       if (event.key === "Escape") togglePresentation(false);
-      if (document.body.classList.contains("presenting") && !interactive && ["ArrowRight", " "].includes(event.key)) { event.preventDefault(); show(current + 1); }
-      if (document.body.classList.contains("presenting") && !interactive && event.key === "ArrowLeft") show(current - 1);
-      if (document.body.classList.contains("presenting") && !interactive && event.key === "Home") show(0);
-      if (document.body.classList.contains("presenting") && !interactive && event.key === "End") show(slides.length - 1);
+      if (document.body.classList.contains("presenting") && !textEntry && event.key === "ArrowRight") { event.preventDefault(); show(current + 1); }
+      if (document.body.classList.contains("presenting") && !interactive && event.key === " ") { event.preventDefault(); show(current + 1); }
+      if (document.body.classList.contains("presenting") && !textEntry && event.key === "ArrowLeft") show(current - 1);
+      if (document.body.classList.contains("presenting") && !textEntry && event.key === "Home") show(0);
+      if (document.body.classList.contains("presenting") && !textEntry && event.key === "End") show(slides.length - 1);
     });
     if (new URLSearchParams(location.search).get("present") === "1") togglePresentation(true);
   </script>
