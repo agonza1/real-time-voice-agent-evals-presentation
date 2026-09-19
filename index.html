@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A practical framework for evaluating complete real-time voice-agent systems with portable vCon evidence.">
+  <title>Evaluating Real-Time Voice Agents Beyond AI Models</title>
+  <style>
+    :root { color-scheme: dark; --ink:#f6f3ea; --muted:#b9c1c9; --panel:#13212c; --line:#314859; --cyan:#66e3d4; --gold:#ffcf70; --coral:#ff7c70; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background:#07131c; }
+    body { margin:0; color:var(--ink); font:16px/1.55 Inter, ui-sans-serif, system-ui, sans-serif; background:radial-gradient(circle at 85% 10%,#17394a 0,transparent 36rem),#07131c; }
+    a { color:var(--cyan); }
+    header { position:fixed; inset:0 0 auto; z-index:10; display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.7rem 1.2rem; background:#07131ce6; border-bottom:1px solid var(--line); backdrop-filter:blur(12px); }
+    header strong { letter-spacing:.08em; text-transform:uppercase; font-size:.78rem; }
+    button { border:1px solid var(--line); border-radius:999px; background:var(--panel); color:var(--ink); padding:.55rem .9rem; cursor:pointer; }
+    button:hover, button:focus-visible { border-color:var(--cyan); outline:none; }
+    main { width:min(1120px,calc(100% - 2rem)); margin:auto; padding:4rem 0 6rem; }
+    section { min-height:88vh; display:grid; align-content:center; gap:1.4rem; padding:clamp(2rem,7vw,6rem) clamp(1rem,5vw,4rem); margin:1rem 0; border:1px solid var(--line); border-radius:28px; background:linear-gradient(145deg,#10222dd9,#09151ed9); box-shadow:0 24px 70px #0007; }
+    .eyebrow { margin:0; color:var(--cyan); font-weight:750; letter-spacing:.14em; text-transform:uppercase; font-size:.78rem; }
+    h1,h2 { margin:0; max-width:16ch; line-height:1.02; letter-spacing:-.04em; }
+    h1 { font-size:clamp(3rem,8vw,7rem); }
+    h2 { font-size:clamp(2.2rem,5vw,4.5rem); }
+    .lede { max-width:68ch; color:var(--muted); font-size:clamp(1.1rem,2vw,1.45rem); }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .card { padding:1.25rem; border:1px solid var(--line); border-radius:18px; background:#13212caa; }
+    .card b { display:block; color:var(--gold); font-size:1.1rem; margin-bottom:.35rem; }
+    .flow { display:grid; grid-template-columns:repeat(5,1fr); gap:.55rem; align-items:stretch; }
+    .flow div { position:relative; padding:1rem .8rem; border-radius:14px; background:#142a36; text-align:center; }
+    .flow div:not(:last-child)::after { content:"→"; position:absolute; right:-.55rem; color:var(--cyan); }
+    .metric { display:flex; justify-content:space-between; gap:1rem; padding:.8rem 0; border-bottom:1px solid var(--line); }
+    .metric span:last-child { color:var(--cyan); font-variant-numeric:tabular-nums; }
+    .fixture { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .status { padding:1rem; border-left:4px solid var(--gold); background:#1a2730; }
+    .status[data-state="failed"] { border-color:var(--coral); }
+    footer { color:var(--muted); text-align:center; }
+    body.presenting { overflow:hidden; }
+    body.presenting main { width:100%; padding:0; }
+    body.presenting section { display:none; width:100vw; height:100vh; min-height:100vh; margin:0; border:0; border-radius:0; }
+    body.presenting section.active { display:grid; }
+    body.presenting header { opacity:.2; transition:opacity .2s; }
+    body.presenting header:hover, body.presenting header:focus-within { opacity:1; }
+    @media (max-width:760px) { .grid,.fixture { grid-template-columns:1fr; } .flow { grid-template-columns:1fr; } .flow div:not(:last-child)::after { content:"↓"; right:auto; bottom:-.8rem; left:50%; } }
+    @media print { header { display:none; } section { min-height:0; break-after:page; box-shadow:none; } main { width:100%; padding:0; } }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>VON Evolution 2026 · Open evaluation workbench</strong>
+    <button id="present" type="button" aria-label="Toggle presentation mode">Present (P)</button>
+  </header>
+  <main>
+    <section class="active">
+      <p class="eyebrow">Evaluate the conversation, not only the model</p>
+      <h1>Real-time voice agents are systems.</h1>
+      <p class="lede">A fluent transcript can hide interruptions, late tools, stale business state, and broken handoffs. Reliable evaluation preserves what happened across the entire interaction—and makes it reproducible.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">The blind spot</p>
+      <h2>One score cannot describe a live call.</h2>
+      <div class="grid">
+        <article class="card"><b>Conversation</b>Was the response relevant, safe, and grounded in what the caller actually said?</article>
+        <article class="card"><b>Real time</b>Were turn boundaries, latency, interruption, and recovery acceptable?</article>
+        <article class="card"><b>Execution</b>Did tools complete correctly and did authoritative business state change?</article>
+      </div>
+      <p class="lede">The evaluation unit is the trace linking audio, timing, model decisions, tool evidence, and the final outcome.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Portable evidence</p>
+      <h2>vCon keeps the evaluation attached to the conversation.</h2>
+      <div class="flow" aria-label="Evaluation evidence flow">
+        <div>Media</div><div>Transcript</div><div>Events</div><div>Tools</div><div>Assertions</div>
+      </div>
+      <p class="lede">A vCon is a portable conversation container. The workbench adds versioned evaluation artifacts without pretending those application conventions are part of the core standard.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Open-source workflow</p>
+      <h2>ConversationAgentEvals turns traces into regression evidence.</h2>
+      <div class="grid">
+        <article class="card"><b>1 · Normalize</b>Bring media, transcripts, timing, and tool observations into a consistent evidence model.</article>
+        <article class="card"><b>2 · Evaluate</b>Run deterministic checks first, then use semantic judges only where interpretation is required.</article>
+        <article class="card"><b>3 · Compare</b>Retain artifacts and compare releases by scenario, failure mode, and system component.</article>
+      </div>
+      <p><a href="https://github.com/agonza1/ConversationAgentEvals">Open ConversationAgentEvals on GitHub</a></p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Interactive failure fixture</p>
+      <h2>A polite answer can still be wrong.</h2>
+      <div class="fixture">
+        <div class="card">
+          <b>Scenario</b>
+          Caller: “Cancel the renewal before I’m charged.”<br><br>
+          Agent: “Absolutely—your renewal has been cancelled.”
+        </div>
+        <div id="fixture-status" class="status">
+          <b>Tool evidence pending</b><br>
+          The words sound correct, but no authoritative cancellation receipt has been observed.
+        </div>
+      </div>
+      <p><button id="run-fixture" type="button">Run tool-timeout fixture</button></p>
+    </section>
+
+    <section>
+      <p class="eyebrow">A practical scorecard</p>
+      <h2>Measure what can break independently.</h2>
+      <div>
+        <div class="metric"><span>Turn-taking and interruption recovery</span><span>event timing</span></div>
+        <div class="metric"><span>Grounded task completion</span><span>tool + state proof</span></div>
+        <div class="metric"><span>Conversation quality and policy</span><span>rubric evidence</span></div>
+        <div class="metric"><span>Release regression</span><span>scenario deltas</span></div>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">The takeaway</p>
+      <h2>Make every claim traceable.</h2>
+      <p class="lede">Evaluate the experience, the timing, the execution, and the final state. Keep the evidence portable. Then a “better” voice agent becomes a result you can inspect, reproduce, and trust.</p>
+      <footer>Press P to present · Arrow keys or Space to navigate · Esc to exit</footer>
+    </section>
+  </main>
+  <script>
+    const slides = [...document.querySelectorAll("main > section")];
+    let current = 0;
+    const show = (index) => {
+      current = Math.max(0, Math.min(slides.length - 1, index));
+      slides.forEach((slide, position) => slide.classList.toggle("active", position === current));
+    };
+    const togglePresentation = (force) => {
+      document.body.classList.toggle("presenting", force ?? !document.body.classList.contains("presenting"));
+      show(current);
+    };
+    document.querySelector("#present").addEventListener("click", () => togglePresentation());
+    document.querySelector("#run-fixture").addEventListener("click", () => {
+      const status = document.querySelector("#fixture-status");
+      status.dataset.state = "failed";
+      status.innerHTML = "<b>Evaluation failed: unverified outcome</b><br>The cancellation tool timed out and authoritative subscription state did not change.";
+    });
+    addEventListener("keydown", (event) => {
+      if (event.key.toLowerCase() === "p") togglePresentation();
+      if (event.key === "Escape") togglePresentation(false);
+      if (document.body.classList.contains("presenting") && ["ArrowRight", " "].includes(event.key)) { event.preventDefault(); show(current + 1); }
+      if (document.body.classList.contains("presenting") && event.key === "ArrowLeft") show(current - 1);
+      if (document.body.classList.contains("presenting") && event.key === "Home") show(0);
+      if (document.body.classList.contains("presenting") && event.key === "End") show(slides.length - 1);
+    });
+    if (new URLSearchParams(location.search).get("present") === "1") togglePresentation(true);
+  </script>
+</body>
+</html>

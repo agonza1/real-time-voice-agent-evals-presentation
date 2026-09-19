@@ -50,3 +50,18 @@ test("the README promises a no-build, dependency-free presentation", async () =>
     /No framework, build tool, package install, or external font dependency/,
   );
 });
+
+test("the deployable presentation entry point exists and is self-contained", async () => {
+  const html = await readRepositoryFile("index.html");
+
+  assert.match(html, /^<!doctype html>/i);
+  assert.match(html, /<title>Evaluating Real-Time Voice Agents Beyond AI Models<\/title>/);
+  assert.match(html, /<main\b/);
+  assert.ok(
+    (html.match(/<section\b/g) ?? []).length >= 5,
+    "the entry point must contain a substantive slide sequence",
+  );
+  assert.match(html, /ConversationAgentEvals/);
+  assert.match(html, /vCon/);
+  assert.doesNotMatch(html, /<(?:script|link)[^>]+(?:src|href)=["']https?:\/\//i);
+});
