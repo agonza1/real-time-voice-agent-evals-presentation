@@ -45,7 +45,8 @@
     body.presenting main { width:100%; padding:0; }
     body.presenting section { display:none; width:100vw; height:100vh; min-height:100vh; margin:0; border:0; border-radius:0; }
     body.presenting section.active { display:grid; overflow-y:auto; align-content:start; }
-    body.presenting header { opacity:.2; transition:opacity .2s; }
+    body.presenting header { inset:auto .75rem .75rem auto; padding:0; background:transparent; border:0; opacity:.25; transition:opacity .2s; }
+    body.presenting header strong { display:none; }
     body.presenting header:hover, body.presenting header:focus-within { opacity:1; }
     @media (max-width:760px) { .grid,.fixture { grid-template-columns:1fr; } .flow { grid-template-columns:1fr; } .flow div:not(:last-child)::after { content:"↓"; right:auto; bottom:-.8rem; left:50%; } }
     @media print {
@@ -148,6 +149,7 @@
   </dialog>
   <script>
     const slides = [...document.querySelectorAll("main > section")];
+    const presentButton = document.querySelector("#present");
     slides.forEach((slide) => slide.setAttribute("tabindex", "-1"));
     let current = 0;
     const show = (index) => {
@@ -158,9 +160,10 @@
     const togglePresentation = (force) => {
       const presenting = force ?? !document.body.classList.contains("presenting");
       document.body.classList.toggle("presenting", presenting);
+      presentButton.textContent = presenting ? "Exit (Esc)" : "Present (P)";
       show(current);
     };
-    document.querySelector("#present").addEventListener("click", () => togglePresentation());
+    presentButton.addEventListener("click", () => togglePresentation());
     document.querySelector("#run-fixture").addEventListener("click", () => {
       const status = document.querySelector("#fixture-status");
       status.dataset.state = "failed";
@@ -169,14 +172,14 @@
     addEventListener("keydown", (event) => {
       const help = document.querySelector("#keyboard-help");
       const modified = event.ctrlKey || event.metaKey || event.altKey;
-      const interactive = event.target instanceof Element && Boolean(event.target.closest("button, a, input, select, textarea, summary, [contenteditable='true']"));
+      const spaceConsumer = event.target instanceof Element && Boolean(event.target.closest("button, input, select, textarea, summary, [contenteditable='true']"));
       const textEntry = event.target instanceof Element && Boolean(event.target.closest("input, select, textarea, [contenteditable='true']"));
       if (event.key === "?" && !modified && !textEntry) { event.preventDefault(); help.showModal(); return; }
       if (event.key === "Escape" && help.open) { help.close(); return; }
       if (event.key.toLowerCase() === "p" && !modified && !textEntry) togglePresentation();
       if (event.key === "Escape") togglePresentation(false);
       if (document.body.classList.contains("presenting") && !textEntry && event.key === "ArrowRight") { event.preventDefault(); show(current + 1); }
-      if (document.body.classList.contains("presenting") && !interactive && event.key === " ") { event.preventDefault(); show(current + 1); }
+      if (document.body.classList.contains("presenting") && !spaceConsumer && event.key === " ") { event.preventDefault(); show(current + 1); }
       if (document.body.classList.contains("presenting") && !textEntry && event.key === "ArrowLeft") show(current - 1);
       if (document.body.classList.contains("presenting") && !textEntry && event.key === "Home") show(0);
       if (document.body.classList.contains("presenting") && !textEntry && event.key === "End") show(slides.length - 1);
