@@ -41,13 +41,16 @@
     dialog dt { color:var(--gold); font-weight:750; }
     dialog dd { margin:0; color:var(--muted); }
     footer { color:var(--muted); text-align:center; }
+    #slide-controls { display:none; }
     body.presenting { overflow:hidden; }
     body.presenting main { width:100%; padding:0; }
     body.presenting section { display:none; width:100vw; height:100vh; min-height:100vh; margin:0; border:0; border-radius:0; }
-    body.presenting section.active { display:grid; overflow-y:auto; align-content:start; }
+    body.presenting section.active { display:grid; overflow-y:auto; align-content:start; padding-bottom:5.5rem; }
     body.presenting header { inset:auto .75rem .75rem auto; padding:0; background:transparent; border:0; opacity:.25; transition:opacity .2s; }
     body.presenting header strong { display:none; }
     body.presenting header:hover, body.presenting header:focus-within { opacity:1; }
+    body.presenting #slide-controls { position:fixed; z-index:11; inset:auto 50% .75rem auto; transform:translateX(50%); display:flex; align-items:center; gap:.55rem; padding:.35rem; border:1px solid var(--line); border-radius:999px; background:#07131ce6; backdrop-filter:blur(12px); }
+    #slide-counter { min-width:4rem; color:var(--muted); text-align:center; font-variant-numeric:tabular-nums; }
     @media (max-width:760px) { .grid,.fixture { grid-template-columns:1fr; } .flow { grid-template-columns:1fr; } .flow div:not(:last-child)::after { content:"↓"; right:auto; bottom:-.8rem; left:50%; } }
     @media print {
       :root { color-scheme:light; --ink:#111; --muted:#333; --cyan:#005f5a; --gold:#6b4a00; --panel:#fff; --line:#777; }
@@ -139,6 +142,11 @@
       <footer>Press P to present · Arrow keys or Space to navigate · Esc to exit</footer>
     </section>
   </main>
+  <nav id="slide-controls" aria-label="Presentation slide controls">
+    <button id="previous-slide" type="button">Previous</button>
+    <span id="slide-counter" role="status" aria-live="polite"></span>
+    <button id="next-slide" type="button">Next</button>
+  </nav>
   <dialog id="keyboard-help" aria-labelledby="keyboard-help-title">
     <h2 id="keyboard-help-title">Keyboard controls</h2>
     <dl>
@@ -154,11 +162,17 @@
   <script>
     const slides = [...document.querySelectorAll("main > section")];
     const presentButton = document.querySelector("#present");
+    const previousButton = document.querySelector("#previous-slide");
+    const nextButton = document.querySelector("#next-slide");
+    const slideCounter = document.querySelector("#slide-counter");
     slides.forEach((slide) => slide.setAttribute("tabindex", "-1"));
     let current = 0;
     const show = (index) => {
       current = Math.max(0, Math.min(slides.length - 1, index));
       slides.forEach((slide, position) => slide.classList.toggle("active", position === current));
+      previousButton.disabled = current === 0;
+      nextButton.disabled = current === slides.length - 1;
+      slideCounter.textContent = `${current + 1} / ${slides.length}`;
       if (document.body.classList.contains("presenting")) slides[current].focus({ preventScroll:true });
     };
     const togglePresentation = (force) => {
@@ -168,6 +182,8 @@
       show(current);
     };
     presentButton.addEventListener("click", () => togglePresentation());
+    previousButton.addEventListener("click", () => show(current - 1));
+    nextButton.addEventListener("click", () => show(current + 1));
     document.querySelector("#run-fixture").addEventListener("click", () => {
       const status = document.querySelector("#fixture-status");
       status.dataset.state = "failed";
@@ -189,6 +205,7 @@
       if (document.body.classList.contains("presenting") && !modified && !textEntry && event.key === "End") show(slides.length - 1);
     });
     if (new URLSearchParams(location.search).get("present") === "1") togglePresentation(true);
+    else show(0);
   </script>
 </body>
 </html>

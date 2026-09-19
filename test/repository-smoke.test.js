@@ -35,6 +35,16 @@ test("the README documents the canonical GitHub Pages URL", async () => {
   );
 });
 
+test("the repository includes its advertised GitHub Pages deployment", async () => {
+  const workflow = await readRepositoryFile(".github/workflows/pages.yml");
+
+  assert.match(workflow, /pages: write/);
+  assert.match(workflow, /id-token: write/);
+  assert.match(workflow, /actions\/configure-pages@v5/);
+  assert.match(workflow, /actions\/upload-pages-artifact@v3/);
+  assert.match(workflow, /actions\/deploy-pages@v4/);
+});
+
 test("the README documents a complete local serving command", async () => {
   const readme = await readRepositoryFile("README.md");
 
@@ -71,10 +81,13 @@ test("the deployable presentation entry point exists and is self-contained", asy
   assert.match(html, /!modified && !spaceConsumer && event\.key === " "/);
   assert.match(html, /!modified && !textEntry && event\.key === "ArrowRight"/);
   assert.match(html, /body\.presenting header \{ inset:auto \.75rem \.75rem auto;/);
+  assert.match(html, /<nav id="slide-controls" aria-label="Presentation slide controls">/);
+  assert.match(html, /previousButton\.addEventListener\("click"/);
+  assert.match(html, /nextButton\.addEventListener\("click"/);
   assert.match(html, /color-scheme:light; --ink:#111; --muted:#333;/);
   assert.match(html, /body \{ color:#111; background:#fff; \}/);
   assert.match(html, /\.card, \.status, \.flow div \{ color:#111; background:#fff; \}/);
-  assert.match(html, /section\.active \{ display:grid; overflow-y:auto; align-content:start; \}/);
+  assert.match(html, /section\.active \{[^}]*overflow-y:auto;[^}]*align-content:start;/);
   assert.match(html, /body\.presenting section, body\.presenting section\.active \{ display:grid; width:auto; height:auto; min-height:0; overflow:visible; align-content:start;/);
   assert.match(html, /id="fixture-status" class="status" role="status" aria-live="polite"/);
   assert.match(html, /slides\.forEach\(\(slide\) => slide\.setAttribute\("tabindex", "-1"\)\)/);
