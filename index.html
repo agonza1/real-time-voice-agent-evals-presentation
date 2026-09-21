@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A practical framework for evaluating complete real-time voice-agent systems with portable vCon evidence.">
+  <title>Evaluating Real-Time Voice Agents Beyond AI Models</title>
+  <style>
+    :root { color-scheme: dark; --ink:#f6f3ea; --muted:#b9c1c9; --panel:#13212c; --line:#314859; --cyan:#66e3d4; --gold:#ffcf70; --coral:#ff7c70; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background:#07131c; }
+    body { margin:0; color:var(--ink); font:16px/1.55 Inter, ui-sans-serif, system-ui, sans-serif; background:radial-gradient(circle at 85% 10%,#17394a 0,transparent 36rem),#07131c; }
+    a { color:var(--cyan); }
+    header { position:fixed; inset:0 0 auto; z-index:10; display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.7rem 1.2rem; background:#07131ce6; border-bottom:1px solid var(--line); backdrop-filter:blur(12px); }
+    header strong { letter-spacing:.08em; text-transform:uppercase; font-size:.78rem; }
+    button { border:1px solid var(--line); border-radius:999px; background:var(--panel); color:var(--ink); padding:.55rem .9rem; cursor:pointer; }
+    button:hover, button:focus-visible { border-color:var(--cyan); outline:none; }
+    main { width:min(1120px,calc(100% - 2rem)); margin:auto; padding:4rem 0 6rem; }
+    section { min-height:88vh; display:grid; align-content:center; gap:1.4rem; padding:clamp(2rem,7vw,6rem) clamp(1rem,5vw,4rem); margin:1rem 0; border:1px solid var(--line); border-radius:28px; background:linear-gradient(145deg,#10222dd9,#09151ed9); box-shadow:0 24px 70px #0007; }
+    section:focus-visible { outline:3px solid var(--cyan); outline-offset:-6px; }
+    .eyebrow { margin:0; color:var(--cyan); font-weight:750; letter-spacing:.14em; text-transform:uppercase; font-size:.78rem; }
+    h1,h2 { margin:0; max-width:16ch; overflow-wrap:anywhere; line-height:1.02; letter-spacing:-.04em; }
+    h1 { font-size:clamp(3rem,8vw,7rem); }
+    h2 { font-size:clamp(2.2rem,5vw,4.5rem); }
+    .lede { max-width:68ch; color:var(--muted); font-size:clamp(1.1rem,2vw,1.45rem); }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .card { padding:1.25rem; border:1px solid var(--line); border-radius:18px; background:#13212caa; }
+    .card b { display:block; color:var(--gold); font-size:1.1rem; margin-bottom:.35rem; }
+    .flow { display:grid; grid-template-columns:repeat(5,1fr); gap:.55rem; align-items:stretch; }
+    .flow div { position:relative; padding:1rem .8rem; border-radius:14px; background:#142a36; text-align:center; }
+    .flow div:not(:last-child)::after { content:"→"; position:absolute; right:-.55rem; color:var(--cyan); }
+    .metric { display:flex; justify-content:space-between; gap:1rem; padding:.8rem 0; border-bottom:1px solid var(--line); }
+    .metric span:last-child { color:var(--cyan); font-variant-numeric:tabular-nums; }
+    .fixture { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .status { padding:1rem; border-left:4px solid var(--gold); background:#1a2730; }
+    .status[data-state="failed"] { border-color:var(--coral); }
+    dialog { width:min(34rem,calc(100% - 2rem)); color:var(--ink); background:#10222d; border:1px solid var(--cyan); border-radius:20px; padding:1.5rem; box-shadow:0 24px 80px #000c; }
+    dialog::backdrop { background:#02080dcc; backdrop-filter:blur(4px); }
+    dialog h2 { font-size:2rem; }
+    dialog dl { display:grid; grid-template-columns:max-content 1fr; gap:.65rem 1rem; }
+    dialog dt { color:var(--gold); font-weight:750; }
+    dialog dd { margin:0; color:var(--muted); }
+    footer { color:var(--muted); text-align:center; }
+    #slide-controls { display:none; }
+    body.presenting { overflow:hidden; }
+    body.presenting main { width:100%; padding:0; }
+    body.presenting section { display:none; width:100vw; height:100vh; min-height:100vh; margin:0; border:0; border-radius:0; }
+    body.presenting section.active { display:grid; overflow-y:auto; align-content:start; padding-bottom:5.5rem; }
+    body.presenting header { inset:auto .75rem .75rem auto; padding:0; background:transparent; border:0; opacity:.25; transition:opacity .2s; }
+    body.presenting header strong { display:none; }
+    body.presenting header:hover, body.presenting header:focus-within { opacity:1; }
+    body.presenting #slide-controls { position:fixed; z-index:11; inset:auto 50% .75rem auto; transform:translateX(50%); display:flex; align-items:center; gap:.55rem; padding:.35rem; border:1px solid var(--line); border-radius:999px; background:#07131ce6; backdrop-filter:blur(12px); }
+    #slide-counter { min-width:4rem; color:var(--muted); text-align:center; font-variant-numeric:tabular-nums; }
+    @media (max-width:760px) {
+      .grid,.fixture { grid-template-columns:1fr; }
+      .flow { grid-template-columns:1fr; }
+      .flow div:not(:last-child)::after { content:"↓"; right:auto; bottom:-.8rem; left:50%; }
+      body.presenting section.active { padding-bottom:8rem; }
+      body.presenting header { inset:auto .75rem 4.75rem auto; }
+      body.presenting #slide-controls { inset:auto 50% .5rem auto; width:calc(100% - 1rem); justify-content:center; }
+    }
+    @media print {
+      :root { color-scheme:light; --ink:#111; --muted:#333; --cyan:#005f5a; --gold:#6b4a00; --panel:#fff; --line:#777; }
+      header { display:none; }
+      body.presenting #slide-controls { display:none; }
+      dialog, dialog[open] { display:none !important; }
+      body { color:#111; background:#fff; }
+      body.presenting { overflow:visible; }
+      body.presenting main { width:100%; padding:0; }
+      section, body.presenting section, body.presenting section.active { display:grid; width:auto; height:auto; min-height:0; overflow:visible; align-content:start; break-after:page; background:#fff; border-color:#777; box-shadow:none; }
+      .card, .status, .flow div { color:#111; background:#fff; }
+      a { color:#0055aa; text-decoration:underline; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>VON Evolution 2026 · Open evaluation workbench</strong>
+    <button id="present" type="button" aria-label="Toggle presentation mode">Present (P)</button>
+  </header>
+  <main>
+    <section class="active">
+      <p class="eyebrow">Evaluate the conversation, not only the model</p>
+      <h1>Real-time voice agents are systems.</h1>
+      <p class="lede">A fluent transcript can hide interruptions, late tools, stale business state, and broken handoffs. Reliable evaluation preserves what happened across the entire interaction—and makes it reproducible.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">The blind spot</p>
+      <h2>One score cannot describe a live call.</h2>
+      <div class="grid">
+        <article class="card"><b>Conversation</b>Was the response relevant, safe, and grounded in what the caller actually said?</article>
+        <article class="card"><b>Real time</b>Were turn boundaries, latency, interruption, and recovery acceptable?</article>
+        <article class="card"><b>Execution</b>Did tools complete correctly and did authoritative business state change?</article>
+      </div>
+      <p class="lede">The evaluation unit is the trace linking audio, timing, model decisions, tool evidence, and the final outcome.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Portable evidence</p>
+      <h2>vCon keeps the evaluation attached to the conversation.</h2>
+      <div class="flow" aria-label="Evaluation evidence flow">
+        <div>Media</div><div>Transcript</div><div>Events</div><div>Tools</div><div>Assertions</div>
+      </div>
+      <p class="lede">A vCon is a portable conversation container. The workbench adds versioned evaluation artifacts without pretending those application conventions are part of the core standard.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Open-source workflow</p>
+      <h2>ConversationAgentEvals turns traces into regression evidence.</h2>
+      <div class="grid">
+        <article class="card"><b>1 · Normalize</b>Bring media, transcripts, timing, and tool observations into a consistent evidence model.</article>
+        <article class="card"><b>2 · Evaluate</b>Run deterministic checks first, then use semantic judges only where interpretation is required.</article>
+        <article class="card"><b>3 · Compare</b>Retain artifacts and compare releases by scenario, failure mode, and system component.</article>
+      </div>
+      <p><a href="https://github.com/agonza1/ConversationAgentEvals">Open ConversationAgentEvals on GitHub</a></p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Interactive failure fixture</p>
+      <h2>A polite answer can still be wrong.</h2>
+      <div class="fixture">
+        <div class="card">
+          <b>Scenario</b>
+          Caller: “Cancel the renewal before I’m charged.”<br><br>
+          Agent: “Absolutely—your renewal has been cancelled.”
+        </div>
+        <div id="fixture-status" class="status" role="status" aria-live="polite">
+          <b>Tool evidence pending</b><br>
+          The words sound correct, but no authoritative cancellation receipt has been observed.
+        </div>
+      </div>
+      <p><button id="run-fixture" type="button">Run tool-timeout fixture</button></p>
+    </section>
+
+    <section>
+      <p class="eyebrow">A practical scorecard</p>
+      <h2>Measure what can break independently.</h2>
+      <div>
+        <div class="metric"><span>Turn-taking and interruption recovery</span><span>event timing</span></div>
+        <div class="metric"><span>Grounded task completion</span><span>tool + state proof</span></div>
+        <div class="metric"><span>Conversation quality and policy</span><span>rubric evidence</span></div>
+        <div class="metric"><span>Release regression</span><span>scenario deltas</span></div>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">The takeaway</p>
+      <h2>Make every claim traceable.</h2>
+      <p class="lede">Evaluate the experience, the timing, the execution, and the final state. Keep the evidence portable. Then a “better” voice agent becomes a result you can inspect, reproduce, and trust.</p>
+      <footer>Press P to present · Arrow keys or Space to navigate · Esc to exit</footer>
+    </section>
+  </main>
+  <nav id="slide-controls" aria-label="Presentation slide controls">
+    <button id="previous-slide" type="button">Previous</button>
+    <span id="slide-counter" role="status" aria-live="polite"></span>
+    <button id="next-slide" type="button">Next</button>
+  </nav>
+  <dialog id="keyboard-help" aria-labelledby="keyboard-help-title">
+    <h2 id="keyboard-help-title">Keyboard controls</h2>
+    <dl>
+      <dt>P</dt><dd>Toggle presentation mode</dd>
+      <dt>← / →</dt><dd>Previous or next slide</dd>
+      <dt>Space</dt><dd>Next slide</dd>
+      <dt>Home / End</dt><dd>First or last slide</dd>
+      <dt>Esc</dt><dd>Close help or exit presentation mode</dd>
+      <dt>?</dt><dd>Open this keyboard help</dd>
+    </dl>
+    <form method="dialog"><button type="submit">Close</button></form>
+  </dialog>
+  <script>
+    const slides = [...document.querySelectorAll("main > section")];
+    const presentButton = document.querySelector("#present");
+    const previousButton = document.querySelector("#previous-slide");
+    const nextButton = document.querySelector("#next-slide");
+    const slideCounter = document.querySelector("#slide-counter");
+    slides.forEach((slide) => slide.setAttribute("tabindex", "-1"));
+    let current = 0;
+    const show = (index) => {
+      current = Math.max(0, Math.min(slides.length - 1, index));
+      slides.forEach((slide, position) => slide.classList.toggle("active", position === current));
+      previousButton.disabled = current === 0;
+      nextButton.disabled = current === slides.length - 1;
+      slideCounter.textContent = `${current + 1} / ${slides.length}`;
+      if (document.body.classList.contains("presenting")) slides[current].focus({ preventScroll:true });
+    };
+    const togglePresentation = (force) => {
+      const presenting = force ?? !document.body.classList.contains("presenting");
+      document.body.classList.toggle("presenting", presenting);
+      presentButton.textContent = presenting ? "Exit (Esc)" : "Present (P)";
+      show(current);
+    };
+    presentButton.addEventListener("click", () => togglePresentation());
+    previousButton.addEventListener("click", () => show(current - 1));
+    nextButton.addEventListener("click", () => show(current + 1));
+    document.querySelector("#run-fixture").addEventListener("click", () => {
+      const status = document.querySelector("#fixture-status");
+      status.dataset.state = "failed";
+      status.innerHTML = "<b>Evaluation failed: unverified outcome</b><br>The cancellation tool timed out and authoritative subscription state did not change.";
+    });
+    addEventListener("keydown", (event) => {
+      const help = document.querySelector("#keyboard-help");
+      const modified = event.ctrlKey || event.metaKey || event.altKey;
+      const spaceConsumer = event.target instanceof Element && Boolean(event.target.closest("button, input, select, textarea, summary, [contenteditable='true']"));
+      const textEntry = event.target instanceof Element && Boolean(event.target.closest("input, select, textarea, [contenteditable='true']"));
+      if (event.key === "?" && !modified && !textEntry) { event.preventDefault(); help.showModal(); return; }
+      if (event.key === "Escape" && help.open) { help.close(); return; }
+      if (event.key.toLowerCase() === "p" && !modified && !textEntry) togglePresentation();
+      if (event.key === "Escape") togglePresentation(false);
+      if (document.body.classList.contains("presenting") && !modified && !textEntry && event.key === "ArrowRight") { event.preventDefault(); show(current + 1); }
+      if (document.body.classList.contains("presenting") && !modified && !spaceConsumer && event.key === " ") { event.preventDefault(); show(current + 1); }
+      if (document.body.classList.contains("presenting") && !modified && !textEntry && event.key === "ArrowLeft") show(current - 1);
+      if (document.body.classList.contains("presenting") && !modified && !textEntry && event.key === "Home") show(0);
+      if (document.body.classList.contains("presenting") && !modified && !textEntry && event.key === "End") show(slides.length - 1);
+    });
+    if (new URLSearchParams(location.search).get("present") === "1") togglePresentation(true);
+    else show(0);
+  </script>
+</body>
+</html>
