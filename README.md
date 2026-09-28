@@ -8,11 +8,13 @@ The presentation argues that a production voice agent must be evaluated as a com
 
 ## Open the presentation
 
-After GitHub Pages is enabled for this repository, the site will be available at:
-
 **https://agonza1.github.io/real-time-voice-agent-evals-presentation/**
 
-The repository includes a GitHub Actions workflow that deploys every push to `main`.
+For stage delivery, open directly in full-screen presentation mode:
+
+**https://agonza1.github.io/real-time-voice-agent-evals-presentation/?present=1**
+
+Every push to `main` is validated and deployed automatically through GitHub Actions.
 
 ## Features
 
@@ -52,9 +54,7 @@ Run the deterministic repository checks with the standard Node command:
 npm test
 ```
 
-The smoke test uses Node's built-in test runner. It needs no package installation
-and verifies the published URL, local serving instructions, and the no-build,
-no-external-dependency contract documented above.
+The smoke test uses Node's built-in test runner. It needs no package installation and verifies the presentation structure, local assets, controls, engineering-boundary language, published URL, and Pages workflow.
 
 ## Architecture and evidence boundary
 
@@ -68,13 +68,13 @@ This repository contains the interactive presentation—not a second evaluation 
 
 The interactive demo in this site is clearly labeled as a fixture. It does not claim to prove SIP/PSTN execution, browser-microphone interoperability, production network behavior, or full-duplex barge-in.
 
-## GitHub Pages
+## Deployment
 
-The included workflow uses the official Pages actions. On a new repository, GitHub may require one initial configuration step:
+The GitHub Actions workflow:
 
-1. Open **Settings → Pages**.
-2. Set **Source** to **GitHub Actions**.
-3. Re-run the `Deploy presentation to GitHub Pages` workflow if the first run occurred before Pages was enabled.
+1. Runs the dependency-free smoke tests.
+2. Packages the static presentation.
+3. Deploys it to the repository's GitHub Pages environment.
 
 ## License
 
