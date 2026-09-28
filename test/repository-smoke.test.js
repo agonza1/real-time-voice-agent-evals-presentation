@@ -1,43 +1,42 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
 const repositoryRoot = new URL("../", import.meta.url);
-const readRepositoryFile = (path) =>
-  readFile(new URL(path, repositoryRoot), "utf8");
+const readRepositoryFile = (path) => readFile(new URL(path, repositoryRoot), "utf8");
 
-test("the standard test command uses only the Node.js test runner", async () => {
+const localAssets = [
+  "assets/favicon.svg",
+  "styles/base.css",
+  "styles/slides-a.css",
+  "styles/slides-b.css",
+  "styles/modes.css",
+  "slides/part-1.js",
+  "slides/part-2.js",
+  "slides/part-3.js",
+  "scripts/render-slides.js",
+  "scripts/app.js",
+];
+
+test("the project stays dependency-free and uses the Node test runner", async () => {
   const packageJson = JSON.parse(await readRepositoryFile("package.json"));
-
   assert.equal(packageJson.scripts?.test, "node --test");
   assert.equal(packageJson.private, true);
-
-  for (const dependencyType of [
-    "dependencies",
-    "devDependencies",
-    "optionalDependencies",
-    "peerDependencies",
-  ]) {
-    assert.equal(
-      packageJson[dependencyType],
-      undefined,
-      `package.json must not define ${dependencyType}`,
-    );
+  for (const key of ["dependencies", "devDependencies", "optionalDependencies", "peerDependencies"]) {
+    assert.equal(packageJson[key], undefined, `package.json must not define ${key}`);
   }
 });
 
-test("the README documents the canonical GitHub Pages URL", async () => {
+test("the README documents the canonical site and local server", async () => {
   const readme = await readRepositoryFile("README.md");
-
-  assert.match(
-    readme,
-    /\*\*https:\/\/agonza1\.github\.io\/real-time-voice-agent-evals-presentation\/\*\*/,
-  );
+  assert.match(readme, /\*\*https:\/\/agonza1\.github\.io\/real-time-voice-agent-evals-presentation\/\*\*/);
+  assert.match(readme, /```bash\npython3 -m http\.server 8080\n```/);
+  assert.match(readme, /No framework, build tool, package install, or external font dependency/);
 });
 
-test("the repository includes its advertised GitHub Pages deployment", async () => {
+test("the Pages workflow validates before deployment", async () => {
   const workflow = await readRepositoryFile(".github/workflows/pages.yml");
-
+  assert.match(workflow, /npm test/);
   assert.match(workflow, /pages: write/);
   assert.match(workflow, /id-token: write/);
   assert.match(workflow, /actions\/configure-pages@v5/);
@@ -45,57 +44,53 @@ test("the repository includes its advertised GitHub Pages deployment", async () 
   assert.match(workflow, /actions\/deploy-pages@v4/);
 });
 
-test("the README documents a complete local serving command", async () => {
-  const readme = await readRepositoryFile("README.md");
-
-  assert.match(readme, /```bash\npython3 -m http\.server 8080\n```/);
-  assert.match(readme, /`http:\/\/localhost:8080`/);
-});
-
-test("the README promises a no-build, dependency-free presentation", async () => {
-  const readme = await readRepositoryFile("README.md");
-
-  assert.match(
-    readme,
-    /No framework, build tool, package install, or external font dependency/,
-  );
-});
-
-test("the deployable presentation entry point exists and is self-contained", async () => {
+test("the HTML shell loads only local presentation assets", async () => {
   const html = await readRepositoryFile("index.html");
-
   assert.match(html, /^<!doctype html>/i);
   assert.match(html, /<title>Evaluating Real-Time Voice Agents Beyond AI Models<\/title>/);
-  assert.match(html, /<main\b/);
-  assert.ok(
-    (html.match(/<section\b/g) ?? []).length >= 5,
-    "the entry point must contain a substantive slide sequence",
-  );
-  assert.match(html, /ConversationAgentEvals/);
-  assert.match(html, /vCon/);
-  assert.match(html, /<dialog id="keyboard-help"/);
-  assert.match(html, /event\.key === "\?"/);
-  assert.match(html, /event\.ctrlKey \|\| event\.metaKey \|\| event\.altKey/);
-  assert.match(html, /const spaceConsumer = .*closest\("button, input, select, textarea, summary/);
-  assert.match(html, /const textEntry = .*closest\("input, select, textarea/);
-  assert.match(html, /!modified && !spaceConsumer && event\.key === " "/);
-  assert.match(html, /!modified && !textEntry && event\.key === "ArrowRight"/);
-  assert.match(html, /body\.presenting header \{ inset:auto \.75rem \.75rem auto;/);
-  assert.match(html, /<nav id="slide-controls" aria-label="Presentation slide controls">/);
-  assert.match(html, /previousButton\.addEventListener\("click"/);
-  assert.match(html, /nextButton\.addEventListener\("click"/);
-  assert.match(html, /color-scheme:light; --ink:#111; --muted:#333;/);
-  assert.match(html, /body \{ color:#111; background:#fff; \}/);
-  assert.match(html, /\.card, \.status, \.flow div \{ color:#111; background:#fff; \}/);
-  assert.match(html, /body\.presenting #slide-controls \{ display:none; \}/);
-  assert.match(html, /dialog, dialog\[open\] \{ display:none !important; \}/);
-  assert.match(html, /body\.presenting header \{ inset:auto \.75rem 4\.75rem auto; \}/);
-  assert.match(html, /body\.presenting #slide-controls \{ inset:auto 50% \.5rem auto; width:calc\(100% - 1rem\);/);
-  assert.match(html, /h1,h2 \{[^}]*overflow-wrap:anywhere;/);
-  assert.match(html, /section\.active \{[^}]*overflow-y:auto;[^}]*align-content:start;/);
-  assert.match(html, /body\.presenting section, body\.presenting section\.active \{ display:grid; width:auto; height:auto; min-height:0; overflow:visible; align-content:start;/);
-  assert.match(html, /id="fixture-status" class="status" role="status" aria-live="polite"/);
-  assert.match(html, /slides\.forEach\(\(slide\) => slide\.setAttribute\("tabindex", "-1"\)\)/);
-  assert.match(html, /if \(document\.body\.classList\.contains\("presenting"\)\) slides\[current\]\.focus\(\{ preventScroll:true \}\)/);
-  assert.doesNotMatch(html, /<(?:script|link)[^>]+(?:src|href)=["']https?:\/\//i);
+  assert.match(html, /<main id="deck"><\/main>/);
+  assert.match(html, /id="presentButton"/);
+  assert.match(html, /id="helpDialog"/);
+  assert.match(html, /scripts\/render-slides\.js/);
+  assert.match(html, /scripts\/app\.js/);
+  assert.doesNotMatch(html, /<script[^>]+src=["']https?:\/\//i);
+  assert.doesNotMatch(html, /<link[^>]+rel=["']stylesheet["'][^>]+href=["']https?:\/\//i);
+
+  for (const path of localAssets) {
+    await access(new URL(path, repositoryRoot));
+  }
+});
+
+test("the slide data defines a complete 17-section narrative", async () => {
+  const parts = await Promise.all([
+    readRepositoryFile("slides/part-1.js"),
+    readRepositoryFile("slides/part-2.js"),
+    readRepositoryFile("slides/part-3.js"),
+  ]);
+  const ids = parts.flatMap((content) => [...content.matchAll(/\bid:\s*"([^"]+)"/g)].map((match) => match[1]));
+  assert.equal(ids.length, 17);
+  assert.equal(new Set(ids).size, 17);
+  for (const required of ["intro", "problem", "layers", "timeline", "vcon", "workbench", "contract", "demo", "comparison", "boundary", "standards", "close"]) {
+    assert.ok(ids.includes(required), `missing required slide: ${required}`);
+  }
+  const combined = parts.join("\n");
+  assert.match(combined, /ConversationAgentEvals/);
+  assert.match(combined, /portable evidence envelope/);
+  assert.match(combined, /SCRIPTED FIXTURE · NOT LIVE SIP\/PSTN OR PRODUCTION MEDIA PROOF/);
+  assert.match(combined, /CONVERSATIONAGENTEVALS TODAY/);
+  assert.match(combined, /VON \/ NEXT IN CAE/);
+  assert.match(combined, /IETF vCon Core/);
+  assert.match(combined, /Judging LLM-as-a-Judge/);
+});
+
+test("presentation controls and the fixture are wired accessibly", async () => {
+  const app = await readRepositoryFile("scripts/app.js");
+  assert.match(app, /new URLSearchParams\(location\.search\)\.get\("present"\) === "1"/);
+  assert.match(app, /event\.key === "\?"/);
+  assert.match(app, /event\.metaKey \|\| event\.ctrlKey \|\| event\.altKey/);
+  assert.match(app, /spaceConsumer/);
+  assert.match(app, /slide\.focus\(\{ preventScroll: true \}\)/);
+  assert.match(app, /BUSINESS SUCCESS/);
+  assert.match(app, /SAFE FAILURE/);
+  assert.match(app, /FALSE SUCCESS/);
 });
