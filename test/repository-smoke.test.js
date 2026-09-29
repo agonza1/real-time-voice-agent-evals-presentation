@@ -97,6 +97,7 @@ test("the slide data defines a complete 18-section narrative", async () => {
 
 test("the vCon enrichment is presented as CAE-aligned pseudo JSON", async () => {
   const enrichment = await readRepositoryFile("slides/vcon-enrichment.js");
+  assert.doesNotThrow(() => new Function("window", enrichment)({}));
   assert.match(enrichment, /PSEUDO JSON · CURRENT CAE SHAPE/);
   assert.match(enrichment, /class="vcon-json-code"/);
   assert.match(enrichment, /<span class="json-key">"vcon"<\/span>/);
