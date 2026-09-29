@@ -91,19 +91,28 @@ test("the slide data defines a complete 18-section narrative", async () => {
   assert.match(combined, /draft-ietf-vcon-vcon-core-04/i);
   assert.match(combined, /cae-execution-transcript-v1/);
   assert.match(combined, /cae-execution-evidence-v1/);
-  assert.match(combined, /recording lives in <code>dialog<\/code>, not in an attachment/i);
-  assert.match(combined, /Current CAE execution export is unsigned/);
+  assert.match(combined, /portable recording is a <code>dialog<\/code> item/i);
+  assert.match(combined, /current CAE execution export is unsigned/i);
 });
 
-test("the vCon enrichment is presented as CAE-aligned pseudo JSON", async () => {
+test("the vCon enrichment is concise pseudo JSON with an accessible magnifier", async () => {
   const enrichment = await readRepositoryFile("slides/vcon-enrichment.js");
   assert.doesNotThrow(() => new Function("window", enrichment)({}));
-  assert.match(enrichment, /PSEUDO JSON · CURRENT CAE SHAPE/);
+  assert.match(enrichment, /HIGH-LEVEL PSEUDO JSON · CURRENT CAE SHAPE/);
   assert.match(enrichment, /class="vcon-json-code"/);
+  assert.match(enrichment, /data-json-explorer/);
+  assert.match(enrichment, /class="json-zoom-square"/);
+  assert.match(enrichment, /… envelope fields omitted …/);
+  assert.match(enrichment, /class="json-ellipsis"/);
+  assert.doesNotMatch(enrichment, /"updated_at"/);
+  assert.doesNotMatch(enrichment, /tts_source_text_with_peer_asr_receipts/);
+  for (const key of ["core", "dialog", "transcript", "evaluation"]) {
+    assert.match(enrichment, new RegExp(`data-json-focus-button="${key}"`));
+    assert.match(enrichment, new RegExp(`data-json-zoom-view="${key}"`));
+  }
   assert.match(enrichment, /<span class="json-key">"vcon"<\/span>/);
   assert.match(enrichment, /<span class="json-key">"dialog"<\/span>/);
   assert.match(enrichment, /<span class="json-key">"analysis"<\/span>/);
-  assert.match(enrichment, /tts_source_text_with_peer_asr_receipts/);
   assert.match(enrichment, /base64url SHA-512/);
   assert.match(enrichment, /<span class="json-key">"status"<\/span><span class="json-punctuation">:<\/span> <span class="json-string">"portable"<\/span>/);
 });
@@ -115,7 +124,7 @@ test("the renderer places the enrichment immediately after the core vCon slide",
   assert.match(renderer, /part2\.slice\(1\)/);
 });
 
-test("presentation controls and the fixture are wired accessibly", async () => {
+test("presentation controls, the fixture, and vCon magnifier are wired accessibly", async () => {
   const app = await readRepositoryFile("scripts/app.js");
   assert.match(app, /new URLSearchParams\(location\.search\)\.get\("present"\) === "1"/);
   assert.match(app, /event\.key === "\?"/);
@@ -125,4 +134,12 @@ test("presentation controls and the fixture are wired accessibly", async () => {
   assert.match(app, /BUSINESS SUCCESS/);
   assert.match(app, /SAFE FAILURE/);
   assert.match(app, /FALSE SUCCESS/);
+  assert.match(app, /querySelector\("\[data-json-explorer\]"\)/);
+  assert.match(app, /dataJsonFocusButton/);
+  assert.match(app, /dataJsonZoomView/);
+  assert.match(app, /addEventListener\("pointerenter"/);
+  assert.match(app, /addEventListener\("focus"/);
+  assert.match(app, /addEventListener\("click"/);
+  assert.match(app, /setAttribute\("aria-hidden"/);
+  assert.match(app, /setAttribute\("aria-pressed"/);
 });
