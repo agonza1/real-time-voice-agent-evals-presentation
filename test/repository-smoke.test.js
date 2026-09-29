@@ -91,8 +91,20 @@ test("the slide data defines a complete 18-section narrative", async () => {
   assert.match(combined, /draft-ietf-vcon-vcon-core-04/i);
   assert.match(combined, /cae-execution-transcript-v1/);
   assert.match(combined, /cae-execution-evidence-v1/);
-  assert.match(combined, /a recording lives in <code>dialog<\/code>, not in an attachment/);
+  assert.match(combined, /recording lives in <code>dialog<\/code>, not in an attachment/i);
   assert.match(combined, /Current CAE execution export is unsigned/);
+});
+
+test("the vCon enrichment is presented as CAE-aligned pseudo JSON", async () => {
+  const enrichment = await readRepositoryFile("slides/vcon-enrichment.js");
+  assert.match(enrichment, /PSEUDO JSON · CURRENT CAE SHAPE/);
+  assert.match(enrichment, /class="vcon-json-code"/);
+  assert.match(enrichment, /<span class="json-key">"vcon"<\/span>/);
+  assert.match(enrichment, /<span class="json-key">"dialog"<\/span>/);
+  assert.match(enrichment, /<span class="json-key">"analysis"<\/span>/);
+  assert.match(enrichment, /tts_source_text_with_peer_asr_receipts/);
+  assert.match(enrichment, /base64url SHA-512/);
+  assert.match(enrichment, /<span class="json-key">"status"<\/span><span class="json-punctuation">:<\/span> <span class="json-string">"portable"<\/span>/);
 });
 
 test("the renderer places the enrichment immediately after the core vCon slide", async () => {
