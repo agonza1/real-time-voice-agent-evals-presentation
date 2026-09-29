@@ -1,9 +1,13 @@
 (() => {
   "use strict";
 
+  const part2 = window.VOICE_EVALS_SLIDES_PART_2;
+  const enrichment = window.VOICE_EVALS_VCON_ENRICHMENT;
   const parts = [
     window.VOICE_EVALS_SLIDES_PART_1,
-    window.VOICE_EVALS_SLIDES_PART_2,
+    Array.isArray(part2) ? part2.slice(0, 1) : part2,
+    enrichment,
+    Array.isArray(part2) ? part2.slice(1) : part2,
     window.VOICE_EVALS_SLIDES_PART_3,
   ];
 
