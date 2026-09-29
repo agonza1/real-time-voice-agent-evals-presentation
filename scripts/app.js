@@ -203,6 +203,45 @@
     });
   });
 
+  const jsonExplorer = document.querySelector("[data-json-explorer]");
+  if (jsonExplorer) {
+    const focusGrid = jsonExplorer.querySelector(".json-focus-grid");
+    const focusButtons = Array.from(jsonExplorer.querySelectorAll("[data-json-focus-button]"));
+    const zoomViews = Array.from(jsonExplorer.querySelectorAll("[data-json-zoom-view]"));
+    let pinnedFocus = jsonExplorer.dataset.jsonFocus || "core";
+
+    const setJsonFocus = (key) => {
+      if (!focusButtons.some((button) => button.dataset.jsonFocusButton === key)) return;
+      jsonExplorer.dataset.jsonFocus = key;
+      focusButtons.forEach((button) => {
+        const active = button.dataset.jsonFocusButton === key;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+      zoomViews.forEach((view) => {
+        const active = view.dataset.jsonZoomView === key;
+        view.classList.toggle("is-active", active);
+        view.setAttribute("aria-hidden", String(!active));
+      });
+    };
+
+    focusButtons.forEach((button) => {
+      const key = button.dataset.jsonFocusButton;
+      button.addEventListener("pointerenter", () => setJsonFocus(key));
+      button.addEventListener("focus", () => setJsonFocus(key));
+      button.addEventListener("click", () => {
+        pinnedFocus = key;
+        setJsonFocus(key);
+      });
+    });
+
+    focusGrid?.addEventListener("pointerleave", () => setJsonFocus(pinnedFocus));
+    focusGrid?.addEventListener("focusout", (event) => {
+      if (!focusGrid.contains(event.relatedTarget)) setJsonFocus(pinnedFocus);
+    });
+    setJsonFocus(pinnedFocus);
+  }
+
   const requestedId = location.hash.slice(1);
   const requestedIndex = slides.findIndex((slide) => slide.id === requestedId);
   updateUi(requestedIndex >= 0 ? requestedIndex : 0);
