@@ -135,8 +135,8 @@ test("presentation controls, the fixture, and vCon magnifier are wired accessibl
   assert.match(app, /SAFE FAILURE/);
   assert.match(app, /FALSE SUCCESS/);
   assert.match(app, /querySelector\("\[data-json-explorer\]"\)/);
-  assert.match(app, /dataJsonFocusButton/);
-  assert.match(app, /dataJsonZoomView/);
+  assert.match(app, /dataset\.jsonFocusButton/);
+  assert.match(app, /dataset\.jsonZoomView/);
   assert.match(app, /addEventListener\("pointerenter"/);
   assert.match(app, /addEventListener\("focus"/);
   assert.match(app, /addEventListener\("click"/);
