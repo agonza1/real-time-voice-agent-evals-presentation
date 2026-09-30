@@ -4,39 +4,35 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">OUTCOME TAXONOMY</p>
-        <h2 id="outcomes-title">Three outcomes can sound <span>equally fluent</span></h2>
-        <p>A transcript-only score often collapses the last two.</p>
+        <h2 id="outcomes-title">Evaluate the outcome—<span>and the control that protects it</span></h2>
+        <p>False confirmation is preventable. A timeout can also leave completion unknown until reconciliation.</p>
       </div>
       <div class="outcome-grid">
         <article class="outcome-card success-outcome"><span>A</span><h3>Business success</h3><p>Tool succeeds, authoritative state changes, and the agent confirms the verified result.</p><b>PASS · COMPLETED + TRUTHFUL</b></article>
         <article class="outcome-card safe-outcome"><span>B</span><h3>Safe failure</h3><p>Tool fails, the agent communicates uncertainty, makes no false claim, and offers recovery or handoff.</p><b>RECOVERED · INCOMPLETE + SAFE</b></article>
-        <article class="outcome-card false-outcome"><span>C</span><h3>False success</h3><p>Tool fails, state remains unchanged, and the agent confidently claims completion.</p><b>FAIL · INCOMPLETE + DANGEROUS</b></article>
+        <article class="outcome-card false-outcome"><span>C</span><h3>False success</h3><p>A missing or bypassed output gate lets the agent claim completion despite contradictory evidence.</p><b>FAIL · RUNTIME CONTROL MISSING</b></article>
       </div>
-      <p class="takeaway">Language quality may be identical in A and C. <strong>Backend truth is not.</strong></p>
+      <p class="takeaway"><strong>Unknown is not failed.</strong> Evaluate business state and safe behavior separately; never guess a completion verdict.</p>
     `
   },
   {
     id: "comparison",
     html: `
-      <div class="section-heading">
-        <p class="eyebrow">REGRESSION</p>
-        <h2 id="comparison-title">Use one evidence contract across <span>agents, models, and versions</span></h2>
-        <p>vCon makes evidence portable; CAE makes the comparison meaningful.</p>
+<div class="section-heading">
+        <p class="eyebrow">REGRESSION → RELEASE DECISION</p>
+        <h2 id="comparison-title">Faster is not enough<br><span>to approve the release.</span></h2>
+        <p>The same endpointing change, evaluated against the workflow’s critical requirements.</p>
       </div>
-      <div class="comparison-wrap">
-        <table class="comparison-table">
-          <thead><tr><th>Target</th><th>Experience</th><th>Speech</th><th>Execution</th><th>Outcome</th><th>Overall</th></tr></thead>
-          <tbody>
-            <tr><th>Agent v1 · Model A</th><td><span class="status-pass">PASS</span></td><td><span class="status-pass">PASS</span></td><td><span class="status-warn">WARN</span></td><td><span class="status-fail">FAIL</span></td><td><span class="status-fail">FAIL</span></td></tr>
-            <tr><th>Agent v2 · Model A</th><td><span class="status-pass">PASS</span></td><td><span class="status-pass">PASS</span></td><td><span class="status-pass">PASS</span></td><td><span class="status-pass">PASS</span></td><td><span class="status-pass">PASS</span></td></tr>
-            <tr><th>Agent v2 · Model B</th><td><span class="status-warn">WARN</span></td><td><span class="status-pass">PASS</span></td><td><span class="status-pass">PASS</span></td><td><span class="status-pass">PASS</span></td><td><span class="status-warn">WARN</span></td></tr>
-            <tr><th>Vendor X · API</th><td><span class="status-pass">PASS</span></td><td><span class="status-warn">WARN</span></td><td><span class="status-fail">FAIL</span></td><td><span class="status-fail">FAIL</span></td><td><span class="status-fail">FAIL</span></td></tr>
-            <tr><th>Vendor Y · SIP</th><td><span class="status-warn">WARN</span></td><td><span class="status-pass">PASS</span></td><td><span class="status-pass">PASS</span></td><td><span class="status-pass">PASS</span></td><td><span class="status-pass">PASS</span></td></tr>
-          </tbody>
-        </table>
-        <p class="micro-note">Illustrative regression view · same scenarios · same evidence contract · different implementations</p>
-      </div>
-      <p class="takeaway">A faster model is not an upgrade if <strong>tool integrity or business outcomes regress.</strong></p>
+      <div class="eng-toolbar" role="group" aria-label="Version under release review"><button type="button" data-release="baseline" aria-pressed="false">Baseline</button><button type="button" data-release="candidate" aria-pressed="true">Aggressive endpointing</button><span class="eng-label">SYNTHETIC COHORTS · 100 RUNS PER VERSION</span></div>
+      <div class="comparison-wrap"><table class="comparison-table eng-release-table"><thead><tr><th>Measure</th><th>Baseline</th><th>Candidate</th><th>Illustrative release requirement</th></tr></thead><tbody>
+        <tr><th>Response latency p95*</th><td>1,100 ms</td><td>780 ms</td><td>≤ 1,200 ms</td></tr>
+        <tr><th>Premature responses</th><td>2 / 100</td><td>12 / 100</td><td>≤ 3 / 100</td></tr>
+        <tr><th>Wrong cancellation timing</th><td>0 / 100</td><td>4 / 100</td><td>0 in this test cohort</td></tr>
+        <tr><th>Required evidence complete</th><td>100 / 100</td><td>100 / 100</td><td>100 / 100</td></tr>
+        <tr><th>Unanswered test turns</th><td>0 / 100</td><td>0 / 100</td><td>0 / 100</td></tr>
+      </tbody></table></div>
+      <div id="releaseDecision" class="eng-release-decision" aria-live="polite"></div>
+      <p class="micro-note">*Accepted end-of-turn → first audio at the test receiver. Faster endpointing can game this boundary. Same scenarios, model, transport, concurrency, and evidence contract. Counts and thresholds are illustrative, not measured results or population guarantees.</p>
     `
   },
   {
@@ -44,8 +40,8 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">ENGINEERING BOUNDARY</p>
-        <h2 id="boundary-title">What exists today—<span>and what VON extends</span></h2>
-        <p>Keep the open-source claim strong by keeping the implementation boundary explicit.</p>
+        <h2 id="boundary-title">What CAE supports—<span>and what comes next</span></h2>
+        <p>Separate product capabilities, runtime protections, and presentation-only experiments.</p>
       </div>
       <div class="boundary-grid">
         <article class="shipped-card">
@@ -53,11 +49,11 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
           <ul class="clean-list"><li>Supported target execution or imported evidence</li><li>Normalization, durable artifacts, reports, comparisons, and exports</li><li>Goals, required/forbidden actions, expected final state, and rubrics</li><li>Transcript/conversation, vCon, media, action trace, final-state, manifest, and report contracts</li><li>Local ASSERT-compatible boundary with optional upstream semantic judging</li></ul>
         </article>
         <article class="roadmap-card">
-          <div class="boundary-head"><span>VON / NEXT IN CAE</span><b>ROADMAP</b></div>
+          <div class="boundary-head"><span>PLANNED IN CAE</span><b>ROADMAP</b></div>
           <ul class="clean-list"><li>Generalized allowed-claim and conversational-SLO contracts</li><li>Generalized tool, runtime, transport, and ASR failure injection</li><li>SIP/SIPREC production evidence adapters</li><li>Conserver enrichment, routing, and storage pipeline</li><li>Automatically generated, verified signed or redacted bundles</li></ul>
         </article>
       </div>
-      <div class="honesty-boundary"><strong>DO NOT CLAIM YET:</strong><span>generic SIP/PSTN proof</span><span>production network proof</span><span>browser-mic interoperability proof</span><span>production full-duplex barge-in</span></div>
+      <div class="honesty-boundary"><strong>OUTSIDE THIS DEMO’S PROOF:</strong><span>generic SIP/PSTN proof</span><span>production network proof</span><span>browser-mic interoperability proof</span><span>production full-duplex barge-in</span></div>
     `
   },
   {

@@ -36,15 +36,15 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">THE PROBLEM</p>
-        <h2 id="problem-title">The agent said the right thing. <span>The system did the wrong thing.</span></h2>
-        <p>Transcript quality can hide an operational failure.</p>
+        <h2 id="problem-title">Without a runtime gate, <span>a fluent answer can be false.</span></h2>
+        <p>Language quality alone cannot establish completion. Runtime controls must prevent unsupported claims before speech.</p>
       </div>
       <div class="truth-split">
         <article class="truth-card surface-card">
           <p class="card-kicker">CONVERSATION SURFACE</p>
           <blockquote>“Your subscription has been canceled.”</blockquote>
           <div class="quality-tags"><span>polite</span><span>relevant</span><span>confident</span></div>
-          <div class="status-line pass"><span>TRANSCRIPT EVAL</span><strong>PASS</strong></div>
+          <div class="status-line pass"><span>LANGUAGE-ONLY CHECK</span><strong>PASS</strong></div>
         </article>
         <div aria-hidden="true" class="versus">≠</div>
         <article class="truth-card state-card">
@@ -54,7 +54,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
           <div class="status-line fail"><span>BUSINESS OUTCOME</span><strong>FAIL</strong></div>
         </article>
       </div>
-      <p class="takeaway">If we evaluate only the transcript, <strong>we reward a false claim.</strong></p>
+      <p class="takeaway"><strong>Prevent with runtime controls. Verify with evaluation.</strong></p>
     `
   },
   {
@@ -99,45 +99,51 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
   {
     id: "timeline",
     html: `
-      <div class="section-heading">
-        <p class="eyebrow">EVIDENCE</p>
-        <h2 id="timeline-title">The unit of evaluation is <span>a synchronized event timeline</span></h2>
-        <p>Every claim should be traceable to evidence across the complete turn.</p>
+<div class="section-heading">
+        <p class="eyebrow">SYNCHRONIZED EVIDENCE</p>
+        <h2 id="timeline-title">Faster at which boundary?<br><span>And did we cut the caller off?</span></h2>
+        <p>One request. Two endpointing policies. The same model and response path.</p>
       </div>
-      <div class="timeline" aria-label="Synchronized voice agent event timeline">
-        <div class="timeline-axis"></div>
-        <div class="timeline-event" style="--x:3%;color:var(--cyan)"><b>Caller stops</b><i class="cyan-bg"></i><span>AUDIO</span></div>
-        <div class="timeline-event" style="--x:17%;color:var(--cyan)"><b>End of turn</b><i class="cyan-bg"></i><span>VAD</span></div>
-        <div class="timeline-event" style="--x:31%;color:var(--violet)"><b>Final transcript</b><i class="violet-bg"></i><span>STT</span></div>
-        <div class="timeline-event" style="--x:45%;color:var(--violet)"><b>First model token</b><i class="violet-bg"></i><span>MODEL</span></div>
-        <div class="timeline-event" style="--x:59%;color:var(--amber)"><b>Tool request</b><i class="amber-bg"></i><span>AGENT</span></div>
-        <div class="timeline-event" style="--x:73%;color:var(--amber)"><b>Tool response</b><i class="amber-bg"></i><span>CONTROL</span></div>
-        <div class="timeline-event" style="--x:86%;color:var(--green)"><b>TTS starts</b><i class="green-bg"></i><span>SPEECH</span></div>
-        <div class="timeline-event" style="--x:98%;color:var(--green)"><b>State verified</b><i class="green-bg"></i><span>BACKEND</span></div>
+      <div class="eng-toolbar" role="group" aria-label="Endpointing policy">
+        <button type="button" data-endpoint="patient" aria-pressed="true">Wait for the complete request</button>
+        <button type="button" data-endpoint="eager" aria-pressed="false">Aggressive endpointing</button>
+        <span class="eng-label">ILLUSTRATIVE TIMINGS · SHARED FIXTURE CLOCK</span>
       </div>
-      <div class="timing-bands"><article><span>speech → final transcript</span><b>speech-boundary latency</b></article><article><span>decision → TTS start</span><b>response generation latency</b></article><article><span>complete turn → verified state</span><b>business completion latency</b></article></div>
+      <div class="eng-panel">
+        <p class="eng-utterance">“Cancel my subscription <span class="eng-pause">… pause …</span> <mark>at the end of the billing period.</mark>”</p>
+        <div id="endpointTrace" class="eng-trace" aria-label="Caller and agent event trace"></div>
+        <div id="latencyReadings" class="eng-metrics" aria-live="polite"></div>
+      </div>
+      <p id="endpointInsight" class="takeaway" aria-live="polite"></p>
+      <p class="micro-note">First token ≠ generated audio ≠ receiver audio ≠ physical speaker playout. In real runs, record the observer and clock mapping; do not add component p95s.</p>
+      <p class="eng-sources"><a href="https://docs.livekit.io/agents/logic/turns/turn-detector/" target="_blank" rel="noopener noreferrer">Turn detection beyond VAD ↗</a></p>
     `
   },
   {
     id: "truth",
     html: `
-      <div class="section-heading">
-        <p class="eyebrow">EVIDENCE</p>
-        <h2 id="truth-title">A transcript observes the data plane—<span>not the control plane</span></h2>
-        <p>Both are needed to determine whether an interaction was allowed, true, and complete.</p>
+<div class="section-heading">
+        <p class="eyebrow">EVIDENCE &amp; TRUTH</p>
+        <h2 id="truth-title">A correct transcript.<br><span>Of the wrong audio?</span></h2>
+        <p>Preserve what was sent, what was received, and what the recognizer inferred.</p>
       </div>
-      <div class="plane-grid">
-        <article class="plane-card">
-          <p class="card-kicker">DATA PLANE</p><h3>What the conversation looked and sounded like</h3>
-          <ul class="clean-list"><li>Audio and turn events</li><li>Interim and final transcript</li><li>Spoken response</li><li>Perceptual and timing evidence</li></ul>
+      <div class="eng-columns">
+        <article class="eng-panel">
+          <p class="card-kicker">CONVERSATION EVIDENCE</p>
+          <div class="eng-audio-row"><div><b>Source audio</b><p>“Do <mark>not</mark> cancel my subscription.”</p></div><button type="button" data-audio="source">Play source</button></div>
+          <div class="eng-audio-row"><div><b>Simulated receiver audio</b><p>“Do <span class="eng-missing">[muted]</span> cancel my subscription.”</p></div><button type="button" data-audio="received">Play received</button></div>
+          <p id="audioStatus" class="eng-label" role="status">LOCAL SYNTHETIC SPEECH · “NOT” MUTED IN THE SAME RECORDING</p>
+          <details class="eng-details"><summary>Reveal the illustrative ASR interpretation</summary><p>“Do cancel my subscription.” <strong>The action-changing word is gone.</strong></p><p class="micro-note">Hypothetical ASR output, not a recognizer result. This controlled audio edit is not a packet-loss or codec simulation.</p></details>
+          <details class="eng-details"><summary>What WebRTC telemetry would help explain it?</summary><p><code>packetsDiscarded</code>: received too late/early for playout. <code>concealedSamples</code>: synthesized to cover loss or lateness. <code>jitterBufferDelay</code>: cumulative time buffered; use interval deltas divided by emitted-count deltas.</p><p class="micro-note">No RTCStats are collected in this slide. Those metrics explain media behavior, not whether meaning survived.</p></details>
         </article>
-        <article class="plane-card control-plane">
-          <p class="card-kicker">CONTROL PLANE</p><h3>Why the system acted—and whether it was authorized</h3>
-          <ul class="clean-list"><li>Session and policy state</li><li>Tool request and response</li><li>Authorization decision</li><li>Authoritative final state</li></ul>
+        <article class="eng-panel">
+          <p class="card-kicker">OPERATIONAL EVIDENCE</p>
+          <h3>The transcript still cannot prove the operation.</h3>
+          <ul class="clean-list"><li>Authorization and policy decision</li><li>Operation ID + tool request/response</li><li>State verified for that operation</li><li>Output gate decision before speech</li></ul>
+          <p class="eng-callout">An output gate protects claims about execution. It does not recover caller intent lost upstream.</p>
         </article>
       </div>
-      <div class="proof-rule"><span>Semantic judges</span><i>+</i><span>deterministic assertions</span><i>+</i><span>authoritative evidence</span></div>
-      <p class="micro-note">“Data plane / control plane” is an engineering model here—not a formal protocol boundary.</p>
+      <p class="eng-sources"><a href="https://www.w3.org/TR/webrtc-stats/" target="_blank" rel="noopener noreferrer">WebRTC media statistics ↗</a><span>Source audio, receiver audio, ASR text, and human understanding are different observations.</span></p>
     `
   }
 ];

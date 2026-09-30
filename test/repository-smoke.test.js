@@ -7,6 +7,10 @@ const readRepositoryFile = (path) => readFile(new URL(path, repositoryRoot), "ut
 
 const localAssets = [
   "assets/favicon.svg",
+  "assets/negation.mp3",
+  "styles/engineering.css",
+  "scripts/engineering-model.js",
+  "scripts/engineering-ui.js",
   "styles/base.css",
   "styles/slides-a.css",
   "styles/slides-b.css",
@@ -20,7 +24,7 @@ const localAssets = [
   "scripts/app.js",
 ];
 
-test("the project stays dependency-free and uses the Node test runner", async () => {
+ test("the project stays dependency-free and uses the Node test runner", async () => {
   const packageJson = JSON.parse(await readRepositoryFile("package.json"));
   assert.equal(packageJson.scripts?.test, "node --test");
   assert.equal(packageJson.private, true);
@@ -29,14 +33,14 @@ test("the project stays dependency-free and uses the Node test runner", async ()
   }
 });
 
-test("the README documents the canonical site and local server", async () => {
+ test("the README documents the canonical site and local server", async () => {
   const readme = await readRepositoryFile("README.md");
   assert.match(readme, /\*\*https:\/\/agonza1\.github\.io\/real-time-voice-agent-evals-presentation\/\*\*/);
   assert.match(readme, /```bash\npython3 -m http\.server 8080\n```/);
   assert.match(readme, /No framework, build tool, package install, or external font dependency/);
 });
 
-test("the Pages workflow validates before deployment", async () => {
+ test("the Pages workflow validates before deployment", async () => {
   const workflow = await readRepositoryFile(".github/workflows/pages.yml");
   assert.match(workflow, /npm test/);
   assert.match(workflow, /pages: write/);
@@ -46,7 +50,7 @@ test("the Pages workflow validates before deployment", async () => {
   assert.match(workflow, /actions\/deploy-pages@v4/);
 });
 
-test("the HTML shell loads only local presentation assets", async () => {
+ test("the HTML shell loads only local presentation assets", async () => {
   const html = await readRepositoryFile("index.html");
   assert.match(html, /^<!doctype html>/i);
   assert.match(html, /<title>Evaluating Real-Time Voice Agents Beyond AI Models<\/title>/);
@@ -67,7 +71,7 @@ test("the HTML shell loads only local presentation assets", async () => {
   }
 });
 
-test("the slide data defines a complete 18-section narrative", async () => {
+ test("the slide data defines a complete 18-section narrative", async () => {
   const parts = await Promise.all([
     readRepositoryFile("slides/part-1.js"),
     readRepositoryFile("slides/part-2.js"),
@@ -85,7 +89,7 @@ test("the slide data defines a complete 18-section narrative", async () => {
   assert.match(combined, /portable evidence envelope/);
   assert.match(combined, /SCRIPTED FIXTURE · NOT LIVE SIP\/PSTN OR PRODUCTION MEDIA PROOF/);
   assert.match(combined, /CONVERSATIONAGENTEVALS TODAY/);
-  assert.match(combined, /VON \/ NEXT IN CAE/);
+  assert.match(combined, /PLANNED IN CAE/);
   assert.match(combined, /IETF vCon Core/);
   assert.match(combined, /Judging LLM-as-a-Judge/);
   assert.match(combined, /draft-ietf-vcon-vcon-core-04/i);
@@ -95,7 +99,7 @@ test("the slide data defines a complete 18-section narrative", async () => {
   assert.match(combined, /current CAE execution export is unsigned/i);
 });
 
-test("the vCon enrichment is concise pseudo JSON with an accessible magnifier", async () => {
+ test("the vCon enrichment is concise pseudo JSON with an accessible magnifier", async () => {
   const enrichment = await readRepositoryFile("slides/vcon-enrichment.js");
   assert.doesNotThrow(() => new Function("window", enrichment)({}));
   assert.match(enrichment, /HIGH-LEVEL PSEUDO JSON · CURRENT CAE SHAPE/);
@@ -117,23 +121,24 @@ test("the vCon enrichment is concise pseudo JSON with an accessible magnifier", 
   assert.match(enrichment, /<span class="json-key">"status"<\/span><span class="json-punctuation">:<\/span> <span class="json-string">"portable"<\/span>/);
 });
 
-test("the renderer places the enrichment immediately after the core vCon slide", async () => {
+ test("the renderer places the enrichment immediately after the core vCon slide", async () => {
   const renderer = await readRepositoryFile("scripts/render-slides.js");
   assert.match(renderer, /part2\.slice\(0, 1\)/);
   assert.match(renderer, /VOICE_EVALS_VCON_ENRICHMENT/);
   assert.match(renderer, /part2\.slice\(1\)/);
 });
 
-test("presentation controls, the fixture, and vCon magnifier are wired accessibly", async () => {
+ test("presentation controls, the fixture, and vCon magnifier are wired accessibly", async () => {
   const app = await readRepositoryFile("scripts/app.js");
   assert.match(app, /new URLSearchParams\(location\.search\)\.get\("present"\) === "1"/);
   assert.match(app, /event\.key === "\?"/);
   assert.match(app, /event\.metaKey \|\| event\.ctrlKey \|\| event\.altKey/);
   assert.match(app, /spaceConsumer/);
   assert.match(app, /slide\.focus\(\{ preventScroll: true \}\)/);
-  assert.match(app, /BUSINESS SUCCESS/);
-  assert.match(app, /SAFE FAILURE/);
-  assert.match(app, /FALSE SUCCESS/);
+  const model = await readRepositoryFile("scripts/engineering-model.js");
+  assert.match(model, /VERIFIED SUCCESS/);
+  assert.match(model, /SAFE FAILURE/);
+  assert.match(model, /FALSE SUCCESS/);
   assert.match(app, /querySelector\("\[data-json-explorer\]"\)/);
   assert.match(app, /dataset\.jsonFocusButton/);
   assert.match(app, /dataset\.jsonZoomView/);
@@ -142,4 +147,16 @@ test("presentation controls, the fixture, and vCon magnifier are wired accessibl
   assert.match(app, /addEventListener\("click"/);
   assert.match(app, /setAttribute\("aria-hidden"/);
   assert.match(app, /setAttribute\("aria-pressed"/);
+});
+
+
+ test("refinements keep conference identity separate from the product roadmap", async () => {
+  const p2 = await readRepositoryFile("slides/part-2.js");
+  const p3 = await readRepositoryFile("slides/part-3.js");
+  assert.match(p2, /Run → Evaluate → <span>Compare<\/span>/);
+  assert.doesNotMatch(p2 + p3, /what VON extends|VON ROADMAP|VON \/ NEXT/);
+  assert.match(p2, /Runtime output gate enabled/);
+  assert.match(p2, /id="runtimeGate" type="checkbox" checked/);
+  assert.match(p2, /Inspect evidence/);
+  assert.match(p3, /SYNTHETIC COHORTS/);
 });
