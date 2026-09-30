@@ -1,0 +1,92 @@
+/* Scoped refinements: preserve the deck's visual system and presentation order. */
+#timeline .section-heading, #truth .section-heading, #scorecard .section-heading,
+#demo .section-heading, #comparison .section-heading { margin-bottom: 22px; }
+#timeline h2, #truth h2, #scorecard h2, #demo h2, #comparison h2 { font-size: clamp(2rem, 3.8vw, 3.6rem); }
+.eng-toolbar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin: 14px 0; }
+.eng-toolbar button, .eng-panel button { color: var(--text); background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: 9px; padding: 10px 14px; cursor: pointer; font-size: .8rem; }
+.eng-toolbar button:hover, .eng-panel button:hover { border-color: var(--cyan); }
+.eng-toolbar button[aria-pressed="true"] { color: var(--cyan); border-color: var(--cyan); background: var(--cyan-soft); }
+.eng-toolbar button:disabled, .eng-panel button:disabled { opacity: .5; cursor: not-allowed; }
+.eng-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; min-width: 0; }
+.eng-panel p { line-height: 1.5; font-size: .9rem; }
+.eng-label { font-size: .62rem !important; letter-spacing: .06em; color: var(--muted); }
+.eng-columns, .eng-demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.eng-demo-grid { grid-template-columns: .9fr 1.1fr; }
+.eng-utterance { margin: 0 0 18px; font-size: 1.05rem !important; }
+mark { color: var(--cyan); background: var(--cyan-soft); padding: 0 3px; border-radius: 3px; }
+.eng-pause { color: var(--amber); }
+.eng-trace { display: grid; gap: 10px; }
+.eng-trace-row { display: grid; grid-template-columns: 180px 1fr 120px; gap: 15px; align-items: center; font-size: .75rem; }
+.eng-trace-row > b { text-align: right; color: var(--muted); font: .7rem var(--mono); }
+.eng-track { position: relative; height: 16px; background: rgba(255,255,255,.025); border-bottom: 1px solid var(--line); }
+.eng-bar { display: block; position: absolute; min-width: 4px; height: 12px; border-radius: 3px; background: var(--cyan); }
+.eng-model { background: var(--violet); }.eng-endpoint, .eng-tts { background: var(--amber); }.eng-receiver { background: var(--green); }
+.eng-metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 22px; padding-top: 15px; border-top: 1px solid var(--line); }
+.eng-metrics span, .eng-metrics strong { display: block; }
+.eng-metrics span { font-size: .65rem; color: var(--muted); margin-bottom: 5px; }
+.eng-metrics strong { font: 600 1.15rem var(--mono); }
+.eng-danger { color: var(--danger); }
+.eng-sources { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 14px 0 0; color: var(--muted); font-size: .66rem; }
+.eng-sources a { color: var(--cyan); text-decoration: underline; text-underline-offset: 3px; }
+#timeline .takeaway, #scorecard .takeaway { margin-top: 18px; }
+.eng-audio-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+.eng-audio-row b { font-size: .8rem; }.eng-audio-row p { margin: 7px 0; }.eng-audio-row button { flex: 0 0 auto; }
+.eng-missing { color: var(--danger); }
+.eng-details { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
+.eng-details summary { cursor: pointer; color: var(--cyan); font-size: .8rem; padding: 5px 0; }
+.eng-details p, .eng-details code { font-size: .78rem; overflow-wrap: anywhere; }
+.eng-details .micro-note { text-align: left; margin: 8px 0; }
+.eng-callout { border-left: 2px solid var(--amber); padding-left: 15px; color: var(--muted); }
+.eng-panel .clean-list li { font-size: .85rem; padding-block: 13px; }
+.eng-loop { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; list-style: none; margin: 0; padding: 0; }
+.eng-loop li { padding: 32px; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); }
+.eng-loop span { color: var(--cyan); font: .8rem var(--mono); }
+.eng-loop h3 { font-size: 2rem; margin: 25px 0 15px; }
+.eng-loop p { line-height: 1.6; color: var(--muted); }.eng-loop small { color: var(--cyan); font-size: .75rem; }
+.eng-switch { display: flex; align-items: center; gap: 10px; font-size: .83rem; cursor: pointer; margin: 12px 0; }
+.eng-switch input { width: 18px; height: 18px; accent-color: var(--cyan); flex-shrink: 0; }
+.eng-status-strip { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-bottom: 15px; }
+.eng-status-strip span { font: .7rem var(--mono); color: var(--cyan); }
+#scorecard .metric-column article p { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+#scorecard .scorecard-head { font-size: .64rem; }
+.eng-evidence-dialog { width: min(94vw, 900px); max-height: 86vh; }
+.eng-evidence-dialog pre { font: .75rem/1.55 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; padding: 15px; background: var(--bg-deep); max-height: 47vh; overflow: auto; }
+.eng-evidence-dialog a { color: var(--cyan); }
+.eng-select { display: grid; gap: 10px; font-size: .8rem; color: var(--muted); }
+.eng-select select { width: 100%; min-width: 0; padding: 12px 8px; background: var(--bg); color: var(--text); border: 1px solid var(--line-strong); border-radius: 9px; font: .8rem var(--font); }
+.eng-result .agent-speech { margin: 14px 0; padding: 14px; }.eng-result .agent-speech p { font-size: .93rem; }
+.eng-proposal { margin-top: 14px; color: var(--muted); }.eng-proposal span { font-size: .65rem; text-transform: uppercase; letter-spacing: .07em; }.eng-proposal p { margin: 5px 0; font-size: .85rem; }
+.eng-result .result-topline b { color: var(--amber); }.eng-result[data-tone="fail"] .result-topline b { color: var(--danger); }.eng-result[data-tone="pass"] .result-topline b { color: var(--green); }
+.eng-result .evidence-table { gap: 7px; }.eng-result .evidence-table div { padding: 10px; }.eng-result .result-summary { margin-bottom: 0; padding-top: 12px; font-size: .77rem; }
+.eng-ledger { border-top: 1px solid var(--line); margin-top: 15px; padding-top: 12px; font: .68rem/1.6 var(--mono) !important; color: var(--cyan); }
+.eng-event-list { display: grid; gap: 8px; list-style: none; padding: 0; }.eng-event-list li { display: grid; grid-template-columns: 180px 1fr; gap: 18px; font-size: .76rem; line-height: 1.5; }.eng-event-list code { color: var(--amber); }
+.eng-release-decision { display: grid; grid-template-columns: 200px 1fr; gap: 7px 22px; margin-top: 18px; padding: 20px; border: 1px solid var(--line); border-left: 3px solid var(--danger); border-radius: 10px; background: var(--surface); }
+.eng-release-decision > strong { color: var(--danger); grid-row: span 2; align-self: center; font-size: 1.1rem; }.eng-release-decision p { margin: 0; font-size: .85rem; }.eng-release-decision small { color: var(--muted); font-size: .73rem; }.eng-release-decision[data-tone="pass"] { border-left-color: var(--green); }.eng-release-decision[data-tone="pass"] strong { color: var(--green); }
+.eng-release-table { min-width: 700px; }
+.eng-toolbar button:focus-visible, .eng-panel button:focus-visible, .eng-switch input:focus-visible, .eng-select select:focus-visible, .eng-details summary:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
+/* Progressive disclosures scroll within their slide, rather than being clipped. */
+body.presenting :is(#timeline,#truth,#scorecard,#demo,#comparison):has(details[open]) { overflow-y: auto; align-items: flex-start; }
+@media (max-height: 800px) and (min-width: 821px) {
+  body.presenting :is(#timeline,#truth,#scorecard,#demo,#comparison) { overflow-y: auto; align-items: flex-start; }
+  body.presenting :is(#timeline,#truth,#scorecard,#demo,#comparison) h2 { font-size: clamp(1.9rem,3vw,2.8rem); }
+}
+@media (max-width: 820px) {
+  .eng-columns,.eng-demo-grid,.eng-loop { grid-template-columns: 1fr; }
+  .eng-trace-row { grid-template-columns: 130px 1fr 75px; gap: 6px; font-size: .62rem; }.eng-trace-row > b { font-size: .57rem; }
+  .eng-metrics { grid-template-columns: 1fr 1fr; }.eng-metrics strong { font-size: 1rem; }
+  .eng-panel { padding: 17px; }.eng-utterance { font-size: .9rem !important; }
+  .eng-audio-row { align-items: flex-start; flex-direction: column; }
+  .eng-release-decision { grid-template-columns: 1fr; }.eng-release-decision > strong { grid-row: auto; }
+  .eng-event-list li { grid-template-columns: 1fr; gap: 4px; }
+}
+@media print {
+  .eng-evidence-dialog { display: none !important; }
+  .eng-trace-detail { display: none; }
+  .eng-panel .eng-details:not([open]) { display: none; }
+  #timeline h2,#truth h2,#scorecard h2,#demo h2,#comparison h2 { font-size: 2.5rem; }
+}
+/* Keep existing long slides reachable at short stage sizes, without shrinking
+   the recently enlarged vCon JSON or changing its magnifier. */
+body.presenting .slide.is-active { overflow-y: auto; align-items: safe center; }
+body.presenting #intro h1 { font-size: clamp(2.65rem, 5.1vw, 4.5rem); }
+@media (max-width: 820px) { body.presenting .slide.is-active { align-items: flex-start; } }

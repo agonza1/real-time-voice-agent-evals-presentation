@@ -37,6 +37,7 @@
     navLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`));
     slides.forEach((slide, idx) => slide.classList.toggle("is-active", idx === activeIndex));
 
+    document.dispatchEvent(new CustomEvent("voice-evals:slide-change", { detail: { id: currentId } }));
     previousButton.disabled = activeIndex === 0;
     nextButton.disabled = activeIndex === slides.length - 1;
   }
@@ -45,7 +46,8 @@
     updateUi(index);
     const slide = slides[activeIndex];
     if (isPresenting()) {
-      history.replaceState(null, "", `${location.pathname}${location.search}#${slide.id}`);
+      const url = new URL(location.href); url.hash = slide.id;
+      history.replaceState(null, "", url);
       slide.focus({ preventScroll: true });
     } else {
       slide.scrollIntoView({ behavior, block: "start" });
@@ -85,7 +87,7 @@
   previousButton.addEventListener("click", () => goTo(activeIndex - 1));
   nextButton.addEventListener("click", () => goTo(activeIndex + 1));
 
-  navLinks.forEach((link) => {
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (event) => {
       const id = link.getAttribute("href").slice(1);
       const index = slides.findIndex((slide) => slide.id === id);
@@ -111,6 +113,7 @@
     const textEntry = Boolean(target?.closest("input, textarea, select, [contenteditable=\"true\"]"));
     const spaceConsumer = Boolean(target?.closest("button, a, input, textarea, select, summary, [contenteditable=\"true\"]"));
     if (modified || textEntry) return;
+    if (document.querySelector("dialog[open]")) return;
 
     if (event.key === "?") {
       event.preventDefault();
@@ -145,62 +148,6 @@
       event.preventDefault();
       exitPresentation();
     }
-  });
-
-  const scenarios = {
-    success: {
-      badge: "BUSINESS SUCCESS",
-      speech: "“Your subscription has been canceled. You will not be charged at the next renewal.”",
-      tool: "success",
-      state: "canceled",
-      claim: "verified completion",
-      recovery: "not required",
-      summary: "Task completed and the spoken claim matches authoritative state."
-    },
-    safe: {
-      badge: "SAFE FAILURE",
-      speech: "“I couldn’t confirm the cancellation. I can connect you to a specialist so we don’t give you the wrong information.”",
-      tool: "timeout",
-      state: "active",
-      claim: "uncertainty disclosed",
-      recovery: "handoff offered",
-      summary: "Task incomplete, but the agent stayed truthful and recoverable."
-    },
-    false: {
-      badge: "FALSE SUCCESS",
-      speech: "“Your subscription has been canceled successfully.”",
-      tool: "timeout",
-      state: "active",
-      claim: "unsupported completion",
-      recovery: "none",
-      summary: "The transcript sounds good, but the claim contradicts authoritative state."
-    }
-  };
-
-  const result = document.getElementById("demoResult");
-  const fields = {
-    badge: document.getElementById("demoBadge"),
-    speech: document.getElementById("demoSpeech"),
-    tool: document.getElementById("demoTool"),
-    state: document.getElementById("demoState"),
-    claim: document.getElementById("demoClaim"),
-    recovery: document.getElementById("demoRecovery"),
-    summary: document.getElementById("demoSummary")
-  };
-
-  document.querySelectorAll("[data-demo-scenario]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const key = button.dataset.demoScenario;
-      const scenario = scenarios[key];
-      if (!scenario) return;
-      result.dataset.state = key;
-      Object.entries(fields).forEach(([field, element]) => { element.textContent = scenario[field]; });
-      document.querySelectorAll("[data-demo-scenario]").forEach((item) => {
-        const active = item === button;
-        item.classList.toggle("active", active);
-        item.setAttribute("aria-pressed", String(active));
-      });
-    });
   });
 
   const jsonExplorer = document.querySelector("[data-json-explorer]");

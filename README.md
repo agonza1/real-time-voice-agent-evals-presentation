@@ -79,3 +79,49 @@ The GitHub Actions workflow:
 ## License
 
 MIT
+
+
+## Engineering experiments (presentation fixtures)
+
+The existing 18-slide order, vCon JSON magnifier, and visual system are preserved.
+The focused additions are:
+
+- **Timeline:** switch between complete-request and aggressive endpointing traces.
+  Timings are synthetic and share one clock. Receiver frames are not physical
+  speaker playout; negative delay means a response before the caller finished.
+- **Evidence:** listen to one locally synthesized utterance, unchanged or with
+  the negation muted. The hypothetical ASR text is labeled; no recognizer runs.
+  No microphone permission, external TTS, live network, or RTCStats is used.
+- **Scorecard:** remove the final-state snapshot and inspect/export the teaching
+  JSON. Only unsupported business conclusions become unverified; captured timing
+  and safe-output observations remain. This JSON is not a conformant vCon export.
+- **Runtime protection:** the completion-action gate defaults ON. It controls
+  the structured action before fixed demonstration speech reaches TTS; it is not
+  a keyword filter or a general natural-language safety guarantee. Deliberate
+  bypass exposes false/unsupported confirmation. Lost acknowledgments preserve
+  uncertainty; operation-ID-matched reconciliation restores verified knowledge.
+  Same-ID retries are deduplicated by the fixture backend. Interruptions suppress
+  superseded responses without undoing committed effects.
+- **Release review:** compare illustrative 100-run cohorts against explicit gates.
+  Faster p95 cannot compensate for premature responses or wrong cancellation timing.
+
+These are browser teaching experiments, not shipped CAE runtime functionality or
+measured customer benchmarks. No customer data or customer names were added.
+Runtime controls prevent violations; evaluation verifies the controls and exposes
+regressions. The simplified workflow is **Run → Evaluate → Compare**.
+
+### Audio fixture provenance
+
+`assets/negation.mp3` was generated locally with eSpeak (en-us, 165 words/minute)
+from “Do”, “not”, and “cancel my subscription.” Segments start at 0.08, 0.69,
+and 1.34 seconds. The received variant zeros 0.60–1.20 seconds in the decoded
+copy of that same recording. It is a deliberate content dropout, not an RTP
+packet-loss/PLC model. The browser playback is user-initiated, and stops when
+leaving the evidence slide or hiding the page.
+
+### Tests
+
+`npm test` uses Node's built-in test runner with no dependencies. Tests cover
+measurement boundaries, evidence absence, protected/bypassed speech, lost-ack
+reconciliation, wrong-operation evidence, idempotent retry fixtures, interrupted
+response generations, release gates, and preservation of the vCon explorer.

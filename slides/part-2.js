@@ -59,11 +59,11 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
       <div class="section-heading">
         <p class="eyebrow">SCENARIO CONTRACT</p>
         <h2 id="contract-title">Define what must happen <span>before the call</span></h2>
-        <p>Software owns the contract. The model still owns natural wording.</p>
+        <p>Runtime policy enforces authorization and claims before speech. Evaluation checks evidence against the contract; a weighted score must not override a critical violation.</p>
       </div>
       <div class="contract-grid">
         <article class="code-card">
-          <div class="code-card-head"><span>cancellation_rescue.yaml</span><b>CAE TODAY</b></div>
+          <div class="code-card-head"><span>cancellation_rescue.yaml</span><b>ILLUSTRATIVE CONTRACT</b></div>
           <pre><span class="key">goal:</span> cancel the caller's subscription
 <span class="key">required_actions:</span>
   - verify identity
@@ -79,7 +79,7 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
   task_completion: 40</pre>
         </article>
         <article class="extension-card">
-          <div class="code-card-head"><span>proposed extensions</span><b>VON ROADMAP</b></div>
+          <div class="code-card-head"><span>proposed extensions</span><b>PLANNED EXTENSIONS</b></div>
           <dl>
             <div><dt>allowed_claims</dt><dd>Bind consequential language to authoritative evidence.</dd></div>
             <div><dt>failure_injection</dt><dd>Generalized tool, runtime, transport, or ASR failure drills.</dd></div>
@@ -93,79 +93,85 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
   {
     id: "loop",
     html: `
-      <div class="section-heading">
+<div class="section-heading">
         <p class="eyebrow">EVALUATION LOOP</p>
-        <h2 id="loop-title">Run → capture → normalize → assert → <span>compare</span></h2>
-        <p>The output is reusable evidence—not a one-off demo score.</p>
+        <h2 id="loop-title">Run → Evaluate → <span>Compare</span></h2>
+        <p>One scenario. Evidence-backed checks. A release decision.</p>
       </div>
-      <ol class="evaluation-loop">
-        <li><span>01</span><b>Define</b><small>scenario contract</small></li>
-        <li><span>02</span><b>Run</b><small>supported live target or import</small></li>
-        <li><span>03</span><b>Capture</b><small>synchronized evidence</small></li>
-        <li><span>04</span><b>Normalize</b><small>vCon + provenance</small></li>
-        <li><span>05</span><b>Assert</b><small>facts before language</small></li>
-        <li><span>06</span><b>Report</b><small>layered scorecard</small></li>
-        <li><span>07</span><b>Compare</b><small>baseline + regression</small></li>
-        <li><span>08</span><b>Improve</b><small>agent, flow, or infra</small></li>
+      <ol class="eng-loop">
+        <li><span>01</span><h3>Run</h3><p>Exercise a supported target.<br>Or import a captured run.</p><small>Output: trace + media + state evidence</small></li>
+        <li><span>02</span><h3>Evaluate</h3><p>Check evidence, then behavior<br>against the scenario contract.</p><small>Output: findings + evidence gaps</small></li>
+        <li><span>03</span><h3>Compare</h3><p>Compare matched runs.<br>Decide whether the change is safe to ship.</p><small>Output: regressions + release decision</small></li>
       </ol>
-      <div class="loop-callout"><span>ONE RUN</span><strong>MANY EVALUATIONS</strong><p>Re-score the same evidence as policies, metrics, or judges evolve.</p></div>
+      <p class="takeaway"><strong>New rubric? Re-score the evidence. Changed agent? Run it again.</strong></p>
+      <p class="micro-note">Capture and normalization happen inside the workflow. Re-scoring a recording is not a new closed-loop test.</p>
     `
   },
   {
     id: "scorecard",
     html: `
-      <div class="section-heading">
+<div class="section-heading">
         <p class="eyebrow">LAYERED RESULT</p>
-        <h2 id="scorecard-title">The task failed. <span>The behavior remained safe.</span></h2>
-        <p>Do not hide that distinction behind one average score.</p>
+        <h2 id="scorecard-title">A conclusion is only as strong<br><span>as its evidence.</span></h2>
+        <p>Hide the final-state snapshot. Keep the measurements it does not affect.</p>
       </div>
+      <div class="eng-toolbar">
+        <label class="eng-switch"><input id="includeFinalState" type="checkbox" checked> Include authoritative final-state evidence</label>
+        <button type="button" id="inspectEvidence">Inspect evidence</button>
+        <span class="eng-label">ILLUSTRATIVE RUN · NOT A CAE BENCHMARK RESULT</span>
+      </div>
+      <div id="evidenceStatus" class="eng-status-strip" aria-live="polite"></div>
       <div class="scorecard">
-        <div class="scorecard-head"><span>RUN 0247 · CANCELLATION / TOOL TIMEOUT</span><b>ILLUSTRATIVE</b></div>
+        <div class="scorecard-head"><span>RUN 0247 · OP-247 · TOOL TIMEOUT</span><b>EVIDENCE-SCOPED CHECKS</b></div>
         <div class="metric-column">
-          <article><span>Conversation experience</span><div><b>End-to-end turn latency</b><strong>1.42 s</strong><i class="pass-pill">PASS</i></div><div><b>Interruption recovery</b><strong>380 ms</strong><i class="pass-pill">PASS</i></div></article>
-          <article><span>Speech boundary</span><div><b>Task-critical entity survival</b><strong>100%</strong><i class="pass-pill">PASS</i></div><div><b>Final commit after audio end</b><strong>520 ms</strong><i class="pass-pill">PASS</i></div></article>
+          <article><span>Conversation experience</span><div><b>Speech-end → receiver audio</b><strong>1.42 s</strong><i class="pass-pill">MEASURED</i></div><div><b>Interruption → speech stops</b><strong>380 ms</strong><i class="pass-pill">MEASURED</i></div></article>
+          <article><span>Runtime behavior</span><p>Trace records the output gate blocking an unsupported confirmation. Captured output communicates uncertainty and offers a handoff.</p></article>
         </div>
-        <div class="outcome-column">
-          <article><span>Agent execution</span><p>Correct cancel tool selected; tool timed out; safe recovery language selected.</p></article>
-          <article><span>Business outcome</span><p>Subscription remained active; no false confirmation; recovery or handoff offered.</p></article>
-          <div class="classification"><b>TASK NOT COMPLETED</b><strong>BEHAVIOR SAFE</strong></div>
+        <div class="outcome-column" aria-live="polite">
+          <article><span>Business outcome</span><p id="scoreOutcome"></p></article>
+          <article><span>What the evaluator can conclude</span><p id="scoreReason"></p></article>
+          <div class="classification"><b id="scoreVerdict"></b><strong>SAFE OUTPUT OBSERVED</strong></div>
         </div>
       </div>
-      <p class="micro-note">Illustrative values only. Thresholds must be calibrated per workflow, population, environment, and risk.</p>
+      <p class="takeaway">Missing evidence is <strong>not</strong> a pass—and not automatically a product failure.</p>
+      <dialog id="evidenceDialog" class="help-dialog eng-evidence-dialog" aria-labelledby="evidenceDialogTitle">
+        <form method="dialog"><button class="dialog-close" aria-label="Close evidence">×</button><h3 id="evidenceDialogTitle">What supports this conclusion?</h3><p>Teaching artifact · not a conformant vCon export.</p><pre id="evidenceJson"></pre><div class="eng-toolbar"><button type="button" id="downloadEvidence">Download JSON</button><a href="#vcon-enrichment" id="evidenceToVcon">Where this fits in vCon →</a></div></form>
+      </dialog>
     `
   },
   {
     id: "demo",
     className: "demo-slide",
     html: `
-      <div class="section-heading">
-        <p class="eyebrow">INTERACTIVE FIXTURE</p>
-        <h2 id="demo-title">Break the agent <span>on purpose</span></h2>
-        <p>Use the same caller turn and tool result to expose three very different outcomes.</p>
+<div class="section-heading">
+        <p class="eyebrow">RUNTIME CONTROL + EVALUATION</p>
+        <h2 id="demo-title">Prevent false confirmations.<br><span>Then test the protection.</span></h2>
+        <p>The voice system enforces the gate before speech. CAE evaluates whether that protection worked.</p>
       </div>
-      <div class="demo-grid">
-        <article class="demo-controls">
-          <div class="demo-script"><span>CALLER</span><blockquote>“Please cancel my plan. I don’t want another renewal.”</blockquote></div>
-          <div class="demo-path"><i></i><span>verify → request cancellation → tool result → spoken claim → final state</span></div>
-          <div class="scenario-buttons" role="group" aria-label="Select fixture outcome">
-            <button data-demo-scenario="success" type="button"><i class="green-bg"></i>Business success</button>
-            <button class="active" data-demo-scenario="safe" type="button"><i class="amber-bg"></i>Safe failure</button>
-            <button data-demo-scenario="false" type="button"><i class="danger-bg"></i>False success</button>
-          </div>
+      <div class="eng-demo-grid">
+        <article class="eng-panel">
+          <p class="card-kicker">SAME REQUEST · “PLEASE CANCEL MY PLAN.”</p>
+          <label class="eng-select">Operation / acknowledgment<select id="operationScenario"><option value="success">Committed + acknowledged</option><option value="failure" selected>Rejected + timeout; readback confirms active</option><option value="lost">Committed + acknowledgment lost</option></select></label>
+          <label class="eng-switch"><input id="runtimeGate" type="checkbox" checked> Runtime output gate enabled</label>
+          <p id="gateStatus" class="eng-label"></p>
+          <details class="eng-details" id="advancedDrill"><summary>Advanced: reconcile, retry, or interrupt</summary>
+            <div class="eng-toolbar"><button type="button" id="reconcileOperation">Reconcile original operation</button><button type="button" id="retryOperation">Retry with same operation ID</button></div>
+            <label class="eng-switch"><input id="interruptSpeech" type="checkbox"> Caller interrupts this response generation</label>
+            <p class="micro-note">Stopping speech does not roll back a committed operation. Superseded responses stay suppressed; the effect still needs reconciliation.</p>
+          </details>
+          <p id="operationLedger" class="eng-ledger"></p>
           <p class="fixture-label">SCRIPTED FIXTURE · NOT LIVE SIP/PSTN OR PRODUCTION MEDIA PROOF</p>
         </article>
-        <article class="demo-result" data-state="safe" id="demoResult">
-          <div class="result-topline"><span>CAE CLASSIFICATION</span><b id="demoBadge">SAFE FAILURE</b></div>
-          <div class="agent-speech"><span>AGENT SAYS</span><p id="demoSpeech">“I couldn’t confirm the cancellation. I can connect you to a specialist so we don’t give you the wrong information.”</p></div>
-          <div class="evidence-table">
-            <div><span>tool.status</span><strong id="demoTool">timeout</strong></div>
-            <div><span>subscription.status</span><strong id="demoState">active</strong></div>
-            <div><span>spoken claim</span><strong id="demoClaim">uncertainty disclosed</strong></div>
-            <div><span>recovery</span><strong id="demoRecovery">handoff offered</strong></div>
-          </div>
-          <p class="result-summary" id="demoSummary">Task incomplete, but the agent stayed truthful and recoverable.</p>
+        <article class="eng-panel eng-result" id="controlResult" aria-live="polite">
+          <div class="result-topline"><span>OBSERVED BEHAVIOR</span><b id="controlVerdict"></b></div>
+          <div class="eng-proposal"><span>Model proposes</span><p>“Your subscription has been canceled.”</p></div>
+          <div class="agent-speech"><span>WHAT THE RUNTIME ALLOWS TO REACH TTS</span><p id="allowedSpeech"></p></div>
+          <div class="evidence-table"><div><span>tool observation</span><strong id="toolObservation"></strong></div><div><span>agent’s verified state</span><strong id="agentKnowledge"></strong></div><div><span>claim gate</span><strong id="claimDecision"></strong></div><div><span>business effect (fixture truth)</span><strong id="fixtureTruth"></strong></div></div>
+          <p id="controlExplanation" class="result-summary"></p>
         </article>
       </div>
+      <details class="eng-details eng-trace-detail"><summary>Inspect the causal trace and test assertions</summary><ol id="operationTrace" class="eng-event-list"></ol><p id="controlAssertions"></p></details>
+      <p class="eng-sources"><a href="https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/" target="_blank" rel="noopener noreferrer">Timeouts and idempotency ↗</a><a href="https://docs.livekit.io/agents/logic/tools/definition/" target="_blank" rel="noopener noreferrer">Speech interruption ≠ tool cancellation ↗</a></p>
     `
   }
 ];
