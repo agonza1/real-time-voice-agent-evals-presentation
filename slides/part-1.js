@@ -15,7 +15,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
           </div>
           <div class="hero-actions">
             <a class="primary-link" href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">Open ConversationAgentEvals ↗</a>
-            <a class="quiet-link" href="#problem">Start the presentation →</a>
+            <a class="quiet-link" href="#story">Start the presentation →</a>
           </div>
         </div>
         <div aria-label="Audio evidence enters a vCon proof envelope" class="hero-visual">
@@ -29,6 +29,42 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         </div>
       </div>
       <i aria-hidden="true" class="ambient ambient-cyan"></i><i aria-hidden="true" class="ambient ambient-violet"></i>
+    `
+  },
+  {
+    id: "story",
+    className: "story-slide",
+    html: `
+      <div class="section-heading story-heading">
+        <p class="eyebrow">MY FIRST VOICE AGENT → THE NEXT QUESTION</p>
+        <h2 id="story-title">The technology changed.<br><span>So did the question.</span></h2>
+      </div>
+      <ol class="story-arc" aria-label="From my first voice assistant to production evaluation">
+        <li>
+          <p class="story-era"><span>01</span> 2017 · ECHO SHOW</p>
+          <h3>“Can it <br>understand me?”</h3>
+          <p>My prototype needed the exact phrases I had anticipated.</p>
+          <strong>The human adapted to the system.</strong>
+        </li>
+        <li>
+          <p class="story-era"><span>02</span> OPEN-ENDED VOICE · WEBRTC</p>
+          <h3>“Can we <br>control it?”</h3>
+          <p>Natural conversation felt like magic. Calls, tools, and state still needed boundaries.</p>
+          <strong>The architecture had to contain the variability.</strong>
+        </li>
+        <li class="story-now">
+          <p class="story-era"><span>03</span> PRODUCTION · EVALUATION</p>
+          <h3>“How do we know <br>it still works?”</h3>
+          <p>A model changes. A caller interrupts. A tool times out.</p>
+          <strong>Verify the whole system—not only the model.</strong>
+        </li>
+      </ol>
+      <div class="story-bridge">
+        <p><span>AT CLUECON</span><strong>Build the controls.</strong></p>
+        <span class="story-arrow" aria-hidden="true">→</span>
+        <p><span>TODAY</span><strong>Test that they hold as the system changes.</strong></p>
+      </div>
+      <p class="story-transition">That is the question behind <strong>ConversationAgentEvals.</strong></p>
     `
   },
   {

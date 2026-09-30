@@ -16,6 +16,18 @@ For stage delivery, open directly in full-screen presentation mode:
 
 Every push to `main` is validated and deployed automatically through GitHub Actions.
 
+## Opening and closing
+
+The new story slide briefly revisits Alberto’s 2017 Echo Show origin, then advances
+from ClueCon’s runtime-control question to this talk’s evaluation question:
+**How do we know the system still works when it changes?**
+
+The closing is about **production readiness as a systems property**, not completing
+a demo. The interactive experiments remain explicitly labeled as teaching fixtures.
+
+[Opening and closing speaker notes](docs/speaker-notes.md) include a short callback
+for returning ClueCon attendees and a self-contained story for new listeners.
+
 ## Features
 
 - Scrollable narrative with full-screen slide mode
@@ -83,7 +95,8 @@ MIT
 
 ## Engineering experiments (presentation fixtures)
 
-The existing 18-slide order, vCon JSON magnifier, and visual system are preserved.
+The engineering sections, vCon JSON magnifier, and visual system are preserved.
+A short personal story after the title brings the presentation to 19 slides.
 The focused additions are:
 
 - **Timeline:** switch between complete-request and aggressive endpointing traces.
