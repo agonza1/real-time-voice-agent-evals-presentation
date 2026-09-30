@@ -93,15 +93,15 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
     className: "closing-slide",
     shellClass: "closing-shell",
     html: `
-      <p class="eyebrow">WHAT TO REMEMBER</p>
-      <h2 id="close-title" class="closing-statement">The demo is not complete <span>when the agent speaks.</span></h2>
-      <p class="closing-proof">It is complete when the evidence proves <strong>what happened, why, and with what outcome.</strong></p>
+      <p class="eyebrow">THE PRODUCTION STANDARD</p>
+      <h2 id="close-title" class="closing-statement">Production readiness is <span>a systems property.</span></h2>
+      <p class="closing-proof">Not a model score. Evaluate the conversation, the controls, and the outcome—<strong>then re-test every change.</strong></p>
       <div class="closing-principles">
-        <article><span>01</span><b>Evaluate the loop</b><p>Media, speech, decisions, tools, recovery, and final state.</p></article>
-        <article><span>02</span><b>Separate language from truth</b><p>Use judges for open-ended language; use authoritative evidence for facts.</p></article>
-        <article><span>03</span><b>Make evidence portable</b><p>Use vCon as the envelope for reproducible evaluation and regression.</p></article>
+        <article><span>01</span><b>Measure the complete loop</b><p>Received media, turn-taking, actions, recovery, and final state.</p></article>
+        <article><span>02</span><b>Verify the protections</b><p>Runtime controls enforce policy. Evaluation checks their behavior.</p></article>
+        <article><span>03</span><b>Make releases evidence-led</b><p>Keep portable evidence with vCon. Compare regressions before promotion.</p></article>
       </div>
-      <div class="closing-cta"><strong>BUILD THE TEST HARNESS ONCE. PLUG IN ANY VOICE AGENT.</strong><div><a href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">github.com/agonza1/ConversationAgentEvals ↗</a><a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation" rel="noreferrer" target="_blank">presentation source ↗</a></div></div>
+      <div class="closing-cta"><strong>DEFINE THE CONTRACT. TEST THE FAILURE PATHS. KEEP THE EVIDENCE.</strong><div><a href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">github.com/agonza1/ConversationAgentEvals ↗</a><a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation" rel="noreferrer" target="_blank">presentation source ↗</a></div></div>
     `
   }
 ];
