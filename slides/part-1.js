@@ -8,7 +8,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
           <p class="eyebrow">FALL '26 · VOICE AND CONVERSATIONS ON THE NET</p>
           <p class="hero-event">ATLANTA · OCTOBER 15, 2026</p>
           <h1 id="intro-title">Evaluating Real-Time Voice Agents <span>Beyond AI Models</span></h1>
-          <p class="hero-subtitle">An <strong>open-source evaluation workbench</strong> with vCon evidence.</p>
+          <p class="hero-subtitle">An <strong>open-source workbench</strong> for testing the complete voice-agent system.</p>
           <div class="hero-meta">
             <span>Alberto Gonzalez</span>
             <span>CTO · WebRTC.ventures</span>
@@ -19,12 +19,12 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
             <a class="quiet-link" href="#story">Start the presentation →</a>
           </div>
         </div>
-        <div aria-label="Audio evidence enters a vCon proof envelope" class="hero-visual">
+        <div aria-label="Evaluate a voice agent through audio, actions, and outcomes" class="hero-visual">
           <div aria-hidden="true" class="audio-wave">${"<i></i>".repeat(12)}</div>
           <div class="vcon-envelope">
-            <div class="vcon-title"><strong>vCon</strong><span>portable evidence envelope</span></div>
-            <div class="vcon-tabs"><span>dialog</span><span>analysis</span><span>attachments</span></div>
-            <div class="vcon-proof"><i class="proof-dot cyan"></i><span>capture</span><i class="proof-dot violet"></i><span>assert</span><i class="proof-dot green"></i><span>compare</span></div>
+            <div class="vcon-title"><strong>Voice agent</strong><span>evaluate the complete system</span></div>
+            <div class="vcon-tabs"><span>audio</span><span>actions</span><span>outcomes</span></div>
+            <div class="vcon-proof"><i class="proof-dot cyan"></i><span>capture</span><i class="proof-dot violet"></i><span>evaluate</span><i class="proof-dot green"></i><span>compare</span></div>
           </div>
           <div aria-hidden="true" class="evidence-line"><span>AUDIO</span><b></b><span>RUNTIME EVIDENCE</span><b></b><span>OUTCOME</span></div>
         </div>
