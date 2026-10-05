@@ -127,10 +127,13 @@ regressions. The simplified workflow is **Run → Evaluate → Compare**.
 
 ### Audio fixture provenance
 
-`assets/negation.mp3` was generated locally with eSpeak (en-us, 165 words/minute)
-from “Do”, “not”, and “cancel my subscription.” Segments start at 0.08, 0.69,
-and 1.34 seconds. The received variant zeros 0.60–1.20 seconds in the decoded
-copy of that same recording. It is a deliberate content dropout, not an RTP
+`assets/negation.wav` was generated locally as one complete utterance with
+Kokoro 0.9.4 / Kokoro-82M, voice `am_michael`, speed 0.95: “Do not cancel my
+subscription.” It is a 2.775-second, 24 kHz mono PCM16 synthetic recording,
+not a recording of a human caller. `assets/negation.provenance.json` records
+the model revision and predicted word timings. The received variant zeros
+0.475–0.7375 seconds, the predicted span of “not”, in a decoded copy of that
+same recording. It is a deliberate content dropout, not an RTP
 packet-loss/PLC model. The browser playback is user-initiated, and stops when
 leaving the evidence slide or hiding the page.
 

@@ -94,7 +94,7 @@
   async function loadAudio() {
     if (audioBuffer) return audioBuffer;
     if (!loadPromise) loadPromise = (async () => {
-      const response = await fetch(new URL("../assets/negation.mp3", document.querySelector('script[src$="engineering-ui.js"]').src));
+      const response = await fetch(new URL("../assets/negation.wav", document.querySelector('script[src$="engineering-ui.js"]').src));
       if (!response.ok) throw new Error("Audio fixture unavailable");
       audioBuffer = await context.decodeAudioData(await response.arrayBuffer()); return audioBuffer;
     })().catch((error) => { loadPromise = undefined; throw error; });
@@ -116,13 +116,13 @@
         buffer = context.createBuffer(source.numberOfChannels, source.length, source.sampleRate);
         for (let ch = 0; ch < source.numberOfChannels; ch++) {
           const samples = buffer.getChannelData(ch); samples.set(source.getChannelData(ch));
-          samples.fill(0, Math.floor(0.60 * source.sampleRate), Math.ceil(1.20 * source.sampleRate));
+          samples.fill(0, Math.floor(0.475 * source.sampleRate), Math.ceil(0.7375 * source.sampleRate));
         }
       }
       activeAudio = context.createBufferSource(); activeAudio.buffer = buffer; activeAudio.connect(context.destination);
       activeAudio.onended = () => { document.querySelectorAll("[data-audio]").forEach((b) => { b.disabled = false; }); };
       activeAudio.start();
-      put("audioStatus", received ? "PLAYING: SAME RECORDING, 0.60–1.20 s MUTED · NOT A NETWORK TEST" : "PLAYING: LOCAL SYNTHETIC SOURCE · NO MICROPHONE OR API");
+      put("audioStatus", received ? "PLAYING: SAME RECORDING, 0.475–0.7375 s MUTED · NOT A NETWORK TEST" : "PLAYING: LOCAL KOKORO VOICE · SYNTHETIC RECORDING");
     } catch (error) {
       put("audioStatus", "Audio unavailable in this browser. The labeled text example remains usable.");
       document.querySelectorAll("[data-audio]").forEach((b) => { b.disabled = false; });

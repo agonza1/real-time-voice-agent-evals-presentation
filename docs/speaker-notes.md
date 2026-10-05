@@ -98,6 +98,8 @@ Transition: “Now we can distinguish a failed task from a failed protection. Th
 
 Open `?present=1` and return to the title with Home. Use the arrow keys to advance; Space activates a focused button rather than advancing the slide. After an interaction, click the next-slide arrow to resume reliably.
 
+The source audio uses a locally generated Kokoro voice, rather than a human recording. The received version mutes the predicted span of “not” (0.475–0.7375 seconds) in that same utterance.
+
 Before going on stage, load the original Echo Show photo, test both audio buttons through the venue output, and leave disclosures closed. The photo is fetched from the pinned GitHub source and requires connectivity on initial load; do not rely on an untested browser cache. Keep the published site and a locally served checkout available.
 
 If audio playback fails, use the two visible utterances: losing “not” reverses the intended action. Continue without diagnosing playback on stage. If an interaction fails, explain its expected before/after result and move on.
