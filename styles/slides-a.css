@@ -42,6 +42,7 @@
 .layer-card { min-height: 200px; position: relative; padding: 28px 30px; border-radius: var(--radius); background: rgba(13, 28, 39, 0.72); overflow: hidden; }
 .layer-card::after { content: ""; position: absolute; width: 150px; height: 150px; border-radius: 50%; right: -70px; top: -70px; background: currentColor; opacity: 0.08; filter: blur(4px); }
 .layer-number { display: inline-grid; place-items: center; width: 35px; height: 35px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid currentColor; font-size: 0.68rem; font-weight: 800; }
+.layer-symbol { position: absolute; top: 24px; right: 30px; width: 58px; height: 58px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .layer-card h3 { margin: 25px 0 10px; color: var(--text); font-size: clamp(1.15rem, 2vw, 1.55rem); }
 .layer-card p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 0.9rem; }
 .cyan-card { color: var(--cyan); border-color: rgba(57, 210, 238, 0.3); }

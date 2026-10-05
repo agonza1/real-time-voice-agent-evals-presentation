@@ -160,10 +160,10 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         <p>Four dimensions. Separate scores.</p>
       </div>
       <div class="layer-grid">
-        <article class="layer-card cyan-card"><span class="layer-number">01</span><h3>Conversation experience</h3><p>Turn timing, interruptions, silence, audio continuity, and latency.</p></article>
-        <article class="layer-card violet-card"><span class="layer-number">02</span><h3>Speech boundary</h3><p>Entity accuracy, partial stability, finalization delay, accents, noise, and disfluency.</p></article>
-        <article class="layer-card amber-card"><span class="layer-number">03</span><h3>Agent execution</h3><p>Required and forbidden actions, policy checks, tool choice, fallback, and recovery.</p></article>
-        <article class="layer-card green-card"><span class="layer-number">04</span><h3>Business outcome</h3><p>State transition, durable completion, and agreement between speech and backend truth.</p></article>
+        <article class="layer-card cyan-card"><span class="layer-number">01</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 14H7l-4 3V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v5a4 4 0 0 1-4 4Z"/><path d="M8 17v1a2 2 0 0 0 2 2h7l4 3V11a2 2 0 0 0-2-2"/></svg><h3>Conversation experience</h3><p>Turn timing, interruptions, silence, audio continuity, and latency.</p></article>
+        <article class="layer-card violet-card"><span class="layer-number">02</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 10v4M7 6v12M11 3v18M15 7v10M19 9v6M23 11v2"/></svg><h3>Speech boundary</h3><p>Entity accuracy, partial stability, finalization delay, accents, noise, and disfluency.</p></article>
+        <article class="layer-card amber-card"><span class="layer-number">03</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="2" width="7" height="6" rx="1.5"/><rect x="14" y="16" width="7" height="6" rx="1.5"/><path d="M6.5 8v11h7.5M10 5h7.5v11M14.5 13l3 3 3-3"/></svg><h3>Agent execution</h3><p>Required and forbidden actions, policy checks, tool choice, fallback, and recovery.</p></article>
+        <article class="layer-card green-card"><span class="layer-number">04</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m7.5 12 3 3 6-6"/></svg><h3>Business outcome</h3><p>State transition, durable completion, and agreement between speech and backend truth.</p></article>
       </div>
       <div class="one-call"><span>ONE CALL</span><strong>FOUR LAYERS</strong><em>Not one average score.</em></div>
     `
