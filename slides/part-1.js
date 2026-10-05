@@ -77,7 +77,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         </figure>
         <figure class="project-example">
           <img class="project-image livekit-image" src="./assets/projects/livekit-call-flow.webp" alt="Detail of the published LiveKit call-center architecture: SIP calling, an inbound agent, and STT, LLM, and TTS providers" loading="eager" decoding="async">
-          <figcaption><h3>LiveKit call center</h3><p>SIP calls, voice agents, and warm transfers to human operators.</p><a href="https://webrtc.ventures/wp-content/uploads/2026/07/Migrating-from-Kurento-to-LiveKit-in-Production.html#16" target="_blank" rel="noopener noreferrer">Production migration ↗</a></figcaption>
+          <figcaption><h3>Agentic call center</h3><p>LiveKit voice agents handle SIP calls and warm transfers to humans.</p><a href="https://webrtc.ventures/wp-content/uploads/2026/07/Migrating-from-Kurento-to-LiveKit-in-Production.html#16" target="_blank" rel="noopener noreferrer">Production migration ↗</a></figcaption>
         </figure>
       </div>
       <p class="takeaway">Different applications. <strong>The complete system still needs evaluation.</strong></p>

@@ -22,7 +22,7 @@ That is the question behind the Conversation Agent Evaluation (CAE) tool: testin
 
 ## Projects — slide 3
 
-“This is the range of voice work our team has built and continues to develop. AVA brings an AI participant into a meeting. The surgical system listens and organizes conversation evidence. CETA turns voice and avatars into a training environment. The LiveKit migration brings voice agents into a production call center. Each application has a different job, and each requires us to test more than the model.”
+“This is the range of voice work our team has built and continues to develop. AVA brings an AI participant into a meeting. The surgical system listens and organizes conversation evidence. CETA turns voice and avatars into a training environment. The agentic call center uses LiveKit to handle voice calls and transfers to humans. Each application has a different job, and each requires us to test more than the model.”
 
 Spend about 15 seconds per example. Keep the technical stack for Q&A:
 
@@ -59,7 +59,7 @@ Plan for 25 minutes of presentation and five minutes of Q&A. The 19-slide route 
 | --- | --- | --- | --- |
 | 1 · Title | 0:30 | 0:30 | A model score cannot establish that a voice agent works as a system. |
 | 2 · Story | 1:00 | 1:30 | Tell the Echo Show story. Move from understanding words to controlling actions to testing changes. |
-| 3 · Projects | 1:00 | 2:30 | Give each project 15 seconds: meeting agents, surgical audio, avatar training, and LiveKit call-center agents. |
+| 3 · Projects | 1:00 | 2:30 | Give each project 15 seconds: meeting agents, surgical audio, avatar training, and the agentic call center. |
 | 4 · Problem | 1:00 | 3:30 | Contrast the confident confirmation with the verified active subscription. A timeout alone leaves state unknown; this example includes readback. |
 | 5 · System | 0:45 | 4:15 | Trace input through SIP/RTP or WebRTC to TTS, then return audio to the Caller. Control exchanges requests and results with the Backend. |
 | 6 · Continuous voice | 1:00 | 5:15 | Follow the appointment sequence. The caller adds a constraint while the model speaks; the delegated search returns a current result. |
