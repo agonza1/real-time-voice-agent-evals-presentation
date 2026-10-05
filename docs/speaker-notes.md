@@ -66,6 +66,20 @@ Plan for 25 minutes of presentation and five minutes of Q&A. The 20-slide route 
 | 20 · Close | 0:45 | 25:00 | Return to the opening question. Start with one important workflow, define its contract, test its failure paths, and retain the evidence. |
 | Q&A | 5:00 | 30:00 | Leave the closing slide and repository links visible. |
 
+## Audio evidence — telemetry for Q&A
+
+Network metrics can help explain audio damage. Only the received audio shows what reached the receiver. Receiver audio is still distinct from what the caller's speaker actually played.
+
+If asked how to investigate transport problems, relevant WebRTC statistics include:
+
+- `packetsDiscarded`: received too late or early for playout.
+- `concealedSamples`: samples synthesized to cover loss or lateness.
+- `jitterBufferDelay`: cumulative buffered time. For interval mean buffering delay, divide its interval delta by the corresponding `jitterBufferEmittedCount` delta (the emitted-count delta), provided that count is nonzero.
+
+No RTCStats collected here. This fixture deliberately mutes a word; it does not simulate packet loss or concealment. Media telemetry does not prove meaning or identify which word was lost. Compare source audio, received audio, and ASR output before drawing a conclusion about intent.
+
+Reference: [WebRTC media statistics](https://www.w3.org/TR/webrtc-stats/).
+
 ## Continuous voice — slide 5
 
 “Some systems now keep a native speech model listening while it speaks, and delegate deeper work to another model. The caller still hears one conversation. What happens if they interrupt while that background work is running?”

@@ -195,7 +195,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
           <div class="eng-audio-row"><div><b>Simulated receiver audio</b><p>“Do <span class="eng-missing">[muted]</span> cancel my subscription.”</p></div><button type="button" data-audio="received">Play received</button></div>
           <p id="audioStatus" class="eng-label" role="status">LOCAL KOKORO VOICE · SYNTHETIC SPEECH · “NOT” MUTED IN THE SAME RECORDING</p>
           <details class="eng-details"><summary>Illustrative ASR interpretation</summary><p>“Do cancel my subscription.” <strong>The action-changing word is gone.</strong></p><p class="micro-note">Hypothetical ASR—not a recognizer result. Edited audio, not network-loss simulation.</p></details>
-          <details class="eng-details"><summary>Relevant WebRTC telemetry</summary><p><code>packetsDiscarded</code>: received too late/early for playout. <code>concealedSamples</code>: synthesized to cover loss or lateness. <code>jitterBufferDelay</code>: cumulative buffered time; divide its interval delta by the emitted-count delta.</p><p class="micro-note">No RTCStats collected here. Media telemetry does not prove meaning.</p></details>
+          <p class="eng-callout">Network metrics can help explain audio damage. <strong>Only the received audio shows what reached the receiver.</strong></p>
         </article>
         <article class="eng-panel">
           <p class="card-kicker">OPERATIONAL EVIDENCE</p>
