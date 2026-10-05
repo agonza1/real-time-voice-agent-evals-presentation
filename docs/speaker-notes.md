@@ -1,6 +1,6 @@
 # Speaker notes — Fall '26 Voice and Conversations on the Net
 
-These speaker notes tell Alberto’s first-voice-AI story for the Fall '26 audience. No customer incidents or production results have been added.
+These speaker notes connect Alberto’s first voice agent with published WebRTC.ventures projects and the evaluation workflow for the Fall '26 audience. The cancellation and timing examples remain teaching fixtures.
 
 ## Title slide — orient the audience
 
@@ -20,7 +20,20 @@ Building those controls leads to the next question: how do we know they still wo
 
 That is the question behind the Conversation Agent Evaluation (CAE) tool: testing the complete interaction, inspecting the evidence, and deciding whether the next version is ready for production.
 
-### Transition into the existing problem slide
+## Projects — slide 3
+
+“This is the range of voice work our team has built and continues to develop. AVA brings an AI participant into a meeting. The surgical system listens and organizes conversation evidence. CETA turns voice and avatars into a training environment. The LiveKit migration brings voice agents into a production call center. Each application has a different job, and each requires us to test more than the model.”
+
+Spend about 15 seconds per example. Keep the technical stack for Q&A:
+
+- [AVA Intellect](https://webrtc.ventures/successes/ai-voice-agents-that-collaborate-and-contribute/): configurable assistants, shared knowledge, tools, and integration with meeting platforms. The image is the published agent configuration UI.
+- [Surgical audio](https://webrtc.ventures/successes/audio-listening-device-to-improve-surgical-outcomes/): Amazon Chime SDK capture with Symbl.ai transcription and conversation insights, plus postoperative speaker separation and oversight. Describe the system's purpose and functionality; this case study does not establish a quantified clinical improvement.
+- [CETA Global / EBT-Sim](https://webrtc.ventures/successes/ai-roleplay-training-simulator-case-study/): WebRTC.ventures helped build real-time communication, the training UI, cloud infrastructure, and AI orchestration with CETA's team. Integration with the broader practitioner ecosystem continues. The system uses push-to-talk, Google speech services, Google ADK agents, and HeyGen avatars. Deliberate thinking pauses motivated push-to-talk rather than automatic turn ending. The visual comes from [CETA's public product page](https://www.cetaglobal.org/solutions/cetaaitraining), linked in the success story.
+- [LiveKit production migration, slides 16–19](https://webrtc.ventures/wp-content/uploads/2026/07/Migrating-from-Kurento-to-LiveKit-in-Production.html#16): LiveKit SIP dispatches inbound calls and agents into a room. Scoped agents identify intent, search for human agents, check availability, transfer, or offer voicemail. The implementation retained STT → LLM → TTS with Azure providers. Do not describe this project as the full-duplex speech-to-speech architecture on slide 6.
+
+All four visuals are from public project materials. The LiveKit image is a detail of its published architecture, rather than a product UI. Original files and provenance are retained in `assets/projects/SOURCES.md`.
+
+### Transition into the problem slide
 
 “Let’s start with a case where the words sound right, but the evidence tells us something different.”
 
@@ -40,33 +53,34 @@ Production readiness is a systems property.
 
 ## 30-minute stage route
 
-Plan for 25 minutes of presentation and five minutes of Q&A. The 18-slide route includes the new voice architecture slide. The time limits below include the interactions; do not narrate every field or open every disclosure.
+Plan for 25 minutes of presentation and five minutes of Q&A. The 19-slide route includes the project overview and the continuous-voice sequence. The time limits below include the interactions; do not narrate every field or open every disclosure.
 
 | Slide | Time | Finish by | Point and stage action |
 | --- | --- | --- | --- |
 | 1 · Title | 0:30 | 0:30 | A model score cannot establish that a voice agent works as a system. |
-| 2 · Story | 1:30 | 2:00 | Tell the Echo Show story. Move from understanding words to controlling actions to testing changes. |
-| 3 · Problem | 1:00 | 3:00 | Contrast the confident confirmation with the verified active subscription. A timeout alone would leave state unknown; this example includes readback. |
-| 4 · System | 0:45 | 3:45 | Trace input from caller through SIP/RTP or WebRTC to TTS, then return audio through Media to the Caller. Control exchanges tool requests and results with the Backend. The caller experiences the complete loop. |
-| 5 · Continuous voice | 1:30 | 5:15 | Explain the live speech loop and asynchronous reasoning. Full duplex is model-specific; a second spoken cascade needs output coordination. |
-| 6 · Four layers | 1:15 | 6:30 | Name each dimension. A good conversation score cannot excuse a wrong business action. |
-| 7 · Timeline | 2:30 | 9:00 | Switch to aggressive endpointing, then restore the full-request trace. Faster output loses the billing-period qualifier. |
-| 8 · vCon | 1:00 | 10:00 | The container carries observations and their provenance. It does not supply a verdict. |
-| 9 · JSON explorer | 1:30 | 11:30 | Select Dialog, then Evaluation. Show where media and run evidence belong; skip a field-by-field tour. |
-| 10 · Workbench | 1:15 | 12:45 | Introduce the Conversation Agent Evaluation (CAE) tool, then explain FastAPI/Pydantic, Pipecat, and ASSERT through their roles in the workflow. |
-| 11 · Contract | 1:15 | 14:00 | Point to the forbidden completion claim and expected state. Distinguish the illustrative contract from planned extensions. |
-| 12 · Loop | 0:45 | 14:45 | A changed rubric can re-score saved evidence; a changed agent needs another run. |
-| 13 · Runtime demo | 5:00 | 19:45 | Run the gate contrast and lost-ack reconciliation described below. |
-| 14 · Outcomes | 1:00 | 20:45 | Separate completed work, verified safe failure, and false success. Unknown is not failed. |
-| 15 · Release review | 1:30 | 22:15 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
-| 16 · Boundary | 1:00 | 23:15 | Explain supported evaluation tool capabilities and the roadmap. These browser fixtures do not establish live telephony or production behavior. |
-| 17 · Sources | 0:30 | 23:45 | Point to the linked standards and research. No bibliography recital. |
-| 18 · Close | 1:15 | 25:00 | Return to the opening question. Start with one important workflow, define its contract, test its failure paths, and retain the evidence. |
+| 2 · Story | 1:00 | 1:30 | Tell the Echo Show story. Move from understanding words to controlling actions to testing changes. |
+| 3 · Projects | 1:00 | 2:30 | Give each project 15 seconds: meeting agents, surgical audio, avatar training, and LiveKit call-center agents. |
+| 4 · Problem | 1:00 | 3:30 | Contrast the confident confirmation with the verified active subscription. A timeout alone leaves state unknown; this example includes readback. |
+| 5 · System | 0:45 | 4:15 | Trace input through SIP/RTP or WebRTC to TTS, then return audio to the Caller. Control exchanges requests and results with the Backend. |
+| 6 · Continuous voice | 1:00 | 5:15 | Follow the appointment sequence. The caller adds a constraint while the model speaks; the delegated search returns a current result. |
+| 7 · Four layers | 1:15 | 6:30 | Name each dimension. A good conversation score cannot excuse a wrong business action. |
+| 8 · Timeline | 2:30 | 9:00 | Switch to aggressive endpointing, then restore the full-request trace. Faster output loses the billing-period qualifier. |
+| 9 · vCon | 1:00 | 10:00 | The container carries observations and provenance. It does not supply a verdict. |
+| 10 · JSON explorer | 1:30 | 11:30 | Select Dialog, then Evaluation. Show where media and run evidence belong; skip a field-by-field tour. |
+| 11 · Workbench | 1:15 | 12:45 | Introduce the Conversation Agent Evaluation (CAE) tool, then explain FastAPI/Pydantic, Pipecat, and ASSERT through their roles. |
+| 12 · Contract | 1:15 | 14:00 | Point to the forbidden completion claim and expected state. Distinguish the illustrative contract from planned extensions. |
+| 13 · Loop | 0:45 | 14:45 | A changed rubric can re-score saved evidence; a changed agent needs another run. |
+| 14 · Runtime demo | 5:00 | 19:45 | Run the gate contrast and lost-ack reconciliation described below. |
+| 15 · Outcomes | 1:00 | 20:45 | Separate completed work, verified safe failure, and false success. Unknown is not failed. |
+| 16 · Release review | 1:30 | 22:15 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
+| 17 · Boundary | 1:00 | 23:15 | Explain supported tool capabilities and the roadmap. Browser fixtures do not establish live telephony or production behavior. |
+| 18 · Sources | 0:30 | 23:45 | Point to the linked standards and research. |
+| 19 · Close | 1:15 | 25:00 | Return to the opening question. Define one important workflow contract, test its failure paths, and retain the evidence. |
 | Q&A | 5:00 | 30:00 | Leave the closing slide and repository links visible. |
 
-## Continuous voice — slide 5
+## Continuous voice — slide 6
 
-Two review alternatives are available through the `slide5` URL parameter; they replace this slide without changing the route.
+The conversation sequence is the default. The architecture review alternative is available through `?voice=architecture`; the legacy `slide5` parameter also works. Either diagram occupies the same slide in the route.
 
 - `architecture`: trace the cyan audio loop first, then the delegated reasoning and tool requests below it. “The live conversation continues while deeper work runs. The result comes back to the voice model.”
 - `sequence`: follow the appointment search from top to bottom. The cyan overlap highlights the caller adding “after 3pm” while the voice model speaks. The active task must incorporate that new constraint. Availability returns to the same conversation; “Shall I book it?” does not claim that a booking happened.
@@ -122,6 +136,6 @@ Before going on stage, load the original Echo Show photo and leave disclosures c
 
 If an interaction fails, explain its expected before/after result and move on.
 
-Check the clock after slides 6 (6:30), 10 (12:45), and 13 (19:45). If behind, keep the JSON explorer on its default view, and omit lost-ack reconciliation. Preserve the gate contrast, release decision, and closing; those carry the argument.
+Check the clock after slides 7 (6:30), 11 (12:45), and 14 (19:45). If behind, keep the JSON explorer on its default view, and omit lost-ack reconciliation. Preserve the gate contrast, release decision, and closing; those carry the argument.
 
 The event name follows the [official Fall '26 conference site](https://www.vonevolution.com/). The October 15 talk date is retained from the existing deck.

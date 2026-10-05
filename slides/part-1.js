@@ -55,6 +55,36 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     `
   },
   {
+    id: "projects",
+    className: "projects-slide",
+    html: `
+      <div class="section-heading">
+        <p class="eyebrow">WHAT WE BUILD · WEBRTC.VENTURES</p>
+        <h2 id="projects-title">Voice AI <span>in real applications.</span></h2>
+      </div>
+      <div class="projects-grid">
+        <figure class="project-example">
+          <img class="project-image" src="./assets/projects/ava-meeting.png" alt="Published AVA Intellect UI for configuring an AI agent, its knowledge bases, and tools" loading="eager" decoding="async">
+          <figcaption><h3>Meeting collaborators</h3><p>AVA Intellect: voice agents join meetings and use shared knowledge.</p><a href="https://webrtc.ventures/successes/ai-voice-agents-that-collaborate-and-contribute/" target="_blank" rel="noopener noreferrer">AVA success story ↗</a></figcaption>
+        </figure>
+        <figure class="project-example">
+          <img class="project-image surgical-image" src="./assets/projects/surgical-dashboard.jpg" alt="Published surgical-audio project visual showing transcript, sentiment, and checklist panels" loading="eager" decoding="async">
+          <figcaption><h3>Surgical audio</h3><p>Capture operating-room conversations for transcription and review.</p><a href="https://webrtc.ventures/successes/audio-listening-device-to-improve-surgical-outcomes/" target="_blank" rel="noopener noreferrer">Audio success story ↗</a></figcaption>
+        </figure>
+        <figure class="project-example">
+          <img class="project-image" src="./assets/projects/ceta-screens.png" alt="CETA Global's published EBT-Sim visual showing an avatar roleplay session and simulation evaluation" loading="eager" decoding="async">
+          <figcaption><h3>Avatar roleplay</h3><p>CETA Global: practice clinical conversations with live AI coaching.</p><a href="https://webrtc.ventures/successes/ai-roleplay-training-simulator-case-study/" target="_blank" rel="noopener noreferrer">CETA success story ↗</a></figcaption>
+        </figure>
+        <figure class="project-example">
+          <img class="project-image livekit-image" src="./assets/projects/livekit-call-flow.webp" alt="Detail of the published LiveKit call-center architecture: SIP calling, an inbound agent, and STT, LLM, and TTS providers" loading="eager" decoding="async">
+          <figcaption><h3>LiveKit call center</h3><p>SIP calls, voice agents, and warm transfers to human operators.</p><a href="https://webrtc.ventures/wp-content/uploads/2026/07/Migrating-from-Kurento-to-LiveKit-in-Production.html#16" target="_blank" rel="noopener noreferrer">Production migration ↗</a></figcaption>
+        </figure>
+      </div>
+      <p class="takeaway">Different applications. <strong>The complete system still needs evaluation.</strong></p>
+      <p class="projects-provenance">Published project visuals · WebRTC.ventures and CETA Global · Links open the original stories.</p>
+    `
+  },
+  {
     id: "problem",
     html: `
       <div class="section-heading">
@@ -115,30 +145,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
   },
   {
     id: "dual-voice",
-    html: `
-      <div class="section-heading">
-        <p class="eyebrow">HOW VOICE SYSTEMS ARE CHANGING</p>
-        <h2 id="dual-voice-title">Keep speech flowing. <span>Delegate deeper work.</span></h2>
-        <p>A talker–reasoner architecture: one conversation, two paths.</p>
-      </div>
-      <div class="dual-voice-layout">
-        <article class="voice-live-path">
-          <p class="card-kicker">LIVE VOICE PATH · LOW LATENCY</p>
-          <div class="voice-media-loop" aria-label="Caller sends and receives audio through Media to a native speech-to-speech model"><b>Caller</b><span aria-hidden="true">↔</span><b>Media</b><span aria-hidden="true">↔</span><b>Speech ↔ speech</b></div>
-          <p>Audio + multimodal context → immediate conversation.</p>
-          <p class="voice-duplex"><strong>Full duplex:</strong> listen while speaking; handle overlap and backchannels.</p>
-        </article>
-        <div class="voice-delegation" aria-label="The voice model sends scoped work to a background reasoner and receives results"><span>scoped request →</span><strong>ASYNCHRONOUS<br>DELEGATION</strong><span>← verified result</span></div>
-        <article class="voice-work-path">
-          <p class="card-kicker">BACKGROUND PATH · DEEPER REASONING + ACTIONS</p>
-          <div class="voice-work-flow"><b>Text context</b><span aria-hidden="true">→</span><b>Reasoning LLM</b><span aria-hidden="true">↔</span><b>Tools + state</b></div>
-          <p>Research, planning, and slower operations return to the voice model.</p>
-          <p class="voice-cascade"><strong>Cascade alternative:</strong> STT → LLM → TTS for transcript access and scripted speech. Coordinate who speaks.</p>
-        </article>
-      </div>
-      <p class="takeaway">Evaluate <strong>overlap, stale results, and claims before actions are verified.</strong></p>
-      <p class="eng-sources voice-sources"><a href="https://openai.com/index/continuous-voice-interaction-with-gpt-live/" target="_blank" rel="noopener noreferrer">OpenAI · GPT-Live ↗</a><a href="https://docs.livekit.io/agents/logic/patterns/subagent-delegation/" target="_blank" rel="noopener noreferrer">LiveKit · talker–reasoner ↗</a><a href="https://docs.pipecat.ai/api-reference/server/services/s2s/openai-live" target="_blank" rel="noopener noreferrer">Pipecat · delegated backend ↗</a><span>Full duplex depends on the model. Architecture synthesis · October 2026.</span></p>
-    `
+    ...window.VOICE_EVALS_DUAL_VOICE_OPTIONS.sequence
   },
   {
     id: "layers",

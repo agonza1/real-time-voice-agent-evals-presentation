@@ -10,6 +10,11 @@ const localAssets = [
   "styles/engineering.css",
   "styles/story.css",
   "styles/voice-options.css",
+  "styles/projects.css",
+  "assets/projects/ava-meeting.png",
+  "assets/projects/surgical-dashboard.jpg",
+  "assets/projects/ceta-screens.png",
+  "assets/projects/livekit-call-flow.webp",
   "scripts/engineering-model.js",
   "scripts/engineering-ui.js",
   "styles/base.css",
@@ -61,8 +66,8 @@ const localAssets = [
   assert.match(html, /id="helpDialog"/);
   assert.match(html, /styles\/vcon-enrichment\.css/);
   assert.match(html, /slides\/vcon-enrichment\.js/);
-  assert.match(html, /id="totalSlides">18<\/span>/);
-  assert.match(html, /id="presentTotal">18<\/span>/);
+  assert.match(html, /id="totalSlides">19<\/span>/);
+  assert.match(html, /id="presentTotal">19<\/span>/);
   assert.match(html, /scripts\/render-slides\.js/);
   assert.match(html, /scripts\/app\.js/);
   assert.doesNotMatch(html, /<script[^>]+src=["']https?:\/\//i);
@@ -73,7 +78,7 @@ const localAssets = [
   }
 });
 
- test("the slide data defines a complete 18-section narrative", async () => {
+ test("the slide data defines a complete 19-section narrative", async () => {
   const parts = await Promise.all([
     readRepositoryFile("slides/part-1.js"),
     readRepositoryFile("slides/part-2.js"),
@@ -81,8 +86,8 @@ const localAssets = [
     readRepositoryFile("slides/part-3.js"),
   ]);
   const ids = parts.flatMap((content) => [...content.matchAll(/\bid:\s*"([^"]+)"/g)].map((match) => match[1]));
-  assert.equal(ids.length, 18);
-  assert.equal(new Set(ids).size, 18);
+  assert.equal(ids.length, 19);
+  assert.equal(new Set(ids).size, 19);
   for (const required of ["intro", "story", "problem", "system", "dual-voice", "layers", "timeline", "vcon", "vcon-enrichment", "workbench", "contract", "demo", "comparison", "boundary", "standards", "close"]) {
     assert.ok(ids.includes(required), `missing required slide: ${required}`);
   }
@@ -164,9 +169,10 @@ const localAssets = [
 
  test("the personal story follows the title and connects runtime controls to evaluation", async () => {
   const scope = {};
+  new Function("window", await readRepositoryFile("slides/dual-voice-options.js"))(scope);
   new Function("window", await readRepositoryFile("slides/part-1.js"))(scope);
   const slides = scope.VOICE_EVALS_SLIDES_PART_1;
-  assert.deepEqual(slides.slice(0, 6).map((slide) => slide.id), ["intro", "story", "problem", "system", "dual-voice", "layers"]);
+  assert.deepEqual(slides.slice(0, 7).map((slide) => slide.id), ["intro", "story", "projects", "problem", "system", "dual-voice", "layers"]);
   const story = slides[1].html;
   assert.match(story, /2017 · ECHO SHOW/);
   assert.match(story, /exact phrases/);

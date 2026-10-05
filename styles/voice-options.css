@@ -1,4 +1,4 @@
-/* Editable slide 5 review diagrams. Theme, typography, and stage controls are shared. */
+/* Editable continuous-voice diagrams. Theme, typography, and stage controls are shared. */
 .voice-option-diagram { display: block; width: 100%; height: clamp(320px, 51vh, 570px); overflow: visible; font-family: var(--font); }
 .voice-svg-node { fill: var(--surface); stroke-width: 2; }
 .cyan-node { stroke: var(--cyan); }

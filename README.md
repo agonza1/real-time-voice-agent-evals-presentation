@@ -28,7 +28,7 @@ a demo. The interactive experiments remain explicitly labeled as teaching fixtur
 [Opening and closing speaker notes](docs/speaker-notes.md) include a self-contained
 story for the Fall '26 audience.
 
-The same notes include a 25-minute rehearsal route through all 18 slides, with five minutes reserved for Q&A in the 30-minute slot.
+The same notes include a 25-minute rehearsal route through all 19 slides, with five minutes reserved for Q&A in the 30-minute slot.
 
 ## Features
 
@@ -98,7 +98,7 @@ MIT
 ## Engineering experiments (presentation fixtures)
 
 The engineering sections, vCon JSON magnifier, and visual system are preserved.
-A short personal story after the title and a talker–reasoner architecture slide bring the presentation to 18 slides.
+A personal story, a visual project overview, and a continuous-voice sequence bring the presentation to 19 slides.
 The focused additions are:
 
 - **Timeline:** switch between complete-request and aggressive endpointing traces.
@@ -115,18 +115,18 @@ The focused additions are:
   Faster p95 cannot compensate for premature responses or wrong cancellation timing.
 
 These are browser teaching experiments, not shipped evaluation tool runtime functionality or
-measured customer benchmarks. No customer data or customer names were added.
+measured customer benchmarks. The project overview uses public success stories and locally stored published visuals.
 Runtime controls prevent violations; evaluation verifies the controls and exposes
 regressions. The simplified workflow is **Run → Evaluate → Compare**.
 
-### Slide 5 review alternatives
+### Continuous voice — slide 6
 
-Two optional diagrams replace only slide 5 and keep the 18-slide route:
+The conversation sequence is the default. A review alternative occupies the same slide and keeps the 19-slide route:
 
-- [Two-path architecture](http://127.0.0.1:8080/?present=1&slide5=architecture#dual-voice): the live audio loop delegates reasoning and tool work.
-- [Conversation sequence](http://127.0.0.1:8080/?present=1&slide5=sequence#dual-voice): a caller adds an appointment constraint while the voice model speaks.
+- [Two-path architecture](http://127.0.0.1:8080/?present=1&voice=architecture#dual-voice): the live audio loop delegates reasoning and tool work.
+- [Conversation sequence](http://127.0.0.1:8080/?present=1#dual-voice): a caller adds an appointment constraint while the voice model speaks.
 
-Without the `slide5` parameter, the current slide remains the default. The diagrams are illustrative, not captured runtime traces.
+The legacy `slide5` review parameter remains supported. The diagrams are illustrative, not captured runtime traces. [Project image sources](assets/projects/SOURCES.md) document the real visuals used on slide 3.
 
 ### Tests
 

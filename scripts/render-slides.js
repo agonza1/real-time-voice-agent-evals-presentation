@@ -1,7 +1,8 @@
 (() => {
   "use strict";
 
-  const requestedOption = new URLSearchParams(location.search).get("slide5");
+  const params = new URLSearchParams(location.search);
+  const requestedOption = params.get("voice") || params.get("slide5");
   const alternative = ["architecture", "sequence"].includes(requestedOption)
     ? window.VOICE_EVALS_DUAL_VOICE_OPTIONS?.[requestedOption]
     : undefined;

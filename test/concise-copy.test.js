@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 const read = p => readFile(new URL('../' + p, import.meta.url), 'utf8');
-const load = async p => { const scope = {}; new Function('window', await read(p))(scope); return Object.values(scope)[0]; };
+const load = async p => { const scope = {}; new Function('window', await read('slides/dual-voice-options.js'))(scope); new Function('window', await read(p))(scope); return Object.values(scope).find(Array.isArray); };
 
 test('slide 2 reuses the pinned ClueCon Echo Show photograph', async () => {
   const slides = await load('slides/part-1.js');
