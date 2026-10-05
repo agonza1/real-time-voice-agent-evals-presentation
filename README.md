@@ -28,7 +28,7 @@ a demo. The interactive experiments remain explicitly labeled as teaching fixtur
 [Opening and closing speaker notes](docs/speaker-notes.md) include a self-contained
 story for the Fall '26 audience.
 
-The same notes include a 25-minute rehearsal route through all 19 slides, with five minutes reserved for Q&A in the 30-minute slot.
+The same notes include a 25-minute rehearsal route through all 20 slides, with five minutes reserved for Q&A in the 30-minute slot.
 
 ## Features
 
@@ -98,7 +98,7 @@ MIT
 ## Engineering experiments (presentation fixtures)
 
 The engineering sections, vCon JSON magnifier, and visual system are preserved.
-A short personal story after the title brings the presentation to 19 slides.
+A short personal story after the title and a talker–reasoner architecture slide bring the presentation to 20 slides.
 The focused additions are:
 
 - **Timeline:** switch between complete-request and aggressive endpointing traces.

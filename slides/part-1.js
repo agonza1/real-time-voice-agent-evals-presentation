@@ -114,6 +114,33 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     `
   },
   {
+    id: "dual-voice",
+    html: `
+      <div class="section-heading">
+        <p class="eyebrow">HOW VOICE SYSTEMS ARE CHANGING</p>
+        <h2 id="dual-voice-title">Keep speech flowing. <span>Delegate deeper work.</span></h2>
+        <p>A talker–reasoner architecture: one conversation, two paths.</p>
+      </div>
+      <div class="dual-voice-layout">
+        <article class="voice-live-path">
+          <p class="card-kicker">LIVE VOICE PATH · LOW LATENCY</p>
+          <div class="voice-media-loop" aria-label="Caller sends and receives audio through Media to a native speech-to-speech model"><b>Caller</b><span aria-hidden="true">↔</span><b>Media</b><span aria-hidden="true">↔</span><b>Speech ↔ speech</b></div>
+          <p>Audio + multimodal context → immediate conversation.</p>
+          <p class="voice-duplex"><strong>Full duplex:</strong> listen while speaking; handle overlap and backchannels.</p>
+        </article>
+        <div class="voice-delegation" aria-label="The voice model sends scoped work to a background reasoner and receives results"><span>scoped request →</span><strong>ASYNCHRONOUS<br>DELEGATION</strong><span>← verified result</span></div>
+        <article class="voice-work-path">
+          <p class="card-kicker">BACKGROUND PATH · DEEPER REASONING + ACTIONS</p>
+          <div class="voice-work-flow"><b>Text context</b><span aria-hidden="true">→</span><b>Reasoning LLM</b><span aria-hidden="true">↔</span><b>Tools + state</b></div>
+          <p>Research, planning, and slower operations return to the voice model.</p>
+          <p class="voice-cascade"><strong>Cascade alternative:</strong> STT → LLM → TTS for transcript access and scripted speech. Coordinate who speaks.</p>
+        </article>
+      </div>
+      <p class="takeaway">Evaluate <strong>overlap, stale results, and claims before actions are verified.</strong></p>
+      <p class="eng-sources voice-sources"><a href="https://openai.com/index/continuous-voice-interaction-with-gpt-live/" target="_blank" rel="noopener noreferrer">OpenAI · GPT-Live ↗</a><a href="https://docs.livekit.io/agents/logic/patterns/subagent-delegation/" target="_blank" rel="noopener noreferrer">LiveKit · talker–reasoner ↗</a><a href="https://docs.pipecat.ai/api-reference/server/services/s2s/openai-live" target="_blank" rel="noopener noreferrer">Pipecat · delegated backend ↗</a><span>Full duplex depends on the model. Architecture synthesis · October 2026.</span></p>
+    `
+  },
+  {
     id: "layers",
     html: `
       <div class="section-heading">
