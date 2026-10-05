@@ -1,0 +1,25 @@
+/* Editable slide 5 review diagrams. Theme, typography, and stage controls are shared. */
+.voice-option-diagram { display: block; width: 100%; height: clamp(320px, 51vh, 570px); overflow: visible; font-family: var(--font); }
+.voice-svg-node { fill: var(--surface); stroke-width: 2; }
+.cyan-node { stroke: var(--cyan); }
+.violet-node { stroke: var(--violet); }
+.voice-svg-node-name { fill: var(--text); font-size: 32px; font-weight: 750; }
+.voice-svg-lane { fill: var(--text); font-size: 28px; font-weight: 750; }
+.voice-svg-kicker { fill: var(--muted); font-size: 20px; font-weight: 750; letter-spacing: 2px; }
+.voice-svg-label { fill: var(--muted); font-size: 28px; }
+.voice-svg-sub { fill: var(--muted); font-size: 24px; }
+.voice-svg-message { fill: var(--text); font-size: 22px; }
+.voice-option-diagram .cyan { fill: var(--cyan); }
+.voice-option-diagram .violet { fill: var(--violet); }
+.voice-option-diagram .green { fill: var(--green); }
+.voice-svg-arrow { fill: none; stroke-width: 2.5; }
+.cyan-arrow { stroke: var(--cyan); marker-end: url(#voice-cyan-arrow); }
+.violet-arrow { stroke: var(--violet); marker-end: url(#voice-violet-arrow); }
+.green-arrow { stroke: var(--green); marker-end: url(#voice-green-arrow); }
+.voice-svg-lifeline { fill: none; stroke: var(--line-strong); stroke-width: 2; stroke-dasharray: 5 8; }
+.voice-svg-overlap { fill: var(--cyan-soft); stroke: var(--cyan); stroke-width: 1; }
+.voice-svg-speaking { fill: var(--cyan); }
+.voice-option-slide .takeaway { margin-top: 15px; }
+.voice-option-sources { margin-top: 15px; }
+@media (max-width: 820px) { .voice-option-diagram { min-width: 780px; height: 360px; } .voice-option-slide .slide-shell { overflow-x: auto; } }
+@media print { .voice-option-diagram { height: 105mm; } }

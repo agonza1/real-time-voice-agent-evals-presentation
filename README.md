@@ -119,6 +119,15 @@ measured customer benchmarks. No customer data or customer names were added.
 Runtime controls prevent violations; evaluation verifies the controls and exposes
 regressions. The simplified workflow is **Run → Evaluate → Compare**.
 
+### Slide 5 review alternatives
+
+Two optional diagrams replace only slide 5 and keep the 18-slide route:
+
+- [Two-path architecture](http://127.0.0.1:8080/?present=1&slide5=architecture#dual-voice): the live audio loop delegates reasoning and tool work.
+- [Conversation sequence](http://127.0.0.1:8080/?present=1&slide5=sequence#dual-voice): a caller adds an appointment constraint while the voice model speaks.
+
+Without the `slide5` parameter, the current slide remains the default. The diagrams are illustrative, not captured runtime traces.
+
 ### Tests
 
 `npm test` uses Node's built-in test runner with no dependencies. Tests cover

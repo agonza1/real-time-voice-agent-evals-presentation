@@ -1,10 +1,18 @@
 (() => {
   "use strict";
 
+  const requestedOption = new URLSearchParams(location.search).get("slide5");
+  const alternative = ["architecture", "sequence"].includes(requestedOption)
+    ? window.VOICE_EVALS_DUAL_VOICE_OPTIONS?.[requestedOption]
+    : undefined;
+  const originalPart1 = window.VOICE_EVALS_SLIDES_PART_1;
+  const part1 = alternative && Array.isArray(originalPart1)
+    ? originalPart1.map((slide) => slide.id === "dual-voice" ? { ...slide, ...alternative } : slide)
+    : originalPart1;
   const part2 = window.VOICE_EVALS_SLIDES_PART_2;
   const enrichment = window.VOICE_EVALS_VCON_ENRICHMENT;
   const parts = [
-    window.VOICE_EVALS_SLIDES_PART_1,
+    part1,
     Array.isArray(part2) ? part2.slice(0, 1) : part2,
     enrichment,
     Array.isArray(part2) ? part2.slice(1) : part2,

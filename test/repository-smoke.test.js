@@ -9,6 +9,7 @@ const localAssets = [
   "assets/favicon.svg",
   "styles/engineering.css",
   "styles/story.css",
+  "styles/voice-options.css",
   "scripts/engineering-model.js",
   "scripts/engineering-ui.js",
   "styles/base.css",
@@ -20,6 +21,7 @@ const localAssets = [
   "slides/part-2.js",
   "slides/vcon-enrichment.js",
   "slides/part-3.js",
+  "slides/dual-voice-options.js",
   "scripts/render-slides.js",
   "scripts/app.js",
 ];
