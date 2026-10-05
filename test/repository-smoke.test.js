@@ -66,8 +66,8 @@ const localAssets = [
   assert.match(html, /id="helpDialog"/);
   assert.match(html, /styles\/vcon-enrichment\.css/);
   assert.match(html, /slides\/vcon-enrichment\.js/);
-  assert.match(html, /id="totalSlides">19<\/span>/);
-  assert.match(html, /id="presentTotal">19<\/span>/);
+  assert.match(html, /id="totalSlides">16<\/span>/);
+  assert.match(html, /id="presentTotal">16<\/span>/);
   assert.match(html, /scripts\/render-slides\.js/);
   assert.match(html, /scripts\/app\.js/);
   assert.doesNotMatch(html, /<script[^>]+src=["']https?:\/\//i);
@@ -78,7 +78,7 @@ const localAssets = [
   }
 });
 
- test("the slide data defines a complete 19-section narrative", async () => {
+ test("the slide data defines 16 main slides and two appendices", async () => {
   const parts = await Promise.all([
     readRepositoryFile("slides/part-1.js"),
     readRepositoryFile("slides/part-2.js"),
@@ -86,8 +86,8 @@ const localAssets = [
     readRepositoryFile("slides/part-3.js"),
   ]);
   const ids = parts.flatMap((content) => [...content.matchAll(/\bid:\s*"([^"]+)"/g)].map((match) => match[1]));
-  assert.equal(ids.length, 19);
-  assert.equal(new Set(ids).size, 19);
+  assert.equal(ids.length, 18);
+  assert.equal(new Set(ids).size, 18);
   for (const required of ["intro", "story", "problem", "system", "dual-voice", "layers", "timeline", "vcon", "vcon-enrichment", "workbench", "contract", "demo", "comparison", "boundary", "standards", "close"]) {
     assert.ok(ids.includes(required), `missing required slide: ${required}`);
   }
@@ -128,11 +128,21 @@ const localAssets = [
   assert.match(enrichment, /<span class="json-key">"status"<\/span><span class="json-punctuation">:<\/span> <span class="json-string">"portable"<\/span>/);
 });
 
- test("the renderer places the enrichment immediately after the core vCon slide", async () => {
+ test("the rendered route introduces the workbench before evidence and ends before the appendix", async () => {
+  const scope = {};
+  for (const file of ["dual-voice-options", "part-1", "part-2", "part-3", "vcon-enrichment"]) {
+    new Function("window", await readRepositoryFile(`slides/${file}.js`))(scope);
+  }
   const renderer = await readRepositoryFile("scripts/render-slides.js");
-  assert.match(renderer, /part2\.slice\(0, 1\)/);
-  assert.match(renderer, /VOICE_EVALS_VCON_ENRICHMENT/);
-  assert.match(renderer, /part2\.slice\(1\)/);
+  const deck = { innerHTML: "" };
+  const document = { getElementById: () => deck, dispatchEvent: () => {} };
+  new Function("window", "document", "location", "CustomEvent", renderer)(scope, document, { search: "" }, class {});
+  const route = scope.VOICE_EVALS_SLIDES;
+  assert.deepEqual(route.map((slide) => slide.id), ["intro", "story", "projects", "problem", "system", "dual-voice", "layers", "timeline", "workbench", "contract", "vcon", "demo", "outcomes", "comparison", "boundary", "close", "vcon-enrichment", "standards"]);
+  assert.equal(route.filter((slide) => !slide.appendix).length, 16);
+  assert.deepEqual(route.filter((slide) => slide.appendix).map((slide) => slide.id), ["vcon-enrichment", "standards"]);
+  assert.match(deck.innerHTML, /aria-label="Slide 16 of 16"/);
+  assert.match(deck.innerHTML, /aria-label="Appendix A1 of 2"/);
 });
 
  test("presentation controls, the fixture, and vCon magnifier are wired accessibly", async () => {
@@ -160,7 +170,7 @@ const localAssets = [
  test("refinements keep conference identity separate from the product roadmap", async () => {
   const p2 = await readRepositoryFile("slides/part-2.js");
   const p3 = await readRepositoryFile("slides/part-3.js");
-  assert.match(p2, /Run → Evaluate → <span>Compare<\/span>/);
+  assert.match(p2, /Run → Evaluate → Compare/);
   assert.doesNotMatch(p2 + p3, /what VON extends|VON ROADMAP|VON \/ NEXT/);
   assert.match(p2, /Runtime output gate enabled/);
   assert.match(p2, /id="runtimeGate" type="checkbox" checked/);

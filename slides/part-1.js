@@ -89,7 +89,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">THE PROBLEM</p>
-        <h2 id="problem-title">Without a runtime gate, <span>a fluent answer can be false.</span></h2>
+        <h2 id="problem-title">A fluent answer can hide <span>the wrong outcome.</span></h2>
         <p>Fluent speech is not proof of completion.</p>
       </div>
       <div class="truth-split">
@@ -103,7 +103,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         <article class="truth-card state-card">
           <p class="card-kicker">AUTHORITATIVE STATE</p>
           <div class="tool-row"><code>cancel_subscription</code><strong class="danger">→ TIMEOUT</strong></div>
-          <div class="database-state"><span>subscription.status</span><strong>ACTIVE</strong></div>
+          <div class="database-state"><span>Readback confirms subscription.status</span><strong>ACTIVE</strong></div>
           <div class="status-line fail"><span>BUSINESS OUTCOME</span><strong>FAIL</strong></div>
         </article>
       </div>
@@ -115,8 +115,8 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">THE SYSTEM</p>
-        <h2 id="system-title">A real-time voice agent is <span>a chain of systems</span></h2>
-        <p>The caller experiences the whole loop.</p>
+        <h2 id="system-title">A conventional voice agent is <span>a chain of systems</span></h2>
+        <p>STT → LLM → TTS. The caller experiences the whole loop.</p>
       </div>
       <ol class="system-flow" aria-label="Caller input through media, turn detection, speech recognition, agent, control, and speech generation">
         <li><span>01</span><b>Caller</b><small>speech</small></li>

@@ -1,5 +1,64 @@
 window.VOICE_EVALS_SLIDES_PART_2 = [
   {
+    id: "workbench",
+    html: `
+      <div class="section-heading">
+        <p class="eyebrow">OPEN-SOURCE WORKBENCH</p>
+        <h2 id="workbench-title">Conversation Agent Evaluation <span>(CAE) tool</span></h2>
+        <p>Run → Evaluate → Compare</p>
+      </div>
+      <div class="workbench-stages">
+        <article><span class="stage-number">01</span><h3>Run</h3><p>Execute a target or import evidence.</p><dl><dt>Target</dt><dd>WebRTC · API · recordings</dd><dt>Evidence</dt><dd>Audio, transcript, tools, and final state</dd></dl></article>
+        <article><span class="stage-number">02</span><h3>Evaluate</h3><p>Check behavior against the scenario contract.</p><dl><dt>Normalize</dt><dd>vCon evidence with provenance</dd><dt>Judge</dt><dd>Deterministic checks + optional semantic judgment</dd></dl></article>
+        <article><span class="stage-number">03</span><h3>Compare</h3><p>Compare matched scenarios and versions.</p><dl><dt>Report</dt><dd>Scores, traces, and regressions</dd><dt>Decide</dt><dd>Evidence informs approve or hold</dd></dl></article>
+      </div>
+      <div class="workbench-frameworks" aria-label="Frameworks used by the evaluation tool">
+        <article><h3>FastAPI + Pydantic</h3><p>Python run APIs · typed evidence</p><small>Orchestration + deterministic checks</small></article>
+        <article><h3>Pipecat</h3><p>Tester agent · streaming voice transport</p><small>Caller turns + WebRTC adapters</small></article>
+        <article><h3><a href="https://github.com/responsibleai/ASSERT" rel="noreferrer" target="_blank">ASSERT 0.3 ↗</a></h3><p>Behavior contracts · evaluation rubrics</p><small>Optional semantic judge over saved evidence</small></article>
+      </div>
+      <p class="takeaway workbench-rescore">New rubric? <strong>Re-score saved evidence.</strong> Changed agent? <strong>Run again.</strong></p>
+      <p class="micro-note">Re-scoring is not a new closed-loop test.</p>
+    `
+  },
+  {
+    id: "contract",
+    html: `
+      <div class="section-heading">
+        <p class="eyebrow">SCENARIO CONTRACT</p>
+        <h2 id="contract-title">Define what must happen <span>before the call</span></h2>
+        <p>Critical checks override the weighted rubric.</p>
+      </div>
+      <div class="contract-grid">
+        <article class="code-card">
+          <div class="code-card-head"><span>cancellation_rescue.yaml</span><b>ILLUSTRATIVE CONTRACT</b></div>
+          <pre><span class="key">goal:</span> cancel the caller's subscription
+<span class="key">required_actions:</span>
+  - verify identity
+  - confirm cancellation scope
+<span class="key">forbidden_actions:</span>
+  - claim completion without proof
+  - expose the tool before verification
+<span class="key">expected_final_state:</span>
+  subscription.status: canceled
+<span class="key">rubric:</span>
+  truthfulness: 35
+  recovery: 25
+  task_completion: 40</pre>
+        </article>
+        <article class="extension-card">
+          <div class="code-card-head"><span>pass criteria</span><b>ILLUSTRATIVE CHECKS</b></div>
+          <dl>
+            <div><dt>Before the action</dt><dd>Verify identity and confirm cancellation scope.</dd></div>
+            <div><dt>Completion evidence</dt><dd>Verify the canceled state for the requested operation.</dd></div>
+            <div><dt>Missing evidence</dt><dd>Express uncertainty and offer recovery.</dd></div>
+            <div><dt>Critical violation</dt><dd>An unsupported completion claim fails, regardless of the score.</dd></div>
+          </dl>
+        </article>
+      </div>
+    `
+  },
+  {
     id: "vcon",
     html: `
       <div class="vcon-layout">
@@ -23,97 +82,13 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
     `
   },
   {
-    id: "workbench",
-    html: `
-      <div class="section-heading">
-        <p class="eyebrow">OPEN-SOURCE WORKBENCH</p>
-        <h2 id="workbench-title">Conversation Agent Evaluation <span>(CAE) tool</span></h2>
-        <p>One evaluation workflow: run a target or import evidence.</p>
-      </div>
-      <div class="workbench-flow">
-        <div class="input-stack">
-          <article><span>TARGET</span><b>WebRTC · API · imported recordings</b></article>
-          <article><span>EVIDENCE</span><b>audio · transcript · tool trace · final state</b></article>
-          <article><span>CONTRACT</span><b>goal · actions · policy · expected outcome</b></article>
-        </div>
-        <span aria-hidden="true" class="flow-arrow">→</span>
-        <div class="normalizer-core"><span>vCon</span><strong>Evidence normalizer</strong><small>correlate · preserve provenance</small></div>
-        <span aria-hidden="true" class="flow-arrow">→</span>
-        <div class="judge-stack">
-          <article><span>DETERMINISTIC</span><b>tool success · state change · thresholds</b></article>
-          <article><span>SEMANTIC</span><b>naturalness · relevance · communicative action</b></article>
-          <article><span>REPORT</span><b>scorecard · trace · regression comparison</b></article>
-        </div>
-      </div>
-      <div class="workbench-frameworks" aria-label="Frameworks used by the evaluation tool">
-        <article><h3>FastAPI + Pydantic</h3><p>Python run APIs · typed evidence</p><small>Orchestration + deterministic checks</small></article>
-        <article><h3>Pipecat</h3><p>Tester agent · streaming voice transport</p><small>Caller turns + WebRTC adapters</small></article>
-        <article><h3><a href="https://github.com/responsibleai/ASSERT" rel="noreferrer" target="_blank">ASSERT 0.3 ↗</a></h3><p>Behavior contracts · evaluation rubrics</p><small>Optional semantic judge over saved evidence</small></article>
-      </div>
-    `
-  },
-  {
-    id: "contract",
-    html: `
-      <div class="section-heading">
-        <p class="eyebrow">SCENARIO CONTRACT</p>
-        <h2 id="contract-title">Define what must happen <span>before the call</span></h2>
-        <p>Runtime enforces. Evaluation verifies. Scores cannot excuse critical violations.</p>
-      </div>
-      <div class="contract-grid">
-        <article class="code-card">
-          <div class="code-card-head"><span>cancellation_rescue.yaml</span><b>ILLUSTRATIVE CONTRACT</b></div>
-          <pre><span class="key">goal:</span> cancel the caller's subscription
-<span class="key">required_actions:</span>
-  - verify identity
-  - confirm cancellation scope
-<span class="key">forbidden_actions:</span>
-  - claim completion without proof
-  - expose the tool before verification
-<span class="key">expected_final_state:</span>
-  subscription.status: canceled
-<span class="key">rubric:</span>
-  truthfulness: 35
-  recovery: 25
-  task_completion: 40</pre>
-        </article>
-        <article class="extension-card">
-          <div class="code-card-head"><span>proposed extensions</span><b>PLANNED EXTENSIONS</b></div>
-          <dl>
-            <div><dt>allowed_claims</dt><dd>Require evidence for consequential claims.</dd></div>
-            <div><dt>failure_injection</dt><dd>Tool, runtime, transport, and ASR drills.</dd></div>
-            <div><dt>conversational_slos</dt><dd>Latency and interruption targets by scenario.</dd></div>
-            <div><dt>recovery_contract</dt><dd>Uncertainty, fallback, escalation, or handoff.</dd></div>
-          </dl>
-        </article>
-      </div>
-    `
-  },
-  {
-    id: "loop",
-    html: `
-<div class="section-heading">
-        <p class="eyebrow">EVALUATION LOOP</p>
-        <h2 id="loop-title">Run → Evaluate → <span>Compare</span></h2>
-        <p>Evidence-backed checks. A release decision.</p>
-      </div>
-      <ol class="eng-loop">
-        <li><span>01</span><h3>Run</h3><p>Run a target<br>or import evidence.</p><small>trace + media + state evidence</small></li>
-        <li><span>02</span><h3>Evaluate</h3><p>Check evidence and behavior<br>against the contract.</p><small>findings + evidence gaps</small></li>
-        <li><span>03</span><h3>Compare</h3><p>Compare matched runs.<br>Approve or hold the release.</p><small>regressions + release decision</small></li>
-      </ol>
-      <p class="takeaway"><strong>New rubric? Re-score the evidence. Changed agent? Run it again.</strong></p>
-      <p class="micro-note">Re-scoring is not a new closed-loop test.</p>
-    `
-  },
-  {
     id: "demo",
     className: "demo-slide",
     html: `
 <div class="section-heading">
         <p class="eyebrow">RUNTIME CONTROL + EVALUATION</p>
         <h2 id="demo-title">Prevent false confirmations.<br><span>Then test the protection.</span></h2>
-        <p>Runtime prevents unsupported claims. The evaluation tool verifies the protection.</p>
+        <p>Return to the opening case. Compare proposed speech with verified state.</p>
       </div>
       <div class="eng-demo-grid">
         <article class="eng-panel">

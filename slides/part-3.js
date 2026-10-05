@@ -3,16 +3,16 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
     id: "outcomes",
     html: `
       <div class="section-heading">
-        <p class="eyebrow">OUTCOME TAXONOMY</p>
-        <h2 id="outcomes-title">Evaluate outcomes.<br><span>Verify protections.</span></h2>
-        <p>Timeout means uncertainty—not confirmed failure.</p>
+        <p class="eyebrow">TWO SEPARATE VERDICTS</p>
+        <h2 id="outcomes-title">Did the task finish?<br><span>Was the response safe?</span></h2>
+        <p>Judge the business state and the agent's response separately.</p>
       </div>
-      <div class="outcome-grid">
-        <article class="outcome-card success-outcome"><span>A</span><h3>Business success</h3><p>State changed. Confirmation matches the evidence.</p><b>PASS · COMPLETED + TRUTHFUL</b></article>
-        <article class="outcome-card safe-outcome"><span>B</span><h3>Safe failure</h3><p>Failure verified. Agent stays truthful and offers recovery.</p><b>RECOVERED · INCOMPLETE + SAFE</b></article>
-        <article class="outcome-card false-outcome"><span>C</span><h3>False success</h3><p>A missing or bypassed gate permits a false claim.</p><b>FAIL · RUNTIME CONTROL MISSING</b></article>
-      </div>
-      <p class="takeaway"><strong>Unknown is not failed.</strong> Evaluate business state and safe behavior separately.</p>
+      <div class="outcome-matrix-wrap"><table class="outcome-matrix"><thead><tr><th scope="col">Verified business state</th><th scope="col">Safe response</th><th scope="col">Unsafe response</th></tr></thead><tbody>
+        <tr><th scope="row">Task completed</th><td class="matrix-safe"><strong>Verified success</strong><span>Confirmation has supporting evidence.</span></td><td class="matrix-unsafe"><strong>Unsupported confirmation</strong><span>The claim lacked proof at speech time.</span></td></tr>
+        <tr><th scope="row">Task not completed</th><td class="matrix-recovery"><strong>Safe failure</strong><span>Truthful explanation and recovery.</span></td><td class="matrix-unsafe"><strong>False success</strong><span>The agent claims an action that did not happen.</span></td></tr>
+      </tbody></table></div>
+      <p class="takeaway"><strong>State unknown? Keep it unknown until reconciled.</strong></p>
+      <p class="micro-note">A truthful expression of uncertainty can be safe even when the task actually committed.</p>
     `
   },
   {
@@ -60,7 +60,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
     id: "standards",
     html: `
       <div class="section-heading">
-        <p class="eyebrow">STANDARDS + RESEARCH</p>
+        <p class="eyebrow">APPENDIX · STANDARDS + RESEARCH</p>
         <h2 id="standards-title">Standards and research<br><span>behind the workbench</span></h2>
         <p>Capture and evaluation foundations—not universal latency targets.</p>
       </div>
@@ -101,7 +101,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
         <article><span>02</span><b>Verify the protections</b><p>Runtime controls enforce policy. Evaluation verifies.</p></article>
         <article><span>03</span><b>Make releases evidence-led</b><p>Keep vCon evidence. Check regressions before release.</p></article>
       </div>
-      <div class="closing-cta"><strong>DEFINE THE CONTRACT. TEST THE FAILURE PATHS. KEEP THE EVIDENCE.</strong><div><a href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">Conversation Agent Evaluation (CAE) tool ↗</a><a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation" rel="noreferrer" target="_blank">presentation source ↗</a></div></div>
+      <div class="closing-cta"><strong>DEFINE THE CONTRACT. TEST THE FAILURE PATHS. KEEP THE EVIDENCE.</strong><div><a href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">Conversation Agent Evaluation (CAE) tool ↗</a><a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation" rel="noreferrer" target="_blank">presentation source ↗</a><a href="#vcon-enrichment">Appendix: vCon JSON →</a><a href="#standards">Appendix: sources →</a></div></div>
     `
   }
 ];

@@ -28,7 +28,7 @@ a demo. The interactive experiments remain explicitly labeled as teaching fixtur
 [Opening and closing speaker notes](docs/speaker-notes.md) include a self-contained
 story for the Fall '26 audience.
 
-The same notes include a 25-minute rehearsal route through all 19 slides, with five minutes reserved for Q&A in the 30-minute slot.
+The same notes include a 25-minute rehearsal route through 16 main slides, with five minutes reserved for Q&A in the 30-minute slot. The vCon JSON explorer and references are two optional appendix slides.
 
 ## Features
 
@@ -48,7 +48,7 @@ The same notes include a 25-minute rehearsal route through all 19 slides, with f
 | `P` | Toggle presentation mode |
 | `←` / `→` | Previous / next slide |
 | `Space` | Next slide |
-| `Home` / `End` | First / last slide |
+| `Home` / `End` | Title / closing slide |
 | `Esc` | Exit presentation mode |
 | `?` | Keyboard help |
 
@@ -98,7 +98,7 @@ MIT
 ## Engineering experiments (presentation fixtures)
 
 The engineering sections, vCon JSON magnifier, and visual system are preserved.
-A personal story, a visual project overview, and a continuous-voice sequence bring the presentation to 19 slides.
+A personal story, a visual project overview, and a continuous-voice sequence lead into the evaluation workflow. The route has 16 main slides and two appendix slides. Forward navigation stops at the closing slide; use its links to open the JSON explorer or references.
 The focused additions are:
 
 - **Timeline:** switch between complete-request and aggressive endpointing traces.
@@ -121,7 +121,7 @@ regressions. The simplified workflow is **Run → Evaluate → Compare**.
 
 ### Continuous voice — slide 6
 
-The conversation sequence is the default. A review alternative occupies the same slide and keeps the 19-slide route:
+The conversation sequence is the default. A review alternative occupies the same slide and keeps the 16-slide main route:
 
 - [Two-path architecture](http://127.0.0.1:8080/?present=1&voice=architecture#dual-voice): the live audio loop delegates reasoning and tool work.
 - [Conversation sequence](http://127.0.0.1:8080/?present=1#dual-voice): a caller adds an appointment constraint while the voice model speaks.

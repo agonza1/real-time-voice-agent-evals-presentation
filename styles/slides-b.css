@@ -131,3 +131,18 @@
 .closing-cta div { display: flex; justify-content: center; flex-wrap: wrap; gap: 13px 24px; margin-top: 13px; }
 .closing-cta a { color: var(--muted); text-decoration: none; font-size: 0.76rem; }
 .closing-cta a:hover { color: var(--text); }
+.outcome-matrix-wrap { overflow-x: auto; }
+.outcome-matrix { width: 100%; border-collapse: separate; border-spacing: 8px; table-layout: fixed; }
+.outcome-matrix th { text-align: left; padding: 16px 20px; font-size: 1rem; }
+.outcome-matrix thead th { color: var(--muted); font: .8rem var(--mono); }
+.outcome-matrix th:first-child { width: 25%; }
+.outcome-matrix td { padding: 26px; border-radius: 14px; border: 1px solid var(--line); background: rgba(13, 28, 39, .75); }
+.outcome-matrix td strong { display: block; font-size: clamp(1.1rem, 2vw, 1.7rem); margin-bottom: 12px; }
+.outcome-matrix td span { color: var(--muted); font-size: 1rem; line-height: 1.5; }
+.outcome-matrix .matrix-safe { border-color: rgba(71,215,160,.4); }
+.outcome-matrix .matrix-safe strong { color: var(--green); }
+.outcome-matrix .matrix-recovery { border-color: rgba(245,185,94,.4); }
+.outcome-matrix .matrix-recovery strong { color: var(--amber); }
+.outcome-matrix .matrix-unsafe { border-color: rgba(255,111,125,.35); }
+.outcome-matrix .matrix-unsafe strong { color: var(--danger); }
+@media (max-width: 820px) { .outcome-matrix { min-width: 620px; } .outcome-matrix td { padding: 18px; } }

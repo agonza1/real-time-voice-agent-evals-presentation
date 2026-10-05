@@ -12,19 +12,17 @@
     : originalPart1;
   const part2 = window.VOICE_EVALS_SLIDES_PART_2;
   const enrichment = window.VOICE_EVALS_VCON_ENRICHMENT;
-  const parts = [
-    part1,
-    Array.isArray(part2) ? part2.slice(0, 1) : part2,
-    enrichment,
-    Array.isArray(part2) ? part2.slice(1) : part2,
-    window.VOICE_EVALS_SLIDES_PART_3,
-  ];
+  const part3 = window.VOICE_EVALS_SLIDES_PART_3;
+  const parts = [part1, part2, part3, enrichment];
 
   if (parts.some((part) => !Array.isArray(part))) {
     throw new Error("Presentation slide data did not load correctly.");
   }
 
-  const slides = parts.flat();
+  const main = [...part1, ...part2, ...part3.filter((slide) => slide.id !== "standards")];
+  const appendix = [...enrichment, ...part3.filter((slide) => slide.id === "standards")]
+    .map((slide) => ({ ...slide, appendix: true }));
+  const slides = [...main, ...appendix];
   const deck = document.getElementById("deck");
   if (!deck) throw new Error("Presentation deck container is missing.");
 
@@ -39,7 +37,8 @@
       class="slide ${slide.className || ""}"
       id="${slide.id}"
       data-slide-index="${index}"
-      aria-label="Slide ${index + 1} of ${slides.length}"
+      data-appendix="${Boolean(slide.appendix)}"
+      aria-label="${slide.appendix ? `Appendix A${index - main.length + 1} of ${appendix.length}` : `Slide ${index + 1} of ${main.length}`}"
     >
       <div class="slide-shell ${slide.shellClass || ""}">${slide.html}</div>
     </section>
