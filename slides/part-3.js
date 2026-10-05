@@ -40,16 +40,16 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">ENGINEERING BOUNDARY</p>
-        <h2 id="boundary-title">What CAE supports—<span>and what comes next</span></h2>
+        <h2 id="boundary-title">What the evaluation tool supports—<span>and what comes next</span></h2>
         <p>Product capabilities ≠ teaching fixtures.</p>
       </div>
       <div class="boundary-grid">
         <article class="shipped-card">
-          <div class="boundary-head"><span>CONVERSATIONAGENTEVALS TODAY</span><b>SUPPORTED</b></div>
+          <div class="boundary-head"><span>EVALUATION TOOL TODAY</span><b>SUPPORTED</b></div>
           <ul class="clean-list"><li>Supported target execution or imported evidence</li><li>Normalize, report, compare, export</li><li>Goals, required/forbidden actions, state, rubrics</li><li>Transcript, vCon, media, trace, state, and artifact contracts</li><li>Local ASSERT-compatible evaluation; optional upstream judge</li></ul>
         </article>
         <article class="roadmap-card">
-          <div class="boundary-head"><span>PLANNED IN CAE</span><b>ROADMAP</b></div>
+          <div class="boundary-head"><span>PLANNED IN THE TOOL</span><b>ROADMAP</b></div>
           <ul class="clean-list"><li>Claim rules and conversational SLOs</li><li>Tool, runtime, media, and ASR failure injection</li><li>SIP/SIPREC evidence adapters</li><li>Conserver enrichment, routing, and storage</li><li>Verified signing and redaction workflows</li></ul>
         </article>
       </div>
@@ -101,7 +101,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
         <article><span>02</span><b>Verify the protections</b><p>Runtime controls enforce policy. Evaluation verifies.</p></article>
         <article><span>03</span><b>Make releases evidence-led</b><p>Keep vCon evidence. Check regressions before release.</p></article>
       </div>
-      <div class="closing-cta"><strong>DEFINE THE CONTRACT. TEST THE FAILURE PATHS. KEEP THE EVIDENCE.</strong><div><a href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">github.com/agonza1/ConversationAgentEvals ↗</a><a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation" rel="noreferrer" target="_blank">presentation source ↗</a></div></div>
+      <div class="closing-cta"><strong>DEFINE THE CONTRACT. TEST THE FAILURE PATHS. KEEP THE EVIDENCE.</strong><div><a href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">Conversation Agent Evaluation (CAE) tool ↗</a><a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation" rel="noreferrer" target="_blank">presentation source ↗</a></div></div>
     `
   }
 ];

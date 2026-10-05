@@ -51,7 +51,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
           <li class="story-now"><p class="story-era"><span>03</span> PRODUCTION · EVALUATION</p><h3>“Does it still work?”</h3><p>Models change. Callers interrupt. Tools time out.</p></li>
         </ol>
       </div>
-      <div class="story-bridge"><p><span>RUNTIME CONTROL</span><strong>Build the controls.</strong></p><span class="story-arrow" aria-hidden="true">→</span><p><span>EVALUATION · ConversationAgentEvals</span><strong>Test that they hold as the system changes.</strong></p></div>
+      <div class="story-bridge"><p><span>RUNTIME CONTROL</span><strong>Build the controls.</strong></p><span class="story-arrow" aria-hidden="true">→</span><p><span>Conversation Agent Evaluation (CAE) tool</span><strong>Test that they hold as the system changes.</strong></p></div>
     `
   },
   {

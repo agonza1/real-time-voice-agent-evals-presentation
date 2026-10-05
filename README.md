@@ -4,7 +4,7 @@
 
 A clean, self-contained HTML/CSS/JavaScript presentation for Fall '26 Voice and Conversations on the Net.
 
-The presentation argues that a production voice agent must be evaluated as a complete real-time system—not only as an AI model or final transcript. It connects conversation experience, speech boundaries, agent execution, tool evidence, authoritative business state, and portable vCon artifacts to the open-source [ConversationAgentEvals](https://github.com/agonza1/ConversationAgentEvals) workbench.
+The presentation argues that a production voice agent must be evaluated as a complete real-time system—not only as an AI model or final transcript. It connects conversation experience, speech boundaries, agent execution, tool evidence, authoritative business state, and portable vCon artifacts to the open-source [Conversation Agent Evaluation (CAE) tool](https://github.com/agonza1/ConversationAgentEvals) workbench.
 
 ## Open the presentation
 
@@ -74,11 +74,11 @@ The smoke test uses Node's built-in test runner. It needs no package installatio
 
 This repository contains the interactive presentation—not a second evaluation engine.
 
-- [ConversationAgentEvals](https://github.com/agonza1/ConversationAgentEvals) owns test orchestration, evidence normalization, evaluation artifacts, reports, and regression comparisons.
+- [Conversation Agent Evaluation (CAE) tool](https://github.com/agonza1/ConversationAgentEvals) owns test orchestration, evidence normalization, evaluation artifacts, reports, and regression comparisons.
 - [Agentic Contact Center](https://github.com/agonza1/agentic-contact-center) is an optional reference target and failure-path demonstration.
 - [rtc-asr](https://github.com/agonza1/rtc-asr) provides optional streaming speech evidence and reproducible ASR benchmarks.
 - [ASSERT](https://github.com/responsibleai/ASSERT) provides compatible contracts and optional upstream semantic judging.
-- [vCon Core](https://datatracker.ietf.org/doc/draft-ietf-vcon-vcon-core/) is the portable conversation container; CAE-specific evaluation schemas remain versioned application conventions.
+- [vCon Core](https://datatracker.ietf.org/doc/draft-ietf-vcon-vcon-core/) is the portable conversation container; the tool’s evaluation schemas remain versioned application conventions.
 
 The interactive demo in this site is clearly labeled as a fixture. It does not claim to prove SIP/PSTN execution, browser-microphone interoperability, production network behavior, or full-duplex barge-in.
 
@@ -117,7 +117,7 @@ The focused additions are:
 - **Release review:** compare illustrative 100-run cohorts against explicit gates.
   Faster p95 cannot compensate for premature responses or wrong cancellation timing.
 
-These are browser teaching experiments, not shipped CAE runtime functionality or
+These are browser teaching experiments, not shipped evaluation tool runtime functionality or
 measured customer benchmarks. No customer data or customer names were added.
 Runtime controls prevent violations; evaluation verifies the controls and exposes
 regressions. The simplified workflow is **Run → Evaluate → Compare**.

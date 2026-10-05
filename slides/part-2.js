@@ -17,7 +17,7 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
           <div class="object-row"><span>ANALYSIS</span><b>transcript · metrics · evaluations</b></div>
           <div class="object-row"><span>ATTACHMENTS</span><b>tool trace · logs · backend proof</b></div>
           <div class="object-row security-row"><span>SECURITY</span><b>signed · encrypted · redacted forms</b></div>
-          <div class="cae-convention"><span>CAE CONVENTION</span><strong>Versioned traces, checks, and state evidence</strong></div>
+          <div class="cae-convention"><span>EVALUATION TOOL CONVENTION</span><strong>Versioned traces, checks, and state evidence</strong></div>
         </article>
       </div>
     `
@@ -27,8 +27,8 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">OPEN-SOURCE WORKBENCH</p>
-        <h2 id="workbench-title">CAE: <span>one evaluation workflow</span></h2>
-        <p>Run a target or import evidence.</p>
+        <h2 id="workbench-title">Conversation Agent Evaluation <span>(CAE) tool</span></h2>
+        <p>One evaluation workflow: run a target or import evidence.</p>
       </div>
       <div class="workbench-flow">
         <div class="input-stack">
@@ -37,7 +37,7 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
           <article><span>CONTRACT</span><b>goal · actions · policy · expected outcome</b></article>
         </div>
         <span aria-hidden="true" class="flow-arrow">→</span>
-        <div class="normalizer-core"><span>vCon</span><strong>CAE normalizer</strong><small>correlate · preserve provenance</small></div>
+        <div class="normalizer-core"><span>vCon</span><strong>Evidence normalizer</strong><small>correlate · preserve provenance</small></div>
         <span aria-hidden="true" class="flow-arrow">→</span>
         <div class="judge-stack">
           <article><span>DETERMINISTIC</span><b>tool success · state change · thresholds</b></article>
@@ -46,7 +46,7 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
         </div>
       </div>
       <div class="integration-row">
-        <a href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank"><b>ConversationAgentEvals</b><span>orchestration, evidence, reports</span></a>
+        <a href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank"><b>Conversation Agent Evaluation (CAE) tool</b><span>orchestration, evidence, reports</span></a>
         <a href="https://github.com/agonza1/agentic-contact-center" rel="noreferrer" target="_blank"><b>Agentic Contact Center</b><span>optional reference target</span></a>
         <a href="https://github.com/agonza1/rtc-asr" rel="noreferrer" target="_blank"><b>rtc-asr</b><span>optional streaming ASR evidence</span></a>
         <a href="https://github.com/responsibleai/ASSERT" rel="noreferrer" target="_blank"><b>ASSERT</b><span>compatible contracts and judging</span></a>
@@ -118,7 +118,7 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
       <div class="eng-toolbar">
         <label class="eng-switch"><input id="includeFinalState" type="checkbox" checked> Include authoritative final-state evidence</label>
         <button type="button" id="inspectEvidence">Inspect evidence</button>
-        <span class="eng-label">ILLUSTRATIVE RUN · NOT A CAE BENCHMARK RESULT</span>
+        <span class="eng-label">ILLUSTRATIVE RUN · NOT A TOOL BENCHMARK RESULT</span>
       </div>
       <div id="evidenceStatus" class="eng-status-strip" aria-live="polite"></div>
       <div class="scorecard">
@@ -146,7 +146,7 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
 <div class="section-heading">
         <p class="eyebrow">RUNTIME CONTROL + EVALUATION</p>
         <h2 id="demo-title">Prevent false confirmations.<br><span>Then test the protection.</span></h2>
-        <p>Runtime prevents unsupported claims. CAE verifies the protection.</p>
+        <p>Runtime prevents unsupported claims. The evaluation tool verifies the protection.</p>
       </div>
       <div class="eng-demo-grid">
         <article class="eng-panel">

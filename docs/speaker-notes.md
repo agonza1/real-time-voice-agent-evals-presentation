@@ -18,7 +18,7 @@ But that changed the question. It was no longer just, “Can it understand me?�
 
 Building those controls leads to the next question: how do we know they still work when the model, network, or workflow changes?
 
-That is the question behind ConversationAgentEvals: testing the complete interaction, inspecting the evidence, and deciding whether the next version is ready for production.
+That is the question behind the Conversation Agent Evaluation (CAE) tool: testing the complete interaction, inspecting the evidence, and deciding whether the next version is ready for production.
 
 ### Transition into the existing problem slide
 
@@ -32,7 +32,7 @@ The question we started with was: how do we know the system still works as it ch
 
 A model score cannot answer that on its own. We need to measure the received conversation, verify the runtime protections and business outcomes, and re-test the changes we intend to release.
 
-Runtime controls enforce the boundaries. Evaluation checks their behavior. CAE organizes that work, and vCon helps make the evidence portable.
+Runtime controls enforce the boundaries. Evaluation checks their behavior. The evaluation tool organizes that work, and vCon helps make the evidence portable.
 
 Start with one important workflow. Define the contract, test the failure paths, and keep the evidence behind the release decision.
 
@@ -53,14 +53,14 @@ Plan for 25 minutes of presentation and five minutes of Q&A. The 19-slide route 
 | 7 · Timeline | 2:30 | 9:00 | Switch to aggressive endpointing, then restore the full-request trace. Faster output loses the billing-period qualifier. |
 | 8 · vCon | 1:00 | 10:00 | The container carries observations and their provenance. It does not supply a verdict. |
 | 9 · JSON explorer | 1:30 | 11:30 | Select Dialog, then Evaluation. Show where media and run evidence belong; skip a field-by-field tour. |
-| 10 · Workbench | 1:15 | 12:45 | Explain CAE in one sentence: run or import, normalize evidence, check the contract, compare results. |
+| 10 · Workbench | 1:15 | 12:45 | Introduce the Conversation Agent Evaluation (CAE) tool in one sentence: run or import, normalize evidence, check the contract, compare results. |
 | 11 · Contract | 1:15 | 14:00 | Point to the forbidden completion claim and expected state. Distinguish the illustrative contract from planned extensions. |
 | 12 · Loop | 0:45 | 14:45 | A changed rubric can re-score saved evidence; a changed agent needs another run. |
 | 13 · Scorecard | 2:00 | 16:45 | Remove final-state evidence, observe the business result become unverified, then restore it. Timing and observed safe output remain supported. |
 | 14 · Runtime demo | 3:00 | 19:45 | Run the gate contrast and lost-ack reconciliation described below. |
 | 15 · Outcomes | 1:00 | 20:45 | Separate completed work, verified safe failure, and false success. Unknown is not failed. |
 | 16 · Release review | 1:30 | 22:15 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
-| 17 · Boundary | 1:00 | 23:15 | Explain supported CAE capabilities and the roadmap. These browser fixtures do not establish live telephony or production behavior. |
+| 17 · Boundary | 1:00 | 23:15 | Explain supported evaluation tool capabilities and the roadmap. These browser fixtures do not establish live telephony or production behavior. |
 | 18 · Sources | 0:30 | 23:45 | Point to the linked standards and research. No bibliography recital. |
 | 19 · Close | 1:15 | 25:00 | Return to the opening question. Start with one important workflow, define its contract, test its failure paths, and retain the evidence. |
 | Q&A | 5:00 | 30:00 | Leave the closing slide and repository links visible. |
@@ -69,7 +69,7 @@ Plan for 25 minutes of presentation and five minutes of Q&A. The 19-slide route 
 
 “Some systems now keep a native speech model listening while it speaks, and delegate deeper work to another model. The caller still hears one conversation. What happens if they interrupt while that background work is running?”
 
-The diagram synthesizes current vendor documentation; it is not an implemented CAE architecture or a universal recommendation to use two models. Start with one agent and tools when that meets latency and quality requirements. Heavy actions need authorization and state verification regardless of model choice. For this architecture, test delayed results after a changed request, overlapping speech, duplicate operations, and premature completion claims.
+The diagram synthesizes current vendor documentation; it is not an implemented evaluation tool architecture or a universal recommendation to use two models. Start with one agent and tools when that meets latency and quality requirements. Heavy actions need authorization and state verification regardless of model choice. For this architecture, test delayed results after a changed request, overlapping speech, duplicate operations, and premature completion claims.
 
 - [OpenAI GPT-Live engineering, August 3, 2026](https://openai.com/index/continuous-voice-interaction-with-gpt-live/): continuous full-duplex inference, a dedicated media path, and asynchronous frontier-model/tool delegation. The voice model owns turn timing. Delegation still needs a latency budget; ongoing conversation cannot hide an arbitrarily slow result.
 - [LiveKit subagent delegation](https://docs.livekit.io/agents/logic/patterns/subagent-delegation/): a fast primary model delegates reasoning without blocking conversation. Use scoped context, cancel abandoned reasoning, and reject duplicate delegations. Simpler single-agent and async-tool patterns should be evaluated first.

@@ -24,7 +24,7 @@ test('shorter copy retains evidence limitations and runtime controls', async () 
   assert.match(part2, /id="runtimeGate" type="checkbox" checked/);
   assert.match(part2, /not a conformant vCon export/);
   assert.match(part3, /Synthetic counts—not production results or guarantees/);
-  assert.match(part3, /PLANNED IN CAE/);
+  assert.match(part3, /PLANNED IN THE TOOL/);
 });
 
 // GitHub-hosted CI verifies the real photo; offline local tests remain usable.

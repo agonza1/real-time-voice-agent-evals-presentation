@@ -88,21 +88,21 @@ const localAssets = [
   assert.match(combined, /ConversationAgentEvals/);
   assert.match(combined, /portable evidence envelope/);
   assert.match(combined, /SCRIPTED FIXTURE · NOT LIVE SIP\/PSTN OR PRODUCTION MEDIA PROOF/);
-  assert.match(combined, /CONVERSATIONAGENTEVALS TODAY/);
-  assert.match(combined, /PLANNED IN CAE/);
+  assert.match(combined, /EVALUATION TOOL TODAY/);
+  assert.match(combined, /PLANNED IN THE TOOL/);
   assert.match(combined, /IETF vCon Core/);
   assert.match(combined, /Judging LLM-as-a-Judge/);
   assert.match(combined, /draft-ietf-vcon-vcon-core-04/i);
   assert.match(combined, /cae-execution-transcript-v1/);
   assert.match(combined, /cae-execution-evidence-v1/);
   assert.match(combined, /portable recording is a <code>dialog<\/code> item/i);
-  assert.match(combined, /current CAE execution export is unsigned/i);
+  assert.match(combined, /current tool execution export is unsigned/i);
 });
 
  test("the vCon enrichment is concise pseudo JSON with an accessible magnifier", async () => {
   const enrichment = await readRepositoryFile("slides/vcon-enrichment.js");
   assert.doesNotThrow(() => new Function("window", enrichment)({}));
-  assert.match(enrichment, /HIGH-LEVEL PSEUDO JSON · CURRENT CAE SHAPE/);
+  assert.match(enrichment, /HIGH-LEVEL PSEUDO JSON · CURRENT TOOL SHAPE/);
   assert.match(enrichment, /class="vcon-json-code"/);
   assert.match(enrichment, /data-json-explorer/);
   assert.match(enrichment, /class="json-zoom-square"/);
@@ -172,7 +172,7 @@ const localAssets = [
   assert.match(story, /OPEN-ENDED VOICE · WEBRTC/);
   assert.match(story, /RUNTIME CONTROL/);
   assert.match(story, /Test that they hold as the system changes/);
-  assert.match(story, /ConversationAgentEvals/);
+  assert.match(story, /Conversation Agent Evaluation \(CAE\) tool/);
   assert.match(slides[0].html, /href="#story">Start the presentation/);
   assert.match(await readRepositoryFile("index.html"), /href="#story">Story/);
   const notes = await readRepositoryFile("docs/speaker-notes.md");

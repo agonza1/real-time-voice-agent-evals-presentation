@@ -4,7 +4,7 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
     className: "vcon-enrichment-slide",
     html: `
       <div class="section-heading vcon-enrichment-heading">
-        <p class="eyebrow">CAE-ALIGNED EXCERPT</p>
+        <p class="eyebrow">EVALUATION TOOL EXCERPT</p>
         <h2 id="vcon-enrichment-title">Voice-agent evidence <span>inside vCon</span></h2>
         <p>Illustrative pseudo-JSON. Select a section to magnify its fields.</p>
       </div>
@@ -13,7 +13,7 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
         <article class="vcon-json-panel" aria-label="Abbreviated illustrative vCon pseudo JSON">
           <div class="vcon-json-toolbar">
             <div class="json-window-title"><i></i><i></i><i></i><span>vcon-run-0247.json</span></div>
-            <b>HIGH-LEVEL PSEUDO JSON · CURRENT CAE SHAPE</b>
+            <b>HIGH-LEVEL PSEUDO JSON · CURRENT TOOL SHAPE</b>
           </div>
           <pre class="vcon-json-code"><code><span class="json-line json-neutral"><span class="json-punctuation">{</span></span>
 <span class="json-line json-core">  <span class="json-key">"vcon"</span><span class="json-punctuation">:</span> <span class="json-string">"0.4.0"</span><span class="json-punctuation">,</span></span>
@@ -69,7 +69,7 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
 <span class="json-punctuation">]</span></code></pre>
             </article>
             <article class="json-zoom-view" data-json-zoom-view="transcript" aria-hidden="true">
-              <span class="zoom-kicker">CAE TRANSCRIPT ANALYSIS</span>
+              <span class="zoom-kicker">TOOL TRANSCRIPT ANALYSIS</span>
               <h3>Speech provenance</h3>
               <pre><code><span class="json-punctuation">{</span>
   <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"transcript"</span><span class="json-punctuation">,</span>
@@ -83,7 +83,7 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
 <span class="json-punctuation">}</span></code></pre>
             </article>
             <article class="json-zoom-view" data-json-zoom-view="evaluation" aria-hidden="true">
-              <span class="zoom-kicker">CAE EVALUATION ANALYSIS</span>
+              <span class="zoom-kicker">TOOL EVALUATION ANALYSIS</span>
               <h3>Run and outcome evidence</h3>
               <pre><code><span class="json-punctuation">{</span>
   <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"evaluation"</span><span class="json-punctuation">,</span>
@@ -110,8 +110,8 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
 
           <article class="json-boundary-note">
             <strong>Accurate boundary</strong>
-            <p>Core vCon defines the container. CAE’s two schema names are application conventions. A portable recording is a <code>dialog</code> item and requires an HTTPS URL plus a base64url SHA-512 <code>content_hash</code>. The current CAE execution export is unsigned.</p>
-            <nav aria-label="vCon enrichment sources"><a href="https://datatracker.ietf.org/doc/draft-ietf-vcon-vcon-core/" rel="noreferrer" target="_blank">vCon Core draft ↗</a><a href="https://github.com/agonza1/ConversationAgentEvals/blob/main/apps/api/app/services/execution_vcon.py" rel="noreferrer" target="_blank">CAE implementation ↗</a></nav>
+            <p>Core vCon defines the container. The tool’s two schema names are application conventions. A portable recording is a <code>dialog</code> item and requires an HTTPS URL plus a base64url SHA-512 <code>content_hash</code>. The current tool execution export is unsigned.</p>
+            <nav aria-label="vCon enrichment sources"><a href="https://datatracker.ietf.org/doc/draft-ietf-vcon-vcon-core/" rel="noreferrer" target="_blank">vCon Core draft ↗</a><a href="https://github.com/agonza1/ConversationAgentEvals/blob/main/apps/api/app/services/execution_vcon.py" rel="noreferrer" target="_blank">Evaluation tool implementation ↗</a></nav>
           </article>
         </aside>
       </div>
