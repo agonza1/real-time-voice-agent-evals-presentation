@@ -86,33 +86,31 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
     className: "demo-slide",
     html: `
 <div class="section-heading">
-        <p class="eyebrow">RUNTIME CONTROL + EVALUATION</p>
-        <h2 id="demo-title">Prevent false confirmations.<br><span>Then test the protection.</span></h2>
-        <p>Return to the opening case. Compare proposed speech with verified state.</p>
+        <p class="eyebrow">FAILURE-PATH EXPERIMENT</p>
+        <h2 id="demo-title">When can the agent <span>confirm completion?</span></h2>
+        <p>Lose the acknowledgment, then reconcile the same operation.</p>
       </div>
-      <div class="eng-demo-grid">
-        <article class="eng-panel">
-          <p class="card-kicker">SAME REQUEST · “PLEASE CANCEL MY PLAN.”</p>
-          <label class="eng-select">Operation / acknowledgment<select id="operationScenario"><option value="success">Committed + acknowledged</option><option value="failure" selected>Rejected + timeout; readback confirms active</option><option value="lost">Committed + acknowledgment lost</option></select></label>
-          <label class="eng-switch"><input id="runtimeGate" type="checkbox" checked> Runtime output gate enabled</label>
-          <p id="gateStatus" class="eng-label"></p>
-          <details class="eng-details" id="advancedDrill"><summary>Advanced: reconcile, retry, or interrupt</summary>
-            <div class="eng-toolbar"><button type="button" id="reconcileOperation">Reconcile original operation</button><button type="button" id="retryOperation">Retry with same operation ID</button></div>
-            <label class="eng-switch"><input id="interruptSpeech" type="checkbox"> Caller interrupts this response generation</label>
-            <p class="micro-note">Stopping speech does not undo a commit. Suppress stale responses; reconcile the effect.</p>
-          </details>
-          <p id="operationLedger" class="eng-ledger"></p>
-          <p class="fixture-label">SCRIPTED FIXTURE · NOT LIVE SIP/PSTN OR PRODUCTION MEDIA PROOF</p>
-        </article>
-        <article class="eng-panel eng-result" id="controlResult" aria-live="polite">
-          <div class="result-topline"><span>OBSERVED BEHAVIOR</span><b id="controlVerdict"></b></div>
-          <div class="eng-proposal"><span>Model proposes</span><p>“Your subscription has been canceled.”</p></div>
-          <div class="agent-speech"><span>RUNTIME-APPROVED SPEECH</span><p id="allowedSpeech"></p></div>
-          <div class="evidence-table"><div><span>tool observation</span><strong id="toolObservation"></strong></div><div><span>agent’s verified state</span><strong id="agentKnowledge"></strong></div><div><span>claim gate</span><strong id="claimDecision"></strong></div><div><span>backend state (fixture)</span><strong id="fixtureTruth"></strong></div></div>
-          <p id="controlExplanation" class="result-summary"></p>
-        </article>
+      <div class="eng-toolbar recovery-controls" role="group" aria-label="Lost acknowledgment experiment">
+        <span class="recovery-request">“Please cancel my plan.”</span>
+        <button type="button" id="resetControl">Reset: acknowledgment lost</button>
+        <button type="button" id="reconcileOperation">Check operation result</button>
       </div>
-      <details class="eng-details eng-trace-detail"><summary>Trace and assertions</summary><ol id="operationTrace" class="eng-event-list"></ol><p id="controlAssertions"></p></details>
+      <div class="recovery-flow" aria-live="polite">
+        <article class="recovery-step"><span class="recovery-step-label">01 · OPERATION EVIDENCE</span><h3>What the agent knows</h3><dl><div><dt>Tool response</dt><dd id="toolObservation"></dd></div><div><dt>Verified subscription state</dt><dd id="agentKnowledge"></dd></div></dl><p class="recovery-proof">Confirmation requires evidence for the original operation.</p></article>
+        <article class="recovery-step recovery-speech"><span class="recovery-step-label">02 · RUNTIME OUTPUT</span><h3>What the caller hears</h3><p id="allowedSpeech" class="recovery-quote"></p><p id="claimDecision" class="recovery-decision"></p></article>
+        <article class="recovery-step recovery-evaluation" id="controlResult"><span class="recovery-step-label">03 · EVALUATION</span><h3>Did the protection hold?</h3><p id="completionAssertion" class="recovery-assertion"></p><p id="controlVerdict" class="recovery-verdict"></p><p class="recovery-proof">Check the evidence available when speech was permitted.</p></article>
+      </div>
+      <p class="takeaway"><strong>A timeout does not tell you whether the action happened.</strong></p>
+      <details class="eng-details" id="advancedDrill"><summary>Explore other failures and inspect the evidence</summary>
+        <div class="recovery-advanced-grid">
+          <div><label class="eng-select">Operation / acknowledgment<select id="operationScenario"><option value="success">Committed + acknowledged</option><option value="failure">Rejected + timeout; readback confirms active</option><option value="lost" selected>Committed + acknowledgment lost</option></select></label>
+          <label class="eng-switch"><input id="runtimeGate" type="checkbox" checked> Runtime output gate enabled</label><p id="gateStatus" class="eng-label"></p>
+          <button type="button" id="retryOperation">Retry with same operation ID</button><label class="eng-switch"><input id="interruptSpeech" type="checkbox"> Caller interrupts this response generation</label><p class="micro-note">Stopping speech does not undo a commit. Suppress stale responses; reconcile the effect.</p></div>
+          <div><p class="eng-proposal">Model proposal: “Your subscription has been canceled.”</p><p class="recovery-truth">Backend state (fixture): <strong id="fixtureTruth"></strong></p><p id="operationLedger" class="eng-ledger"></p><p id="controlExplanation" class="result-summary"></p><p id="controlAssertions"></p></div>
+        </div>
+        <ol id="operationTrace" class="eng-event-list"></ol>
+      </details>
+      <p class="fixture-label">SCRIPTED FIXTURE · NOT LIVE SIP/PSTN OR PRODUCTION MEDIA PROOF</p>
       <p class="eng-sources"><a href="https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/" target="_blank" rel="noopener noreferrer">Timeouts and idempotency ↗</a><a href="https://docs.livekit.io/agents/logic/tools/definition/" target="_blank" rel="noopener noreferrer">Speech interruption ≠ tool cancellation ↗</a></p>
     `
   }

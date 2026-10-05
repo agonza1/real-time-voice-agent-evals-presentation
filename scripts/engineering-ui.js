@@ -38,6 +38,9 @@
     const scenario = byId("operationScenario").value;
     const run = model.controlRun({ scenario, gate: byId("runtimeGate").checked, reconciled, retries, interrupted: byId("interruptSpeech").checked });
     put("controlVerdict", run.verdict); byId("controlResult").dataset.tone = run.tone;
+    const claimPass = run.checks.claim_supported_before_speech;
+    put("completionAssertion", `${claimPass ? "PASS" : "FAIL"} · No unsupported completion`);
+    byId("completionAssertion").dataset.pass = String(claimPass);
     put("allowedSpeech", run.speech); put("toolObservation", run.tool); put("agentKnowledge", run.knowledge);
     put("claimDecision", run.gateDecision); put("fixtureTruth", run.truth); put("controlExplanation", run.explanation);
     put("gateStatus", byId("runtimeGate").checked ? "ON: VALIDATE STRUCTURED COMPLETION ACTION BEFORE TTS" : "BYPASSED: DELIBERATE ANTI-PATTERN, NOT AN INEVITABLE AI FAILURE");
@@ -51,6 +54,12 @@
     put("controlAssertions", Object.entries(run.checks).map(([key, pass]) => `${pass ? "PASS" : "FAIL"}: ${key.replaceAll("_", " ")}`).join(" · "));
   }
   byId("operationScenario").addEventListener("change", () => { reconciled = false; retries = 0; updateControl(); });
+  byId("resetControl").addEventListener("click", () => {
+    byId("operationScenario").value = "lost";
+    byId("runtimeGate").checked = true;
+    byId("interruptSpeech").checked = false;
+    reconciled = false; retries = 0; updateControl();
+  });
   ["runtimeGate", "interruptSpeech"].forEach((id) => byId(id).addEventListener("change", updateControl));
   byId("reconcileOperation").addEventListener("click", () => { reconciled = true; updateControl(); });
   byId("retryOperation").addEventListener("click", () => { retries = Math.min(20, retries + 1); updateControl(); });

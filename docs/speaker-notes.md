@@ -53,7 +53,7 @@ Production readiness is a systems property.
 
 ## 30-minute stage route
 
-Plan for 25 minutes of presentation and five minutes of Q&A. There are 17 main slides, followed by two optional appendix slides. The route takes 24:15, leaving 0:45 for transitions or demo variation. Do not narrate every field or open every disclosure.
+Plan for 25 minutes of presentation and five minutes of Q&A. There are 17 main slides, followed by two optional appendix slides. The route takes 22:15, leaving 2:45 for transitions or demo variation. Do not narrate every field or open every disclosure.
 
 | Slide | Time | Finish by | Point and stage action |
 | --- | --- | --- | --- |
@@ -69,12 +69,12 @@ Plan for 25 minutes of presentation and five minutes of Q&A. There are 17 main s
 | 10 · Workbench | 2:00 | 11:45 | Introduce the Conversation Agent Evaluation (CAE) tool through Run → Evaluate → Compare, then explain framework roles. New rubric: re-score; changed agent: run again. |
 | 11 · Contract | 1:30 | 13:15 | Define required actions and expected state. Unsupported completion is a critical violation regardless of the weighted score. |
 | 12 · vCon | 1:00 | 14:15 | The container carries observations and provenance. It does not supply a verdict. |
-| 13 · Runtime demo | 5:00 | 19:15 | Run the gate contrast and lost-ack reconciliation described below. |
-| 14 · Outcomes | 1:00 | 20:15 | Read the two axes: business state and safe response. Unknown state stays outside this verified-state matrix. |
-| 15 · Release review | 2:00 | 22:15 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
-| 16 · Boundary | 1:00 | 23:15 | Explain supported capabilities and the roadmap. Browser fixtures do not establish live telephony or production behavior. |
-| 17 · Close | 1:00 | 24:15 | Return to the opening question. Define one important workflow contract, test its failure paths, and retain the evidence. |
-| Delivery buffer | 0:45 | 25:00 | Allow room for transitions and interaction variation. |
+| 13 · Lost-ack experiment | 3:00 | 17:15 | Follow operation evidence → caller response → evaluation. Check the original operation and show when confirmation becomes supported. |
+| 14 · Outcomes | 1:00 | 18:15 | Read the two axes: business state and safe response. Unknown state stays outside this verified-state matrix. |
+| 15 · Release review | 2:00 | 20:15 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
+| 16 · Boundary | 1:00 | 21:15 | Explain supported capabilities and the roadmap. Browser fixtures do not establish live telephony or production behavior. |
+| 17 · Close | 1:00 | 22:15 | Return to the opening question. Define one important workflow contract, test its failure paths, and retain the evidence. |
+| Delivery buffer | 2:45 | 25:00 | Allow room for transitions and interaction variation. |
 | Q&A | 5:00 | 30:00 | Leave the closing slide and repository links visible. |
 
 Appendix A1 contains the vCon JSON explorer; A2 contains standards and research. Open them from the closing links only when useful for a question. Normal forward navigation stops at the closing slide. End always returns to the closing slide; Home returns to the title.
@@ -89,7 +89,7 @@ Appendix A1 contains the vCon JSON explorer; A2 contains standards and research.
 - **9 → 10:** “Now we need a repeatable workflow to collect these observations and compare changes.”
 - **10 → 11:** “Before judging a run, define what success and a critical violation mean for that scenario.”
 - **11 → 12:** “To check the contract later, retain the media, tool trace, and state evidence together.”
-- **12 → 13:** “Return to our opening cancellation case and test whether the protection holds.”
+- **12 → 13:** “Now change the failure: the action commits, but its acknowledgment never arrives. What can the agent safely say?”
 - **13 → 14:** “The task result and the safety of the response are separate verdicts.”
 - **14 → 15:** “Apply those verdicts across the same scenarios before approving a new version.”
 - **15 → 16:** “These release decisions depend on evidence. Here is what the tool supports today and what still needs building.”
@@ -143,13 +143,15 @@ Implementation checked against ConversationAgentEvals commit `31671ee6a5d12e8e8a
 - [ASSERT integration boundary](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/docs/assert-boundary-and-schemas.md): local deterministic evaluation and explicit upstream semantic judge.
 - [Web dependencies](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/apps/web/package.json): Next.js and React.
 
-## Runtime demo — five minutes
+## Lost-ack experiment — three minutes
 
-1. Start with **Rejected + timeout; readback confirms active** and the runtime output gate enabled. The model proposes a completion claim, but approved speech expresses uncertainty. This is an incomplete task with observed safe output.
-2. Disable the gate once. Point to **FALSE SUCCESS** and the active backend state. Evaluation detects this violation; the runtime gate prevents it. Re-enable the gate immediately.
-3. Select **Committed + acknowledgment lost**. The cancellation happened, but the agent cannot yet verify it. Explain: “Missing confirmation means we do not know—not that the cancellation failed.” Keep the gate enabled and open **Advanced: reconcile, retry, or interrupt**.
-4. Click **Reconcile original operation**. Evidence matched to the operation ID supports confirmation. A timeout describes what the agent observed. Checking the account establishes whether the requested action happened.
-5. Restore the rejected/timeout scenario, leave the gate enabled, and close the advanced disclosure before moving on. Reserve retry and interruption controls for Q&A.
+1. Begin in the default **Committed + acknowledgment lost** scenario. The backend committed, but the agent knows only that the tool timed out. Point to the unknown verified state, uncertainty in the caller response, and passing check for no unsupported completion. A passing protection check does not establish task completion.
+2. Click **Check operation result**. Readback for the original operation establishes cancellation before confirmation is permitted. The caller response changes and the verdict becomes verified success. This is the new evidence the initial timeout did not provide.
+3. Click **Reset: acknowledgment lost** to return to uncertainty. This restores the protected default, clears retry and reconciliation state, and removes any interruption setting.
+
+Use **Explore other failures and inspect the evidence** for Q&A. The backend fixture truth, proposed completion claim, operation ledger, trace, and individual assertions are available there. Disabling the output gate in the lost-ack case produces an unsupported confirmation even though the action really happened. Selecting rejected/timeout and bypassing the gate reproduces the opening false-success case. Retry and interruption controls preserve their original fixture behavior. Restore the default with Reset and close the disclosure after exploration.
+
+This slide demonstrates evidence changing over time and checks the ordering of proof and speech. The opening slide establishes the problem, the contract defines requirements, and the next matrix classifies business state and response safety. The experiment does not demonstrate shipped CAE runtime protection or a live backend.
 
 Transition: “Now we can distinguish a failed task from a failed protection. Those need different release decisions.”
 
@@ -161,6 +163,6 @@ Before going on stage, load the original Echo Show photo and leave disclosures c
 
 If an interaction fails, explain its expected before/after result and move on.
 
-Check the clock after slides 8 (7:15), 10 (11:45), and 13 (19:15). If behind, omit lost-ack reconciliation and use the delivery buffer. Preserve the gate contrast, release decision, and closing; those carry the argument. Keep the JSON explorer and sources for Q&A.
+Check the clock after slides 8 (7:15), 10 (11:45), and 13 (17:15). If behind, shorten the framework explanation and use the delivery buffer. Preserve the lost-ack reconciliation, release decision, and closing; those carry the argument. Keep optional failure controls, the JSON explorer, and sources for Q&A.
 
 The event name follows the [official Fall '26 conference site](https://www.vonevolution.com/). The October 15 talk date is retained from the existing deck.

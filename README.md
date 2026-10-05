@@ -104,7 +104,7 @@ The focused additions are:
 - **Timeline:** switch between complete-request and aggressive endpointing traces.
   Timings are synthetic and share one clock. Receiver frames are not physical
   speaker playout; negative delay means a response before the caller finished.
-- **Runtime protection:** the completion-action gate defaults ON. It controls
+- **Lost-acknowledgment experiment:** follow operation evidence → caller response → evaluation. The default action commits while its acknowledgment is lost. Checking the original operation establishes evidence before confirmation. The completion-action gate defaults ON. It controls
   the structured action before fixed demonstration speech reaches TTS; it is not
   a keyword filter or a general natural-language safety guarantee. Deliberate
   bypass exposes false/unsupported confirmation. Lost acknowledgments preserve
