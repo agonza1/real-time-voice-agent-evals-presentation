@@ -40,7 +40,7 @@ Production readiness is a systems property.
 
 ## 30-minute stage route
 
-Plan for 25 minutes of presentation and five minutes of Q&A. The 20-slide route includes the new voice architecture slide. The time limits below include the interactions; do not narrate every field or open every disclosure.
+Plan for 25 minutes of presentation and five minutes of Q&A. The 19-slide route includes the new voice architecture slide. The time limits below include the interactions; do not narrate every field or open every disclosure.
 
 | Slide | Time | Finish by | Point and stage action |
 | --- | --- | --- | --- |
@@ -48,37 +48,22 @@ Plan for 25 minutes of presentation and five minutes of Q&A. The 20-slide route 
 | 2 · Story | 1:30 | 2:00 | Tell the Echo Show story. Move from understanding words to controlling actions to testing changes. |
 | 3 · Problem | 1:00 | 3:00 | Contrast the confident confirmation with the verified active subscription. A timeout alone would leave state unknown; this example includes readback. |
 | 4 · System | 0:45 | 3:45 | Trace input from caller through SIP/RTP or WebRTC to TTS, then return audio through Media to the Caller. Control exchanges tool requests and results with the Backend. The caller experiences the complete loop. |
-| 5 · Continuous voice | 1:00 | 4:45 | Explain the live speech loop and asynchronous reasoning. Full duplex is model-specific; a second spoken cascade needs output coordination. |
-| 6 · Four layers | 1:15 | 6:00 | Name each dimension. A good conversation score cannot excuse a wrong business action. |
-| 7 · Timeline | 2:00 | 8:00 | Switch to aggressive endpointing, then restore the full-request trace. Faster output loses the billing-period qualifier. |
-| 8 · Audio evidence | 1:30 | 9:30 | Play source and received audio once each. Explain that muting the negation is a deliberate teaching edit, with hypothetical ASR. |
-| 9 · vCon | 1:00 | 10:30 | The container carries observations and their provenance. It does not supply a verdict. |
-| 10 · JSON explorer | 1:30 | 12:00 | Select Dialog, then Evaluation. Show where media and run evidence belong; skip a field-by-field tour. |
-| 11 · Workbench | 1:15 | 13:15 | Explain CAE in one sentence: run or import, normalize evidence, check the contract, compare results. |
-| 12 · Contract | 1:15 | 14:30 | Point to the forbidden completion claim and expected state. Distinguish the illustrative contract from planned extensions. |
-| 13 · Loop | 0:45 | 15:15 | A changed rubric can re-score saved evidence; a changed agent needs another run. |
-| 14 · Scorecard | 2:00 | 17:15 | Remove final-state evidence, observe the business result become unverified, then restore it. Timing and observed safe output remain supported. |
-| 15 · Runtime demo | 3:00 | 20:15 | Run the gate contrast and lost-ack reconciliation described below. |
-| 16 · Outcomes | 1:00 | 21:15 | Separate completed work, verified safe failure, and false success. Unknown is not failed. |
-| 17 · Release review | 1:30 | 22:45 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
-| 18 · Boundary | 1:00 | 23:45 | Explain supported CAE capabilities and the roadmap. These browser fixtures do not establish live telephony or production behavior. |
-| 19 · Sources | 0:30 | 24:15 | Point to the linked standards and research. No bibliography recital. |
-| 20 · Close | 0:45 | 25:00 | Return to the opening question. Start with one important workflow, define its contract, test its failure paths, and retain the evidence. |
+| 5 · Continuous voice | 1:30 | 5:15 | Explain the live speech loop and asynchronous reasoning. Full duplex is model-specific; a second spoken cascade needs output coordination. |
+| 6 · Four layers | 1:15 | 6:30 | Name each dimension. A good conversation score cannot excuse a wrong business action. |
+| 7 · Timeline | 2:30 | 9:00 | Switch to aggressive endpointing, then restore the full-request trace. Faster output loses the billing-period qualifier. |
+| 8 · vCon | 1:00 | 10:00 | The container carries observations and their provenance. It does not supply a verdict. |
+| 9 · JSON explorer | 1:30 | 11:30 | Select Dialog, then Evaluation. Show where media and run evidence belong; skip a field-by-field tour. |
+| 10 · Workbench | 1:15 | 12:45 | Explain CAE in one sentence: run or import, normalize evidence, check the contract, compare results. |
+| 11 · Contract | 1:15 | 14:00 | Point to the forbidden completion claim and expected state. Distinguish the illustrative contract from planned extensions. |
+| 12 · Loop | 0:45 | 14:45 | A changed rubric can re-score saved evidence; a changed agent needs another run. |
+| 13 · Scorecard | 2:00 | 16:45 | Remove final-state evidence, observe the business result become unverified, then restore it. Timing and observed safe output remain supported. |
+| 14 · Runtime demo | 3:00 | 19:45 | Run the gate contrast and lost-ack reconciliation described below. |
+| 15 · Outcomes | 1:00 | 20:45 | Separate completed work, verified safe failure, and false success. Unknown is not failed. |
+| 16 · Release review | 1:30 | 22:15 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
+| 17 · Boundary | 1:00 | 23:15 | Explain supported CAE capabilities and the roadmap. These browser fixtures do not establish live telephony or production behavior. |
+| 18 · Sources | 0:30 | 23:45 | Point to the linked standards and research. No bibliography recital. |
+| 19 · Close | 1:15 | 25:00 | Return to the opening question. Start with one important workflow, define its contract, test its failure paths, and retain the evidence. |
 | Q&A | 5:00 | 30:00 | Leave the closing slide and repository links visible. |
-
-## Audio evidence — telemetry for Q&A
-
-Network metrics can help explain audio damage. Only the received audio shows what reached the receiver. Receiver audio is still distinct from what the caller's speaker actually played.
-
-If asked how to investigate transport problems, relevant WebRTC statistics include:
-
-- `packetsDiscarded`: received too late or early for playout.
-- `concealedSamples`: samples synthesized to cover loss or lateness.
-- `jitterBufferDelay`: cumulative buffered time. For interval mean buffering delay, divide its interval delta by the corresponding `jitterBufferEmittedCount` delta (the emitted-count delta), provided that count is nonzero.
-
-No RTCStats collected here. This fixture deliberately mutes a word; it does not simulate packet loss or concealment. Media telemetry does not prove meaning or identify which word was lost. Compare source audio, received audio, and ASR output before drawing a conclusion about intent.
-
-Reference: [WebRTC media statistics](https://www.w3.org/TR/webrtc-stats/).
 
 ## Continuous voice — slide 5
 
@@ -112,12 +97,10 @@ Transition: “Now we can distinguish a failed task from a failed protection. Th
 
 Open `?present=1` and return to the title with Home. Use the arrow keys to advance; Space activates a focused button rather than advancing the slide. After an interaction, click the next-slide arrow to resume reliably.
 
-The source audio uses a locally generated Kokoro voice, rather than a human recording. The received version mutes the predicted span of “not” (0.475–0.7375 seconds) in that same utterance.
+Before going on stage, load the original Echo Show photo and leave disclosures closed. The photo is fetched from the pinned GitHub source and requires connectivity on initial load; do not rely on an untested browser cache. Keep the published site and a locally served checkout available.
 
-Before going on stage, load the original Echo Show photo, test both audio buttons through the venue output, and leave disclosures closed. The photo is fetched from the pinned GitHub source and requires connectivity on initial load; do not rely on an untested browser cache. Keep the published site and a locally served checkout available.
+If an interaction fails, explain its expected before/after result and move on.
 
-If audio playback fails, use the two visible utterances: losing “not” reverses the intended action. Continue without diagnosing playback on stage. If an interaction fails, explain its expected before/after result and move on.
-
-Check the clock after slides 6 (6:00), 11 (13:15), and 15 (20:15). If behind, show the audio text without playback, keep the JSON explorer on its default view, and omit lost-ack reconciliation. Preserve the gate contrast, release decision, and closing; those carry the argument.
+Check the clock after slides 6 (6:30), 10 (12:45), and 14 (19:45). If behind, keep the JSON explorer on its default view, and omit lost-ack reconciliation. Preserve the gate contrast, release decision, and closing; those carry the argument.
 
 The event name follows the [official Fall '26 conference site](https://www.vonevolution.com/). The October 15 talk date is retained from the existing deck.

@@ -1,7 +1,7 @@
 /* Scoped refinements: preserve the deck's visual system and presentation order. */
-#timeline .section-heading, #truth .section-heading, #scorecard .section-heading,
+#timeline .section-heading, #scorecard .section-heading,
 #demo .section-heading, #comparison .section-heading { margin-bottom: 22px; }
-#timeline h2, #truth h2, #scorecard h2, #demo h2, #comparison h2 { font-size: clamp(2rem, 3.8vw, 3.6rem); }
+#timeline h2, #scorecard h2, #demo h2, #comparison h2 { font-size: clamp(2rem, 3.8vw, 3.6rem); }
 .eng-toolbar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin: 14px 0; }
 .eng-toolbar button, .eng-panel button { color: var(--text); background: var(--surface-2); border: 1px solid var(--line-strong); border-radius: 9px; padding: 10px 14px; cursor: pointer; font-size: .8rem; }
 .eng-toolbar button:hover, .eng-panel button:hover { border-color: var(--cyan); }
@@ -29,9 +29,6 @@ mark { color: var(--cyan); background: var(--cyan-soft); padding: 0 3px; border-
 .eng-sources { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 14px 0 0; color: var(--muted); font-size: .66rem; }
 .eng-sources a { color: var(--cyan); text-decoration: underline; text-underline-offset: 3px; }
 #timeline .takeaway, #scorecard .takeaway { margin-top: 18px; }
-.eng-audio-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 15px 0; border-bottom: 1px solid var(--line); }
-.eng-audio-row b { font-size: .8rem; }.eng-audio-row p { margin: 7px 0; }.eng-audio-row button { flex: 0 0 auto; }
-.eng-missing { color: var(--danger); }
 .eng-details { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 10px; }
 .eng-details summary { cursor: pointer; color: var(--cyan); font-size: .8rem; padding: 5px 0; }
 .eng-details p, .eng-details code { font-size: .78rem; overflow-wrap: anywhere; }
@@ -65,17 +62,16 @@ mark { color: var(--cyan); background: var(--cyan-soft); padding: 0 3px; border-
 .eng-release-table { min-width: 700px; }
 .eng-toolbar button:focus-visible, .eng-panel button:focus-visible, .eng-switch input:focus-visible, .eng-select select:focus-visible, .eng-details summary:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
 /* Progressive disclosures scroll within their slide, rather than being clipped. */
-body.presenting :is(#timeline,#truth,#scorecard,#demo,#comparison):has(details[open]) { overflow-y: auto; align-items: flex-start; }
+body.presenting :is(#timeline,#scorecard,#demo,#comparison):has(details[open]) { overflow-y: auto; align-items: flex-start; }
 @media (max-height: 800px) and (min-width: 821px) {
-  body.presenting :is(#timeline,#truth,#scorecard,#demo,#comparison) { overflow-y: auto; align-items: flex-start; }
-  body.presenting :is(#timeline,#truth,#scorecard,#demo,#comparison) h2 { font-size: clamp(1.9rem,3vw,2.8rem); }
+  body.presenting :is(#timeline,#scorecard,#demo,#comparison) { overflow-y: auto; align-items: flex-start; }
+  body.presenting :is(#timeline,#scorecard,#demo,#comparison) h2 { font-size: clamp(1.9rem,3vw,2.8rem); }
 }
 @media (max-width: 820px) {
   .eng-columns,.eng-demo-grid,.eng-loop { grid-template-columns: 1fr; }
   .eng-trace-row { grid-template-columns: 130px 1fr 75px; gap: 6px; font-size: .62rem; }.eng-trace-row > b { font-size: .57rem; }
   .eng-metrics { grid-template-columns: 1fr 1fr; }.eng-metrics strong { font-size: 1rem; }
   .eng-panel { padding: 17px; }.eng-utterance { font-size: .9rem !important; }
-  .eng-audio-row { align-items: flex-start; flex-direction: column; }
   .eng-release-decision { grid-template-columns: 1fr; }.eng-release-decision > strong { grid-row: auto; }
   .eng-event-list li { grid-template-columns: 1fr; gap: 4px; }
 }
@@ -83,7 +79,7 @@ body.presenting :is(#timeline,#truth,#scorecard,#demo,#comparison):has(details[o
   .eng-evidence-dialog { display: none !important; }
   .eng-trace-detail { display: none; }
   .eng-panel .eng-details:not([open]) { display: none; }
-  #timeline h2,#truth h2,#scorecard h2,#demo h2,#comparison h2 { font-size: 2.5rem; }
+  #timeline h2 h2,#scorecard h2,#demo h2,#comparison h2 { font-size: 2.5rem; }
 }
 /* Keep existing long slides reachable at short stage sizes, without shrinking
    the recently enlarged vCon JSON or changing its magnifier. */

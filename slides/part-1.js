@@ -179,32 +179,5 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
       <p class="micro-note">Fixture clock. Real runs need observer and clock mapping. Receiver audio ≠ speaker playout. Never add component p95s.</p>
       <p class="eng-sources"><a href="https://docs.livekit.io/agents/logic/turns/turn-detector/" target="_blank" rel="noopener noreferrer">Turn detection beyond VAD ↗</a></p>
     `
-  },
-  {
-    id: "truth",
-    html: `
-<div class="section-heading">
-        <p class="eyebrow">EVIDENCE &amp; TRUTH</p>
-        <h2 id="truth-title">A correct transcript.<br><span>Of the wrong audio?</span></h2>
-        <p>Preserve source audio, received audio, and ASR output.</p>
-      </div>
-      <div class="eng-columns">
-        <article class="eng-panel">
-          <p class="card-kicker">CONVERSATION EVIDENCE</p>
-          <div class="eng-audio-row"><div><b>Source audio</b><p>“Do <mark>not</mark> cancel my subscription.”</p></div><button type="button" data-audio="source">Play source</button></div>
-          <div class="eng-audio-row"><div><b>Simulated receiver audio</b><p>“Do <span class="eng-missing">[muted]</span> cancel my subscription.”</p></div><button type="button" data-audio="received">Play received</button></div>
-          <p id="audioStatus" class="eng-label" role="status">LOCAL KOKORO VOICE · SYNTHETIC SPEECH · “NOT” MUTED IN THE SAME RECORDING</p>
-          <details class="eng-details"><summary>Illustrative ASR interpretation</summary><p>“Do cancel my subscription.” <strong>The action-changing word is gone.</strong></p><p class="micro-note">Hypothetical ASR—not a recognizer result. Edited audio, not network-loss simulation.</p></details>
-          <p class="eng-callout">Network metrics can help explain audio damage. <strong>Only the received audio shows what reached the receiver.</strong></p>
-        </article>
-        <article class="eng-panel">
-          <p class="card-kicker">OPERATIONAL EVIDENCE</p>
-          <h3>Text cannot prove execution.</h3>
-          <ul class="clean-list"><li>Authorization and policy decision</li><li>Operation ID + tool request/response</li><li>State verified for that operation</li><li>Output gate decision before speech</li></ul>
-          <p class="eng-callout">A claim gate cannot recover intent lost upstream.</p>
-        </article>
-      </div>
-      <p class="eng-sources"><a href="https://www.w3.org/TR/webrtc-stats/" target="_blank" rel="noopener noreferrer">WebRTC media statistics ↗</a><span>Audio, ASR, and understanding are different observations.</span></p>
-    `
   }
 ];

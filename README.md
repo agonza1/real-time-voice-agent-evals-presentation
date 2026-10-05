@@ -28,7 +28,7 @@ a demo. The interactive experiments remain explicitly labeled as teaching fixtur
 [Opening and closing speaker notes](docs/speaker-notes.md) include a self-contained
 story for the Fall '26 audience.
 
-The same notes include a 25-minute rehearsal route through all 20 slides, with five minutes reserved for Q&A in the 30-minute slot.
+The same notes include a 25-minute rehearsal route through all 19 slides, with five minutes reserved for Q&A in the 30-minute slot.
 
 ## Features
 
@@ -98,15 +98,12 @@ MIT
 ## Engineering experiments (presentation fixtures)
 
 The engineering sections, vCon JSON magnifier, and visual system are preserved.
-A short personal story after the title and a talker–reasoner architecture slide bring the presentation to 20 slides.
+A short personal story after the title and a talker–reasoner architecture slide bring the presentation to 19 slides.
 The focused additions are:
 
 - **Timeline:** switch between complete-request and aggressive endpointing traces.
   Timings are synthetic and share one clock. Receiver frames are not physical
   speaker playout; negative delay means a response before the caller finished.
-- **Evidence:** listen to one locally synthesized utterance, unchanged or with
-  the negation muted. The hypothetical ASR text is labeled; no recognizer runs.
-  No microphone permission, external TTS, live network, or RTCStats is used.
 - **Scorecard:** remove the final-state snapshot and inspect/export the teaching
   JSON. Only unsupported business conclusions become unverified; captured timing
   and safe-output observations remain. This JSON is not a conformant vCon export.
@@ -124,18 +121,6 @@ These are browser teaching experiments, not shipped CAE runtime functionality or
 measured customer benchmarks. No customer data or customer names were added.
 Runtime controls prevent violations; evaluation verifies the controls and exposes
 regressions. The simplified workflow is **Run → Evaluate → Compare**.
-
-### Audio fixture provenance
-
-`assets/negation.wav` was generated locally as one complete utterance with
-Kokoro 0.9.4 / Kokoro-82M, voice `am_michael`, speed 0.95: “Do not cancel my
-subscription.” It is a 2.775-second, 24 kHz mono PCM16 synthetic recording,
-not a recording of a human caller. `assets/negation.provenance.json` records
-the model revision and predicted word timings. The received variant zeros
-0.475–0.7375 seconds, the predicted span of “not”, in a decoded copy of that
-same recording. It is a deliberate content dropout, not an RTP
-packet-loss/PLC model. The browser playback is user-initiated, and stops when
-leaving the evidence slide or hiding the page.
 
 ### Tests
 

@@ -88,46 +88,4 @@
   document.querySelectorAll("[data-release]").forEach((b) => b.addEventListener("click", () => showRelease(b.dataset.release)));
   showRelease("candidate");
 
-  // The same locally synthesized recording is played unchanged or with only the
-  // documented negation window muted. No fake ASR, network, or RTCStats output.
-  let context, audioBuffer, activeAudio, loadPromise, audioSession = 0;
-  async function loadAudio() {
-    if (audioBuffer) return audioBuffer;
-    if (!loadPromise) loadPromise = (async () => {
-      const response = await fetch(new URL("../assets/negation.wav", document.querySelector('script[src$="engineering-ui.js"]').src));
-      if (!response.ok) throw new Error("Audio fixture unavailable");
-      audioBuffer = await context.decodeAudioData(await response.arrayBuffer()); return audioBuffer;
-    })().catch((error) => { loadPromise = undefined; throw error; });
-    return loadPromise;
-  }
-  function stopAudio() { audioSession++; if (activeAudio) { activeAudio.stop(); activeAudio = undefined; } document.querySelectorAll("[data-audio]").forEach((b) => { b.disabled = false; }); }
-  document.querySelectorAll("[data-audio]").forEach((button) => button.addEventListener("click", async () => {
-    try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContext) throw new Error("Web Audio unavailable");
-      context ||= new AudioContext();
-      stopAudio(); const session = audioSession; await context.resume();
-      document.querySelectorAll("[data-audio]").forEach((b) => { b.disabled = true; });
-      const source = await loadAudio();
-      if (session !== audioSession) return;
-      const received = button.dataset.audio === "received";
-      let buffer = source;
-      if (received) {
-        buffer = context.createBuffer(source.numberOfChannels, source.length, source.sampleRate);
-        for (let ch = 0; ch < source.numberOfChannels; ch++) {
-          const samples = buffer.getChannelData(ch); samples.set(source.getChannelData(ch));
-          samples.fill(0, Math.floor(0.475 * source.sampleRate), Math.ceil(0.7375 * source.sampleRate));
-        }
-      }
-      activeAudio = context.createBufferSource(); activeAudio.buffer = buffer; activeAudio.connect(context.destination);
-      activeAudio.onended = () => { document.querySelectorAll("[data-audio]").forEach((b) => { b.disabled = false; }); };
-      activeAudio.start();
-      put("audioStatus", received ? "PLAYING: SAME RECORDING, 0.475–0.7375 s MUTED · NOT A NETWORK TEST" : "PLAYING: LOCAL KOKORO VOICE · SYNTHETIC RECORDING");
-    } catch (error) {
-      put("audioStatus", "Audio unavailable in this browser. The labeled text example remains usable.");
-      document.querySelectorAll("[data-audio]").forEach((b) => { b.disabled = false; });
-    }
-  }));
-  document.addEventListener("voice-evals:slide-change", (e) => { if (e.detail.id !== "truth") stopAudio(); });
-  document.addEventListener("visibilitychange", () => { if (document.hidden) stopAudio(); });
 })();

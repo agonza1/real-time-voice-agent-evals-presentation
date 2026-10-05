@@ -20,12 +20,6 @@ test('shorter copy retains evidence limitations and runtime controls', async () 
   const part3 = await read('slides/part-3.js');
   assert.match(part1, /observer and clock mapping/);
   assert.match(part1, /Receiver audio ≠ speaker playout/);
-  assert.match(part1, /Hypothetical ASR/);
-  assert.match(part1, /not network-loss simulation/);
-  assert.match(part1, /Only the received audio shows what reached the receiver/);
-  const notes = await read('docs/speaker-notes.md');
-  assert.match(notes, /No RTCStats collected/);
-  assert.match(notes, /emitted-count delta/);
   assert.match(part2, /SCRIPTED FIXTURE · NOT LIVE SIP\/PSTN OR PRODUCTION MEDIA PROOF/);
   assert.match(part2, /id="runtimeGate" type="checkbox" checked/);
   assert.match(part2, /not a conformant vCon export/);
