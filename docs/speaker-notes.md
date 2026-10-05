@@ -47,7 +47,7 @@ Plan for 25 minutes of presentation and five minutes of Q&A. The 19-slide sequen
 | 1 · Title | 0:30 | 0:30 | A model score cannot establish that a voice agent works as a system. |
 | 2 · Story | 1:30 | 2:00 | Tell the Echo Show story. Move from understanding words to controlling actions to testing changes. |
 | 3 · Problem | 1:00 | 3:00 | Contrast the confident confirmation with the verified active subscription. A timeout alone would leave state unknown; this example includes readback. |
-| 4 · System | 0:45 | 3:45 | Trace caller to backend once. The caller experiences the complete loop. |
+| 4 · System | 0:45 | 3:45 | Trace input from caller through SIP/RTP or WebRTC to TTS, then return audio through Media to the Caller. Control exchanges tool requests and results with the Backend. The caller experiences the complete loop. |
 | 5 · Four layers | 1:15 | 5:00 | Name each dimension. A good conversation score cannot excuse a wrong business action. |
 | 6 · Timeline | 2:00 | 7:00 | Switch to aggressive endpointing, then restore the full-request trace. Faster output loses the billing-period qualifier. |
 | 7 · Audio evidence | 2:00 | 9:00 | Play source and received audio once each. Explain that muting the negation is a deliberate teaching edit, with hypothetical ASR. |

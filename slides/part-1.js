@@ -88,16 +88,27 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         <h2 id="system-title">A real-time voice agent is <span>a chain of systems</span></h2>
         <p>The caller experiences the whole loop.</p>
       </div>
-      <ol class="system-flow" aria-label="Real-time voice agent pipeline">
+      <ol class="system-flow" aria-label="Caller input through media, turn detection, speech recognition, agent, control, and speech generation">
         <li><span>01</span><b>Caller</b><small>speech</small></li>
-        <li><span>02</span><b>Media</b><small>RTP / WebRTC</small></li>
+        <li><span>02</span><b>Media</b><small>SIP / RTP / WebRTC</small></li>
         <li><span>03</span><b>Turn</b><small>VAD / EOT</small></li>
         <li><span>04</span><b>STT</b><small>partials / final</small></li>
         <li class="model-node"><span>05</span><b>Agent</b><small>model + flow</small></li>
         <li><span>06</span><b>Control</b><small>policy / tools</small></li>
         <li><span>07</span><b>TTS</b><small>speech out</small></li>
-        <li><span>08</span><b>Backend</b><small>authoritative truth</small></li>
       </ol>
+      <div class="system-branches">
+        <div class="system-return" aria-label="Return audio: TTS sends speech through Media back to the Caller">
+          <span class="system-path-label">RETURN AUDIO</span>
+          <p><b>Caller</b><span aria-hidden="true">←</span><b>Media</b><span aria-hidden="true">←</span><b>TTS</b></p>
+          <small>Generated speech travels back over the media connection.</small>
+        </div>
+        <div class="system-backend" aria-label="Control exchanges tool requests and results with the Backend">
+          <span class="system-path-label">08 · TOOL REQUESTS / RESULTS</span>
+          <p><b>Control</b><span aria-hidden="true">↔</span><b>Backend</b></p>
+          <small>Authoritative state and operation evidence.</small>
+        </div>
+      </div>
       <div class="failure-strip" aria-label="Representative failure modes"><span>packet loss</span><span>early endpoint</span><span>transcript churn</span><span>wrong action</span><span>tool timeout</span><span>late speech</span></div>
       <p class="takeaway">The model can improve while <strong>the system regresses.</strong></p>
     `
