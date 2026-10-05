@@ -51,6 +51,8 @@ Start with one important workflow. Define the contract, test the failure paths, 
 
 Production readiness is a systems property.
 
+Leave the closing slide up during Q&A so attendees can scan the QR to [connect with Alberto on LinkedIn](https://www.linkedin.com/in/albertogonzaleztrastoy). Invite them to discuss voice AI and the evaluation topics, or get help building a system. The QR is a local asset and requires no network connection to display.
+
 ## 30-minute stage route
 
 Plan for about 20 minutes of presentation and ten minutes of Q&A. There are 16 main slides, followed by three optional appendix slides. The main route takes 19:15, leaving 0:45 for transitions. The lost-ack experiment is available for Q&A. Do not narrate every field or open every disclosure.

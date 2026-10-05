@@ -7,6 +7,7 @@ const readRepositoryFile = (path) => readFile(new URL(path, repositoryRoot), "ut
 
 const localAssets = [
   "assets/favicon.svg",
+  "assets/linkedin-qr.png",
   "styles/engineering.css",
   "styles/story.css",
   "styles/voice-options.css",

@@ -91,6 +91,8 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
     className: "closing-slide",
     shellClass: "closing-shell",
     html: `
+      <div class="closing-main">
+      <div class="closing-takeaway">
       <p class="eyebrow">THE PRODUCTION STANDARD</p>
       <h2 id="close-title" class="closing-statement">Production readiness is <span>a systems property.</span></h2>
       <p class="closing-proof">Conversation. Controls. Outcomes.<br><strong>Then re-test every change.</strong></p>
@@ -98,6 +100,18 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
         <article><span>01</span><b>Measure the complete loop</b><p>Media, turns, actions, recovery, state.</p></article>
         <article><span>02</span><b>Verify the protections</b><p>Runtime controls enforce policy. Evaluation verifies.</p></article>
         <article><span>03</span><b>Make releases evidence-led</b><p>Keep vCon evidence. Check regressions before release.</p></article>
+      </div>
+      </div>
+      <aside class="closing-connect" aria-labelledby="connect-title">
+        <p class="eyebrow">Q&A · KEEP THE CONVERSATION GOING</p>
+        <h3 id="connect-title">Let’s connect.</h3>
+        <p>Discuss voice AI, explore these topics,<br>or get help building your next system.</p>
+        <a class="closing-linkedin" href="https://www.linkedin.com/in/albertogonzaleztrastoy" rel="noreferrer" target="_blank">
+          <img src="./assets/linkedin-qr.png" width="656" height="656" alt="Scan to open Alberto González’s LinkedIn profile">
+          <strong>Alberto González</strong>
+          <span>Scan to connect on LinkedIn ↗</span>
+        </a>
+      </aside>
       </div>
       <div class="closing-cta"><strong>DEFINE THE CONTRACT. TEST THE FAILURE PATHS. KEEP THE EVIDENCE.</strong><div><a href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">Conversation Agent Evaluation (CAE) tool ↗</a><a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation" rel="noreferrer" target="_blank">presentation source ↗</a><a href="#vcon-enrichment">Appendix: vCon JSON →</a><a href="#standards">Appendix: sources →</a><a href="#demo">Appendix: lost acknowledgment →</a></div></div>
     `
