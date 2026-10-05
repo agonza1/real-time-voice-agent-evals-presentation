@@ -111,8 +111,7 @@ The focused additions are:
   uncertainty; operation-ID-matched reconciliation restores verified knowledge.
   Same-ID retries are deduplicated by the fixture backend. Interruptions suppress
   superseded responses without undoing committed effects.
-- **Release review:** compare illustrative 100-run cohorts against explicit gates.
-  Faster p95 cannot compensate for premature responses or wrong cancellation timing.
+- **Release review:** compare current settings with a proposed shorter wait before answering, using illustrative numbers for the same 100 test calls on each version. Both versions are shown together. Faster responses cannot compensate for replying before the caller finishes or canceling at the wrong time.
 
 These are browser teaching experiments, not shipped evaluation tool runtime functionality or
 measured customer benchmarks. The project overview uses public success stories and locally stored published visuals.

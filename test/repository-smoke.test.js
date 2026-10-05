@@ -176,7 +176,7 @@ const localAssets = [
   assert.doesNotMatch(p2 + p3, /what VON extends|VON ROADMAP|VON \/ NEXT/);
   assert.match(p2, /Runtime output gate enabled/);
   assert.match(p2, /id="runtimeGate" type="checkbox" checked/);
-  assert.match(p3, /SYNTHETIC COHORTS/);
+  assert.match(p3, /ILLUSTRATIVE NUMBERS · 100 TEST CALLS FOR EACH VERSION/);
 });
 
  test("the personal story follows the title and connects runtime controls to evaluation", async () => {

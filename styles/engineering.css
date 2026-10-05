@@ -84,6 +84,18 @@ mark { color: var(--cyan); background: var(--cyan-soft); padding: 0 3px; border-
 .eng-release-decision { display: grid; grid-template-columns: 200px 1fr; gap: 7px 22px; margin-top: 18px; padding: 20px; border: 1px solid var(--line); border-left: 3px solid var(--danger); border-radius: 10px; background: var(--surface); }
 .eng-release-decision > strong { color: var(--danger); grid-row: span 2; align-self: center; font-size: 1.1rem; }.eng-release-decision p { margin: 0; font-size: .85rem; }.eng-release-decision small { color: var(--muted); font-size: .73rem; }.eng-release-decision[data-tone="pass"] { border-left-color: var(--green); }.eng-release-decision[data-tone="pass"] strong { color: var(--green); }
 .eng-release-table { min-width: 700px; }
+.release-example-label { margin: 22px 0 14px; color: var(--muted); font: .8rem var(--mono); letter-spacing: .04em; }
+#comparison .comparison-table :is(th,td) { height: 72px; }
+#comparison .comparison-table thead th { text-transform: none; letter-spacing: 0; font-size: 1rem; }
+#comparison .comparison-table thead small { display: block; margin-top: 7px; font-size: .8rem; font-weight: 400; }
+#comparison .comparison-table tbody th { font-size: 1rem; }
+#comparison .comparison-table td { font-size: 1.15rem; }
+#comparison .comparison-table th:first-child { width: 32%; }
+.release-better { color: var(--green); font-weight: 750; }
+.release-regression { color: var(--danger); font-weight: 750; }
+#comparison .eng-release-decision { grid-template-columns: 260px 1fr; }
+#comparison .eng-release-decision > strong { font-size: 1.25rem; }
+@media (max-width: 820px) { #comparison .eng-release-decision { grid-template-columns: 1fr; } }
 .eng-toolbar button:focus-visible, .eng-panel button:focus-visible, .eng-switch input:focus-visible, .eng-select select:focus-visible, .eng-details summary:focus-visible { outline: 3px solid var(--cyan); outline-offset: 3px; }
 /* Progressive disclosures scroll within their slide, rather than being clipped. */
 body.presenting :is(#timeline,#demo,#comparison):has(details[open]) { overflow-y: auto; align-items: flex-start; }

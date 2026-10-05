@@ -70,7 +70,7 @@ Plan for about 20 minutes of presentation and ten minutes of Q&A. There are 16 m
 | 11 · Contract | 1:30 | 13:15 | Define required actions and expected state. Unsupported completion is a critical violation regardless of the weighted score. |
 | 12 · vCon | 1:00 | 14:15 | The container carries observations and provenance. It does not supply a verdict. |
 | 13 · Outcomes | 1:00 | 15:15 | Read the two axes: business state and safe response. Unknown state stays outside this verified-state matrix. |
-| 14 · Release review | 2:00 | 17:15 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
+| 14 · Release review | 2:00 | 17:15 | Compare current settings with a proposed shorter wait before answering. It responds faster but fails caller-finish and cancellation-timing requirements. |
 | 15 · Boundary | 1:00 | 18:15 | Explain supported capabilities and the roadmap. Browser fixtures do not establish live telephony or production behavior. |
 | 16 · Close | 1:00 | 19:15 | Return to the opening question. Define one important workflow contract, test its failure paths, and retain the evidence. |
 | Delivery buffer | 0:45 | 20:00 | Allow room for transitions. |
@@ -140,6 +140,16 @@ Implementation checked against ConversationAgentEvals commit `31671ee6a5d12e8e8a
 - [Pipecat requirements](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/apps/pipecat/requirements.txt): Pipecat with WebRTC, Silero, and Daily extras.
 - [ASSERT integration boundary](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/docs/assert-boundary-and-schemas.md): local deterministic evaluation and explicit upstream semantic judge.
 - [Web dependencies](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/apps/web/package.json): Next.js and React.
+
+## Release comparison — slide 14
+
+“The current settings wait longer after a pause. The proposed change shortens that wait so responses start sooner. We compare the same 100 call scenarios on each version. These are illustrative numbers, not measured results.”
+
+Point first to the faster response time, then to the two red cells. The proposed change answers before the caller finishes in 12 calls rather than two, and cancels at the wrong time in four calls rather than zero. It fails two requirements, so the decision is not to release this change. The table displays both versions together; there is no version selector.
+
+The current version is not perfect: its two premature responses are within this example's budget of three. The zero-cancellation-error threshold applies to this test set and does not guarantee zero production errors. In both fixtures, required evidence is complete for 100/100 runs and there are no unanswered test turns. Scenarios, model, transport, load, and evidence requirements are matched; the pause policy changes.
+
+The 95th percentile summarizes the upper end of response times. This fixture measures from the system's end-of-turn decision to received audio. Accepting the turn boundary too early can make this number look better while missing a caller's later qualifier, as in slide 9.
 
 ## Appendix A3 · Lost-ack experiment — optional three-minute Q&A demonstration
 

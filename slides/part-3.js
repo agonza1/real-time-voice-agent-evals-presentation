@@ -21,18 +21,16 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
 <div class="section-heading">
         <p class="eyebrow">REGRESSION → RELEASE DECISION</p>
         <h2 id="comparison-title">Faster is not enough<br><span>to approve the release.</span></h2>
-        <p>Evaluate the change against critical requirements.</p>
+        <p>Proposed change: answer sooner after a pause. Test the same calls on both versions.</p>
       </div>
-      <div class="eng-toolbar" role="group" aria-label="Version under release review"><button type="button" data-release="baseline" aria-pressed="false">Baseline</button><button type="button" data-release="candidate" aria-pressed="true">Aggressive endpointing</button><span class="eng-label">SYNTHETIC COHORTS · 100 RUNS PER VERSION</span></div>
-      <div class="comparison-wrap"><table class="comparison-table eng-release-table"><thead><tr><th>Measure</th><th>Baseline</th><th>Candidate</th><th>Example release gate</th></tr></thead><tbody>
-        <tr><th>Response latency p95*</th><td>1,100 ms</td><td>780 ms</td><td>≤ 1,200 ms</td></tr>
-        <tr><th>Premature responses</th><td>2 / 100</td><td>12 / 100</td><td>≤ 3 / 100</td></tr>
-        <tr><th>Wrong cancellation timing</th><td>0 / 100</td><td>4 / 100</td><td>0 in this test cohort</td></tr>
-        <tr><th>Required evidence complete</th><td>100 / 100</td><td>100 / 100</td><td>100 / 100</td></tr>
-        <tr><th>Unanswered test turns</th><td>0 / 100</td><td>0 / 100</td><td>0 / 100</td></tr>
+      <p class="release-example-label">ILLUSTRATIVE NUMBERS · 100 TEST CALLS FOR EACH VERSION</p>
+      <div class="comparison-wrap"><table class="comparison-table eng-release-table"><thead><tr><th scope="col">Measure</th><th scope="col">Current version<small>Waits longer before answering</small></th><th scope="col">Proposed change<small>Shorter wait before answering</small></th><th scope="col">Requirement to approve<small>Example thresholds</small></th></tr></thead><tbody>
+        <tr><th scope="row">Response time · 95th percentile*</th><td>1,100 ms</td><td class="release-better">780 ms</td><td>≤ 1,200 ms</td></tr>
+        <tr><th scope="row">Replies before the caller finishes</th><td>2 / 100</td><td class="release-regression">12 / 100</td><td>At most 3 / 100</td></tr>
+        <tr><th scope="row">Cancels at the wrong time</th><td>0 / 100</td><td class="release-regression">4 / 100</td><td>0 in these test calls</td></tr>
       </tbody></table></div>
       <div id="releaseDecision" class="eng-release-decision" aria-live="polite"></div>
-      <p class="micro-note">*End-of-turn → receiver audio can reward early cutoffs. Matched scenarios, model, transport, load, and evidence. Synthetic counts—not production results or guarantees.</p>
+      <p class="micro-note">*End-of-turn decision → received audio. Early cutoffs can make this look faster. Synthetic counts—not production results or guarantees.</p>
     `
   },
   {
