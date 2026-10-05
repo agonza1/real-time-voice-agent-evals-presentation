@@ -45,11 +45,10 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
           <article><span>REPORT</span><b>scorecard · trace · regression comparison</b></article>
         </div>
       </div>
-      <div class="integration-row">
-        <a href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank"><b>Conversation Agent Evaluation (CAE) tool</b><span>orchestration, evidence, reports</span></a>
-        <a href="https://github.com/agonza1/agentic-contact-center" rel="noreferrer" target="_blank"><b>Agentic Contact Center</b><span>optional reference target</span></a>
-        <a href="https://github.com/agonza1/rtc-asr" rel="noreferrer" target="_blank"><b>rtc-asr</b><span>optional streaming ASR evidence</span></a>
-        <a href="https://github.com/responsibleai/ASSERT" rel="noreferrer" target="_blank"><b>ASSERT</b><span>compatible contracts and judging</span></a>
+      <div class="workbench-frameworks" aria-label="Frameworks used by the evaluation tool">
+        <article><h3>FastAPI + Pydantic</h3><p>Python run APIs · typed evidence</p><small>Orchestration + deterministic checks</small></article>
+        <article><h3>Pipecat</h3><p>Tester agent · streaming voice transport</p><small>Caller turns + WebRTC adapters</small></article>
+        <article><h3><a href="https://github.com/responsibleai/ASSERT" rel="noreferrer" target="_blank">ASSERT 0.3 ↗</a></h3><p>Behavior contracts · evaluation rubrics</p><small>Optional semantic judge over saved evidence</small></article>
       </div>
     `
   },
