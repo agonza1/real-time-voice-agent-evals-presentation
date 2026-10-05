@@ -46,14 +46,14 @@
       verdict = "STALE RESPONSE BLOCKED";
     }
     const events = [
-      [0, "runtime", "Verified identity and scope assumed for this fixture; op-247 submitted."],
-      [180, "backend", committed ? "op-247 commits once (fixture ground truth)." : "op-247 rejected; no business effect."],
+      [0, "runtime", "Cancellation request submitted; verified identity and scope assumed for this fixture."],
+      [180, "backend", committed ? "Cancellation applied once (fixture ground truth)." : "Cancellation rejected; no business effect."],
       [240, "transport", scenario === "success" ? "Acknowledgment delivered to runtime." : "Acknowledgment absent at timeout; outcome cannot be inferred from timeout alone."]
     ];
     if (interrupted) events.push([280, "caller/runtime", "Caller interrupts; response generation g-1 is superseded. This does not undo the effect."]);
-    if (scenario === "failure") events.push([360, "state observer", "Readback associated with op-247 confirms active."]);
-    if (retries) events.push([450, "runtime/backend", `${retries} retry request(s) reuse op-247. Backend fixture deduplicates; at most one commit. Retry acknowledgments remain unavailable in the lost-ack mode.`]);
-    if (scenario === "lost" && reconciled) events.push([600, "state observer", `Readback returns canceled for ${proofOperationId}; ${verified ? "matched" : "mismatched"} operation identity.`]);
+    if (scenario === "failure") events.push([360, "state observer", "Check of the original request confirms the subscription is active."]);
+    if (retries) events.push([450, "runtime/backend", `${retries} retry request(s) repeat the original request. Backend fixture deduplicates; at most one state change. Retry acknowledgments remain unavailable in the lost-ack mode.`]);
+    if (scenario === "lost" && reconciled) events.push([600, "state observer", verified ? "Check of the original request confirms cancellation." : "Check returns canceled, but the evidence belongs to another request."]);
     events.push([750, "runtime → TTS", gate ? (permitted ? "Verified, current-generation confirmation permitted." : "Completion action blocked; safe fallback or silence selected.") : "Gate deliberately bypassed: unchecked completion action emitted."]);
     return {
       operationId, tool, knowledge, truth: committed ? "canceled" : "active",

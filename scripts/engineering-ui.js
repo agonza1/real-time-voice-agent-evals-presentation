@@ -44,7 +44,7 @@
     put("allowedSpeech", run.speech); put("toolObservation", run.tool); put("agentKnowledge", run.knowledge);
     put("claimDecision", run.gateDecision); put("fixtureTruth", run.truth); put("controlExplanation", run.explanation);
     put("gateStatus", byId("runtimeGate").checked ? "ON: VALIDATE STRUCTURED COMPLETION ACTION BEFORE TTS" : "BYPASSED: DELIBERATE ANTI-PATTERN, NOT AN INEVITABLE AI FAILURE");
-    put("operationLedger", `${run.operationId} · ${run.requests} request(s) · ${run.commits} commit(s) · ${run.responseGeneration}`);
+    put("operationLedger", `${run.requests} request(s) · ${run.commits} completed action(s)`);
     byId("reconcileOperation").disabled = scenario !== "lost" || reconciled;
     byId("retryOperation").disabled = retries >= 20;
     byId("operationTrace").replaceChildren(...run.events.map(([ms, actor, event]) => {
