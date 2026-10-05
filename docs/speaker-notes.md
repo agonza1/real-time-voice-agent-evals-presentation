@@ -53,7 +53,7 @@ Production readiness is a systems property.
 
 ## 30-minute stage route
 
-Plan for 25 minutes of presentation and five minutes of Q&A. There are 16 main slides, followed by two optional appendix slides. The route takes 23:30, leaving 1:30 for transitions or demo variation. Do not narrate every field or open every disclosure.
+Plan for 25 minutes of presentation and five minutes of Q&A. There are 17 main slides, followed by two optional appendix slides. The route takes 24:15, leaving 0:45 for transitions or demo variation. Do not narrate every field or open every disclosure.
 
 | Slide | Time | Finish by | Point and stage action |
 | --- | --- | --- | --- |
@@ -62,18 +62,19 @@ Plan for 25 minutes of presentation and five minutes of Q&A. There are 16 main s
 | 3 · Projects | 1:00 | 2:30 | Give each project 15 seconds: meeting agents, surgical audio, avatar training, and the agentic call center. |
 | 4 · Problem | 1:00 | 3:30 | Contrast the confident confirmation with the verified active subscription. A timeout alone leaves state unknown; this example includes readback. |
 | 5 · System | 0:45 | 4:15 | Trace input through SIP/RTP or WebRTC to TTS, then return audio to the Caller. Control exchanges requests and results with the Backend. |
-| 6 · Continuous voice | 1:00 | 5:15 | Follow the appointment sequence. The caller adds a constraint while the model speaks; the delegated search returns a current result. |
-| 7 · Four layers | 1:15 | 6:30 | Name each dimension. A good conversation score cannot excuse a wrong business action. |
-| 8 · Timeline | 2:30 | 9:00 | Switch to aggressive endpointing, then restore the full-request trace. Faster output loses the billing-period qualifier. |
-| 9 · Workbench | 2:00 | 11:00 | Introduce the Conversation Agent Evaluation (CAE) tool through Run → Evaluate → Compare, then explain framework roles. New rubric: re-score; changed agent: run again. |
-| 10 · Contract | 1:30 | 12:30 | Define required actions and expected state. Unsupported completion is a critical violation regardless of the weighted score. |
-| 11 · vCon | 1:00 | 13:30 | The container carries observations and provenance. It does not supply a verdict. |
-| 12 · Runtime demo | 5:00 | 18:30 | Run the gate contrast and lost-ack reconciliation described below. |
-| 13 · Outcomes | 1:00 | 19:30 | Read the two axes: business state and safe response. Unknown state stays outside this verified-state matrix. |
-| 14 · Release review | 2:00 | 21:30 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
-| 15 · Boundary | 1:00 | 22:30 | Explain supported capabilities and the roadmap. Browser fixtures do not establish live telephony or production behavior. |
-| 16 · Close | 1:00 | 23:30 | Return to the opening question. Define one important workflow contract, test its failure paths, and retain the evidence. |
-| Delivery buffer | 1:30 | 25:00 | Allow room for transitions and interaction variation. |
+| 6 · Two-path architecture | 0:45 | 5:00 | Trace the live caller/voice-model loop, then background reasoning and tools. Results return to the voice model. |
+| 7 · Continuous-voice sequence | 1:00 | 6:00 | Follow the appointment sequence. The caller adds a constraint while the model speaks; the delegated search returns a current result. |
+| 8 · Four layers | 1:15 | 7:15 | Name each dimension. A good conversation score cannot excuse a wrong business action. |
+| 9 · Timeline | 2:30 | 9:45 | Switch to aggressive endpointing, then restore the full-request trace. Faster output loses the billing-period qualifier. |
+| 10 · Workbench | 2:00 | 11:45 | Introduce the Conversation Agent Evaluation (CAE) tool through Run → Evaluate → Compare, then explain framework roles. New rubric: re-score; changed agent: run again. |
+| 11 · Contract | 1:30 | 13:15 | Define required actions and expected state. Unsupported completion is a critical violation regardless of the weighted score. |
+| 12 · vCon | 1:00 | 14:15 | The container carries observations and provenance. It does not supply a verdict. |
+| 13 · Runtime demo | 5:00 | 19:15 | Run the gate contrast and lost-ack reconciliation described below. |
+| 14 · Outcomes | 1:00 | 20:15 | Read the two axes: business state and safe response. Unknown state stays outside this verified-state matrix. |
+| 15 · Release review | 2:00 | 22:15 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
+| 16 · Boundary | 1:00 | 23:15 | Explain supported capabilities and the roadmap. Browser fixtures do not establish live telephony or production behavior. |
+| 17 · Close | 1:00 | 24:15 | Return to the opening question. Define one important workflow contract, test its failure paths, and retain the evidence. |
+| Delivery buffer | 0:45 | 25:00 | Allow room for transitions and interaction variation. |
 | Q&A | 5:00 | 30:00 | Leave the closing slide and repository links visible. |
 
 Appendix A1 contains the vCon JSON explorer; A2 contains standards and research. Open them from the closing links only when useful for a question. Normal forward navigation stops at the closing slide. End always returns to the closing slide; Home returns to the title.
@@ -82,26 +83,27 @@ Appendix A1 contains the vCon JSON explorer; A2 contains standards and research.
 
 - **4 → 5:** “The confirmation sounds convincing. Which part of the system can establish that the action happened?” The active state is verified by readback, not inferred from timeout.
 - **5 → 6:** “This is the conventional STT–LLM–TTS cascade. Native speech systems change those components and can overlap listening with speaking. We still evaluate the whole interaction.”
-- **6 → 7:** “A new caller constraint can arrive while work is running. That affects the conversation, the execution, and the eventual outcome.”
-- **7 → 8:** “Start with speech timing: what did the system hear before it answered?”
-- **8 → 9:** “Now we need a repeatable workflow to collect these observations and compare changes.”
-- **9 → 10:** “Before judging a run, define what success and a critical violation mean for that scenario.”
-- **10 → 11:** “To check the contract later, retain the media, tool trace, and state evidence together.”
-- **11 → 12:** “Return to our opening cancellation case and test whether the protection holds.”
-- **12 → 13:** “The task result and the safety of the response are separate verdicts.”
-- **13 → 14:** “Apply those verdicts across the same scenarios before approving a new version.”
-- **14 → 15:** “These release decisions depend on evidence. Here is what the tool supports today and what still needs building.”
-- **15 → 16:** “Start with one workflow, keep its evidence, and repeat the test when the system changes.”
+- **6 → 7:** “Here are those same components during a call. The caller adds a new constraint while the search is running.”
+- **7 → 8:** “A new caller constraint can arrive while work is running. That affects the conversation, the execution, and the eventual outcome.”
+- **8 → 9:** “Start with speech timing: what did the system hear before it answered?”
+- **9 → 10:** “Now we need a repeatable workflow to collect these observations and compare changes.”
+- **10 → 11:** “Before judging a run, define what success and a critical violation mean for that scenario.”
+- **11 → 12:** “To check the contract later, retain the media, tool trace, and state evidence together.”
+- **12 → 13:** “Return to our opening cancellation case and test whether the protection holds.”
+- **13 → 14:** “The task result and the safety of the response are separate verdicts.”
+- **14 → 15:** “Apply those verdicts across the same scenarios before approving a new version.”
+- **15 → 16:** “These release decisions depend on evidence. Here is what the tool supports today and what still needs building.”
+- **16 → 17:** “Start with one workflow, keep its evidence, and repeat the test when the system changes.”
 
-## Outcome matrix — slide 13
+## Outcome matrix — slide 14
 
 The rows describe verified business state; the columns describe whether speech was supported at the time it was emitted. A task can finish while the agent confirms it without sufficient evidence. That claim might be true by luck, but the confirmation remains unsafe. Conversely, a truthful expression of uncertainty can be safe even if the backend already committed.
 
 An unknown state is not a failed task. Keep it unknown until operation-matched reconciliation establishes the result. The matrix adds a classification lens after the demo rather than repeating its operation ledger.
 
-## Continuous voice — slide 6
+## Continuous voice — slides 6 and 7
 
-The conversation sequence is the default. The architecture review alternative is available through `?voice=architecture`; the legacy `slide5` parameter also works. Either diagram occupies the same slide in the route.
+Both diagrams are in the main route: the two-path architecture follows the conventional system on slide 6, and the appointment sequence follows on slide 7. Legacy architecture-review URLs open slide 6 without replacing the sequence.
 
 - `architecture`: trace the cyan audio loop first, then the delegated reasoning and tool requests below it. “The live conversation continues while deeper work runs. The result comes back to the voice model.”
 - `sequence`: follow the appointment search from top to bottom. The cyan overlap highlights the caller adding “after 3pm” while the voice model speaks. The active task must incorporate that new constraint. Availability returns to the same conversation; “Shall I book it?” does not claim that a booking happened.
@@ -159,6 +161,6 @@ Before going on stage, load the original Echo Show photo and leave disclosures c
 
 If an interaction fails, explain its expected before/after result and move on.
 
-Check the clock after slides 7 (6:30), 9 (11:00), and 12 (18:30). If behind, omit lost-ack reconciliation and use the delivery buffer. Preserve the gate contrast, release decision, and closing; those carry the argument. Keep the JSON explorer and sources for Q&A.
+Check the clock after slides 8 (7:15), 10 (11:45), and 13 (19:15). If behind, omit lost-ack reconciliation and use the delivery buffer. Preserve the gate contrast, release decision, and closing; those carry the argument. Keep the JSON explorer and sources for Q&A.
 
 The event name follows the [official Fall '26 conference site](https://www.vonevolution.com/). The October 15 talk date is retained from the existing deck.

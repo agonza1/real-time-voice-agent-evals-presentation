@@ -195,7 +195,11 @@
     setJsonFocus(pinnedFocus);
   }
 
-  const requestedId = location.hash.slice(1);
+  const params = new URLSearchParams(location.search);
+  const legacyOption = params.get("voice") || params.get("slide5");
+  const hashId = location.hash.slice(1);
+  const requestedId = legacyOption === "architecture" && (!hashId || hashId === "dual-voice")
+    ? "dual-voice-architecture" : hashId;
   const requestedIndex = slides.findIndex((slide) => slide.id === requestedId);
   updateUi(requestedIndex >= 0 ? requestedIndex : 0);
 

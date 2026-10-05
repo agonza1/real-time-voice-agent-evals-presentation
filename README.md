@@ -28,7 +28,7 @@ a demo. The interactive experiments remain explicitly labeled as teaching fixtur
 [Opening and closing speaker notes](docs/speaker-notes.md) include a self-contained
 story for the Fall '26 audience.
 
-The same notes include a 25-minute rehearsal route through 16 main slides, with five minutes reserved for Q&A in the 30-minute slot. The vCon JSON explorer and references are two optional appendix slides.
+The same notes include a 25-minute rehearsal route through 17 main slides, with five minutes reserved for Q&A in the 30-minute slot. The vCon JSON explorer and references are two optional appendix slides.
 
 ## Features
 
@@ -98,7 +98,7 @@ MIT
 ## Engineering experiments (presentation fixtures)
 
 The engineering sections, vCon JSON magnifier, and visual system are preserved.
-A personal story, a visual project overview, and a continuous-voice sequence lead into the evaluation workflow. The route has 16 main slides and two appendix slides. Forward navigation stops at the closing slide; use its links to open the JSON explorer or references.
+A personal story, a visual project overview, and a continuous-voice sequence lead into the evaluation workflow. The route has 17 main slides and two appendix slides. Forward navigation stops at the closing slide; use its links to open the JSON explorer or references.
 The focused additions are:
 
 - **Timeline:** switch between complete-request and aggressive endpointing traces.
@@ -119,14 +119,14 @@ measured customer benchmarks. The project overview uses public success stories a
 Runtime controls prevent violations; evaluation verifies the controls and exposes
 regressions. The simplified workflow is **Run → Evaluate → Compare**.
 
-### Continuous voice — slide 6
+### Continuous voice — slides 6 and 7
 
-The conversation sequence is the default. A review alternative occupies the same slide and keeps the 16-slide main route:
+The conventional system on slide 5 leads into two complementary views:
 
-- [Two-path architecture](http://127.0.0.1:8080/?present=1&voice=architecture#dual-voice): the live audio loop delegates reasoning and tool work.
-- [Conversation sequence](http://127.0.0.1:8080/?present=1#dual-voice): a caller adds an appointment constraint while the voice model speaks.
+- [Slide 6 · Two-path architecture](http://127.0.0.1:8080/?present=1#dual-voice-architecture): the live audio loop delegates reasoning and tool work.
+- [Slide 7 · Conversation sequence](http://127.0.0.1:8080/?present=1#dual-voice): a caller adds an appointment constraint while the voice model speaks.
 
-The legacy `slide5` review parameter remains supported. The diagrams are illustrative, not captured runtime traces. [Project image sources](assets/projects/SOURCES.md) document the real visuals used on slide 3.
+Legacy `voice=architecture` and `slide5=architecture` review URLs open the architecture slide. The diagrams are illustrative, not captured runtime traces. [Project image sources](assets/projects/SOURCES.md) document the real visuals used on slide 3.
 
 ### Tests
 

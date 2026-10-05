@@ -13,9 +13,12 @@
 .voice-option-diagram .violet { fill: var(--violet); }
 .voice-option-diagram .green { fill: var(--green); }
 .voice-svg-arrow { fill: none; stroke-width: 2.5; }
-.cyan-arrow { stroke: var(--cyan); marker-end: url(#voice-cyan-arrow); }
-.violet-arrow { stroke: var(--violet); marker-end: url(#voice-violet-arrow); }
-.green-arrow { stroke: var(--green); marker-end: url(#voice-green-arrow); }
+.cyan-arrow { stroke: var(--cyan); marker-end: url(#voice-sequence-cyan-arrow); }
+.violet-arrow { stroke: var(--violet); marker-end: url(#voice-sequence-violet-arrow); }
+.green-arrow { stroke: var(--green); marker-end: url(#voice-sequence-green-arrow); }
+.voice-architecture-diagram .cyan-arrow { marker-end: url(#voice-architecture-cyan-arrow); }
+.voice-architecture-diagram .violet-arrow { marker-end: url(#voice-architecture-violet-arrow); }
+.voice-architecture-diagram .green-arrow { marker-end: url(#voice-architecture-green-arrow); }
 .voice-svg-lifeline { fill: none; stroke: var(--line-strong); stroke-width: 2; stroke-dasharray: 5 8; }
 .voice-svg-overlap { fill: var(--cyan-soft); stroke: var(--cyan); stroke-width: 1; }
 .voice-svg-speaking { fill: var(--cyan); }

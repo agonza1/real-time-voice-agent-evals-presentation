@@ -144,6 +144,10 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     `
   },
   {
+    id: "dual-voice-architecture",
+    ...window.VOICE_EVALS_DUAL_VOICE_OPTIONS.architecture
+  },
+  {
     id: "dual-voice",
     ...window.VOICE_EVALS_DUAL_VOICE_OPTIONS.sequence
   },

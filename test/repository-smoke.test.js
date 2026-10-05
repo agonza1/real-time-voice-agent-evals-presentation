@@ -66,8 +66,8 @@ const localAssets = [
   assert.match(html, /id="helpDialog"/);
   assert.match(html, /styles\/vcon-enrichment\.css/);
   assert.match(html, /slides\/vcon-enrichment\.js/);
-  assert.match(html, /id="totalSlides">16<\/span>/);
-  assert.match(html, /id="presentTotal">16<\/span>/);
+  assert.match(html, /id="totalSlides">17<\/span>/);
+  assert.match(html, /id="presentTotal">17<\/span>/);
   assert.match(html, /scripts\/render-slides\.js/);
   assert.match(html, /scripts\/app\.js/);
   assert.doesNotMatch(html, /<script[^>]+src=["']https?:\/\//i);
@@ -78,7 +78,7 @@ const localAssets = [
   }
 });
 
- test("the slide data defines 16 main slides and two appendices", async () => {
+ test("the slide data defines 17 main slides and two appendices", async () => {
   const parts = await Promise.all([
     readRepositoryFile("slides/part-1.js"),
     readRepositoryFile("slides/part-2.js"),
@@ -86,9 +86,9 @@ const localAssets = [
     readRepositoryFile("slides/part-3.js"),
   ]);
   const ids = parts.flatMap((content) => [...content.matchAll(/\bid:\s*"([^"]+)"/g)].map((match) => match[1]));
-  assert.equal(ids.length, 18);
-  assert.equal(new Set(ids).size, 18);
-  for (const required of ["intro", "story", "problem", "system", "dual-voice", "layers", "timeline", "vcon", "vcon-enrichment", "workbench", "contract", "demo", "comparison", "boundary", "standards", "close"]) {
+  assert.equal(ids.length, 19);
+  assert.equal(new Set(ids).size, 19);
+  for (const required of ["intro", "story", "problem", "system", "dual-voice-architecture", "dual-voice", "layers", "timeline", "vcon", "vcon-enrichment", "workbench", "contract", "demo", "comparison", "boundary", "standards", "close"]) {
     assert.ok(ids.includes(required), `missing required slide: ${required}`);
   }
   const combined = parts.join("\n");
@@ -138,11 +138,13 @@ const localAssets = [
   const document = { getElementById: () => deck, dispatchEvent: () => {} };
   new Function("window", "document", "location", "CustomEvent", renderer)(scope, document, { search: "" }, class {});
   const route = scope.VOICE_EVALS_SLIDES;
-  assert.deepEqual(route.map((slide) => slide.id), ["intro", "story", "projects", "problem", "system", "dual-voice", "layers", "timeline", "workbench", "contract", "vcon", "demo", "outcomes", "comparison", "boundary", "close", "vcon-enrichment", "standards"]);
-  assert.equal(route.filter((slide) => !slide.appendix).length, 16);
+  assert.deepEqual(route.map((slide) => slide.id), ["intro", "story", "projects", "problem", "system", "dual-voice-architecture", "dual-voice", "layers", "timeline", "workbench", "contract", "vcon", "demo", "outcomes", "comparison", "boundary", "close", "vcon-enrichment", "standards"]);
+  assert.equal(route.filter((slide) => !slide.appendix).length, 17);
   assert.deepEqual(route.filter((slide) => slide.appendix).map((slide) => slide.id), ["vcon-enrichment", "standards"]);
-  assert.match(deck.innerHTML, /aria-label="Slide 16 of 16"/);
+  assert.match(deck.innerHTML, /aria-label="Slide 17 of 17"/);
   assert.match(deck.innerHTML, /aria-label="Appendix A1 of 2"/);
+  const elementIds = [...deck.innerHTML.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+  assert.equal(new Set(elementIds).size, elementIds.length, "diagrams must not duplicate heading or SVG marker IDs");
 });
 
  test("presentation controls, the fixture, and vCon magnifier are wired accessibly", async () => {
@@ -182,7 +184,7 @@ const localAssets = [
   new Function("window", await readRepositoryFile("slides/dual-voice-options.js"))(scope);
   new Function("window", await readRepositoryFile("slides/part-1.js"))(scope);
   const slides = scope.VOICE_EVALS_SLIDES_PART_1;
-  assert.deepEqual(slides.slice(0, 7).map((slide) => slide.id), ["intro", "story", "projects", "problem", "system", "dual-voice", "layers"]);
+  assert.deepEqual(slides.slice(0, 8).map((slide) => slide.id), ["intro", "story", "projects", "problem", "system", "dual-voice-architecture", "dual-voice", "layers"]);
   const story = slides[1].html;
   assert.match(story, /2017 · ECHO SHOW/);
   assert.match(story, /exact phrases/);

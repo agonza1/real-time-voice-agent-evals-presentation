@@ -1,17 +1,16 @@
-// Continuous-voice diagrams. The sequence is the default; architecture remains a review alternative.
-// Select with ?voice=architecture or sequence. Each occupies one slide in the stage route.
+// Continuous-voice diagrams: architecture first, then the conversation sequence.
 (() => {
   const sources = `<p class="eng-sources voice-option-sources"><a href="https://openai.com/index/continuous-voice-interaction-with-gpt-live/" target="_blank" rel="noopener noreferrer">OpenAI · GPT-Live ↗</a><a href="https://docs.livekit.io/agents/logic/patterns/subagent-delegation/" target="_blank" rel="noopener noreferrer">LiveKit ↗</a><a href="https://docs.pipecat.ai/api-reference/server/services/s2s/openai-live" target="_blank" rel="noopener noreferrer">Pipecat ↗</a><span>Illustrative architecture · full duplex depends on the model.</span></p>`;
-  const markers = `<defs><marker id="voice-cyan-arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="var(--cyan)"/></marker><marker id="voice-violet-arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="var(--violet)"/></marker><marker id="voice-green-arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="var(--green)"/></marker></defs>`;
+  const markers = (prefix) => `<defs><marker id="${prefix}-cyan-arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="var(--cyan)"/></marker><marker id="${prefix}-violet-arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="var(--violet)"/></marker><marker id="${prefix}-green-arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="var(--green)"/></marker></defs>`;
   window.VOICE_EVALS_DUAL_VOICE_OPTIONS = {
     architecture: {
       className: "voice-option-slide",
       html: `
-        <div class="section-heading"><p class="eyebrow">CONTINUOUS VOICE</p><h2 id="dual-voice-title">One conversation. <span>Two paths.</span></h2></div>
-        <svg class="voice-option-diagram" viewBox="0 0 1280 480" role="img" aria-labelledby="voice-architecture-title voice-architecture-desc">
+        <div class="section-heading"><p class="eyebrow">CONTINUOUS VOICE · ARCHITECTURE</p><h2 id="dual-voice-architecture-title">One conversation. <span>Two paths.</span></h2></div>
+        <svg class="voice-option-diagram voice-architecture-diagram" viewBox="0 0 1280 480" role="img" aria-labelledby="voice-architecture-title voice-architecture-desc">
           <title id="voice-architecture-title">A continuous voice loop delegates work to a separate reasoner.</title>
           <desc id="voice-architecture-desc">Caller audio flows into the native speech-to-speech voice model while generated speech returns to the caller. The model listens while speaking. It delegates work asynchronously to a reasoning model, which exchanges requests and results with tools. Results return to the voice model.</desc>
-          ${markers}
+          ${markers("voice-architecture")}
           <text x="40" y="32" class="voice-svg-kicker cyan">LIVE AUDIO</text>
           <rect x="40" y="76" width="270" height="138" rx="20" class="voice-svg-node cyan-node"/>
           <text x="175" y="155" class="voice-svg-node-name" text-anchor="middle">Caller</text>
@@ -43,11 +42,11 @@
     sequence: {
       className: "voice-option-slide",
       html: `
-        <div class="section-heading"><p class="eyebrow">CONTINUOUS VOICE</p><h2 id="dual-voice-title">Keep talking <span>while work runs.</span></h2></div>
+        <div class="section-heading"><p class="eyebrow">CONTINUOUS VOICE · IN ACTION</p><h2 id="dual-voice-title">Keep talking <span>while work runs.</span></h2></div>
         <svg class="voice-option-diagram" viewBox="0 0 1280 500" role="img" aria-labelledby="voice-sequence-title voice-sequence-desc">
           <title id="voice-sequence-title">An appointment search continues while the caller adds a constraint.</title>
           <desc id="voice-sequence-desc">The caller asks for a Tuesday appointment. The voice model delegates an availability search. While the model says it will check, it listens to the caller adding after 3pm. It updates the delegated request. Tools return 3:30pm availability, which the reasoner sends to the voice model. The model asks whether to book it. No booking has been made.</desc>
-          ${markers}
+          ${markers("voice-sequence")}
           <text x="140" y="30" class="voice-svg-lane" text-anchor="middle">Caller</text>
           <text x="480" y="30" class="voice-svg-lane cyan" text-anchor="middle">Voice model</text>
           <text x="820" y="30" class="voice-svg-lane violet" text-anchor="middle">Reasoner</text>
