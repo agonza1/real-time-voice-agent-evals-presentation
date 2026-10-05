@@ -43,7 +43,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
       <div class="story-layout">
         <figure class="story-photo">
           <img src="https://raw.githubusercontent.com/agonza1/agentic-contact-center/36f9cf3fb92843af516f8a8e09ea4cf0f4c52fc9/assets/cluecon/alberto-echo-show-prototype.jpg" alt="Alberto using his Echo Show voice assistant prototype" loading="eager" decoding="async" referrerpolicy="no-referrer">
-          <figcaption>2017 · My Echo Show prototype <a href="https://github.com/agonza1/agentic-contact-center/blob/36f9cf3fb92843af516f8a8e09ea4cf0f4c52fc9/assets/cluecon/alberto-echo-show-prototype.jpg" target="_blank" rel="noopener noreferrer">ClueCon photo ↗</a></figcaption>
+          <figcaption>2017 · My Echo Show prototype <a href="https://github.com/agonza1/agentic-contact-center/blob/36f9cf3fb92843af516f8a8e09ea4cf0f4c52fc9/assets/cluecon/alberto-echo-show-prototype.jpg" target="_blank" rel="noopener noreferrer">Original prototype photo ↗</a></figcaption>
         </figure>
         <ol class="story-arc" aria-label="From voice commands to production evaluation">
           <li><p class="story-era"><span>01</span> 2017 · ECHO SHOW</p><h3>“Can it understand me?”</h3><p>It worked—with the exact phrases I anticipated.</p></li>
@@ -51,7 +51,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
           <li class="story-now"><p class="story-era"><span>03</span> PRODUCTION · EVALUATION</p><h3>“Does it still work?”</h3><p>Models change. Callers interrupt. Tools time out.</p></li>
         </ol>
       </div>
-      <div class="story-bridge"><p><span>AT CLUECON</span><strong>Build the controls.</strong></p><span class="story-arrow" aria-hidden="true">→</span><p><span>TODAY · ConversationAgentEvals</span><strong>Test that they hold as the system changes.</strong></p></div>
+      <div class="story-bridge"><p><span>RUNTIME CONTROL</span><strong>Build the controls.</strong></p><span class="story-arrow" aria-hidden="true">→</span><p><span>EVALUATION · ConversationAgentEvals</span><strong>Test that they hold as the system changes.</strong></p></div>
     `
   },
   {

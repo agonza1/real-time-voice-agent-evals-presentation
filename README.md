@@ -18,15 +18,15 @@ Every push to `main` is validated and deployed automatically through GitHub Acti
 
 ## Opening and closing
 
-The new story slide briefly revisits Alberto’s 2017 Echo Show origin, then advances
-from ClueCon’s runtime-control question to this talk’s evaluation question:
+The story slide briefly revisits Alberto’s 2017 Echo Show origin, then advances
+from runtime controls to the evaluation question:
 **How do we know the system still works when it changes?**
 
 The closing is about **production readiness as a systems property**, not completing
 a demo. The interactive experiments remain explicitly labeled as teaching fixtures.
 
-[Opening and closing speaker notes](docs/speaker-notes.md) include a short callback
-for returning ClueCon attendees and a self-contained story for new listeners.
+[Opening and closing speaker notes](docs/speaker-notes.md) include a self-contained
+story for the Fall '26 audience.
 
 The same notes include a 25-minute rehearsal route through all 19 slides, with five minutes reserved for Q&A in the 30-minute slot.
 

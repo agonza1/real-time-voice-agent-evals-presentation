@@ -162,7 +162,7 @@ const localAssets = [
   assert.match(p3, /SYNTHETIC COHORTS/);
 });
 
- test("the personal story follows the title and advances the ClueCon narrative", async () => {
+ test("the personal story follows the title and connects runtime controls to evaluation", async () => {
   const scope = {};
   new Function("window", await readRepositoryFile("slides/part-1.js"))(scope);
   const slides = scope.VOICE_EVALS_SLIDES_PART_1;
@@ -171,14 +171,14 @@ const localAssets = [
   assert.match(story, /2017 · ECHO SHOW/);
   assert.match(story, /exact phrases/);
   assert.match(story, /OPEN-ENDED VOICE · WEBRTC/);
-  assert.match(story, /AT CLUECON/);
+  assert.match(story, /RUNTIME CONTROL/);
   assert.match(story, /Test that they hold as the system changes/);
   assert.match(story, /ConversationAgentEvals/);
   assert.match(slides[0].html, /href="#story">Start the presentation/);
   assert.match(await readRepositoryFile("index.html"), /href="#story">Story/);
   const notes = await readRepositoryFile("docs/speaker-notes.md");
-  assert.match(notes, /Some of you heard the beginning of this story at ClueCon/);
-  assert.match(notes, /not a transcript of the ClueCon recording/);
+  assert.doesNotMatch(story.replace(/(?:src|href)="[^"]*"/g, ""), /cluecon/i);
+  assert.doesNotMatch(notes, /cluecon/i);
 });
 
  test("the closing concerns production readiness rather than demo completion", async () => {

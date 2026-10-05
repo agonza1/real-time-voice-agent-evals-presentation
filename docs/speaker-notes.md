@@ -1,6 +1,6 @@
 # Speaker notes — Fall '26 Voice and Conversations on the Net
 
-These are new speaker notes adapted from Alberto’s previously shared first-voice-AI story. They are not a transcript of the ClueCon recording. No customer incidents or production results have been added.
+These speaker notes tell Alberto’s first-voice-AI story for the Fall '26 audience. No customer incidents or production results have been added.
 
 ## Title slide — orient the audience
 
@@ -8,9 +8,7 @@ These are new speaker notes adapted from Alberto’s previously shared first-voi
 
 Keep the Echo Show story on the next slide rather than revealing it over the title.
 
-## Story slide — same origin, next engineering question
-
-Some of you heard the beginning of this story at ClueCon.
+## Story slide — the engineering question evolved
 
 In 2017, I built a voice assistant for the Echo Show. It could trigger impressive actions—but only when people used the phrases I had anticipated. The human had to adapt to the system.
 
@@ -18,7 +16,7 @@ Years later, putting an open-ended language model on a WebRTC call felt like mag
 
 But that changed the question. It was no longer just, “Can it understand me?” It became, “Can we keep the whole system under control when someone interrupts or a tool times out?”
 
-At ClueCon, I focused on the architecture behind those controls. Today is the next chapter: how do we know they still work when the model, network, or workflow changes?
+Building those controls leads to the next question: how do we know they still work when the model, network, or workflow changes?
 
 That is the question behind ConversationAgentEvals: testing the complete interaction, inspecting the evidence, and deciding whether the next version is ready for production.
 
