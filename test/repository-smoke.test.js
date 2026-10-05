@@ -37,7 +37,7 @@ const localAssets = [
  test("the README documents the canonical site and local server", async () => {
   const readme = await readRepositoryFile("README.md");
   assert.match(readme, /\*\*https:\/\/agonza1\.github\.io\/real-time-voice-agent-evals-presentation\/\*\*/);
-  assert.match(readme, /```bash\npython3 -m http\.server 8080\n```/);
+  assert.match(readme, /```bash\r?\npython3 -m http\.server 8080\r?\n```/);
   assert.match(readme, /No framework, build tool, package install, or external font dependency/);
 });
 

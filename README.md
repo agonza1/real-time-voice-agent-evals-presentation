@@ -2,7 +2,7 @@
 
 ## Building and Using an Open-Source Evaluation Workbench with vCon
 
-A clean, self-contained HTML/CSS/JavaScript presentation for VON Evolution 2026.
+A clean, self-contained HTML/CSS/JavaScript presentation for Fall '26 Voice and Conversations on the Net.
 
 The presentation argues that a production voice agent must be evaluated as a complete real-time system—not only as an AI model or final transcript. It connects conversation experience, speech boundaries, agent execution, tool evidence, authoritative business state, and portable vCon artifacts to the open-source [ConversationAgentEvals](https://github.com/agonza1/ConversationAgentEvals) workbench.
 
@@ -27,6 +27,8 @@ a demo. The interactive experiments remain explicitly labeled as teaching fixtur
 
 [Opening and closing speaker notes](docs/speaker-notes.md) include a short callback
 for returning ClueCon attendees and a self-contained story for new listeners.
+
+The same notes include a 25-minute rehearsal route through all 19 slides, with five minutes reserved for Q&A in the 30-minute slot.
 
 ## Features
 

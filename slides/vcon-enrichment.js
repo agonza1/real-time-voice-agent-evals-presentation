@@ -5,8 +5,8 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
     html: `
       <div class="section-heading vcon-enrichment-heading">
         <p class="eyebrow">CAE-ALIGNED EXCERPT</p>
-        <h2 id="vcon-enrichment-title">Illustrative vCon enrichment for a <span>voice-agent evaluation</span></h2>
-        <p>A deliberately abbreviated pseudo-JSON view. Hover, focus, or click a section to magnify the fields that matter.</p>
+        <h2 id="vcon-enrichment-title">Voice-agent evidence <span>inside vCon</span></h2>
+        <p>Illustrative pseudo-JSON. Select a section to magnify its fields.</p>
       </div>
 
       <div class="vcon-json-layout" data-json-explorer data-json-focus="core">

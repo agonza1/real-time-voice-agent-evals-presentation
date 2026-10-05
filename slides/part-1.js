@@ -5,7 +5,8 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     html: `
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">VON EVOLUTION · ATLANTA · OCTOBER 15, 2026</p>
+          <p class="eyebrow">FALL '26 · VOICE AND CONVERSATIONS ON THE NET</p>
+          <p class="hero-event">ATLANTA · OCTOBER 15, 2026</p>
           <h1 id="intro-title">Evaluating Real-Time Voice Agents <span>Beyond AI Models</span></h1>
           <p class="hero-subtitle">An <strong>open-source evaluation workbench</strong> with vCon evidence.</p>
           <div class="hero-meta">
