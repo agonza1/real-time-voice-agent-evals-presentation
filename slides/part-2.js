@@ -86,7 +86,7 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
     className: "demo-slide",
     html: `
 <div class="section-heading">
-        <p class="eyebrow">FAILURE-PATH EXPERIMENT</p>
+        <p class="eyebrow">APPENDIX · FAILURE-PATH EXPERIMENT</p>
         <h2 id="demo-title">When can the agent <span>confirm completion?</span></h2>
         <p>Lose the acknowledgment, then reconcile the same operation.</p>
       </div>

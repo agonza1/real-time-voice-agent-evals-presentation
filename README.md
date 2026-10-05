@@ -28,7 +28,7 @@ a demo. The interactive experiments remain explicitly labeled as teaching fixtur
 [Opening and closing speaker notes](docs/speaker-notes.md) include a self-contained
 story for the Fall '26 audience.
 
-The same notes include a 25-minute rehearsal route through 17 main slides, with five minutes reserved for Q&A in the 30-minute slot. The vCon JSON explorer and references are two optional appendix slides.
+The same notes include a 20-minute rehearsal route through 16 main slides, with ten minutes reserved for Q&A in the 30-minute slot. The vCon JSON explorer, references, and lost-ack experiment are three optional appendix slides.
 
 ## Features
 
@@ -98,13 +98,13 @@ MIT
 ## Engineering experiments (presentation fixtures)
 
 The engineering sections, vCon JSON magnifier, and visual system are preserved.
-A personal story, a visual project overview, and a continuous-voice sequence lead into the evaluation workflow. The route has 17 main slides and two appendix slides. Forward navigation stops at the closing slide; use its links to open the JSON explorer or references.
+A personal story, a visual project overview, and a continuous-voice sequence lead into the evaluation workflow. The route has 16 main slides and three appendix slides. Forward navigation stops at the closing slide; use its links to open the JSON explorer, references, or lost-ack experiment. The main sequence goes directly from vCon to the outcome matrix and release review.
 The focused additions are:
 
 - **Timeline:** switch between complete-request and aggressive endpointing traces.
   Timings are synthetic and share one clock. Receiver frames are not physical
   speaker playout; negative delay means a response before the caller finished.
-- **Lost-acknowledgment experiment:** follow operation evidence → caller response → evaluation. The default action commits while its acknowledgment is lost. Checking the original operation establishes evidence before confirmation. The completion-action gate defaults ON. It controls
+- **Lost-acknowledgment experiment (appendix only):** follow operation evidence → caller response → evaluation. The default action commits while its acknowledgment is lost. Checking the original operation establishes evidence before confirmation. The completion-action gate defaults ON. It controls
   the structured action before fixed demonstration speech reaches TTS; it is not
   a keyword filter or a general natural-language safety guarantee. Deliberate
   bypass exposes false/unsupported confirmation. Lost acknowledgments preserve

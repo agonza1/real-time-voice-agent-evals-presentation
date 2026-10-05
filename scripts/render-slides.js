@@ -11,8 +11,8 @@
     throw new Error("Presentation slide data did not load correctly.");
   }
 
-  const main = [...part1, ...part2, ...part3.filter((slide) => slide.id !== "standards")];
-  const appendix = [...enrichment, ...part3.filter((slide) => slide.id === "standards")]
+  const main = [...part1, ...part2.filter((slide) => slide.id !== "demo"), ...part3.filter((slide) => slide.id !== "standards")];
+  const appendix = [...enrichment, ...part3.filter((slide) => slide.id === "standards"), ...part2.filter((slide) => slide.id === "demo")]
     .map((slide) => ({ ...slide, appendix: true }));
   const slides = [...main, ...appendix];
   const deck = document.getElementById("deck");

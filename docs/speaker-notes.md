@@ -53,7 +53,7 @@ Production readiness is a systems property.
 
 ## 30-minute stage route
 
-Plan for 25 minutes of presentation and five minutes of Q&A. There are 17 main slides, followed by two optional appendix slides. The route takes 22:15, leaving 2:45 for transitions or demo variation. Do not narrate every field or open every disclosure.
+Plan for about 20 minutes of presentation and ten minutes of Q&A. There are 16 main slides, followed by three optional appendix slides. The main route takes 19:15, leaving 0:45 for transitions. The lost-ack experiment is available for Q&A. Do not narrate every field or open every disclosure.
 
 | Slide | Time | Finish by | Point and stage action |
 | --- | --- | --- | --- |
@@ -69,15 +69,14 @@ Plan for 25 minutes of presentation and five minutes of Q&A. There are 17 main s
 | 10 · Workbench | 2:00 | 11:45 | Introduce the Conversation Agent Evaluation (CAE) tool through Run → Evaluate → Compare, then explain framework roles. New rubric: re-score; changed agent: run again. |
 | 11 · Contract | 1:30 | 13:15 | Define required actions and expected state. Unsupported completion is a critical violation regardless of the weighted score. |
 | 12 · vCon | 1:00 | 14:15 | The container carries observations and provenance. It does not supply a verdict. |
-| 13 · Lost-ack experiment | 3:00 | 17:15 | Follow operation evidence → caller response → evaluation. Check the original operation and show when confirmation becomes supported. |
-| 14 · Outcomes | 1:00 | 18:15 | Read the two axes: business state and safe response. Unknown state stays outside this verified-state matrix. |
-| 15 · Release review | 2:00 | 20:15 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
-| 16 · Boundary | 1:00 | 21:15 | Explain supported capabilities and the roadmap. Browser fixtures do not establish live telephony or production behavior. |
-| 17 · Close | 1:00 | 22:15 | Return to the opening question. Define one important workflow contract, test its failure paths, and retain the evidence. |
-| Delivery buffer | 2:45 | 25:00 | Allow room for transitions and interaction variation. |
-| Q&A | 5:00 | 30:00 | Leave the closing slide and repository links visible. |
+| 13 · Outcomes | 1:00 | 15:15 | Read the two axes: business state and safe response. Unknown state stays outside this verified-state matrix. |
+| 14 · Release review | 2:00 | 17:15 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
+| 15 · Boundary | 1:00 | 18:15 | Explain supported capabilities and the roadmap. Browser fixtures do not establish live telephony or production behavior. |
+| 16 · Close | 1:00 | 19:15 | Return to the opening question. Define one important workflow contract, test its failure paths, and retain the evidence. |
+| Delivery buffer | 0:45 | 20:00 | Allow room for transitions. |
+| Q&A | 10:00 | 30:00 | Leave the closing slide visible; open an appendix when it answers a question. |
 
-Appendix A1 contains the vCon JSON explorer; A2 contains standards and research. Open them from the closing links only when useful for a question. Normal forward navigation stops at the closing slide. End always returns to the closing slide; Home returns to the title.
+Appendix A1 contains the vCon JSON explorer; A2 contains standards and research; A3 contains the lost-ack experiment. Open them from the closing links only when useful for a question. Normal forward navigation stops at the closing slide. End always returns to the closing slide; Home returns to the title.
 
 ## Bridges between slides
 
@@ -89,17 +88,16 @@ Appendix A1 contains the vCon JSON explorer; A2 contains standards and research.
 - **9 → 10:** “Now we need a repeatable workflow to collect these observations and compare changes.”
 - **10 → 11:** “Before judging a run, define what success and a critical violation mean for that scenario.”
 - **11 → 12:** “To check the contract later, retain the media, tool trace, and state evidence together.”
-- **12 → 13:** “Now change the failure: the action commits, but its acknowledgment never arrives. What can the agent safely say?”
-- **13 → 14:** “The task result and the safety of the response are separate verdicts.”
-- **14 → 15:** “Apply those verdicts across the same scenarios before approving a new version.”
-- **15 → 16:** “These release decisions depend on evidence. Here is what the tool supports today and what still needs building.”
-- **16 → 17:** “Start with one workflow, keep its evidence, and repeat the test when the system changes.”
+- **12 → 13:** “The retained evidence lets us judge two things separately: did the task finish, and was the response supported?”
+- **13 → 14:** “Apply those verdicts across the same scenarios before approving a new version.”
+- **14 → 15:** “These release decisions depend on evidence. Here is what the tool supports today and what still needs building.”
+- **15 → 16:** “Start with one workflow, keep its evidence, and repeat the test when the system changes.”
 
-## Outcome matrix — slide 14
+## Outcome matrix — slide 13
 
 The rows describe verified business state; the columns describe whether speech was supported at the time it was emitted. A task can finish while the agent confirms it without sufficient evidence. That claim might be true by luck, but the confirmation remains unsafe. Conversely, a truthful expression of uncertainty can be safe even if the backend already committed.
 
-An unknown state is not a failed task. Keep it unknown until operation-matched reconciliation establishes the result. The matrix adds a classification lens after the demo rather than repeating its operation ledger.
+An unknown state is not a failed task. Keep it unknown until operation-matched reconciliation establishes the result. The matrix applies the contract to separate business state from response safety; the release review then uses those verdicts across matched scenarios.
 
 ## Continuous voice — slides 6 and 7
 
@@ -143,7 +141,7 @@ Implementation checked against ConversationAgentEvals commit `31671ee6a5d12e8e8a
 - [ASSERT integration boundary](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/docs/assert-boundary-and-schemas.md): local deterministic evaluation and explicit upstream semantic judge.
 - [Web dependencies](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/apps/web/package.json): Next.js and React.
 
-## Lost-ack experiment — three minutes
+## Appendix A3 · Lost-ack experiment — optional three-minute Q&A demonstration
 
 1. Begin in the default **Committed + acknowledgment lost** scenario. The backend committed, but the agent knows only that the tool timed out. Point to the unknown verified state, uncertainty in the caller response, and passing check for no unsupported completion. A passing protection check does not establish task completion.
 2. Click **Check operation result**. Readback for the original operation establishes cancellation before confirmation is permitted. The caller response changes and the verdict becomes verified success. This is the new evidence the initial timeout did not provide.
@@ -151,7 +149,7 @@ Implementation checked against ConversationAgentEvals commit `31671ee6a5d12e8e8a
 
 Use **Explore other failures and inspect the evidence** for Q&A. The backend fixture truth, proposed completion claim, operation ledger, trace, and individual assertions are available there. Disabling the output gate in the lost-ack case produces an unsupported confirmation even though the action really happened. Selecting rejected/timeout and bypassing the gate reproduces the opening false-success case. Retry and interruption controls preserve their original fixture behavior. Restore the default with Reset and close the disclosure after exploration.
 
-This slide demonstrates evidence changing over time and checks the ordering of proof and speech. The opening slide establishes the problem, the contract defines requirements, and the next matrix classifies business state and response safety. The experiment does not demonstrate shipped CAE runtime protection or a live backend.
+This optional appendix demonstrates evidence changing over time and checks the ordering of proof and speech. The main presentation already establishes the problem, contract, and outcome matrix. Use the experiment if a question calls for a concrete reconciliation example. It does not demonstrate shipped CAE runtime protection or a live backend.
 
 Transition: “Now we can distinguish a failed task from a failed protection. Those need different release decisions.”
 
@@ -163,6 +161,6 @@ Before going on stage, load the original Echo Show photo and leave disclosures c
 
 If an interaction fails, explain its expected before/after result and move on.
 
-Check the clock after slides 8 (7:15), 10 (11:45), and 13 (17:15). If behind, shorten the framework explanation and use the delivery buffer. Preserve the lost-ack reconciliation, release decision, and closing; those carry the argument. Keep optional failure controls, the JSON explorer, and sources for Q&A.
+Check the clock after slides 8 (7:15), 10 (11:45), and 14 (17:15). If behind, shorten the framework explanation and use the delivery buffer. Preserve the outcome matrix, release decision, and closing. Keep the lost-ack experiment, JSON explorer, and sources for Q&A.
 
 The event name follows the [official Fall '26 conference site](https://www.vonevolution.com/). The October 15 talk date is retained from the existing deck.
