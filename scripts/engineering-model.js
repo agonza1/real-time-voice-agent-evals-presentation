@@ -23,24 +23,6 @@
       ]
     };
   }
-  function evidence(includeFinalState = true) {
-    return {
-      schema: "presentation-evidence/v1", provenance: "scripted-teaching-fixture",
-      run_id: "run-0247", operation_id: "op-247", execution: "complete",
-      evidence_status: includeFinalState ? "complete for shown checks" : "partial: final_state missing",
-      clocks: { type: "single synthetic monotonic timeline", unit: "ms" },
-      measurements: { speech_end_to_receiver_audio_ms: 1420, interruption_to_speech_stop_ms: 380 },
-      action_trace: [{ operation_id: "op-247", result: "timeout" }, { action: "output_gate", unsupported_confirmation: "blocked" }],
-      captured_output: "I could not confirm cancellation. I can connect you to a specialist.",
-      ...(includeFinalState ? { final_state: { operation_id: "op-247", subscription_status: "active", source: "authoritative readback (fixture)", observed_after_attempt: true } } : {}),
-      findings: {
-        business_outcome: includeFinalState ? "verified_not_completed" : "unverified",
-        output_safety: "safe output observed in this fixture; not proof of all behavior",
-        reason: includeFinalState ? "Readback for this operation confirms the subscription stayed active." : "A timeout does not establish the final state. No business verdict without its required evidence."
-      },
-      note: "Teaching JSON, not a conformant vCon export or an actual CAE run."
-    };
-  }
   function controlRun({ scenario = "failure", gate = true, reconciled = false, retries = 0, interrupted = false, proofOperationId = "op-247" } = {}) {
     choice(scenario, ["success", "failure", "lost"]);
     if (!Number.isSafeInteger(retries) || retries < 0 || retries > 20) throw new TypeError("Retries must be an integer in [0, 20].");
@@ -81,7 +63,7 @@
       tone: unsupported ? "fail" : (permitted ? "pass" : "warn"), events,
       explanation: unsupported ? "This is a preventable runtime-control violation. The evaluator detects it; the evaluator did not prevent the speech." :
         interrupted ? "Speech cancellation and transaction cancellation are separate. Reconcile the operation, but do not revive the superseded response." :
-        knowledge === "unknown" ? "The backend committed, but the agent has no verified acknowledgment or readback yet. The gate preserves uncertainty until reconciliation." :
+        knowledge === "unknown" ? "The cancellation happened in this fixture, but the agent has no confirmation. Missing proof means unknown—not failure. Check the account before claiming success." :
         permitted ? "Evidence matches this operation before the completion claim reaches TTS. The evaluator can verify that ordering." :
         "The protected system blocks the model’s unsupported confirmation and emits uncertainty. The task is incomplete; sampled output behavior is safe.",
       checks: { claim_supported_before_speech: !unsupported, superseded_response_suppressed: !interrupted || !emittedCompletion, at_most_one_effect: true }
@@ -98,5 +80,5 @@
     if (data.unanswered !== 0) failures.push("answered-turn requirement");
     return { ...data, failures, decision: failures.length ? "HOLD" : "MEETS THIS TEST GATE", explanation: failures.length ? "Lower latency does not compensate for cutting callers off or canceling at the wrong time." : "This illustrative cohort meets the configured requirements. It is not a guarantee of zero failures in production." };
   }
-  root.VoiceEvalEngineering = Object.freeze({ latency, evidence, controlRun, releaseReview });
+  root.VoiceEvalEngineering = Object.freeze({ latency, controlRun, releaseReview });
 })(globalThis);

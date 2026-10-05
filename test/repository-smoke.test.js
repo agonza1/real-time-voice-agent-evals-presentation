@@ -59,8 +59,8 @@ const localAssets = [
   assert.match(html, /id="helpDialog"/);
   assert.match(html, /styles\/vcon-enrichment\.css/);
   assert.match(html, /slides\/vcon-enrichment\.js/);
-  assert.match(html, /id="totalSlides">19<\/span>/);
-  assert.match(html, /id="presentTotal">19<\/span>/);
+  assert.match(html, /id="totalSlides">18<\/span>/);
+  assert.match(html, /id="presentTotal">18<\/span>/);
   assert.match(html, /scripts\/render-slides\.js/);
   assert.match(html, /scripts\/app\.js/);
   assert.doesNotMatch(html, /<script[^>]+src=["']https?:\/\//i);
@@ -71,7 +71,7 @@ const localAssets = [
   }
 });
 
- test("the slide data defines a complete 19-section narrative", async () => {
+ test("the slide data defines a complete 18-section narrative", async () => {
   const parts = await Promise.all([
     readRepositoryFile("slides/part-1.js"),
     readRepositoryFile("slides/part-2.js"),
@@ -79,8 +79,8 @@ const localAssets = [
     readRepositoryFile("slides/part-3.js"),
   ]);
   const ids = parts.flatMap((content) => [...content.matchAll(/\bid:\s*"([^"]+)"/g)].map((match) => match[1]));
-  assert.equal(ids.length, 19);
-  assert.equal(new Set(ids).size, 19);
+  assert.equal(ids.length, 18);
+  assert.equal(new Set(ids).size, 18);
   for (const required of ["intro", "story", "problem", "system", "dual-voice", "layers", "timeline", "vcon", "vcon-enrichment", "workbench", "contract", "demo", "comparison", "boundary", "standards", "close"]) {
     assert.ok(ids.includes(required), `missing required slide: ${required}`);
   }
@@ -157,7 +157,6 @@ const localAssets = [
   assert.doesNotMatch(p2 + p3, /what VON extends|VON ROADMAP|VON \/ NEXT/);
   assert.match(p2, /Runtime output gate enabled/);
   assert.match(p2, /id="runtimeGate" type="checkbox" checked/);
-  assert.match(p2, /Inspect evidence/);
   assert.match(p3, /SYNTHETIC COHORTS/);
 });
 

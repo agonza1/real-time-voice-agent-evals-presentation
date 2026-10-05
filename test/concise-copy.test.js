@@ -22,7 +22,6 @@ test('shorter copy retains evidence limitations and runtime controls', async () 
   assert.match(part1, /Receiver audio ≠ speaker playout/);
   assert.match(part2, /SCRIPTED FIXTURE · NOT LIVE SIP\/PSTN OR PRODUCTION MEDIA PROOF/);
   assert.match(part2, /id="runtimeGate" type="checkbox" checked/);
-  assert.match(part2, /not a conformant vCon export/);
   assert.match(part3, /Synthetic counts—not production results or guarantees/);
   assert.match(part3, /PLANNED IN THE TOOL/);
 });

@@ -10,15 +10,6 @@ test('latency comparison uses the same response pipeline and exposes premature r
   assert.equal(patient.receiveAfterCallerEnd,700); assert.equal(patient.premature,false);
   assert.throws(()=>m.latency('made-up'));
 });
-test('missing state removes only the unsupported conclusion, never fabricates failure', () => {
-  const full=m.evidence(true), partial=m.evidence(false);
-  assert.equal(full.findings.business_outcome,'verified_not_completed');
-  assert.equal(partial.findings.business_outcome,'unverified');
-  assert.equal(Object.hasOwn(partial,'final_state'),false);
-  assert.deepEqual(full.measurements,partial.measurements);
-  assert.deepEqual(full.action_trace,partial.action_trace);
-  assert.match(partial.note,/not a conformant vCon/);
-});
 test('default runtime control blocks false confirmation before TTS',()=>{
   const run=m.controlRun();
   assert.equal(run.verdict,'SAFE FAILURE'); assert.equal(run.unsupported,false);

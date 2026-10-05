@@ -40,7 +40,7 @@ Production readiness is a systems property.
 
 ## 30-minute stage route
 
-Plan for 25 minutes of presentation and five minutes of Q&A. The 19-slide route includes the new voice architecture slide. The time limits below include the interactions; do not narrate every field or open every disclosure.
+Plan for 25 minutes of presentation and five minutes of Q&A. The 18-slide route includes the new voice architecture slide. The time limits below include the interactions; do not narrate every field or open every disclosure.
 
 | Slide | Time | Finish by | Point and stage action |
 | --- | --- | --- | --- |
@@ -56,13 +56,12 @@ Plan for 25 minutes of presentation and five minutes of Q&A. The 19-slide route 
 | 10 · Workbench | 1:15 | 12:45 | Introduce the Conversation Agent Evaluation (CAE) tool, then explain FastAPI/Pydantic, Pipecat, and ASSERT through their roles in the workflow. |
 | 11 · Contract | 1:15 | 14:00 | Point to the forbidden completion claim and expected state. Distinguish the illustrative contract from planned extensions. |
 | 12 · Loop | 0:45 | 14:45 | A changed rubric can re-score saved evidence; a changed agent needs another run. |
-| 13 · Scorecard | 2:00 | 16:45 | Remove final-state evidence, observe the business result become unverified, then restore it. Timing and observed safe output remain supported. |
-| 14 · Runtime demo | 3:00 | 19:45 | Run the gate contrast and lost-ack reconciliation described below. |
-| 15 · Outcomes | 1:00 | 20:45 | Separate completed work, verified safe failure, and false success. Unknown is not failed. |
-| 16 · Release review | 1:30 | 22:15 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
-| 17 · Boundary | 1:00 | 23:15 | Explain supported evaluation tool capabilities and the roadmap. These browser fixtures do not establish live telephony or production behavior. |
-| 18 · Sources | 0:30 | 23:45 | Point to the linked standards and research. No bibliography recital. |
-| 19 · Close | 1:15 | 25:00 | Return to the opening question. Start with one important workflow, define its contract, test its failure paths, and retain the evidence. |
+| 13 · Runtime demo | 5:00 | 19:45 | Run the gate contrast and lost-ack reconciliation described below. |
+| 14 · Outcomes | 1:00 | 20:45 | Separate completed work, verified safe failure, and false success. Unknown is not failed. |
+| 15 · Release review | 1:30 | 22:15 | Compare Baseline with Aggressive endpointing. Lower p95 cannot compensate for failed critical gates. |
+| 16 · Boundary | 1:00 | 23:15 | Explain supported evaluation tool capabilities and the roadmap. These browser fixtures do not establish live telephony or production behavior. |
+| 17 · Sources | 0:30 | 23:45 | Point to the linked standards and research. No bibliography recital. |
+| 18 · Close | 1:15 | 25:00 | Return to the opening question. Start with one important workflow, define its contract, test its failure paths, and retain the evidence. |
 | Q&A | 5:00 | 30:00 | Leave the closing slide and repository links visible. |
 
 ## Continuous voice — slide 5
@@ -98,12 +97,12 @@ Implementation checked against ConversationAgentEvals commit `31671ee6a5d12e8e8a
 - [ASSERT integration boundary](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/docs/assert-boundary-and-schemas.md): local deterministic evaluation and explicit upstream semantic judge.
 - [Web dependencies](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/apps/web/package.json): Next.js and React.
 
-## Runtime demo — three minutes
+## Runtime demo — five minutes
 
 1. Start with **Rejected + timeout; readback confirms active** and the runtime output gate enabled. The model proposes a completion claim, but approved speech expresses uncertainty. This is an incomplete task with observed safe output.
 2. Disable the gate once. Point to **FALSE SUCCESS** and the active backend state. Evaluation detects this violation; the runtime gate prevents it. Re-enable the gate immediately.
-3. Select **Committed + acknowledgment lost**. The backend committed, but the agent cannot yet verify that fact. Keep the gate enabled and open **Advanced: reconcile, retry, or interrupt**.
-4. Click **Reconcile original operation**. Evidence matched to the operation ID supports confirmation. A timeout describes the observation, not the final business outcome.
+3. Select **Committed + acknowledgment lost**. The cancellation happened, but the agent cannot yet verify it. Explain: “Missing confirmation means we do not know—not that the cancellation failed.” Keep the gate enabled and open **Advanced: reconcile, retry, or interrupt**.
+4. Click **Reconcile original operation**. Evidence matched to the operation ID supports confirmation. A timeout describes what the agent observed. Checking the account establishes whether the requested action happened.
 5. Restore the rejected/timeout scenario, leave the gate enabled, and close the advanced disclosure before moving on. Reserve retry and interruption controls for Q&A.
 
 Transition: “Now we can distinguish a failed task from a failed protection. Those need different release decisions.”
@@ -116,6 +115,6 @@ Before going on stage, load the original Echo Show photo and leave disclosures c
 
 If an interaction fails, explain its expected before/after result and move on.
 
-Check the clock after slides 6 (6:30), 10 (12:45), and 14 (19:45). If behind, keep the JSON explorer on its default view, and omit lost-ack reconciliation. Preserve the gate contrast, release decision, and closing; those carry the argument.
+Check the clock after slides 6 (6:30), 10 (12:45), and 13 (19:45). If behind, keep the JSON explorer on its default view, and omit lost-ack reconciliation. Preserve the gate contrast, release decision, and closing; those carry the argument.
 
 The event name follows the [official Fall '26 conference site](https://www.vonevolution.com/). The October 15 talk date is retained from the existing deck.

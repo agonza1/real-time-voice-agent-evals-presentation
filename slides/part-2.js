@@ -107,38 +107,6 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
     `
   },
   {
-    id: "scorecard",
-    html: `
-<div class="section-heading">
-        <p class="eyebrow">LAYERED RESULT</p>
-        <h2 id="scorecard-title">A conclusion is only as strong<br><span>as its evidence.</span></h2>
-        <p>Remove state evidence. See which conclusions remain.</p>
-      </div>
-      <div class="eng-toolbar">
-        <label class="eng-switch"><input id="includeFinalState" type="checkbox" checked> Include authoritative final-state evidence</label>
-        <button type="button" id="inspectEvidence">Inspect evidence</button>
-        <span class="eng-label">ILLUSTRATIVE RUN · NOT A TOOL BENCHMARK RESULT</span>
-      </div>
-      <div id="evidenceStatus" class="eng-status-strip" aria-live="polite"></div>
-      <div class="scorecard">
-        <div class="scorecard-head"><span>RUN 0247 · OP-247 · TOOL TIMEOUT</span><b>EVIDENCE-SCOPED CHECKS</b></div>
-        <div class="metric-column">
-          <article><span>Conversation experience</span><div><b>Speech-end → receiver audio</b><strong>1.42 s</strong><i class="pass-pill">MEASURED</i></div><div><b>Interruption → speech stops</b><strong>380 ms</strong><i class="pass-pill">MEASURED</i></div></article>
-          <article><span>Runtime behavior</span><p>Gate blocked the claim. Captured output disclosed uncertainty and offered handoff.</p></article>
-        </div>
-        <div class="outcome-column" aria-live="polite">
-          <article><span>Business outcome</span><p id="scoreOutcome"></p></article>
-          <article><span>Supported conclusion</span><p id="scoreReason"></p></article>
-          <div class="classification"><b id="scoreVerdict"></b><strong>SAFE OUTPUT OBSERVED</strong></div>
-        </div>
-      </div>
-      <p class="takeaway">Missing evidence is <strong>not</strong> a pass—and not automatically a product failure.</p>
-      <dialog id="evidenceDialog" class="help-dialog eng-evidence-dialog" aria-labelledby="evidenceDialogTitle">
-        <form method="dialog"><button class="dialog-close" aria-label="Close evidence">×</button><h3 id="evidenceDialogTitle">What supports this conclusion?</h3><p>Teaching artifact · not a conformant vCon export.</p><pre id="evidenceJson"></pre><div class="eng-toolbar"><button type="button" id="downloadEvidence">Download JSON</button><a href="#vcon-enrichment" id="evidenceToVcon">Where this fits in vCon →</a></div></form>
-      </dialog>
-    `
-  },
-  {
     id: "demo",
     className: "demo-slide",
     html: `

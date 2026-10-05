@@ -28,7 +28,7 @@ a demo. The interactive experiments remain explicitly labeled as teaching fixtur
 [Opening and closing speaker notes](docs/speaker-notes.md) include a self-contained
 story for the Fall '26 audience.
 
-The same notes include a 25-minute rehearsal route through all 19 slides, with five minutes reserved for Q&A in the 30-minute slot.
+The same notes include a 25-minute rehearsal route through all 18 slides, with five minutes reserved for Q&A in the 30-minute slot.
 
 ## Features
 
@@ -98,15 +98,12 @@ MIT
 ## Engineering experiments (presentation fixtures)
 
 The engineering sections, vCon JSON magnifier, and visual system are preserved.
-A short personal story after the title and a talker–reasoner architecture slide bring the presentation to 19 slides.
+A short personal story after the title and a talker–reasoner architecture slide bring the presentation to 18 slides.
 The focused additions are:
 
 - **Timeline:** switch between complete-request and aggressive endpointing traces.
   Timings are synthetic and share one clock. Receiver frames are not physical
   speaker playout; negative delay means a response before the caller finished.
-- **Scorecard:** remove the final-state snapshot and inspect/export the teaching
-  JSON. Only unsupported business conclusions become unverified; captured timing
-  and safe-output observations remain. This JSON is not a conformant vCon export.
 - **Runtime protection:** the completion-action gate defaults ON. It controls
   the structured action before fixed demonstration speech reaches TTS; it is not
   a keyword filter or a general natural-language safety guarantee. Deliberate
@@ -125,6 +122,6 @@ regressions. The simplified workflow is **Run → Evaluate → Compare**.
 ### Tests
 
 `npm test` uses Node's built-in test runner with no dependencies. Tests cover
-measurement boundaries, evidence absence, protected/bypassed speech, lost-ack
+measurement boundaries, protected/bypassed speech, lost-ack
 reconciliation, wrong-operation evidence, idempotent retry fixtures, interrupted
 response generations, release gates, and preservation of the vCon explorer.

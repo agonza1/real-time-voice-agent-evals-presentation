@@ -33,26 +33,6 @@
   document.querySelectorAll("[data-endpoint]").forEach((b) => b.addEventListener("click", () => showLatency(b.dataset.endpoint)));
   showLatency("patient");
 
-  const snapshot = byId("includeFinalState");
-  function updateEvidence() {
-    const value = model.evidence(snapshot.checked);
-    const statuses = ["Execution: complete", `Evidence: ${snapshot.checked ? "complete for shown checks" : "partial"}`, `Business result: ${snapshot.checked ? "verified" : "unverified"}`];
-    byId("evidenceStatus").replaceChildren(...statuses.map((text) => { const span = document.createElement("span"); span.textContent = text; return span; }));
-    put("scoreOutcome", snapshot.checked ? "Authoritative readback for op-247: subscription still active. Cancellation not completed." : "Final-state snapshot absent. The tool timeout alone cannot tell us whether cancellation committed.");
-    put("scoreReason", value.findings.reason);
-    put("scoreVerdict", snapshot.checked ? "VERIFIED INCOMPLETE" : "BUSINESS UNVERIFIED");
-    put("evidenceJson", JSON.stringify(value, null, 2));
-  }
-  snapshot.addEventListener("change", updateEvidence);
-  byId("inspectEvidence").addEventListener("click", () => byId("evidenceDialog").showModal());
-  byId("evidenceToVcon").addEventListener("click", () => byId("evidenceDialog").close());
-  byId("downloadEvidence").addEventListener("click", () => {
-    const url = URL.createObjectURL(new Blob([JSON.stringify(model.evidence(snapshot.checked), null, 2)], { type: "application/json" }));
-    const anchor = document.createElement("a"); anchor.href = url; anchor.download = "presentation-evidence-run-0247.json";
-    document.body.append(anchor); anchor.click(); anchor.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
-  });
-  updateEvidence();
-
   let reconciled = false, retries = 0;
   function updateControl() {
     const scenario = byId("operationScenario").value;
