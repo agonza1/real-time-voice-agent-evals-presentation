@@ -69,7 +69,7 @@ Plan for about 20 minutes of presentation and ten minutes of Q&A. There are 16 m
 | 8 · Four layers | 1:15 | 7:15 | Name each dimension. A good conversation score cannot excuse a wrong business action. |
 | 9 · Timeline | 2:30 | 9:45 | Switch to aggressive endpointing, then restore the full-request trace. Faster output loses the billing-period qualifier. |
 | 10 · Workbench | 2:00 | 11:45 | Introduce the Conversation Agent Evaluation (CAE) tool through Run → Evaluate → Compare, then explain framework roles. New rubric: re-score; changed agent: run again. |
-| 11 · Contract | 1:30 | 13:15 | Define required actions and expected state. Unsupported completion is a critical violation regardless of the weighted score. |
+| 11 · Contract | 1:30 | 13:15 | Read the caller’s end-of-period qualifier. Define required behavior, forbidden behavior, and proof: renewal disabled while service stays active until the agreed date. |
 | 12 · vCon | 1:00 | 14:15 | The container carries observations and provenance. It does not supply a verdict. |
 | 13 · Outcomes | 1:00 | 15:15 | Read the two axes: business state and safe response. Unknown state stays outside this verified-state matrix. |
 | 14 · Release review | 2:00 | 17:15 | Compare current settings with a proposed shorter wait before answering. It responds faster but fails caller-finish and cancellation-timing requirements. |
@@ -79,6 +79,14 @@ Plan for about 20 minutes of presentation and ten minutes of Q&A. There are 16 m
 | Q&A | 10:00 | 30:00 | Leave the closing slide visible; open an appendix when it answers a question. |
 
 Appendix A1 contains the vCon JSON explorer; A2 contains standards and research; A3 contains the lost-ack experiment. Open them from the closing links only when useful for a question. Normal forward navigation stops at the closing slide. End always returns to the closing slide; Home returns to the title.
+
+## Scenario contract — slide 11
+
+“What would make this call pass? The caller wants cancellation at the end of the billing period. Verify identity and agree on the effective date. Canceling immediately violates that request, even if the response sounds fluent. Proof means checking that renewal is disabled and service remains active until the agreed date, using the tool result and state readback for this request.”
+
+These are example evaluation requirements, not generated ASSERT output or an executable configuration. Explicitly configured critical checks can block approval regardless of a weighted score. A description alone does not establish that a rule is enforced: CAE’s simple scenario creation currently does not extract forbidden actions from prose. The evaluation-design editor is a separate authoring path; its generated drafts require review. Keep that product distinction for Q&A.
+
+Transition: “We have defined what to check. Now we need to preserve the conversation, tool result, and state evidence so we can actually check it.”
 
 ## Bridges between slides
 
@@ -109,6 +117,16 @@ Both diagrams are in the main route: the two-path architecture follows the conve
 - `sequence`: follow the appointment search from top to bottom. The cyan overlap highlights the caller adding “after 3pm” while the voice model speaks. The active task must incorporate that new constraint. Availability returns to the same conversation; “Shall I book it?” does not claim that a booking happened.
 
 Both diagrams are illustrative. An implementation must update or supersede background work after a changed request and suppress stale results. Keep the vendor explanation and STT → LLM → TTS alternative in these notes rather than adding a second spoken pipeline to the diagram.
+
+### Framework mapping behind the small labels
+
+The LiveKit/Pipecat badges on slide 6 mean direct GPT-Live integrations, not that every model in either framework is full duplex. GPT-Live owns simultaneous listening and speaking; the adapters connect media and asynchronous delegation. Both support an OpenAI-hosted Responses reasoner or a backend controlled by your application. The backend returns text/context for the voice model to communicate, rather than a second spoken pipeline.
+
+- [LiveKit GPT-Live plugin](https://docs.livekit.io/agents/models/realtime/plugins/gpt-live/): `GPTLiveModel` runs within `AgentSession`. Responses delegation runs the configured text model; custom `@function_tool` handlers execute in the agent process. Client delegation emits `delegation_created`; your application derives the request from chat context plus `pending_transcript`, runs its own workflow, and returns commentary or thinking with the delegation ID. Client mode does not execute registered `@function_tool` methods automatically.
+- [Pipecat GPT-Live service](https://docs.pipecat.ai/api-reference/server/services/s2s/openai-live): `OpenAILiveLLMService` streams audio and supports `ResponsesDelegation` or `ClientDelegation`. The latter uses a `BackendLLMWorker` with its own LLM, context, and tools. Its outputs become commentary or silent context according to `prefers_spoken`; that flag is a hint rather than a guarantee of exact spoken wording.
+- [OpenAI delegation and task-state guidance](https://developers.openai.com/api/docs/guides/live-delegation): application logic owns task state, permission checks, and verified results. The delegation event contains metadata rather than a structured task request. Speech interruption leaves backend work running. In slide 7, “App updates: after 3pm” therefore represents application behavior: update or supersede the active search and ignore stale results. Framework support does not supply that business rule automatically.
+
+Checked October 6, 2026. Running either integration requires GPT-Live account access. Keep SDK class names and access details for Q&A.
 
 “Some systems now keep a native speech model listening while it speaks, and delegate deeper work to another model. The caller still hears one conversation. What happens if they interrupt while that background work is running?”
 
