@@ -22,33 +22,6 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
     `
   },
   {
-    id: "contract",
-    html: `
-      <div class="section-heading">
-        <p class="eyebrow">SCENARIO CONTRACT</p>
-        <h2 id="contract-title">What would make <span>this call pass?</span></h2>
-        <p>Define the expected behavior before testing.</p>
-      </div>
-      <div class="contract-request"><span>CALLER REQUEST</span><blockquote>“Cancel my subscription <strong>at the end of this billing period.</strong>”</blockquote></div>
-      <div class="contract-criteria" aria-label="Example evaluation requirements">
-        <article class="contract-required">
-          <svg class="contract-symbol" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="m15 24 6 6 12-13"/></svg>
-          <h3>Required</h3><p>Verify identity.</p><p>Confirm the effective date.</p>
-        </article>
-        <article class="contract-forbidden">
-          <svg class="contract-symbol" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="m11 11 26 26"/></svg>
-          <h3>Forbidden</h3><p>Cancel immediately.</p><p>Claim completion without proof.</p>
-        </article>
-        <article class="contract-proof">
-          <svg class="contract-symbol" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M13 6h22v36l-5-3-6 3-6-3-5 3V6Z"/><path d="M19 15h10M19 22h10m-10 9 4 4 7-8"/></svg>
-          <h3>Proof</h3><p>Renewal disabled.</p><p>Service active until the agreed date.</p>
-        </article>
-      </div>
-      <p class="takeaway contract-verdict">A fluent response <strong>can still fail the test.</strong></p>
-      <p class="fixture-label">EXAMPLE EVALUATION REQUIREMENTS</p>
-    `
-  },
-  {
     id: "vcon",
     html: `
       <div class="vcon-layout">

@@ -34,17 +34,35 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
     `
   },
   {
+    id: "start",
+    html: `
+      <div class="section-heading">
+        <p class="eyebrow">YOUR FIRST EVALUATION</p>
+        <h2 id="start-title">Start with one <span>important workflow.</span></h2>
+        <p>Pick a failure that matters. Make it repeatable.</p>
+      </div>
+      <ol class="start-steps">
+        <li><span>01</span><h3>Choose the workflow</h3><p>Cancel at period end.<br>Change an address.<br>Transfer to a human.</p><small>Start with one costly failure.</small></li>
+        <li><span>02</span><h3>Write the checks</h3><p>What must happen?<br>What must never happen?<br>What state proves success?</p><small>Declare the rules explicitly.</small></li>
+        <li><span>03</span><h3>Exercise the failures</h3><p>Add a pause.<br>Interrupt or correct.<br>Make a tool unavailable.</p><small>Repeat across representative calls.</small></li>
+        <li><span>04</span><h3>Inspect and repeat</h3><p>Read the findings.<br>Check the supporting evidence.<br>Fix and re-run.</p><small>Compare the same cases after changes.</small></li>
+      </ol>
+      <div class="start-action"><strong>Begin with a small test set you can explain.</strong><a href="https://github.com/agonza1/ConversationAgentEvals" target="_blank" rel="noopener noreferrer">Open the conversation evaluator ↗</a></div>
+      <p class="micro-note">Evaluation checklist · use controlled test targets or imported evidence for failure cases.</p>
+    `
+  },
+  {
     id: "boundary",
     html: `
       <div class="section-heading">
-        <p class="eyebrow">ENGINEERING BOUNDARY</p>
+        <p class="eyebrow">APPENDIX · CAPABILITIES + ROADMAP</p>
         <h2 id="boundary-title">What the evaluation tool supports—<span>and what comes next</span></h2>
         <p>Product capabilities ≠ teaching fixtures.</p>
       </div>
       <div class="boundary-grid">
         <article class="shipped-card">
           <div class="boundary-head"><span>EVALUATION TOOL TODAY</span><b>SUPPORTED</b></div>
-          <ul class="clean-list"><li>Supported target execution or imported evidence</li><li>Normalize, report, compare, export</li><li>Goals, required/forbidden actions, state, rubrics</li><li>Transcript, vCon, media, trace, state, and artifact contracts</li><li>Local ASSERT-compatible evaluation; optional upstream judge</li></ul>
+          <ul class="clean-list"><li>Supported target execution or imported evidence</li><li>Normalize, report, compare, export</li><li>Configured scenarios: goals, required/forbidden actions, state, rubrics</li><li>Transcript, vCon, media, trace, state, and artifact contracts</li><li>Local ASSERT-compatible evaluation; optional upstream judge</li></ul>
         </article>
         <article class="roadmap-card">
           <div class="boundary-head"><span>PLANNED IN THE TOOL</span><b>ROADMAP</b></div>
@@ -52,6 +70,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
         </article>
       </div>
       <div class="honesty-boundary"><strong>NOT PROVEN BY THESE FIXTURES:</strong><span>generic SIP/PSTN proof</span><span>production network proof</span><span>browser-mic interoperability proof</span><span>production full-duplex barge-in</span></div>
+      <p class="micro-note">The simple scenario form does not extract forbidden actions from prose. Evaluation designs are authored separately.</p>
     `
   },
   {
@@ -113,7 +132,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
         </a>
       </aside>
       </div>
-      <div class="closing-cta"><strong>DEFINE THE CONTRACT. TEST THE FAILURE PATHS. KEEP THE EVIDENCE.</strong><div><a href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">Conversation Agent Evaluation (CAE) tool ↗</a><a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation" rel="noreferrer" target="_blank">presentation source ↗</a><a href="#vcon-enrichment">Appendix: vCon JSON →</a><a href="#standards">Appendix: sources →</a><a href="#demo">Appendix: lost acknowledgment →</a></div></div>
+      <div class="closing-cta"><strong>DEFINE THE CONTRACT. TEST THE FAILURE PATHS. KEEP THE EVIDENCE.</strong><div><a href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">Conversation Agent Evaluation (CAE) tool ↗</a><a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation" rel="noreferrer" target="_blank">presentation source ↗</a><a href="#vcon-enrichment">Appendix: vCon JSON →</a><a href="#standards">Appendix: sources →</a><a href="#demo">Appendix: lost acknowledgment →</a><a href="#boundary">Appendix: capabilities →</a></div></div>
     `
   }
 ];

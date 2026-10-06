@@ -80,7 +80,7 @@
           <path d="M475 480 H145" class="voice-svg-arrow cyan-arrow"/>
           <text x="310" y="465" class="voice-svg-message" text-anchor="middle">“3:30 is available. Book it?”</text>
         </svg>
-        <p class="takeaway">New constraint → updated task → <strong>current result.</strong></p>
+        <p class="takeaway">Did the agent <strong>apply the new constraint</strong><br>and <strong>discard stale results?</strong></p>
         ${sources}
       `
     }

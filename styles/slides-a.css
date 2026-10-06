@@ -118,8 +118,6 @@
 .workbench-stages dd { margin: 5px 0 0; font-size: .9rem; line-height: 1.4; }
 #workbench .workbench-frameworks { margin-top: 20px; }
 #workbench .workbench-rescore { margin-top: 20px; font-size: .95rem; }
-#contract .extension-card dt { font-family: inherit; font-size: .9rem; }
-#contract .extension-card dd { font-size: 1rem; line-height: 1.5; }
 @media (max-width: 820px) { .workbench-stages { grid-template-columns: 1fr; gap: 16px; } .workbench-stages p { min-height: 0; } }
 .workbench-flow { display: grid; grid-template-columns: 1fr auto 0.78fr auto 1fr; align-items: center; gap: 20px; }
 .input-stack,
@@ -149,25 +147,7 @@
 .workbench-frameworks small { color: var(--muted-2); font-size: .75rem; line-height: 1.4; }
 @media (max-width: 820px) { .workbench-frameworks { grid-template-columns: 1fr; gap: 20px; } }
 
-/* Contract */
-.contract-request { padding: 22px 28px; border: 1px solid var(--line-strong); border-radius: 16px; background: var(--surface); }
-.contract-request > span { color: var(--muted); font: .65rem var(--mono); letter-spacing: .08em; }
-.contract-request blockquote { margin: 12px 0 0; font-size: clamp(1.35rem, 2.2vw, 2.2rem); line-height: 1.4; }
-.contract-request strong { color: var(--cyan); font-weight: 650; }
-.contract-criteria { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 24px; }
-.contract-criteria article { min-height: 235px; padding: 24px 28px; border: 1px solid var(--line); border-top: 3px solid currentColor; border-radius: 16px; background: var(--surface); }
-.contract-required { color: var(--green); }
-.contract-forbidden { color: var(--danger); }
-.contract-proof { color: var(--cyan); }
-.contract-symbol { display: block; width: 48px; height: 48px; margin-bottom: 18px; }
-.contract-criteria h3 { margin: 0 0 18px; font-size: 1.45rem; }
-.contract-criteria p { margin: 10px 0 0; color: var(--text); font-size: clamp(1rem, 1.5vw, 1.5rem); line-height: 1.4; }
-#contract .contract-verdict { margin-top: 24px; }
-@media (max-width: 820px) {
-  .contract-criteria { grid-template-columns: 1fr; }
-  .contract-criteria article { min-height: 0; padding: 20px; }
-  .contract-symbol { float: right; margin-bottom: 0; }
-}
+/* Shared evidence cards */
 .code-card,
 .extension-card { border-radius: var(--radius); overflow: hidden; background: rgba(10, 23, 33, 0.86); }
 .code-card-head { min-height: 54px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 15px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.018); }

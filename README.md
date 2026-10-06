@@ -28,7 +28,7 @@ a demo. The interactive experiments remain explicitly labeled as teaching fixtur
 [Opening and closing speaker notes](docs/speaker-notes.md) include a self-contained
 story for the Fall '26 audience.
 
-The same notes include a 20-minute rehearsal route through 16 main slides, with ten minutes reserved for Q&A in the 30-minute slot. The vCon JSON explorer, references, and lost-ack experiment are three optional appendix slides.
+The same notes include a 20-minute rehearsal route through 15 main slides, with ten minutes reserved for Q&A in the 30-minute slot. The vCon JSON explorer, references, lost-ack experiment, and capabilities/roadmap are four optional appendix slides.
 
 ## Features
 
@@ -98,7 +98,7 @@ MIT
 ## Engineering experiments (presentation fixtures)
 
 The engineering sections, vCon JSON magnifier, and visual system are preserved.
-A personal story, a visual project overview, and a continuous-voice sequence lead into the evaluation workflow. The route has 16 main slides and three appendix slides. Forward navigation stops at the closing slide; use its links to open the JSON explorer, references, or lost-ack experiment. The main sequence goes directly from vCon to the outcome matrix and release review.
+A personal story, a visual project overview, and a continuous-voice sequence lead into the evaluation workflow. The route has 15 main slides and four appendix slides. Forward navigation stops at the closing slide; use its links to open the JSON explorer, references, lost-ack experiment, or capabilities. The main sequence goes directly from vCon to the outcome matrix and release review.
 The focused additions are:
 
 - **Timeline:** switch between complete-request and aggressive endpointing traces.

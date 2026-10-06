@@ -70,7 +70,7 @@ body.presenting .hero-slide { padding-top: clamp(25px, 4vh, 48px); }
   .hero-visual { min-height: 420px; transform: scale(.9); transform-origin: center top; }
   .truth-split { grid-template-columns: 1fr; }
   .versus { min-height: 30px; }
-  .layer-grid, .plane-grid, .contract-grid, .demo-grid, .boundary-grid, .sources-grid, .scorecard { grid-template-columns: 1fr; }
+  .layer-grid, .plane-grid, .demo-grid, .boundary-grid, .sources-grid, .scorecard { grid-template-columns: 1fr; }
   .metric-column { border-right: 0; border-bottom: 1px solid var(--line); }
   .workbench-flow { grid-template-columns: 1fr; }
   .flow-arrow { rotate: 90deg; justify-self: center; }
