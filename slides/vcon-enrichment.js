@@ -4,7 +4,7 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
     className: "vcon-enrichment-slide",
     html: `
       <div class="section-heading vcon-enrichment-heading">
-        <p class="eyebrow">APPENDIX · EVALUATION TOOL EXCERPT</p>
+        <p class="eyebrow">EVALUATION TOOL EXCERPT</p>
         <h2 id="vcon-enrichment-title">Voice-agent evidence <span>inside vCon</span></h2>
         <p>Illustrative pseudo-JSON. Select a section to magnify its fields.</p>
       </div>

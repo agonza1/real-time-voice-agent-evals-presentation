@@ -55,7 +55,7 @@ Leave the closing slide up during Q&A so attendees can scan the QR to [connect w
 
 ## 30-minute stage route
 
-Plan for about 20 minutes of presentation and ten minutes of Q&A. There are 15 main slides, followed by four optional appendix slides. The main route takes 18:15, leaving 1:45 for transitions. The lost-ack experiment is available for Q&A. Do not narrate every field or open every disclosure.
+Plan for about 20 minutes of presentation and ten minutes of Q&A. There are 16 main slides, followed by three optional appendix slides. The main route takes 19:15, leaving 0:45 for transitions. The lost-ack experiment is available for Q&A. Do not narrate every field or open every disclosure.
 
 | Slide | Time | Finish by | Point and stage action |
 | --- | --- | --- | --- |
@@ -70,14 +70,15 @@ Plan for about 20 minutes of presentation and ten minutes of Q&A. There are 15 m
 | 9 · Timeline | 2:30 | 9:45 | Switch to aggressive endpointing, then restore the full-request trace. Faster output loses the billing-period qualifier. |
 | 10 · Workbench | 2:00 | 11:45 | Introduce the Conversation Agent Evaluation (CAE) tool through Run → Evaluate → Compare, then explain framework roles. New rubric: re-score; changed agent: run again. |
 | 11 · vCon | 1:00 | 12:45 | The container carries observations and provenance. It does not supply a verdict. |
-| 12 · Outcomes | 1:00 | 13:45 | Read the two axes: business state and safe response. Unknown state stays outside this verified-state matrix. |
-| 13 · Release review | 2:00 | 15:45 | Compare current settings with a proposed shorter wait. It responds faster but fails caller-finish and cancellation-timing requirements. |
-| 14 · Start | 1:30 | 17:15 | Choose one workflow, declare explicit checks, exercise failure cases, inspect evidence, and repeat after changes. |
-| 15 · Close | 1:00 | 18:15 | Return to the opening question and invite attendees to connect. |
-| Delivery buffer | 1:45 | 20:00 | Allow room for transitions and questions during the talk. |
+| 12 · vCon JSON | 1:00 | 13:45 | Magnify Dialog, then Evaluation. Show where the conversation, recording, checks, and state evidence travel together. |
+| 13 · Outcomes | 1:00 | 14:45 | Read the two axes: business state and safe response. Unknown state stays outside this verified-state matrix. |
+| 14 · Release review | 2:00 | 16:45 | Compare current settings with a proposed shorter wait. It responds faster but fails caller-finish and cancellation-timing requirements. |
+| 15 · Start | 1:30 | 18:15 | Choose one workflow, declare explicit checks, exercise failure cases, inspect evidence, and repeat after changes. |
+| 16 · Close | 1:00 | 19:15 | Return to the opening question and invite attendees to connect. |
+| Delivery buffer | 0:45 | 20:00 | Allow room for transitions. |
 | Q&A | 10:00 | 30:00 | Leave the closing slide visible; open an appendix when it answers a question. |
 
-Appendix A1 contains the vCon JSON explorer; A2 contains standards and research; A3 contains the lost-ack experiment; A4 contains capabilities and the roadmap. Open them from the closing links only when useful for a question. Normal forward navigation stops at the closing slide. End always returns to the closing slide; Home returns to the title.
+The vCon JSON explorer is slide 12 in the main route. Appendix A1 contains standards and research; A2 contains the lost-ack experiment; A3 contains capabilities and the roadmap. Open them from the closing links only when useful for a question. Normal forward navigation stops at the closing slide. End always returns to the closing slide; Home returns to the title.
 
 ## Spoken bridge — workbench to evidence
 
@@ -96,12 +97,13 @@ Transition: “We have defined what to check. Now we need to preserve the conver
 - **8 → 9:** “Start with speech timing: what did the system hear before it answered?”
 - **9 → 10:** “Now we need a repeatable workflow to collect these observations and compare changes.”
 - **10 → 11:** “Define what the agent must do, what it must avoid, and what proves success. To check those requirements later, retain the media, tool trace, and state evidence together.”
-- **11 → 12:** “The retained evidence lets us judge two things separately: did the task finish, and was the response supported?”
-- **12 → 13:** “Apply those verdicts across the same scenarios before approving a new version.”
-- **13 → 14:** “You can start small. Choose one workflow and one failure that matters.”
-- **14 → 15:** “Keep the evidence and repeat the test when the system changes. Production readiness is a systems property.”
+- **11 → 12:** “Here is what those observations look like inside the evidence container.”
+- **12 → 13:** “With the conversation and supporting evidence together, we can judge whether the task finished and whether the response was supported.”
+- **13 → 14:** “Apply those verdicts across the same scenarios before approving a new version.”
+- **14 → 15:** “You can start small. Choose one workflow and one failure that matters.”
+- **15 → 16:** “Keep the evidence and repeat the test when the system changes. Production readiness is a systems property.”
 
-## Outcome matrix — slide 12
+## Outcome matrix — slide 13
 
 The rows describe verified business state; the columns describe whether speech was supported at the time it was emitted. A task can finish while the agent confirms it without sufficient evidence. That claim might be true by luck, but the confirmation remains unsafe. Conversely, a truthful expression of uncertainty can be safe even if the backend already committed.
 
@@ -159,7 +161,7 @@ Implementation checked against ConversationAgentEvals commit `31671ee6a5d12e8e8a
 - [ASSERT integration boundary](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/docs/assert-boundary-and-schemas.md): local deterministic evaluation and explicit upstream semantic judge.
 - [Web dependencies](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/apps/web/package.json): Next.js and React.
 
-## Release comparison — slide 13
+## Release comparison — slide 14
 
 “The current settings wait longer after a pause. The proposed change shortens that wait so responses start sooner. We compare the same 100 call scenarios on each version. These are illustrative numbers, not measured results.”
 
@@ -169,7 +171,7 @@ The current version is not perfect: its two premature responses are within this 
 
 The 95th percentile summarizes the upper end of response times. This fixture measures from the system's end-of-turn decision to received audio. Accepting the turn boundary too early can make this number look better while missing a caller's later qualifier, as in slide 9.
 
-## Appendix A3 · Lost-ack experiment — optional three-minute Q&A demonstration
+## Appendix A2 · Lost-ack experiment — optional three-minute Q&A demonstration
 
 1. Begin in the default **Committed + acknowledgment lost** scenario. The backend committed, but the agent knows only that the tool timed out. Point to the unknown verified state, uncertainty in the caller response, and passing check for no unsupported completion. A passing protection check does not establish task completion.
 2. Click **Check operation result**. Readback for the original operation establishes cancellation before confirmation is permitted. The caller response changes and the verdict becomes verified success. This is the new evidence the initial timeout did not provide.
@@ -189,14 +191,18 @@ Before going on stage, load the original Echo Show photo and leave disclosures c
 
 If an interaction fails, explain its expected before/after result and move on.
 
-Check the clock after slides 8 (7:15), 10 (11:45), and 14 (17:15). If behind, shorten the framework explanation and use the delivery buffer. Preserve the outcome matrix, release decision, and closing. Keep the lost-ack experiment, JSON explorer, and sources for Q&A.
+Check the clock after slides 8 (7:15), 10 (11:45), and 15 (18:15). If behind, shorten the framework explanation and use the delivery buffer. Preserve the outcome matrix, release decision, and closing. Keep the lost-ack experiment and sources for Q&A. Spend one minute on the JSON explorer in the main route; do not narrate every field.
 
 The event name follows the [official Fall '26 conference site](https://www.vonevolution.com/). The October 15 talk date is retained from the existing deck.
 
-## First evaluation — slide 14
+## First evaluation — slide 15
 
 This is an audience checklist, not an automatic CAE workflow. Start with one important business task. Write the required and forbidden behavior and expected state explicitly, then test pauses, interruptions, corrections, and unavailable tools on a controlled target or with imported evidence. Inspect the evidence behind each finding and compare the same cases after a change. Do not imply CAE's simple scenario form extracts these rules or that it injects every listed failure automatically.
 
-## Appendix A4 — capabilities and roadmap
+## Appendix A3 — capabilities and roadmap
 
 The former main-route capability list is available for Q&A. Distinguish configured scenario contracts from the simple scenario creation form and separate current product support from the presentation's teaching fixtures. Explain the roadmap only when asked.
+
+## vCon JSON explorer — slide 12
+
+Begin with the envelope, then select Dialog to show caller/agent turns and the recording pointer. Select Evaluation to show retained checks and state evidence. Keep the magnifier interaction; the excerpt is illustrative pseudo-JSON, not a complete runnable document or a measured result. Distinguish vCon core fields from CAE application conventions. This is a concrete view of the container from slide 11, rather than a second explanation of vCon.
