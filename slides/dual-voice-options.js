@@ -1,6 +1,6 @@
 // Continuous-voice diagrams: architecture first, then the conversation sequence.
 (() => {
-  const sources = `<p class="eng-sources voice-option-sources"><a href="https://openai.com/index/continuous-voice-interaction-with-gpt-live/" target="_blank" rel="noopener noreferrer">OpenAI · GPT-Live ↗</a><a href="https://docs.livekit.io/agents/logic/patterns/subagent-delegation/" target="_blank" rel="noopener noreferrer">LiveKit ↗</a><a href="https://docs.pipecat.ai/api-reference/server/services/s2s/openai-live" target="_blank" rel="noopener noreferrer">Pipecat ↗</a><span>Illustrative architecture · full duplex depends on the model.</span></p>`;
+  const sources = `<p class="eng-sources voice-option-sources"><a href="https://openai.com/index/continuous-voice-interaction-with-gpt-live/" target="_blank" rel="noopener noreferrer">OpenAI · GPT-Live ↗</a><a href="https://docs.livekit.io/agents/models/realtime/plugins/gpt-live/" target="_blank" rel="noopener noreferrer">LiveKit ↗</a><a href="https://docs.pipecat.ai/api-reference/server/services/s2s/openai-live" target="_blank" rel="noopener noreferrer">Pipecat ↗</a><span>Illustrative architecture · full duplex depends on the model.</span></p>`;
   const markers = (prefix) => `<defs><marker id="${prefix}-cyan-arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="var(--cyan)"/></marker><marker id="${prefix}-violet-arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="var(--violet)"/></marker><marker id="${prefix}-green-arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8" fill="var(--green)"/></marker></defs>`;
   window.VOICE_EVALS_DUAL_VOICE_OPTIONS = {
     architecture: {
@@ -15,7 +15,7 @@
           <rect x="40" y="76" width="270" height="138" rx="20" class="voice-svg-node cyan-node"/>
           <text x="175" y="155" class="voice-svg-node-name" text-anchor="middle">Caller</text>
           <rect x="670" y="76" width="350" height="138" rx="20" class="voice-svg-node cyan-node"/>
-          <text x="845" y="135" class="voice-svg-node-name" text-anchor="middle">Voice model</text>
+          <text x="845" y="135" class="voice-svg-node-name" text-anchor="middle">GPT-Live</text>
           <text x="845" y="177" class="voice-svg-sub" text-anchor="middle">native speech ↔ speech</text>
           <path d="M335 115 H645" class="voice-svg-arrow cyan-arrow"/>
           <text x="490" y="96" class="voice-svg-label cyan" text-anchor="middle">listen</text>
@@ -30,12 +30,17 @@
           <text x="895" y="288" class="voice-svg-sub green">result</text>
           <rect x="670" y="348" width="285" height="108" rx="18" class="voice-svg-node violet-node"/>
           <text x="812" y="412" class="voice-svg-node-name" text-anchor="middle">Reasoning LLM</text>
+          <text x="812" y="440" class="voice-svg-backend-mode" text-anchor="middle">Hosted / your backend</text>
           <rect x="1050" y="348" width="190" height="108" rx="18" class="voice-svg-node violet-node"/>
           <text x="1145" y="412" class="voice-svg-node-name" text-anchor="middle">Tools</text>
           <path d="M973 380 H1030" class="voice-svg-arrow violet-arrow"/>
           <path d="M1030 430 H973" class="voice-svg-arrow green-arrow"/>
         </svg>
-        <p class="takeaway">Deeper work runs <strong>outside the live audio loop.</strong></p>
+        <div class="voice-frameworks" aria-label="LiveKit and Pipecat provide GPT-Live integrations with asynchronous delegation">
+          <div class="voice-framework-names"><a href="https://docs.livekit.io/agents/models/realtime/plugins/gpt-live/" target="_blank" rel="noopener noreferrer" title="LiveKit GPTLiveModel">LiveKit</a><a href="https://docs.pipecat.ai/api-reference/server/services/s2s/openai-live" target="_blank" rel="noopener noreferrer" title="Pipecat OpenAILiveLLMService">Pipecat</a></div>
+          <span class="voice-framework-arrow" aria-hidden="true">↔</span>
+          <p>GPT-Live <span>+ async delegation</span></p>
+        </div>
         ${sources}
       `
     },
@@ -65,7 +70,7 @@
           <text x="575" y="199" class="voice-svg-label cyan">FULL DUPLEX</text>
           <text x="575" y="232" class="voice-svg-sub">listens while speaking</text>
           <path d="M485 292 H815" class="voice-svg-arrow violet-arrow"/>
-          <text x="650" y="277" class="voice-svg-message" text-anchor="middle">Update: after 3pm</text>
+          <text x="650" y="277" class="voice-svg-message" text-anchor="middle">App updates: after 3pm</text>
           <path d="M825 340 H1135" class="voice-svg-arrow violet-arrow"/>
           <text x="980" y="325" class="voice-svg-message" text-anchor="middle">Search slots</text>
           <path d="M1135 388 H825" class="voice-svg-arrow green-arrow"/>
