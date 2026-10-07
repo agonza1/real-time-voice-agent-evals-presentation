@@ -47,7 +47,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
         <li><span>03</span><h3>Exercise the failures</h3><p>Add a pause.<br>Interrupt or correct.<br>Make a tool unavailable.</p><small>Repeat across representative calls.</small></li>
         <li><span>04</span><h3>Inspect and repeat</h3><p>Read the findings.<br>Check the supporting evidence.<br>Fix and re-run.</p><small>Compare the same cases after changes.</small></li>
       </ol>
-      <div class="start-action"><strong>Begin with a small test set you can explain.</strong><a href="https://github.com/agonza1/ConversationAgentEvals" target="_blank" rel="noopener noreferrer">Open the conversation evaluator ↗</a></div>
+      <div class="start-action"><strong>Begin with a small test set you can explain.</strong><a data-evaluator-link href="https://github.com/agonza1/ConversationAgentEvals" target="_blank" rel="noopener noreferrer">Open the conversation evaluator ↗</a></div>
       <p class="micro-note">Evaluation checklist · use controlled test targets or imported evidence for failure cases.</p>
     `
   },

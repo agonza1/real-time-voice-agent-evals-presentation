@@ -36,6 +36,13 @@
     </section>
   `).join("");
 
+  // Local presentations open the running CAE; hosted decks retain the project URL.
+  if (["localhost", "127.0.0.1", "[::1]"].includes(window.location?.hostname)) {
+    deck.querySelectorAll("[data-evaluator-link]").forEach((link) => {
+      link.href = "http://127.0.0.1:3012/";
+    });
+  }
+
   window.VOICE_EVALS_SLIDES = slides;
   document.dispatchEvent(new CustomEvent("voice-evals:slides-ready", { detail: { count: slides.length } }));
 })();

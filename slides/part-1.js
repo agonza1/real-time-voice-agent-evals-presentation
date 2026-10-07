@@ -15,7 +15,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
             <span>Open source · Evidence first</span>
           </div>
           <div class="hero-actions">
-            <a class="primary-link" href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">Open the conversation evaluator ↗</a>
+            <a class="primary-link" data-evaluator-link href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">Open the conversation evaluator ↗</a>
             <a class="quiet-link" href="#story">Start the presentation →</a>
           </div>
         </div>
