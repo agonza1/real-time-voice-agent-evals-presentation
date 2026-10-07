@@ -17,8 +17,7 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
         <article><h3>Pipecat</h3><p>Tester agent · streaming voice transport</p><small>Caller turns + WebRTC adapters</small></article>
         <article><h3><a href="https://github.com/responsibleai/ASSERT" rel="noreferrer" target="_blank">ASSERT 0.3 ↗</a></h3><p>Behavior contracts · evaluation rubrics</p><small>Optional semantic judge over saved evidence</small></article>
       </div>
-      <p class="takeaway workbench-rescore">New rubric? <strong>Re-score saved evidence.</strong> Changed agent? <strong>Run again.</strong></p>
-      <p class="micro-note">Re-scoring is not a new closed-loop test.</p>
+      <p class="takeaway workbench-rescore">New criteria? <strong>Review the recording.</strong><br>New agent version? <strong>Test a new conversation.</strong></p>
     `
   },
   {
