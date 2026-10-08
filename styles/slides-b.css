@@ -186,9 +186,9 @@ body.presenting #close .closing-statement { font-size: clamp(2.8rem, 4.4vw, 4.8r
 .start-steps p { margin: 0; color: var(--muted); font-size: clamp(.95rem, 1.2vw, 1.2rem); line-height: 1.6; }
 .start-action { display: flex; flex-direction: column; align-items: center; gap: 16px; margin-top: 20px; }
 .start-action strong { font-size: 1.15rem; }
-.start-action a { display: flex; align-items: center; justify-content: center; gap: 24px; width: min(720px, 100%); box-sizing: border-box; padding: 20px 32px; border: 2px solid var(--cyan); border-radius: 16px; background: var(--cyan); color: var(--bg); font-size: clamp(1.6rem, 2.8vw, 2.3rem); font-weight: 800; line-height: 1.15; text-decoration: none; }
-.start-action a svg { width: 40px; height: 40px; flex: none; fill: currentColor; }
-.start-action a .start-demo-detail { display: block; margin-top: 6px; font-size: .95rem; font-weight: 600; }
+.start-action a { display: flex; align-items: center; justify-content: center; gap: 16px; width: min(440px, 100%); box-sizing: border-box; padding: 14px 24px; border: 2px solid var(--cyan); border-radius: 12px; background: var(--cyan); color: var(--bg); font-size: clamp(1.35rem, 2vw, 1.75rem); font-weight: 800; line-height: 1.15; text-decoration: none; }
+.start-action a svg { width: 28px; height: 28px; flex: none; fill: currentColor; }
+.start-action a .start-demo-detail { display: block; margin-top: 5px; font-size: .85rem; font-weight: 600; }
 .start-action a:hover { filter: brightness(1.12); }
 .start-action a:focus-visible { outline: 3px solid var(--text); outline-offset: 5px; }
 @media (max-width: 1100px) { .start-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } .start-steps li { min-height: 0; } .start-steps li::after { display: none; } }
