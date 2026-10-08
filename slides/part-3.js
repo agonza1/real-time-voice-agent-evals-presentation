@@ -35,7 +35,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
         <foreignObject x="425" y="210" width="350" height="120">
           <button xmlns="http://www.w3.org/1999/xhtml" class="judge-component-button judge-behavior-button" type="button" data-evaluation-dialog="behavior-details" aria-controls="behavior-details" aria-haspopup="dialog"><span class="judge-component-title">Judge behavior</span><span class="judge-component-subtitle">LLM / ASSERT or decision model</span><span class="judge-component-action">Compare judge paths ↗</span></button>
         </foreignObject>
-        <g class="judge-gate"><path d="M960 120 L1020 180 L960 240 L900 180 Z"/><path d="M936 165 H984 M936 195 H984 M949 155 V175 M973 185 V205"/></g>
+        <g class="judge-gate"><rect x="907" y="126" width="106" height="108" rx="16"/><path d="M927 180 H951 M951 151 V209 M951 151 H976 M951 180 H976 M951 209 H976"/><path class="policy-pass" d="M976 148 L980 152 L987 144"/><path class="policy-fail" d="M978 176 L986 184 M986 176 L978 184"/><circle class="policy-review" cx="982" cy="209" r="5"/></g>
         <text class="judge-node-title" x="960" y="273" text-anchor="middle">Review policy</text><text class="judge-node-note" x="960" y="302" text-anchor="middle">In code</text>
         <g class="judge-result-pass"><circle cx="1120" cy="70" r="22"/><path d="M1110 70 L1118 78 L1131 62"/><text x="1155" y="79">Pass</text></g><g class="judge-result-fail"><circle cx="1120" cy="180" r="22"/><path d="M1112 172 L1128 188 M1128 172 L1112 188"/><text x="1155" y="189">Fail</text></g><g class="judge-result-review"><circle cx="1120" cy="290" r="22"/><text x="1120" y="299" text-anchor="middle">?</text><text x="1155" y="299">Review</text></g>
       </svg>
@@ -43,24 +43,49 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
       <p class="micro-note">Post-run evaluation · human confirmation before applying a proposed verdict. Open either component for details.</p>
       <dialog id="fact-details" class="judge-dialog" aria-labelledby="fact-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close fact-check details">×</button>
-        <p class="eyebrow">DETERMINISTIC EVALUATION</p><h2 id="fact-details-title">Check facts</h2><p class="judge-dialog-intro">Execute declared checks against the recorded run.</p>
-        <div class="judge-detail-steps">
-          <section><span>01 · INPUT</span><h3>Bind the evidence</h3><ul><li>Recorded scenario contract</li><li>Action events + tool results</li><li>Final-state snapshot</li></ul></section>
-          <section><span>02 · CHECK</span><h3>Run explicit rules</h3><ul><li>Required / forbidden events</li><li>Terminal tool status</li><li>State predicates + declared sequence</li></ul></section>
-          <section><span>03 · OUTPUT</span><h3>Keep the finding</h3><ul><li>Pass / fail / insufficient evidence</li><li>Event index or state path</li><li>Original deterministic verdict</li></ul></section>
+        <p class="eyebrow">CHECK FACTS · ACTUAL CAE FIXTURE</p><h2 id="fact-details-title">Cancellation rescue: did the agent pause?</h2>
+        <div class="judge-example-quote"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 8h32v24H22L12 42V32H8Z"/><path d="M16 16h16M16 23h11"/></svg><span>Caller: “I want to cancel my policy today.”</span></div>
+        <div class="fact-example-wrap"><svg class="fact-example-diagram" viewBox="0 0 1000 220" role="img" aria-labelledby="fact-example-title fact-example-desc">
+          <title id="fact-example-title">Recorded cancellation-rescue trace</title><desc id="fact-example-desc">Trace step 3 is policy hold entered, step 4 is operator steer applied, and step 5 is call wrapped. Code checks their list order and the fixture's final state.</desc>
+          <defs><marker id="fact-example-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#39d2ee"/></marker></defs>
+          <g class="example-arrows"><path d="M285 105 H350"/><path d="M635 105 H700"/></g>
+          <g class="example-node"><rect x="5" y="15" width="280" height="190" rx="16"/><rect x="355" y="15" width="280" height="190" rx="16"/><rect x="705" y="15" width="290" height="190" rx="16"/></g>
+          <g class="example-icon"><circle cx="145" cy="66" r="28"/><path d="M138 54v24M152 54v24"/><circle cx="495" cy="56" r="12"/><path d="M474 91v-9a21 21 0 0 1 42 0 M520 60l7 7 14-17"/><path d="M831 43h31v47h-31Z M840 66l6 6 14-17"/></g>
+          <g class="example-label"><text x="145" y="127">Policy hold</text><text x="495" y="127">Operator approval</text><text x="850" y="127">Call wrap</text></g>
+          <g class="example-code"><text x="145" y="161">policy_hold_entered</text><text x="495" y="161">operator_steer_applied</text><text x="850" y="161">call_wrapped</text></g>
+          <g class="example-step"><text x="145" y="188">TRACE STEP 3</text><text x="495" y="188">TRACE STEP 4</text><text x="850" y="188">TRACE STEP 5</text></g>
+        </svg></div>
+        <div class="fact-check-cards">
+          <section><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 12h12v12H6Z M30 24h12v12H30Z M18 18h18v6 M22 37l4 4 9-10"/></svg><div><span>ORDER CHECK</span><strong>Hold precedes resolution</strong><code>trace position: 3 &lt; 4 → PASS</code></div></section>
+          <section><svg viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="22" cy="10" rx="15" ry="6"/><path d="M7 10v24c0 8 30 8 30 0V10 M7 22c0 8 30 8 30 0 M30 34l5 5 9-12"/></svg><div><span>STATE CHECKS</span><code>complete = true ✓</code><code>outcome = scripted_wrap_complete ✓</code></div></section>
         </div>
-        <p class="judge-detail-boundary"><strong>Missing evidence is not a pass.</strong> Sequence checks require trustworthy ordering and sufficient event coverage. Current CAE order checks use trace positions; they do not universally prove causal order.</p>
-        <p class="judge-detail-note">Artifact presence alone does not verify its truth. Preserve source provenance and the original findings.</p>
+        <div class="judge-visual-verdict"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="m9 16 5 5 9-11"/></svg><strong>Declared checks pass</strong><span>Recorded wrap ≠ proof of cancellation</span></div>
+        <p class="judge-detail-note">Authored CAE starter fixture · selected checks · order uses trace positions · not production results. <a href="https://github.com/agonza1/ConversationAgentEvals/blob/main/apps/api/app/services/benchmark_catalog_extensions.py" target="_blank" rel="noopener noreferrer">Source ↗</a></p>
       </dialog>
       <dialog id="behavior-details" class="judge-dialog" aria-labelledby="behavior-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close behavior-judge details">×</button>
-        <p class="eyebrow">SEMANTIC EVALUATION</p><h2 id="behavior-details-title">Judge behavior</h2><p class="judge-dialog-intro">Saved turns + scenario rules + trace/state context. Choose a judge path.</p>
-        <div class="judge-options">
-          <section><span class="judge-option-status">EXISTING CAE PATH</span><h3>Traditional LLM / ASSERT</h3><p class="judge-option-flow">Evidence + rubric → assessment → validated scores / findings</p><ul><li>Assess behavior and conversational dimensions using the configured taxonomy and rubric.</li><li>Generate an assessment; validate the returned score contract.</li><li>Keep the model, judge configuration, and review provenance. An explanation can still be unsupported.</li></ul><a href="https://github.com/responsibleai/ASSERT" target="_blank" rel="noopener noreferrer">ASSERT ↗</a></section>
-          <section><span class="judge-option-status">OPENAI: DRAFT PR · JEV: ALTERNATIVE</span><h3>Decision model</h3><p class="judge-option-flow">Evidence + named rule → fixed choice → validation + thresholds</p><ul><li>One choice per behavior: violation / no violation / insufficient evidence.</li><li>Validate names, schema, and probability distributions. OpenAI draft gates confidence and P(choice) separately.</li><li>Refusal or low certainty → insufficient evidence. Store the original answer and provenance.</li></ul><p class="judge-provider-links"><a href="https://github.com/agonza1/ConversationAgentEvals/pull/157" target="_blank" rel="noopener noreferrer">CAE Decisions draft ↗</a> · <a href="https://developers.openai.com/api/docs/guides/decisions" target="_blank" rel="noopener noreferrer">API ↗</a> · <a href="https://docs.typesafe.ai/introduction" target="_blank" rel="noopener noreferrer">Jev ↗</a></p></section>
+        <p class="eyebrow">JUDGE BEHAVIOR · TWO OPTIONAL PATHS</p><h2 id="behavior-details-title">Same evidence. Different output contracts.</h2>
+        <div class="judge-shared-input"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 5h20l9 9v29H10Z M30 5v10h9 M17 23h15M17 30h15M17 37h9"/></svg><div><strong>Saved turns + rule + trace / state</strong><span>Rule: did the agent make an unapproved retention offer?</span></div></div>
+        <div class="judge-options judge-visual-options">
+          <section><span class="judge-option-status">EXISTING CAE PATH</span><h3>LLM / ASSERT</h3>
+            <div class="judge-path-step"><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M27 9c-10-8-22 4-16 13-10 7-5 22 5 21 0 8 11 9 11 1V9Z M29 9c10-8 22 4 16 13 10 7 5 22-5 21 0 8-11 9-11 1V9Z M17 18l10 5M15 34l12-5M39 18l-10 5M41 34l-12-5"/></svg><div><strong>Assess against rubric</strong><span>Behavior + conversational quality</span></div></div>
+            <div class="judge-path-arrow" aria-hidden="true">↓</div>
+            <div class="judge-assessment"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 6h32v36H8Z M15 16h18M15 24h18M15 32h11"/></svg><div><strong>Scores + findings</strong><span>Generated assessment</span></div></div>
+            <div class="judge-path-arrow" aria-hidden="true">↓</div>
+            <div class="judge-validation"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5 40 12v13c0 10-16 18-16 18S8 35 8 25V12Z M16 24l6 6 11-13"/></svg><div><strong>Validate score contract</strong><span>Schema ≠ factual correctness</span></div></div>
+            <p class="judge-provider-links"><a href="https://github.com/responsibleai/ASSERT" target="_blank" rel="noopener noreferrer">ASSERT ↗</a></p>
+          </section>
+          <section><span class="judge-option-status">OPENAI DECISIONS · DRAFT CAE PR</span><h3>Decision model</h3>
+            <div class="judge-path-step"><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M8 28h14M22 13v30M22 13h18M22 28h18M22 43h18"/><circle cx="44" cy="13" r="4"/><circle cx="44" cy="28" r="4"/><circle cx="44" cy="43" r="4"/></svg><div><strong>One named question per rule</strong><span>Bounded semantic choice</span></div></div>
+            <div class="judge-path-arrow" aria-hidden="true">↓</div>
+            <div class="judge-choice-set"><span class="choice-fail">Violation</span><span class="choice-pass">No violation</span><span class="choice-review">Insufficient evidence</span></div>
+            <div class="judge-path-arrow" aria-hidden="true">↓</div>
+            <div class="judge-validation"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5 40 12v13c0 10-16 18-16 18S8 35 8 25V12Z M16 24l6 6 11-13"/></svg><div><strong>Validate + apply thresholds</strong><span>Schema · distributions · confidence · P(choice)</span></div></div>
+            <p class="judge-provider-links"><a href="https://github.com/agonza1/ConversationAgentEvals/pull/157" target="_blank" rel="noopener noreferrer">Draft PR ↗</a> · <a href="https://developers.openai.com/api/docs/guides/decisions" target="_blank" rel="noopener noreferrer">API ↗</a> · <a href="https://docs.typesafe.ai/introduction" target="_blank" rel="noopener noreferrer">Jev: alternative candidate ↗</a></p>
+          </section>
         </div>
-        <p class="judge-detail-boundary"><strong>A semantic judgment does not prove execution.</strong> The Decisions draft requires a deterministic verdict first, preserves hard failures, and records a pending review for human confirmation.</p>
-        <p class="judge-detail-note">Benchmark judge paths on the same human-labeled calls before switching. Neither bounded outputs nor confidence guarantees correctness. These paths judge recorded text and structured evidence; they do not directly establish audio or ASR quality.</p>
+        <div class="judge-review-strip"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="13" r="8"/><path d="M9 40v-9a15 15 0 0 1 30 0v9 M18 32l5 5 9-11"/></svg><strong>Proposed verdict → human review</strong><span>Preserve hard failures · uncertainty → review</span></div>
+        <p class="judge-detail-note">OpenAI draft: refusal / low certainty → insufficient evidence. Calibrate on human-labeled calls. A semantic judge does not prove execution.</p>
       </dialog>
     `
   },
