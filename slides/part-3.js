@@ -20,44 +20,51 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">EVALUATE THE EVALUATOR</p>
-        <h2 id="judge-reliability-title">Separate facts, judgments,<br><span>and release decisions.</span></h2>
+        <h2 id="judge-reliability-title">Separate facts, judgments, <span>and release decisions.</span></h2>
       </div>
-      <svg class="judge-diagram" viewBox="0 0 1280 370" role="img" aria-labelledby="judge-diagram-title judge-diagram-desc">
-        <title id="judge-diagram-title">Evidence feeds two checks, then a release policy</title>
-        <desc id="judge-diagram-desc">Recorded audio, trace, and state feed factual checks in code and narrow model judgments of behavior. A policy in code combines both into pass, fail, or review. A model score cannot override a critical failure.</desc>
+      <svg class="judge-diagram judge-engineering" viewBox="0 0 1280 460" role="img" aria-labelledby="judge-diagram-title judge-diagram-desc">
+        <title id="judge-diagram-title">Evidence, executable checks, bounded semantic judgment, and review policy</title>
+        <desc id="judge-diagram-desc">Recorded turns, action trace, state, and scenario contract feed code checks and semantic classification. A deterministic verdict is required before the Decisions judge runs. Code checks required and forbidden events, terminal tool status, and state predicates. The judge classifies one rule per question into violation, no violation, or insufficient evidence. Answer names, distributions, and uncertainty thresholds are validated. Policy preserves deterministic failure and requires human confirmation before a proposal is applied.</desc>
         <defs><marker id="judge-flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#39d2ee"/></marker></defs>
         <g class="judge-connectors">
-          <path d="M250 180 H330 V90 H425"/><path d="M330 180 V270 H425"/>
-          <path d="M775 90 H840 V180 H900"/><path class="judge-merge" d="M775 270 H840 V180"/>
-          <path d="M1020 180 H1060 V70 H1090"/><path d="M1060 180 H1090"/><path d="M1060 180 V290 H1090"/>
+          <path d="M162 225 H200 V95 H245"/><path d="M200 225 V347 H245"/>
+          <path d="M820 95 H855 V225 H890"/><path class="judge-merge" d="M820 347 H855 V225"/>
+          <path d="M1010 225 H1040 V125 H1065"/><path d="M1040 225 H1065"/><path d="M1040 225 V325 H1065"/>
+          <path class="judge-prerequisite" d="M545 197 V258"/>
         </g>
-        <g class="judge-source">
-          <path d="M116 105 H177 L202 130 V231 H116 Z M177 105 V130 H202"/>
-          <path d="M132 153 H147 L154 140 L164 177 L174 153 H187 M132 195 H184 M132 211 H171"/>
-        </g>
-        <text class="judge-node-title" x="160" y="270" text-anchor="middle">Evidence</text>
-        <text class="judge-node-note" x="160" y="300" text-anchor="middle">Audio · trace · state</text>
+        <g class="judge-source"><path d="M55 144 H108 L132 168 V250 H55 Z M108 144 V168 H132"/><path d="M69 190 H82 L88 178 L96 210 L107 190 H119 M69 227 H118"/></g>
+        <text class="judge-node-title" x="94" y="290" text-anchor="middle">Run evidence</text>
+        <text class="judge-node-note" x="94" y="319" text-anchor="middle">Turns · trace · state</text>
+        <text class="judge-node-note" x="94" y="346" text-anchor="middle">Scenario contract</text>
         <g class="judge-code-node">
-          <rect x="425" y="30" width="350" height="120" rx="18"/>
-          <path class="judge-code-icon" d="M475 67 L456 90 L475 113 M496 67 L515 90 L496 113"/>
-          <text class="judge-node-title" x="540" y="85">Check facts</text>
-          <text class="judge-node-note" x="540" y="116">Code · order + state</text>
+          <rect x="245" y="10" width="575" height="187" rx="18"/>
+          <text class="judge-node-title" x="268" y="43">Check facts <tspan class="judge-node-note">· executable rules</tspan></text>
+          <text class="judge-node-note" x="268" y="76">Required / forbidden events · terminal tool status</text>
+          <text class="judge-node-note" x="268" y="105">State predicates · declared event sequence*</text>
+          <path class="judge-internal-divider" d="M268 125 H796"/>
+          <text class="judge-output" x="268" y="153">pass | fail | insufficient evidence</text>
+          <text class="judge-node-note" x="268" y="180">+ event index / state path</text>
         </g>
+        <text class="judge-prerequisite-label" x="563" y="234">deterministic verdict required</text>
         <g class="judge-model-node">
-          <rect x="425" y="210" width="350" height="120" rx="18"/>
-          <g class="judge-model-icon"><circle cx="468" cy="254" r="6"/><circle cx="498" cy="254" r="6"/><circle cx="483" cy="284" r="6"/><path d="M474 254 H492 M471 260 L480 278 M495 260 L486 278"/></g>
-          <text class="judge-node-title" x="540" y="265">Judge behavior</text>
-          <text class="judge-node-note" x="540" y="296">Model · narrow questions</text>
+          <rect x="245" y="258" width="575" height="192" rx="18"/>
+          <text class="judge-node-title" x="268" y="292">Judge behavior <tspan class="judge-node-note">· Decisions API</tspan></text>
+          <text class="judge-node-note" x="268" y="323">Turns + rule + trace/state → one choice per rule</text>
+          <text class="judge-output" x="268" y="351">violation | no violation | insufficient</text>
+          <path class="judge-internal-divider" d="M268 368 H796"/>
+          <text class="judge-node-note" x="268" y="395">Validate names/schema · confidence + P(choice)</text>
+          <text class="judge-node-note" x="268" y="424">Refusal / low certainty → insufficient evidence</text>
         </g>
-        <g class="judge-gate"><path d="M960 120 L1020 180 L960 240 L900 180 Z"/><path d="M936 165 H984 M936 195 H984 M949 155 V175 M973 185 V205"/></g>
-        <text class="judge-node-title" x="960" y="273" text-anchor="middle">Policy</text>
-        <text class="judge-node-note" x="960" y="302" text-anchor="middle">In code</text>
-        <g class="judge-result-pass"><circle cx="1120" cy="70" r="22"/><path d="M1110 70 L1118 78 L1131 62"/><text x="1155" y="79">Pass</text></g>
-        <g class="judge-result-fail"><circle cx="1120" cy="180" r="22"/><path d="M1112 172 L1128 188 M1128 172 L1112 188"/><text x="1155" y="189">Fail</text></g>
-        <g class="judge-result-review"><circle cx="1120" cy="290" r="22"/><text x="1120" y="299" text-anchor="middle">?</text><text x="1155" y="299">Review</text></g>
+        <g class="judge-gate"><path d="M950 165 L1010 225 L950 285 L890 225 Z"/><path d="M926 210 H974 M926 240 H974 M939 200 V220 M963 230 V250"/></g>
+        <text class="judge-node-title" x="950" y="318" text-anchor="middle">Review policy</text>
+        <text class="judge-node-note" x="950" y="346" text-anchor="middle">In code</text>
+        <g class="judge-result-pass"><circle cx="1095" cy="125" r="20"/><path d="M1085 125 L1093 133 L1106 117"/><text x="1127" y="134">Pass</text></g>
+        <g class="judge-result-fail"><circle cx="1095" cy="225" r="20"/><path d="M1087 217 L1103 233 M1103 217 L1087 233"/><text x="1127" y="234">Fail</text></g>
+        <g class="judge-result-review"><circle cx="1095" cy="325" r="20"/><text x="1095" y="334" text-anchor="middle">?</text><text x="1127" y="334">Review</text></g>
+        <text class="judge-node-note" x="1145" y="378" text-anchor="middle">Proposed verdict</text>
       </svg>
-      <p class="takeaway"><strong>A model score cannot override a critical failure.</strong></p>
-      <p class="micro-note">Proposed evaluation pattern · bounded outputs can still be wrong. <a href="https://developers.openai.com/api/docs/guides/decisions" target="_blank" rel="noopener noreferrer">OpenAI Decisions API ↗</a> · <a href="https://docs.typesafe.ai/introduction" target="_blank" rel="noopener noreferrer">Jev ↗</a></p>
+      <p class="takeaway"><strong>Hard failure stays failed. Missing proof → review. Human confirmation before application.</strong></p>
+      <p class="micro-note">*Order needs a trustworthy event sequence. Decisions integration: <a href="https://github.com/agonza1/ConversationAgentEvals/pull/157" target="_blank" rel="noopener noreferrer">CAE draft PR #157 ↗</a> · <a href="https://developers.openai.com/api/docs/guides/decisions" target="_blank" rel="noopener noreferrer">API ↗</a> · <a href="https://docs.typesafe.ai/introduction" target="_blank" rel="noopener noreferrer">Jev ↗</a></p>
     `
   },
   {

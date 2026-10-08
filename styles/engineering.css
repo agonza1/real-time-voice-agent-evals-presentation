@@ -116,7 +116,7 @@ body.presenting :is(#timeline,#demo,#comparison):has(details[open]) { overflow-y
   .eng-panel .eng-details:not([open]) { display: none; }
   #timeline h2 h2 h2,#demo h2,#comparison h2 { font-size: 2.5rem; }
 }
-.judge-diagram { display: block; width: 100%; height: auto; max-height: 43vh; overflow: visible; }
+.judge-diagram { display: block; width: 100%; height: auto; max-height: 56vh; overflow: visible; }
 .judge-connectors path { fill: none; stroke: var(--cyan); stroke-width: 2; marker-end: url(#judge-flow-arrow); }
 .judge-connectors .judge-merge { marker-end: none; }
 .judge-source path, .judge-code-icon, .judge-model-icon, .judge-gate path { fill: none; stroke: var(--cyan); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
@@ -126,6 +126,12 @@ body.presenting :is(#timeline,#demo,#comparison):has(details[open]) { overflow-y
 .judge-diagram text { fill: var(--text); font-family: var(--font); }
 .judge-diagram .judge-node-title { font-size: 26px; font-weight: 700; }
 .judge-diagram .judge-node-note { font-size: 20px; fill: var(--muted); }
+.judge-engineering .judge-node-note { font-size: 21px; }
+.judge-diagram .judge-output { font: 21px var(--mono); fill: var(--text); }
+.judge-internal-divider { stroke: var(--line-strong); stroke-width: 1; }
+.judge-connectors .judge-prerequisite { stroke: var(--violet); stroke-dasharray: 4 4; }
+.judge-diagram .judge-prerequisite-label { fill: var(--muted); font: 17px var(--mono); }
+#judge-reliability h2 { font-size: clamp(2rem, 3.3vw, 3.6rem); }
 .judge-diagram :is(.judge-result-pass,.judge-result-fail,.judge-result-review) { fill: none; stroke-width: 3; stroke-linecap: round; }
 .judge-result-pass { stroke: #7ee7bb; }.judge-result-fail { stroke: #ff8e91; }.judge-result-review { stroke: #f5cc83; }
 .judge-diagram :is(.judge-result-pass,.judge-result-fail,.judge-result-review) text { font-size: 26px; font-weight: 700; stroke: none; }

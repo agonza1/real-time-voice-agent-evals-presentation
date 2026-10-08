@@ -213,7 +213,7 @@ Begin with the envelope, then select Dialog to show caller/agent turns and the r
 
 ## Judge reliability — slide 14
 
-A semantic judge can infer facts that were never established, produce an unsupported explanation, or return an incorrect verdict. Separate the work: code checks recorded ordering and authoritative state; models interpret specific conversational behaviors; code combines results into pass, fail, or review. Missing evidence, refusals, contradictions, and uncertainty must remain visible rather than turning into a pass.
+A semantic judge can infer facts that were never established, produce an unsupported explanation, or return an incorrect verdict. Separate the work: code checks declared events, terminal tool status, and recorded final-state predicates; models interpret specific conversational behaviors; code combines results into a proposed pass, fail, or review. The Decisions adapter requires the original deterministic result first and records a pending review; it does not automatically approve a release. Missing evidence, refusals, contradictions, and uncertainty must remain visible rather than turning into a pass.
 
 Decision models constrain the output space. They do not guarantee correctness. OpenAI Decisions supports predicate, choice, and rubric score questions; Jev is another example. Keep arithmetic, date comparison, event ordering, and exact state assertions in code. Validate semantic judgments against human-labeled calls, including negation, caller corrections, missing evidence, option-order changes, and attempts to influence the judge. Measure false passes, missed critical violations, review rate, repeatability, and calibration on held-out examples. Do not equate a confidence value with a probability that a verdict is correct.
 
@@ -224,3 +224,16 @@ Sources checked October 8, 2026:
 - [TypeSafe introduction](https://docs.typesafe.ai/introduction) and [Jev 1.13 limitations](https://docs.typesafe.ai/model-jaggedness/jev-1.13): narrow questions, composition in code, and known wrong-decision modes.
 - [JudgeBench](https://arxiv.org/abs/2410.12784): evaluate judges on objective correctness.
 - [GroundEval](https://arxiv.org/abs/2606.22737): 2026 preprint case studies contrasting plausible answers with recorded evidence paths; their results are not a universal judge failure rate.
+
+
+### Component details for the engineering diagram
+
+The recorded run provides attributed turns, action trace, final-state evidence, and its scenario contract. Generic CAE checks are finite checks of evidence presence, required/forbidden actions, explicit terminal tool status, and final-state completion. Findings retain source paths or event indexes. A source artifact being present does not establish that it is truthful or authoritative.
+
+The built-in cancellation rescue scenario checks order using trace list positions. This is not a universal causal or timestamp verifier. A stronger verified-before-action assertion requires trustworthy sequencing, sufficient event coverage, and operation correlation. When that evidence is unavailable, preserve insufficient evidence rather than inventing chronology.
+
+The Decisions draft compiles each behavior rule into one named choice question over saved turns plus trace/state context. Examples include an unsupported completion claim, required/forbidden behavior, and resolution or fallback. It validates the answer set, names, types, complete probability distributions, and provider provenance. Provider confidence and selected-choice probability are separate fields; the draft gates both with a provisional configured threshold. Refusals and low-certainty answers become insufficient evidence. Complete answers and provenance are stored; no supporting quotation is invented.
+
+The policy preserves deterministic failure and never promotes an original needs_review to pass. Model violations may propose fail; evidence gaps propose review. All proposals require the existing human confirmation before application, with snapshot and design enforcement checks. Release approval remains a separate workflow.
+
+Architecture inspected against [CAE draft PR #157](https://github.com/agonza1/ConversationAgentEvals/pull/157), commit `2dd4aee`, including `openai_decisions_judge.py`, `design_enforcement.py`, `benchmark_catalog_extensions.py`, and `assert_taxonomy_adapter.py`. The draft's automated tests check integration and policy behavior, not semantic accuracy or calibrated thresholds.
