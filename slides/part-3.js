@@ -21,17 +21,42 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
       <div class="section-heading">
         <p class="eyebrow">EVALUATE THE EVALUATOR</p>
         <h2 id="judge-reliability-title">Separate facts, judgments,<br><span>and release decisions.</span></h2>
-        <p>A judge can give a convincing explanation and still reach the wrong verdict.</p>
       </div>
-      <div class="judge-flow" role="group" aria-label="Recorded evidence feeds code checks and model judgments; release policy combines their results.">
-        <article class="judge-evidence"><span class="judge-label">RECORDED EVIDENCE</span><h3>What happened?</h3><p>Conversation + timestamps<br>Tool requests + results<br>Verified business state</p><small>Retain sources and provenance.</small></article>
-        <div class="judge-checks">
-          <article class="judge-facts"><span class="judge-label">CODE CHECKS</span><h3>Verify facts</h3><p>Identity check before action?<br>Required state reached?</p></article>
-          <article class="judge-semantics"><span class="judge-label">NARROW MODEL JUDGMENTS</span><h3>Interpret the response</h3><p>Claimed completion?<br>Explained uncertainty clearly?</p><small>Decision model or LLM · evidence required</small></article>
-        </div>
-        <article class="judge-policy"><span class="judge-label">RELEASE POLICY IN CODE</span><h3>Combine the results</h3><p><b class="judge-pass">Pass</b> · required checks satisfied<br><b class="judge-fail">Fail</b> · critical violation<br><b class="judge-review">Review</b> · missing evidence or uncertainty</p><small>Test the judge against human-labeled calls.</small></article>
-      </div>
-      <p class="takeaway"><strong>A favorable model score cannot override a critical violation.</strong></p>
+      <svg class="judge-diagram" viewBox="0 0 1280 370" role="img" aria-labelledby="judge-diagram-title judge-diagram-desc">
+        <title id="judge-diagram-title">Evidence feeds two checks, then a release policy</title>
+        <desc id="judge-diagram-desc">Recorded audio, trace, and state feed factual checks in code and narrow model judgments of behavior. A policy in code combines both into pass, fail, or review. A model score cannot override a critical failure.</desc>
+        <defs><marker id="judge-flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#39d2ee"/></marker></defs>
+        <g class="judge-connectors">
+          <path d="M250 180 H330 V90 H425"/><path d="M330 180 V270 H425"/>
+          <path d="M775 90 H840 V180 H900"/><path class="judge-merge" d="M775 270 H840 V180"/>
+          <path d="M1020 180 H1060 V70 H1090"/><path d="M1060 180 H1090"/><path d="M1060 180 V290 H1090"/>
+        </g>
+        <g class="judge-source">
+          <path d="M116 105 H177 L202 130 V231 H116 Z M177 105 V130 H202"/>
+          <path d="M132 153 H147 L154 140 L164 177 L174 153 H187 M132 195 H184 M132 211 H171"/>
+        </g>
+        <text class="judge-node-title" x="160" y="270" text-anchor="middle">Evidence</text>
+        <text class="judge-node-note" x="160" y="300" text-anchor="middle">Audio · trace · state</text>
+        <g class="judge-code-node">
+          <rect x="425" y="30" width="350" height="120" rx="18"/>
+          <path class="judge-code-icon" d="M475 67 L456 90 L475 113 M496 67 L515 90 L496 113"/>
+          <text class="judge-node-title" x="540" y="85">Check facts</text>
+          <text class="judge-node-note" x="540" y="116">Code · order + state</text>
+        </g>
+        <g class="judge-model-node">
+          <rect x="425" y="210" width="350" height="120" rx="18"/>
+          <g class="judge-model-icon"><circle cx="468" cy="254" r="6"/><circle cx="498" cy="254" r="6"/><circle cx="483" cy="284" r="6"/><path d="M474 254 H492 M471 260 L480 278 M495 260 L486 278"/></g>
+          <text class="judge-node-title" x="540" y="265">Judge behavior</text>
+          <text class="judge-node-note" x="540" y="296">Model · narrow questions</text>
+        </g>
+        <g class="judge-gate"><path d="M960 120 L1020 180 L960 240 L900 180 Z"/><path d="M936 165 H984 M936 195 H984 M949 155 V175 M973 185 V205"/></g>
+        <text class="judge-node-title" x="960" y="273" text-anchor="middle">Policy</text>
+        <text class="judge-node-note" x="960" y="302" text-anchor="middle">In code</text>
+        <g class="judge-result-pass"><circle cx="1120" cy="70" r="22"/><path d="M1110 70 L1118 78 L1131 62"/><text x="1155" y="79">Pass</text></g>
+        <g class="judge-result-fail"><circle cx="1120" cy="180" r="22"/><path d="M1112 172 L1128 188 M1128 172 L1112 188"/><text x="1155" y="189">Fail</text></g>
+        <g class="judge-result-review"><circle cx="1120" cy="290" r="22"/><text x="1120" y="299" text-anchor="middle">?</text><text x="1155" y="299">Review</text></g>
+      </svg>
+      <p class="takeaway"><strong>A model score cannot override a critical failure.</strong></p>
       <p class="micro-note">Proposed evaluation pattern · bounded outputs can still be wrong. <a href="https://developers.openai.com/api/docs/guides/decisions" target="_blank" rel="noopener noreferrer">OpenAI Decisions API ↗</a> · <a href="https://docs.typesafe.ai/introduction" target="_blank" rel="noopener noreferrer">Jev ↗</a></p>
     `
   },
