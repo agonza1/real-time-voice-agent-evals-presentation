@@ -16,6 +16,26 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
     `
   },
   {
+    id: "judge-reliability",
+    html: `
+      <div class="section-heading">
+        <p class="eyebrow">EVALUATE THE EVALUATOR</p>
+        <h2 id="judge-reliability-title">Separate facts, judgments,<br><span>and release decisions.</span></h2>
+        <p>A judge can give a convincing explanation and still reach the wrong verdict.</p>
+      </div>
+      <div class="judge-flow" role="group" aria-label="Recorded evidence feeds code checks and model judgments; release policy combines their results.">
+        <article class="judge-evidence"><span class="judge-label">RECORDED EVIDENCE</span><h3>What happened?</h3><p>Conversation + timestamps<br>Tool requests + results<br>Verified business state</p><small>Retain sources and provenance.</small></article>
+        <div class="judge-checks">
+          <article class="judge-facts"><span class="judge-label">CODE CHECKS</span><h3>Verify facts</h3><p>Identity check before action?<br>Required state reached?</p></article>
+          <article class="judge-semantics"><span class="judge-label">NARROW MODEL JUDGMENTS</span><h3>Interpret the response</h3><p>Claimed completion?<br>Explained uncertainty clearly?</p><small>Decision model or LLM · evidence required</small></article>
+        </div>
+        <article class="judge-policy"><span class="judge-label">RELEASE POLICY IN CODE</span><h3>Combine the results</h3><p><b class="judge-pass">Pass</b> · required checks satisfied<br><b class="judge-fail">Fail</b> · critical violation<br><b class="judge-review">Review</b> · missing evidence or uncertainty</p><small>Test the judge against human-labeled calls.</small></article>
+      </div>
+      <p class="takeaway"><strong>A favorable model score cannot override a critical violation.</strong></p>
+      <p class="micro-note">Proposed evaluation pattern · bounded outputs can still be wrong. <a href="https://developers.openai.com/api/docs/guides/decisions" target="_blank" rel="noopener noreferrer">OpenAI Decisions API ↗</a> · <a href="https://docs.typesafe.ai/introduction" target="_blank" rel="noopener noreferrer">Jev ↗</a></p>
+    `
+  },
+  {
     id: "comparison",
     html: `
 <div class="section-heading">
