@@ -98,7 +98,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
         <li><span>03</span><svg class="start-icon" viewBox="0 0 96 96" aria-hidden="true"><path d="M8 48h9l7-19 9 38 9-54 9 68 9-46 8 13h20"/><path class="start-icon-accent" d="M14 82 82 14"/></svg><h3>Test failures</h3><p>Pause. Correct. Break a tool.</p></li>
         <li><span>04</span><svg class="start-icon" viewBox="0 0 96 96" aria-hidden="true"><circle cx="42" cy="40" r="22"/><path d="m58 57 22 23m-49-40 8 8 14-16"/><path class="start-icon-accent" d="M14 62a35 35 0 0 0 39 19m-39-19v13m0-13h13"/></svg><h3>Inspect &amp; repeat</h3><p>Check evidence. Fix. Re-run.</p></li>
       </ol>
-      <div class="start-action"><strong>A small test set you can explain.</strong><a data-evaluator-link href="https://github.com/agonza1/ConversationAgentEvals" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m10 5 18 11-18 11Z"/></svg><span>Start the demo <span class="start-demo-detail">Open the conversation evaluator ↗</span></span></a></div>
+      <div class="start-action"><strong>A small test set you can explain.</strong><a data-evaluator-link href="https://github.com/agonza1/ConversationAgentEvals" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="m10 5 18 11-18 11Z"/></svg><span>Live conversation evaluator demo</span></a></div>
       <p class="micro-note">Controlled test targets or imported evidence.</p>
     `
   },
