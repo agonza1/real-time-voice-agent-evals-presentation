@@ -39,16 +39,15 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
       <div class="section-heading">
         <p class="eyebrow">YOUR FIRST EVALUATION</p>
         <h2 id="start-title">Start with one <span>important workflow.</span></h2>
-        <p>Pick a failure that matters. Make it repeatable.</p>
       </div>
       <ol class="start-steps">
-        <li><span>01</span><h3>Choose the workflow</h3><p>Cancel at period end.<br>Change an address.<br>Transfer to a human.</p><small>Start with one costly failure.</small></li>
-        <li><span>02</span><h3>Write the checks</h3><p>What must happen?<br>What must never happen?<br>What state proves success?</p><small>Declare the rules explicitly.</small></li>
-        <li><span>03</span><h3>Exercise the failures</h3><p>Add a pause.<br>Interrupt or correct.<br>Make a tool unavailable.</p><small>Repeat across representative calls.</small></li>
-        <li><span>04</span><h3>Inspect and repeat</h3><p>Read the findings.<br>Check the supporting evidence.<br>Fix and re-run.</p><small>Compare the same cases after changes.</small></li>
+        <li><span>01</span><svg class="start-icon" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="32"/><circle cx="48" cy="48" r="18"/><circle cx="48" cy="48" r="4" class="start-icon-fill"/><path d="M48 8v12M48 76v12M8 48h12M76 48h12"/></svg><h3>Choose a workflow</h3><p>One costly failure.</p></li>
+        <li><span>02</span><svg class="start-icon" viewBox="0 0 96 96" aria-hidden="true"><rect x="22" y="18" width="52" height="66" rx="7"/><rect x="35" y="10" width="26" height="16" rx="4" class="start-icon-solid"/><path d="m33 42 5 5 9-10M54 43h10m-31 20 5 5 9-10M54 64h10"/></svg><h3>Define success</h3><p>Must happen. Must never happen.<br>Proof of the final state.</p></li>
+        <li><span>03</span><svg class="start-icon" viewBox="0 0 96 96" aria-hidden="true"><path d="M8 48h9l7-19 9 38 9-54 9 68 9-46 8 13h20"/><path class="start-icon-accent" d="M14 82 82 14"/></svg><h3>Test failures</h3><p>Pause. Correct. Break a tool.</p></li>
+        <li><span>04</span><svg class="start-icon" viewBox="0 0 96 96" aria-hidden="true"><circle cx="42" cy="40" r="22"/><path d="m58 57 22 23m-49-40 8 8 14-16"/><path class="start-icon-accent" d="M14 62a35 35 0 0 0 39 19m-39-19v13m0-13h13"/></svg><h3>Inspect &amp; repeat</h3><p>Check evidence. Fix. Re-run.</p></li>
       </ol>
-      <div class="start-action"><strong>Begin with a small test set you can explain.</strong><a data-evaluator-link href="https://github.com/agonza1/ConversationAgentEvals" target="_blank" rel="noopener noreferrer">Open the conversation evaluator ↗</a></div>
-      <p class="micro-note">Evaluation checklist · use controlled test targets or imported evidence for failure cases.</p>
+      <div class="start-action"><strong>A small test set you can explain.</strong><a data-evaluator-link href="https://github.com/agonza1/ConversationAgentEvals" target="_blank" rel="noopener noreferrer">Open the conversation evaluator ↗</a></div>
+      <p class="micro-note">Controlled test targets or imported evidence.</p>
     `
   },
   {

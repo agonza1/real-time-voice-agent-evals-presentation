@@ -199,6 +199,8 @@ The event name follows the [official Fall '26 conference site](https://www.vonev
 
 This is an audience checklist, not an automatic CAE workflow. Start with one important business task. Write the required and forbidden behavior and expected state explicitly, then test pauses, interruptions, corrections, and unavailable tools on a controlled target or with imported evidence. Inspect the evidence behind each finding and compare the same cases after a change. Do not imply CAE's simple scenario form extracts these rules or that it injects every listed failure automatically.
 
+The four icons carry the stage checklist. Choose one costly failure in a workflow such as cancellation at period end, an address change, or transfer to a human. Define what must happen, what must never happen, and the state that proves success. Exercise pauses, interruptions, corrections, and unavailable tools across representative calls. Inspect each finding and its supporting evidence, fix the agent, and re-run the same cases. Begin with a small test set you can explain.
+
 ## Appendix A3 — capabilities and roadmap
 
 The former main-route capability list is available for Q&A. Distinguish configured scenario contracts from the simple scenario creation form and separate current product support from the presentation's teaching fixtures. Explain the roadmap only when asked.
