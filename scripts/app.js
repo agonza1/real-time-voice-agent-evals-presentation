@@ -113,6 +113,20 @@
 
   helpButton.addEventListener("click", openHelp);
 
+  document.querySelectorAll("[data-evaluation-dialog]").forEach((button) => {
+    const dialog = document.getElementById(button.dataset.evaluationDialog);
+    if (!(dialog instanceof HTMLDialogElement)) return;
+    button.addEventListener("click", () => {
+      if (!dialog.open) dialog.showModal();
+    });
+    dialog.querySelector("[data-close-evaluation-dialog]")?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target !== dialog) return;
+      const bounds = dialog.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+    });
+  });
+
   document.addEventListener("keydown", (event) => {
     const target = event.target instanceof Element ? event.target : null;
     const modified = event.metaKey || event.ctrlKey || event.altKey;

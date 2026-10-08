@@ -237,3 +237,10 @@ The Decisions draft compiles each behavior rule into one named choice question o
 The policy preserves deterministic failure and never promotes an original needs_review to pass. Model violations may propose fail; evidence gaps propose review. All proposals require the existing human confirmation before application, with snapshot and design enforcement checks. Release approval remains a separate workflow.
 
 Architecture inspected against [CAE draft PR #157](https://github.com/agonza1/ConversationAgentEvals/pull/157), commit `2dd4aee`, including `openai_decisions_judge.py`, `design_enforcement.py`, `benchmark_catalog_extensions.py`, and `assert_taxonomy_adapter.py`. The draft's automated tests check integration and policy behavior, not semantic accuracy or calibrated thresholds.
+
+
+### Detail modals — slide 14
+
+The main slide now shows the compact flow. Activate **Check facts** for its input → checks → findings view, or **Judge behavior** for the side-by-side existing LLM/ASSERT and decision-model paths. These are presentation explanations, not provider-selection controls. Keep both modal walkthroughs brief; use the detailed comparison during Q&A when possible. Escape, the close button, or a click outside the dialog closes it and returns to the diagram. Slide navigation is suspended while a modal is open.
+
+The traditional LLM/ASSERT path remains the existing semantic judge. OpenAI Decisions is an optional draft integration in PR #157; Jev is an alternative candidate, not a shipped CAE integration. Provider-specific confidence and probability semantics must not be conflated. Compare judge paths on human-labeled calls before switching; multiple judges agreeing does not prove execution.
