@@ -57,13 +57,13 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
           <rect class="fact-backend-badge" x="745" y="83" width="245" height="30" rx="8"/><text class="fact-sequence-note fact-proof-label" x="867" y="104">Canceled once</text>
           <text class="fact-sequence-note fact-proof-label" x="875" y="209">No second change</text>
         </svg></div>
-        <p class="fact-release"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 5h24v17H14l-7 6v-6H4Z"/><path d="m10 13 4 4 8-9"/></svg><span>Proof received → <strong>application releases confirmation.</strong></span></p>
         <div class="fact-check-cards fact-recovery-checks">
-          <section><div><strong>One change ✓</strong><code>effects(A) == 1</code></div></section>
-          <section><div><strong>Same request ✓</strong><code>proof.id == A</code></div></section>
-          <section><div><strong>Proof first ✓</strong><code>proof_seen &lt; claim_released</code></div></section>
+          <section><svg viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="22" cy="10" rx="15" ry="6"/><path d="M7 10v24c0 8 30 8 30 0V10 M7 22c0 8 30 8 30 0 M30 34l5 5 9-12"/></svg><div><span>EFFECT COUNT</span><strong>One recorded commit</strong><small>2 cancellation attempts · 1 effect ✓</small></div></section>
+          <section><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M19 29l10-10 M17 32l-3 3a8 8 0 0 1-11-11l8-8a8 8 0 0 1 11 0 M31 16l3-3a8 8 0 0 1 11 11l-8 8a8 8 0 0 1-11 0"/></svg><div><span>REQUEST CORRELATION</span><strong>Result belongs to this action</strong><small>Result A ↔ original request A ✓</small></div></section>
+          <section><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="M24 12v13h10 M29 36l5 5 10-13"/></svg><div><span>CONFIRMATION TIMING</span><strong>Proof before confirmation</strong><small>Proof at 600 ms · released at 750 ms ✓</small></div></section>
         </div>
-        <p class="judge-detail-note">Illustrative sequence + pseudocode. Safe retry requires backend idempotency. Checks require a complete, trusted action log and event order. <a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation/blob/feat/concise-copy-echo-photo/scripts/engineering-model.js" target="_blank" rel="noopener noreferrer">Teaching fixture ↗</a></p>
+        <div class="judge-visual-verdict"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="m9 16 5 5 9-11"/></svg><strong>Check effects and evidence timing—not just tool status.</strong></div>
+        <p class="judge-detail-note">Tested teaching fixture · scripted times, not measured speech · backend idempotency, complete logs, and trustworthy ordering assumed · example checks, not universal CAE checks. <a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation/blob/feat/concise-copy-echo-photo/scripts/engineering-model.js" target="_blank" rel="noopener noreferrer">Teaching fixture ↗</a></p>
       </dialog>
       <dialog id="behavior-details" class="judge-dialog" aria-labelledby="behavior-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close behavior-judge details">×</button>
