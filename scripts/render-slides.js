@@ -11,7 +11,13 @@
     throw new Error("Presentation slide data did not load correctly.");
   }
 
-  const main = [...part1, ...part2.filter((slide) => slide.id !== "demo").flatMap((slide) => slide.id === "vcon" ? [slide, ...enrichment] : [slide]), ...part3.filter((slide) => !["standards", "boundary"].includes(slide.id))];
+  const mainOrder = ["intro", "story", "projects", "problem", "system", "dual-voice-architecture", "dual-voice", "layers", "timeline", "outcomes", "workbench", "start", "vcon", "vcon-enrichment", "assert", "judge-reliability", "comparison", "close"];
+  const available = new Map(parts.flat().map((slide) => [slide.id, slide]));
+  const main = mainOrder.map((id) => {
+    const slide = available.get(id);
+    if (!slide) throw new Error(`Presentation slide is missing: ${id}`);
+    return slide;
+  });
   const appendix = [...part3.filter((slide) => slide.id === "standards"), ...part2.filter((slide) => slide.id === "demo"), ...part3.filter((slide) => slide.id === "boundary")]
     .map((slide) => ({ ...slide, appendix: true }));
   const slides = [...main, ...appendix];

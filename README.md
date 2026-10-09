@@ -120,7 +120,7 @@ MIT
 ## Engineering experiments (presentation fixtures)
 
 The engineering sections, vCon JSON magnifier, and visual system are preserved.
-A personal story, a visual project overview, and a continuous-voice sequence lead into the evaluation workflow. The route has 18 main slides and three appendix slides. Forward navigation stops at the closing slide; use its links to revisit the JSON explorer or open references, the lost-ack experiment, or capabilities. The ASSERT workflow follows the workbench. The main sequence moves from the vCon overview to the interactive JSON explorer, then the outcome matrix, evaluator reliability, and release review.
+A personal story, a visual project overview, and a continuous-voice sequence lead into the evaluation workflow. The route has 18 main slides and three appendix slides. Forward navigation stops at the closing slide; use its links to revisit the JSON explorer or open references, the lost-ack experiment, or capabilities. The outcome matrix defines success before the workbench and first-evaluation demo. After the demo, the route follows portable evidence and its JSON example, ASSERT, evaluator reliability, and the release decision. Speaker notes reserve 3½ minutes for the live demo within a 20-minute talk, plus a one-minute buffer and nine minutes of Q&A.
 The focused additions are:
 
 - **Timeline:** switch between complete-request and aggressive endpointing traces.

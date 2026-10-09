@@ -24,7 +24,7 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
     id: "assert",
     html: `
       <div class="section-heading">
-        <p class="eyebrow">ASSERT · REQUIREMENT-DRIVEN EVALUATION</p>
+        <p class="eyebrow">ASSERT FRAMEWORK · REQUIREMENT-DRIVEN EVALUATION</p>
         <h2 id="assert-title">ASSERT: <span>behavior tests you can debug.</span></h2>
       </div>
       <div class="assert-flow">
@@ -43,7 +43,7 @@ cancel_plan(...)
   verified_session: <span class="assert-trace-fail">false</span>
   committed: <span class="assert-trace-fail">true</span>
 <span class="assert-trace-fail">→ verification rule violated</span></code></pre>
-          <p class="assert-engine-note">Illustrative trace · mocked tools · judge uses captured actions.</p>
+          <p class="assert-engine-note">Upstream workflow · mocked tools.<br>CAE currently integrates optional semantic review.</p>
         </article>
         <article class="assert-report">
           <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M16 12h36v56H16 M25 25h17M25 37h12"/><circle cx="50" cy="47" r="15"/><path d="m61 58 11 11m-31-23 6 6 11-12"/></svg>

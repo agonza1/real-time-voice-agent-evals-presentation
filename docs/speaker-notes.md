@@ -57,32 +57,32 @@ Leave the closing slide up during Q&A so attendees can scan the QR to [connect w
 
 ## 30-minute stage route
 
-Plan for about 20 minutes of presentation and ten minutes of Q&A. There are 18 main slides, followed by three optional appendix slides. The main route takes 19:45, leaving 0:15 for transitions. The lost-ack experiment is available for Q&A. Do not narrate every field or open every disclosure.
+Plan for 20 minutes of presentation including a 3½-minute demo, one minute of delivery buffer, and nine minutes of Q&A. There are 18 main slides and three optional appendices. Keep the scope to one evaluation example; do not narrate every field or open every disclosure.
 
 | Slide | Time | Finish by | Point and stage action |
 | --- | --- | --- | --- |
-| 1 · Title | 0:30 | 0:30 | A model score cannot establish that a voice agent works as a system. |
-| 2 · Story | 1:00 | 1:30 | Tell the Echo Show story. Move from understanding words to controlling actions to testing changes. |
-| 3 · Projects | 1:00 | 2:30 | Give each project 15 seconds: meeting agents, surgical audio, avatar training, and the agentic call center. |
-| 4 · Problem | 1:00 | 3:30 | Contrast the confident confirmation with the verified active subscription. A timeout alone leaves state unknown; this example includes readback. |
-| 5 · System | 0:45 | 4:15 | Trace input through SIP/RTP or WebRTC to TTS, then return audio to the Caller. Control exchanges requests and results with the Backend. |
-| 6 · Two-path architecture | 0:45 | 5:00 | Trace the live caller/voice-model loop, then background reasoning and tools. Results return to the voice model. |
-| 7 · Continuous-voice sequence | 1:00 | 6:00 | Follow the appointment sequence, then ask whether the agent applied the new constraint and discarded stale results. |
-| 8 · Four layers | 1:15 | 7:15 | Name each dimension. A good conversation score cannot excuse a wrong business action. |
-| 9 · Timeline | 2:00 | 9:15 | Switch to aggressive endpointing, then restore the full-request trace. Faster output loses the billing-period qualifier. |
-| 10 · Workbench | 1:00 | 10:15 | Introduce the Conversation Agent Evaluation (CAE) tool through Run → Evaluate → Compare, then explain framework roles. New rubric: re-score; changed agent: run again. |
-| 11 · ASSERT | 0:45 | 11:00 | Show the verification boundary, failing tool trace, and reusable artifacts. Zero failures in a small sample does not establish zero risk. |
-| 12 · vCon | 1:00 | 12:00 | The container carries observations and provenance. It does not supply a verdict. |
-| 13 · vCon JSON | 1:00 | 13:00 | Magnify Dialog, then Evaluation. Show where the conversation, recording, checks, and state evidence travel together. |
-| 14 · Outcomes | 1:00 | 14:00 | Read the two axes: business state and safe response. Unknown state stays outside this verified-state matrix. |
-| 15 · Judge reliability | 1:30 | 15:30 | Separate facts, narrow semantic judgments, and release policy. Bounded decisions can still be wrong. |
-| 16 · Release review | 2:00 | 17:30 | Compare current settings with a proposed shorter wait. It responds faster but fails caller-finish and cancellation-timing requirements. |
-| 17 · Start | 1:15 | 18:45 | Choose one workflow, declare explicit checks, exercise failure cases, inspect evidence, and repeat after changes. |
-| 18 · Close | 1:00 | 19:45 | Return to the opening question and invite attendees to connect. |
-| Delivery buffer | 0:15 | 20:00 | Allow room for transitions. |
-| Q&A | 10:00 | 30:00 | Leave the closing slide visible; open an appendix when it answers a question. |
+| 1 · Title | 0:30 | 0:30 | Introduce evaluation of the complete real-time voice system. |
+| 2 · Story | 0:50 | 1:20 | Move from voice commands to controlling actions and testing changes. |
+| 3 · Projects | 1:00 | 2:20 | Emphasize our WebRTC, audio capture, avatar orchestration, and SIP engineering experience. |
+| 4 · Problem | 0:50 | 3:10 | For a period-end request, the operation-matched readback shows no cancellation scheduled; the timeout alone proves neither success nor failure. |
+| 5 · System | 0:45 | 3:55 | SIP establishes the session; RTP carries audio. Trace the conceptual cascade and return audio, with tool requests and results. |
+| 6 · Two-path architecture | 0:40 | 4:35 | A newer architecture pattern: native audio continues while reasoning and tools run. |
+| 7 · Continuous-voice sequence | 0:40 | 5:15 | The application applies the changed constraint and rejects stale results. |
+| 8 · Four layers | 1:00 | 6:15 | Separate conversation, speech, execution, and outcome. ASR-specific measures apply only when ASR is present. |
+| 9 · Timeline | 1:45 | 8:00 | Switch endpointing once, then restore. A faster system-endpoint-to-audio interval can hide premature turn acceptance. |
+| 10 · Outcomes | 0:50 | 8:50 | Define completion and evidence-supported speech before introducing the tool. Unknown stays unknown; authorization is a separate check. |
+| 11 · Workbench | 0:45 | 9:35 | Run → Evaluate → Compare. Name framework roles briefly. |
+| 12 · First evaluation + live demo | 3:30 | 13:05 | Checklist in 20 seconds; spend the remaining time on one recorded call, one finding, and its supporting trace/state. Use a prepared captured result if a live run is slow. |
+| 13 · vCon | 0:35 | 13:40 | Portable evidence, not a verdict. |
+| 14 · vCon JSON | 0:45 | 14:25 | Magnify Dialog and Evaluation only. Unknown outcome requires review; the sample is illustrative, not a literal export. |
+| 15 · ASSERT | 1:30 | 15:55 | Upstream behavior suite, captured action trace, reusable artifacts, and sample-size limits. CAE integration is optional semantic review. |
+| 16 · Judge reliability | 1:50 | 17:45 | Facts → narrow semantic judgments → code policy. Open the fact-check example; keep provider comparisons for Q&A. |
+| 17 · Release decision | 1:50 | 19:35 | Matched scenario cohort: speed improves while critical behavior regresses. Hold the candidate. These are illustrative data. |
+| 18 · Close | 0:25 | 20:00 | Production readiness is a system property. Leave the contact QR visible. |
+| Delivery buffer | 1:00 | 21:00 | Allow for transitions and opening the evaluator. |
+| Q&A | 9:00 | 30:00 | Keep the closing visible; open appendix material when useful. |
 
-The vCon JSON explorer is slide 13 in the main route. Appendix A1 contains standards and research; A2 contains the lost-ack experiment; A3 contains capabilities and the roadmap. Open them from the closing links only when useful for a question. Normal forward navigation stops at the closing slide. End always returns to the closing slide; Home returns to the title.
+The JSON explorer is slide 14. Appendix A1 contains standards and research; A2 contains the lost-ack experiment; A3 contains capabilities and roadmap. Normal forward navigation stops at the closing. End returns to the closing; Home returns to the title.
 
 ## Spoken bridge — workbench to evidence
 
@@ -94,22 +94,18 @@ Transition: “We have defined what to check. Now we need to preserve the conver
 
 ## Bridges between slides
 
-- **4 → 5:** “The confirmation sounds convincing. Which part of the system can establish that the action happened?” The active state is verified by readback, not inferred from timeout.
-- **5 → 6:** “This is the conventional STT–LLM–TTS cascade. Native speech systems change those components and can overlap listening with speaking. We still evaluate the whole interaction.”
-- **6 → 7:** “Here are those same components during a call. The caller adds a new constraint while the search is running.”
-- **7 → 8:** “A new caller constraint can arrive while work is running. That affects the conversation, the execution, and the eventual outcome.”
-- **8 → 9:** “Start with speech timing: what did the system hear before it answered?”
-- **9 → 10:** “Now we need a repeatable workflow to collect these observations and compare changes.”
-- **10 → 11:** “What does the framework buy an engineer? A behavior-specific suite, the tool trace behind a finding, and artifacts we can reuse after a code change.”
-- **11 → 12:** “Define what the agent must do, what it must avoid, and what proves success. To check those requirements later, retain the media, tool trace, and state evidence together.”
-- **12 → 13:** “Here is what those observations look like inside the evidence container.”
-- **13 → 14:** “With the conversation and supporting evidence together, we can judge whether the task finished and whether the response was supported.”
-- **14 → 15:** “Those verdicts depend on the evaluator. How do we keep the judge from accepting a convincing but unsupported claim?”
-- **15 → 16:** “Combine verified facts and narrow judgments with an explicit policy. Then apply that policy across the same scenarios.”
-- **16 → 17:** “You can start small. Choose one workflow and one failure that matters.”
-- **17 → 18:** “Keep the evidence and repeat the test when the system changes. Production readiness is a systems property.”
+- **4 → 5:** “Which part of the system can establish that this action happened?”
+- **5 → 6 → 7:** “The cascade is one architecture. Newer native speech systems can listen while speaking and delegate work. The application still has to manage changed requests and stale results.”
+- **7 → 8 → 9:** “The architecture changes, but we still evaluate the caller experience, speech, execution, and outcome. Start with this timing failure.”
+- **9 → 10:** “Faster at one boundary does not establish success. What would count as a successful outcome?”
+- **10 → 11 → 12:** “Now we can state the checks. Here is the workbench, and one evaluation with the evidence behind its finding.”
+- **12 → 13 → 14:** “The report depends on captured observations. Keep the conversation, trace, and state together so another system can inspect them.”
+- **14 → 15:** “The evidence is portable; ASSERT adds repeatable behavior tests and inspectable judgments.”
+- **15 → 16:** “A structured judge can still be wrong. Separate recorded facts, interpretation, and the policy that combines them.”
+- **16 → 17:** “Apply that policy to matched scenarios. Would you release a faster version with these regressions?”
+- **17 → 18:** “We build the conversation and verify the whole system. Keep the evidence and repeat the evaluation when it changes.”
 
-## ASSERT as an engineering test suite — slide 11
+## ASSERT as an engineering test suite — slide 15
 
 “Take one risk: cancellation before identity verification. Specify the allowed boundary too: a verified caller must still be able to cancel. Generate cases, run the target, and judge this behavior using the captured action trace. In this illustrative case, the caller asks to skip verification and the mocked cancellation commits anyway. A fluent reply does not make that action safe. Keep the case, inference trace, verdict and reason, and aggregate metrics. Re-run the frozen cases after changing the application.”
 
@@ -117,20 +113,22 @@ The behavior and artifact names come from ASSERT's documented [billing support e
 
 The numeric strip is a sample-size calculation, not a benchmark. With zero observed failures in N independent Bernoulli trials with a stable failure probability, the exact one-sided 95% upper confidence bound is p_upper = 1 - 0.05^(1/N). For N = 100 it is 2.951%; for N = 1,000 it is 0.299%. The familiar approximation is 3/N. This bounds failure probability under the sampled protocol, not all production traffic. Generated scenarios can be correlated or unrepresentative; an imperfect judge can miss failures. Neither a reused test set nor a clean LLM-scored report automatically satisfies these assumptions. The [NIST binomial confidence interval reference](https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm) gives the exact binomial method; the displayed values are calculated for zero failures with a one-sided alpha of 0.05. Audio, interruption timing, and receiver delivery need separate voice measurements.
 
-## Outcome matrix — slide 14
+## Outcome matrix — slide 10
 
-The rows describe verified business state; the columns describe whether speech was supported at the time it was emitted. A task can finish while the agent confirms it without sufficient evidence. That claim might be true by luck, but the confirmation remains unsafe. Conversely, a truthful expression of uncertainty can be safe even if the backend already committed.
+The rows describe verified business state; the columns describe whether speech was supported at the time it was emitted. A task can finish while the agent confirms it without sufficient evidence. That claim might be true by luck, but the confirmation remains unsupported. Conversely, a truthful expression of uncertainty can be safe even if the backend already committed.
 
-An unknown state is not a failed task. Keep it unknown until operation-matched reconciliation establishes the result. The matrix applies the contract to separate business state from response safety; the release review then uses those verdicts across matched scenarios.
+Authorization, privacy, and timing are separate checks; this matrix only addresses completion claims. An unknown state is not a failed task. Keep it unknown until operation-matched reconciliation establishes the result. The matrix applies the contract to separate business state from completion-claim support; the release review then uses those verdicts across matched scenarios.
 
 ## Continuous voice — slides 6 and 7
+
+Slide 5 is a conceptual cascade, not a strictly serial scheduling or latency model: VAD, endpointing, and streaming recognition can overlap. SIP handles session signaling; RTP carries media, including WebRTC audio. For native speech-to-speech, ASR partial/final metrics apply only if that observation is available. Test audio entity and intent handling end to end; generated captions are not independent proof of what the model heard.
 
 Frame slides 5–7 around engineering responsibilities: connect the caller, manage interruptions, coordinate tools, and verify action results before confirming completion. For native continuous voice, the application still owns permission checks, task updates, result correlation, and rejection of stale results. The on-slide controls are responsibilities to implement and evaluate, not guarantees supplied by a framework.
 
 Both diagrams are in the main route: the two-path architecture follows the conventional system on slide 6, and the appointment sequence follows on slide 7. Legacy architecture-review URLs open slide 6 without replacing the sequence.
 
 - `architecture`: trace the cyan audio loop first, then the delegated reasoning and tool requests below it. “The live conversation continues while deeper work runs. The result comes back to the voice model.”
-- `sequence`: follow the appointment search from top to bottom. The cyan overlap highlights the caller adding “after 3pm” while the voice model speaks. Ask the on-slide question: did the agent apply that new constraint and discard stale results? These are checks for the evaluation, rather than capabilities proven by the illustration. Availability returns to the same conversation; “Shall I book it?” does not claim that a booking happened.
+- `sequence`: follow the appointment search from top to bottom. The cyan overlap highlights the caller adding “after 3pm” while the voice model speaks. Point to the application controls: apply the new constraint and discard stale results. These are checks for the evaluation, rather than capabilities proven by the illustration. Availability returns to the same conversation; “Shall I book it?” does not claim that a booking happened.
 
 Both diagrams are illustrative. An implementation must update or supersede background work after a changed request and suppress stale results. Keep the vendor explanation and STT → LLM → TTS alternative in these notes rather than adding a second spoken pipeline to the diagram.
 
@@ -177,7 +175,7 @@ Implementation checked against ConversationAgentEvals commit `31671ee6a5d12e8e8a
 - [ASSERT integration boundary](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/docs/assert-boundary-and-schemas.md): local deterministic evaluation and explicit upstream semantic judge.
 - [Web dependencies](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/apps/web/package.json): Next.js and React.
 
-## Release comparison — slide 16
+## Release comparison — slide 17
 
 “The current settings wait longer after a pause. The proposed change shortens that wait so responses start sooner. We compare the same 100 call scenarios on each version. These are illustrative numbers, not measured results.”
 
@@ -207,13 +205,13 @@ Before going on stage, load the original Echo Show photo and leave disclosures c
 
 If an interaction fails, explain its expected before/after result and move on.
 
-Check the clock after slides 8 (7:15), 11 (11:00), and 17 (18:45). If behind, shorten the framework explanation and use the delivery buffer. Preserve the outcome matrix, release decision, and closing. Keep the lost-ack experiment and sources for Q&A. Spend one minute on the JSON explorer in the main route; do not narrate every field.
+Check the clock after slide 9 (8:00), the demo on slide 12 (13:05), and slide 16 (17:45). If behind, shorten the architecture narration, framework explanation, or JSON field tour. Preserve the outcome definitions, release decision, and closing. Keep provider comparisons and the lost-ack experiment for Q&A.
 
 The event name follows the [official Fall '26 conference site](https://www.vonevolution.com/). The October 15 talk date is retained from the existing deck.
 
-## First evaluation — slide 17
+## First evaluation — slide 12
 
-This is an audience checklist, not an automatic CAE workflow. Start with one important business task. Write the required and forbidden behavior and expected state explicitly, then test pauses, interruptions, corrections, and unavailable tools on a controlled target or with imported evidence. Inspect the evidence behind each finding and compare the same cases after a change. Do not imply CAE's simple scenario form extracts these rules or that it injects every listed failure automatically.
+This slide opens the live demo in the middle of the talk. Before rehearsing, choose one real captured call and an inspectable finding in the evaluator, with a captured report available as backup. Show the requirement, the observed trace/state, and the verdict; avoid a broad UI tour or presenting a teaching fixture as a customer benchmark. This is an audience checklist, not an automatic CAE workflow. Start with one important business task. Write the required and forbidden behavior and expected state explicitly, then test pauses, interruptions, corrections, and unavailable tools on a controlled target or with imported evidence. Inspect the evidence behind each finding and compare the same cases after a change. Do not imply CAE's simple scenario form extracts these rules or that it injects every listed failure automatically.
 
 The four icons carry the stage checklist. Choose one costly failure in a workflow such as cancellation at period end, an address change, or transfer to a human. Define what must happen, what must never happen, and the state that proves success. Exercise pauses, interruptions, corrections, and unavailable tools across representative calls. Inspect each finding and its supporting evidence, fix the agent, and re-run the same cases. Begin with a small test set you can explain.
 
@@ -221,11 +219,11 @@ The four icons carry the stage checklist. Choose one costly failure in a workflo
 
 The former main-route capability list is available for Q&A. Distinguish configured scenario contracts from the simple scenario creation form and separate current product support from the presentation's teaching fixtures. Explain the roadmap only when asked.
 
-## vCon JSON explorer — slide 13
+## vCon JSON explorer — slide 14
 
-Begin with the envelope, then select Dialog to show caller/agent turns and the recording pointer. Select Evaluation to show retained checks and state evidence. Keep the magnifier interaction; the excerpt is illustrative pseudo-JSON, not a complete runnable document or a measured result. Distinguish vCon core fields from CAE application conventions. This is a concrete view of the container from slide 12, rather than a second explanation of vCon.
+Begin with the envelope, then select Dialog to show caller/agent turns and the recording pointer. Select Evaluation to show retained checks and state evidence. Keep the magnifier interaction; the excerpt is illustrative pseudo-JSON, not a complete runnable document or a measured result. Distinguish vCon core fields from CAE application conventions. This is a concrete view of the container from slide 13. The review fields are illustrative: needs_review and complete:null express unknown completion, not verified noncompletion. The current CAE exporter uses a bare base64url hash; the draft-aligned example uses the sha512- prefix required by vCon Core section 2.2. This is a presentation correction, not an exporter migration. The exported document is currently unsigned. Core also supports inline media.
 
-## Judge reliability — slide 15
+## Judge reliability — slide 16
 
 A semantic judge can infer facts that were never established, produce an unsupported explanation, or return an incorrect verdict. Separate the work: code checks declared events, terminal tool status, and recorded final-state predicates; models interpret specific conversational behaviors; code combines results into a proposed pass, fail, or review. The Decisions adapter requires the original deterministic result first and records a pending review; it does not automatically approve a release. Missing evidence, refusals, contradictions, and uncertainty must remain visible rather than turning into a pass.
 
@@ -253,13 +251,13 @@ The policy preserves deterministic failure and never promotes an original needs_
 Architecture inspected against [CAE draft PR #157](https://github.com/agonza1/ConversationAgentEvals/pull/157), commit `2dd4aee`, including `openai_decisions_judge.py`, `design_enforcement.py`, `benchmark_catalog_extensions.py`, and `assert_taxonomy_adapter.py`. The draft's automated tests check integration and policy behavior, not semantic accuracy or calibrated thresholds.
 
 
-### Detail modals — slide 15
+### Detail modals — slide 16
 
 The main slide now shows the compact flow. Activate **Check facts** for its input → checks → findings view, or **Judge behavior** for the side-by-side existing LLM/ASSERT and decision-model paths. These are presentation explanations, not provider-selection controls. Keep both modal walkthroughs brief; use the detailed comparison during Q&A when possible. Escape, the close button, or a click outside the dialog closes it and returns to the diagram. Slide navigation is suspended while a modal is open.
 
 The traditional LLM/ASSERT path remains the existing semantic judge. OpenAI Decisions is an optional draft integration in PR #157; Jev is an alternative candidate, not a shipped CAE integration. Provider-specific confidence and probability semantics must not be conflated. Compare judge paths on human-labeled calls before switching; multiple judges agreeing does not prove execution.
 
-### Visual component walkthroughs — slide 15
+### Visual component walkthroughs — slide 16
 
 The fact modal uses the tested controlRun({ scenario: "lost", retries: 1, reconciled: true, gate: true }) teaching fixture. Request A is a readable alias for op-247. The agent application submits the operation, handles timeout/retry, queries the service result, and gates its structured completion action. The speech model does not supply backend idempotency or independently prove execution. The subscription service commits once. Its reply is lost, so the application still has an unknown outcome. Retry repeats the same logical operation/key and parameters; the assumed backend idempotency contract prevents another effect. Retry replies remain unavailable. A separate result query establishes completion for that same operation. Only after that result reaches the application does its output gate release confirmation. Identity, authorization, scope, and cancellation policy are assumed satisfied in this example.
 

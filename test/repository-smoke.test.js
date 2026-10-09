@@ -103,14 +103,14 @@ const localAssets = [
   assert.match(combined, /draft-ietf-vcon-vcon-core-04/i);
   assert.match(combined, /cae-execution-transcript-v1/);
   assert.match(combined, /cae-execution-evidence-v1/);
-  assert.match(combined, /portable recording is a <code>dialog<\/code> item/i);
-  assert.match(combined, /current tool execution export is unsigned/i);
+  assert.match(combined, /External recordings use HTTPS/i);
+  assert.match(combined, /not a literal CAE export/i);
 });
 
  test("the vCon enrichment is concise pseudo JSON with an accessible magnifier", async () => {
   const enrichment = await readRepositoryFile("slides/vcon-enrichment.js");
   assert.doesNotThrow(() => new Function("window", enrichment)({}));
-  assert.match(enrichment, /HIGH-LEVEL PSEUDO JSON · CURRENT TOOL SHAPE/);
+  assert.match(enrichment, /PSEUDO JSON · DRAFT-ALIGNED REVIEW EXAMPLE/);
   assert.match(enrichment, /class="vcon-json-code"/);
   assert.match(enrichment, /data-json-explorer/);
   assert.match(enrichment, /class="json-zoom-square"/);
@@ -125,7 +125,7 @@ const localAssets = [
   assert.match(enrichment, /<span class="json-key">"vcon"<\/span>/);
   assert.match(enrichment, /<span class="json-key">"dialog"<\/span>/);
   assert.match(enrichment, /<span class="json-key">"analysis"<\/span>/);
-  assert.match(enrichment, /base64url SHA-512/);
+  assert.match(enrichment, /sha512-&lt;base64url digest&gt;/);
   assert.match(enrichment, /<span class="json-key">"status"<\/span><span class="json-punctuation">:<\/span> <span class="json-string">"portable"<\/span>/);
 });
 
@@ -139,7 +139,7 @@ const localAssets = [
   const document = { getElementById: () => deck, dispatchEvent: () => {} };
   new Function("window", "document", "location", "CustomEvent", renderer)(scope, document, { search: "" }, class {});
   const route = scope.VOICE_EVALS_SLIDES;
-  assert.deepEqual(route.map((slide) => slide.id), ["intro", "story", "projects", "problem", "system", "dual-voice-architecture", "dual-voice", "layers", "timeline", "workbench", "assert", "vcon", "vcon-enrichment", "outcomes", "judge-reliability", "comparison", "start", "close", "standards", "demo", "boundary"]);
+  assert.deepEqual(route.map((slide) => slide.id), ["intro", "story", "projects", "problem", "system", "dual-voice-architecture", "dual-voice", "layers", "timeline", "outcomes", "workbench", "start", "vcon", "vcon-enrichment", "assert", "judge-reliability", "comparison", "close", "standards", "demo", "boundary"]);
   assert.equal(route.filter((slide) => !slide.appendix).length, 18);
   assert.deepEqual(route.filter((slide) => slide.appendix).map((slide) => slide.id), ["standards", "demo", "boundary"]);
   assert.match(deck.innerHTML, /aria-label="Slide 18 of 18"/);

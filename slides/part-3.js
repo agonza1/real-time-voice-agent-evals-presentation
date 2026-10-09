@@ -4,15 +4,15 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">TWO SEPARATE VERDICTS</p>
-        <h2 id="outcomes-title">Did the task finish?<br><span>Was the response safe?</span></h2>
-        <p>Judge the business state and the agent's response separately.</p>
+        <h2 id="outcomes-title">Did the task finish?<br><span>Was the claim supported?</span></h2>
+        <p>Separate task completion from evidence available before confirmation.</p>
       </div>
-      <div class="outcome-matrix-wrap"><table class="outcome-matrix"><thead><tr><th scope="col">Verified business state</th><th scope="col">Safe response</th><th scope="col">Unsafe response</th></tr></thead><tbody>
+      <div class="outcome-matrix-wrap"><table class="outcome-matrix"><thead><tr><th scope="col">Verified business state</th><th scope="col">Supported response</th><th scope="col">Unsupported completion claim</th></tr></thead><tbody>
         <tr><th scope="row">Task completed</th><td class="matrix-safe"><strong>Verified success</strong><span>Confirmation has supporting evidence.</span></td><td class="matrix-unsafe"><strong>Unsupported confirmation</strong><span>The claim lacked proof at speech time.</span></td></tr>
-        <tr><th scope="row">Task not completed</th><td class="matrix-recovery"><strong>Safe failure</strong><span>Truthful explanation and recovery.</span></td><td class="matrix-unsafe"><strong>False success</strong><span>The agent claims an action that did not happen.</span></td></tr>
+        <tr><th scope="row">Task not completed</th><td class="matrix-recovery"><strong>Truthful noncompletion</strong><span>Truthful explanation and recovery.</span></td><td class="matrix-unsafe"><strong>False success</strong><span>The agent claims an action that did not happen.</span></td></tr>
       </tbody></table></div>
       <p class="takeaway"><strong>State unknown? Keep it unknown until reconciled.</strong></p>
-      <p class="micro-note">A truthful expression of uncertainty can be safe even when the task actually committed.</p>
+      <p class="micro-note">Completion claims only. Authorization, privacy, and timing need separate checks.</p>
     `
   },
   {
@@ -24,7 +24,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
       </div>
       <svg class="judge-diagram" viewBox="0 0 1280 370" role="group" aria-labelledby="judge-diagram-title judge-diagram-desc">
         <title id="judge-diagram-title">Evidence feeds fact checks and behavior judgment, then a review policy</title>
-        <desc id="judge-diagram-desc">Open either component for details. Behavior judgment can use the existing LLM and ASSERT path or a decision model. Both contribute to a proposed verdict under code policy.</desc>
+        <desc id="judge-diagram-desc">Open either component for details. Behavior judgment can use the existing LLM and ASSERT path or a decision model. Semantic judgment contributes to a proposed verdict under code policy.</desc>
         <defs><marker id="judge-flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#39d2ee"/></marker></defs>
         <g class="judge-connectors"><path d="M250 180 H330 V90 H425"/><path d="M330 180 V270 H425"/><path d="M775 90 H840 V180 H900"/><path class="judge-merge" d="M775 270 H840 V180"/><path d="M1020 180 H1060 V70 H1090"/><path d="M1060 180 H1090"/><path d="M1060 180 V290 H1090"/><path class="judge-prerequisite" d="M600 150 V210"/></g>
         <g class="judge-source"><path d="M116 105 H177 L202 130 V231 H116 Z M177 105 V130 H202"/><path d="M132 153 H147 L154 140 L164 177 L174 153 H187 M132 195 H184 M132 211 H171"/></g>
@@ -33,7 +33,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
           <button xmlns="http://www.w3.org/1999/xhtml" class="judge-component-button" type="button" data-evaluation-dialog="fact-details" aria-controls="fact-details" aria-haspopup="dialog"><span class="judge-component-title">Check facts</span><span class="judge-component-subtitle">Rules + recorded state</span><span class="judge-component-action">View details ↗</span></button>
         </foreignObject>
         <foreignObject x="425" y="210" width="350" height="120">
-          <button xmlns="http://www.w3.org/1999/xhtml" class="judge-component-button judge-behavior-button" type="button" data-evaluation-dialog="behavior-details" aria-controls="behavior-details" aria-haspopup="dialog"><span class="judge-component-title">Judge behavior</span><span class="judge-component-subtitle">LLM / ASSERT or decision model</span><span class="judge-component-action">Compare judge paths ↗</span></button>
+          <button xmlns="http://www.w3.org/1999/xhtml" class="judge-component-button judge-behavior-button" type="button" data-evaluation-dialog="behavior-details" aria-controls="behavior-details" aria-haspopup="dialog"><span class="judge-component-title">Judge behavior</span><span class="judge-component-subtitle">LLM / ASSERT</span><span class="judge-component-action">View judging details ↗</span></button>
         </foreignObject>
         <g class="judge-gate"><rect x="907" y="126" width="106" height="108" rx="16"/><path d="M927 180 H951 M951 151 V209 M951 151 H976 M951 180 H976 M951 209 H976"/><path class="policy-pass" d="M976 148 L980 152 L987 144"/><path class="policy-fail" d="M978 176 L986 184 M986 176 L978 184"/><circle class="policy-review" cx="982" cy="209" r="5"/></g>
         <text class="judge-node-title" x="960" y="273" text-anchor="middle">Review policy</text><text class="judge-node-note" x="960" y="302" text-anchor="middle">In code</text>
@@ -67,7 +67,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
       </dialog>
       <dialog id="behavior-details" class="judge-dialog" aria-labelledby="behavior-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close behavior-judge details">×</button>
-        <p class="eyebrow">JUDGE BEHAVIOR · TWO OPTIONAL PATHS</p><h2 id="behavior-details-title">Same evidence. Different output contracts.</h2>
+        <p class="eyebrow">JUDGE BEHAVIOR · OPTIONAL DETAIL FOR Q&A</p><h2 id="behavior-details-title">Same evidence. Different output contracts.</h2>
         <div class="judge-shared-input"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 5h20l9 9v29H10Z M30 5v10h9 M17 23h15M17 30h15M17 37h9"/></svg><div><strong>Saved turns + rule + trace / state</strong><span>Rule: did the agent claim completion without supporting evidence?</span></div></div>
         <div class="judge-options judge-visual-options">
           <section><span class="judge-option-status">EXISTING CAE PATH</span><h3>LLM / ASSERT</h3>
@@ -78,13 +78,13 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
             <div class="judge-validation"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5 40 12v13c0 10-16 18-16 18S8 35 8 25V12Z M16 24l6 6 11-13"/></svg><div><strong>Validate score contract</strong><span>Schema ≠ factual correctness</span></div></div>
             <p class="judge-provider-links"><a href="https://github.com/responsibleai/ASSERT" target="_blank" rel="noopener noreferrer">ASSERT ↗</a></p>
           </section>
-          <section><span class="judge-option-status">OPENAI DECISIONS · DRAFT CAE PR</span><h3>Decision model</h3>
+          <section><span class="judge-option-status">OPTIONAL DESIGN · NOT INTEGRATED</span><h3>Decision model</h3>
             <div class="judge-path-step"><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M8 28h14M22 13v30M22 13h18M22 28h18M22 43h18"/><circle cx="44" cy="13" r="4"/><circle cx="44" cy="28" r="4"/><circle cx="44" cy="43" r="4"/></svg><div><strong>One named question per rule</strong><span>Bounded semantic choice</span></div></div>
             <div class="judge-path-arrow" aria-hidden="true">↓</div>
             <div class="judge-choice-set"><span class="choice-fail">Violation</span><span class="choice-pass">No violation</span><span class="choice-review">Insufficient evidence</span></div>
             <div class="judge-path-arrow" aria-hidden="true">↓</div>
             <div class="judge-validation"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 5 40 12v13c0 10-16 18-16 18S8 35 8 25V12Z M16 24l6 6 11-13"/></svg><div><strong>Validate + apply thresholds</strong><span>Schema · distributions · confidence · P(choice)</span></div></div>
-            <p class="judge-provider-links"><a href="https://github.com/agonza1/ConversationAgentEvals/pull/157" target="_blank" rel="noopener noreferrer">Draft PR ↗</a> · <a href="https://developers.openai.com/api/docs/guides/decisions" target="_blank" rel="noopener noreferrer">API ↗</a> · <a href="https://docs.typesafe.ai/introduction" target="_blank" rel="noopener noreferrer">Jev: alternative candidate ↗</a></p>
+            <p class="judge-provider-links"><a href="https://developers.openai.com/api/docs/guides/decisions" target="_blank" rel="noopener noreferrer">API ↗</a> · <a href="https://docs.typesafe.ai/introduction" target="_blank" rel="noopener noreferrer">Jev: alternative candidate ↗</a></p>
           </section>
         </div>
         <div class="judge-review-strip"><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="13" r="8"/><path d="M9 40v-9a15 15 0 0 1 30 0v9 M18 32l5 5 9-11"/></svg><strong>Proposed verdict → human review</strong><span>Preserve hard failures · uncertainty → review</span></div>

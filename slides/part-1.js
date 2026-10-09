@@ -94,7 +94,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
       </div>
       <div class="truth-split">
         <article class="truth-card surface-card">
-          <p class="card-kicker">CONVERSATION SURFACE</p>
+          <p class="card-kicker">CALLER REQUEST · CANCEL AT PERIOD END</p>
           <blockquote>“Your subscription has been canceled.”</blockquote>
           <div class="quality-tags"><span>polite</span><span>relevant</span><span>confident</span></div>
           <div class="status-line pass"><span>LANGUAGE-ONLY CHECK</span><strong>PASS</strong></div>
@@ -103,7 +103,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         <article class="truth-card state-card">
           <p class="card-kicker">AUTHORITATIVE STATE</p>
           <div class="tool-row"><code>cancel_subscription</code><strong class="danger">→ TIMEOUT</strong></div>
-          <div class="database-state"><span>Readback confirms subscription.status</span><strong>ACTIVE</strong></div>
+          <div class="database-state"><span>Matched readback: cancellation_scheduled</span><strong>FALSE</strong></div>
           <div class="status-line fail"><span>BUSINESS OUTCOME</span><strong>FAIL</strong></div>
         </article>
       </div>
@@ -116,11 +116,11 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
       <div class="section-heading">
         <p class="eyebrow">THE SYSTEM · REAL-TIME VOICE ENGINEERING</p>
         <h2 id="system-title">A conventional voice agent is <span>a chain of systems</span></h2>
-        <p>Connect callers. Manage interruptions. Verify actions before speaking.</p>
+        <p>Connect callers. Manage interruptions. Verify actions before confirming.</p>
       </div>
-      <ol class="system-flow" aria-label="Caller input through media, turn detection, speech recognition, agent, control, and speech generation">
+      <ol class="system-flow" aria-label="Caller input through connection, turn detection, speech recognition, agent, control, and speech generation">
         <li><span>01</span><b>Caller</b><small>speech</small></li>
-        <li><span>02</span><b>Media</b><small>SIP / RTP / WebRTC</small></li>
+        <li><span>02</span><b>Connection</b><small>SIP signaling · RTP / WebRTC audio</small></li>
         <li><span>03</span><b>Turn</b><small>VAD / EOT</small></li>
         <li><span>04</span><b>STT</b><small>partials / final</small></li>
         <li class="model-node"><span>05</span><b>Agent</b><small>model + flow</small></li>
@@ -128,9 +128,9 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         <li><span>07</span><b>TTS</b><small>speech out</small></li>
       </ol>
       <div class="system-branches">
-        <div class="system-return" aria-label="Return audio: TTS sends speech through Media back to the Caller">
+        <div class="system-return" aria-label="Return audio: TTS sends speech through the audio connection back to the Caller">
           <span class="system-path-label">RETURN AUDIO</span>
-          <p><b>Caller</b><span aria-hidden="true">←</span><b>Media</b><span aria-hidden="true">←</span><b>TTS</b></p>
+          <p><b>Caller</b><span aria-hidden="true">←</span><b>Audio connection</b><span aria-hidden="true">←</span><b>TTS</b></p>
           <small>Generated speech travels back over the media connection.</small>
         </div>
         <div class="system-backend" aria-label="Control exchanges tool requests and results with the Backend">
@@ -161,7 +161,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
       </div>
       <div class="layer-grid">
         <article class="layer-card cyan-card"><span class="layer-number">01</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 14H7l-4 3V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v5a4 4 0 0 1-4 4Z"/><path d="M8 17v1a2 2 0 0 0 2 2h7l4 3V11a2 2 0 0 0-2-2"/></svg><h3>Conversation experience</h3><p>Turn timing, interruptions, silence, audio continuity, and latency.</p></article>
-        <article class="layer-card violet-card"><span class="layer-number">02</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 10v4M7 6v12M11 3v18M15 7v10M19 9v6M23 11v2"/></svg><h3>Speech boundary</h3><p>Entity accuracy, partial stability, finalization delay, accents, noise, and disfluency.</p></article>
+        <article class="layer-card violet-card"><span class="layer-number">02</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 10v4M7 6v12M11 3v18M15 7v10M19 9v6M23 11v2"/></svg><h3>Speech boundary</h3><p>Entity / intent accuracy · accents and noise.<br>With ASR: partial stability and finalization delay.</p></article>
         <article class="layer-card amber-card"><span class="layer-number">03</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="2" width="7" height="6" rx="1.5"/><rect x="14" y="16" width="7" height="6" rx="1.5"/><path d="M6.5 8v11h7.5M10 5h7.5v11M14.5 13l3 3 3-3"/></svg><h3>Agent execution</h3><p>Required and forbidden actions, policy checks, tool choice, fallback, and recovery.</p></article>
         <article class="layer-card green-card"><span class="layer-number">04</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m7.5 12 3 3 6-6"/></svg><h3>Business outcome</h3><p>State transition, durable completion, and agreement between speech and backend truth.</p></article>
       </div>

@@ -248,7 +248,7 @@ body.presenting #intro h1 { font-size: clamp(2.65rem, 5.1vw, 4.5rem); }
   body.presenting h2:not(.closing-statement) { font-size: clamp(2.2rem, 3.3vw, 2.8rem); }
   body.presenting #vcon-enrichment h2 { font-size: 2.5rem; }
   body.presenting #vcon-enrichment .json-zoom-square { width: 100%; height: 280px; aspect-ratio: auto; }
-  body.presenting #vcon-enrichment .json-focus-button { min-height: 54px; }
+  body.presenting #vcon-enrichment .json-focus-button { min-height: 42px; padding: 6px 9px; }
   body.presenting #comparison .comparison-table :is(th,td) { height: 50px; }
   body.presenting #comparison .eng-release-decision { padding-block: 12px; }
   body.presenting #demo .eng-panel { padding-block: 16px; }
