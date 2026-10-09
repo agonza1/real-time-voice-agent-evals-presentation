@@ -220,6 +220,17 @@ body.presenting #close .closing-statement { font-size: clamp(2.8rem, 4.4vw, 4.8r
 .assert-trace { margin: 0; padding: 16px; border-left: 2px solid var(--violet); background: var(--surface); font: clamp(.78rem, 1.15vw, 1.1rem)/1.85 var(--mono); white-space: pre-wrap; }
 .assert-trace-comment { color: var(--muted); }
 .assert-trace-fail { color: var(--danger); }
+.assert-intro { color: var(--muted); margin: -8px 0 26px; }
+.assert-step { color: var(--muted-2); font: .72rem var(--mono); display: block; margin-bottom: 8px; }
+.assert-caller { margin: 0 0 16px; color: var(--text); font-size: clamp(1rem, 1.4vw, 1.35rem); font-weight: 650; }
+.assert-verdict { display: flex; align-items: center; gap: 12px; margin: 0 0 16px; color: var(--danger); font: 750 clamp(1.7rem, 2.8vw, 2.6rem) var(--mono); }
+.assert-footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; border-top: 1px solid var(--line-strong); padding-top: 24px; }
+.assert-footer .takeaway { margin: 0; }
+.assert-detail-button { border: 1px solid var(--line-strong); border-radius: 10px; padding: 10px 16px; color: var(--cyan); background: var(--surface); font-size: .85rem; }
+#assert-details h2 { font-size: clamp(1.7rem, 2.5vw, 2.3rem); }
+.assert-detail-artifacts { margin: 24px 0; }
+.assert-detail-artifacts > div { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.assert-detail-artifacts dd { margin: 0; }
 .assert-report .assert-artifacts { font-size: clamp(.8rem, 1.15vw, 1.1rem); }
 .assert-artifacts dt code { font-family: var(--mono); }
 .assert-artifacts dd { font-size: .9rem; color: var(--muted); font-weight: 400; }
