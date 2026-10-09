@@ -243,6 +243,11 @@ body.presenting #close .closing-statement { font-size: clamp(2.8rem, 4.4vw, 4.8r
 .assert-runtime-steps b { display: block; font-size: clamp(.95rem, 1.2vw, 1.2rem); line-height: 1.25; }
 .assert-runtime-steps small { display: block; margin-top: 5px; color: var(--muted); font-size: .75rem; line-height: 1.3; }
 .assert-command { display: block; margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line-strong); color: var(--violet); font: .7rem var(--mono); overflow-wrap: anywhere; }
+.assert-scenario-label { margin: 12px 0 0; color: var(--cyan); font: .65rem var(--mono); letter-spacing: .08em; }
+.assert-scenario-context { margin: 0; color: var(--muted); font-size: .95rem; line-height: 1.4; }
+.assert-selected-check { margin-top: 18px; padding: 12px 14px; border-left: 2px solid var(--cyan); background: var(--cyan-soft); }
+.assert-selected-check small { color: var(--cyan); font: .6rem var(--mono); }
+.assert-selected-check p { margin: 8px 0 0; font-size: 1rem; font-weight: 650; line-height: 1.35; }
 .assert-report .assert-artifacts { font-size: clamp(.8rem, 1.15vw, 1.1rem); }
 .assert-artifacts dt code { font-family: var(--mono); }
 .assert-artifacts dd { font-size: .9rem; color: var(--muted); font-weight: 400; }

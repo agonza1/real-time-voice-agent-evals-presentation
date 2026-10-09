@@ -31,15 +31,17 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
       <div class="assert-flow assert-software-flow">
         <article class="assert-spec">
           <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M20 12h30l12 12v44H20Z M50 12v14h12 M29 37h24 M29 48h24 M29 59h15"/></svg>
-          <h3>Your requirement</h3>
-          <p class="assert-risk">“Verify identity<br>before cancellation.”</p>
-          <p class="assert-engine-note">Written rule + evaluation config.</p>
+          <p class="assert-scenario-label">SCENARIO</p>
+          <h3>Billing Address Change</h3>
+          <p class="assert-scenario-context">Moved customer · update before the next invoice.</p>
+          <p class="assert-engine-note">Context + goal + behavior rules</p>
+          <div class="assert-selected-check"><small>ONE REQUIREMENT TO TEST</small><p>Verify identity before updating the address.</p></div>
         </article>
         <article class="assert-engine assert-runtime">
           <p class="assert-runtime-label">EXECUTABLE FRAMEWORK</p>
           <h3>ASSERT</h3>
           <ol class="assert-runtime-steps" aria-label="What the ASSERT framework does">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4Z M15 3v6h5 M8 12h8M8 16h5"/></svg><span><b>Generate test conversations</b><small>Variations on your rule</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4Z M15 3v6h5 M8 12h8M8 16h5"/></svg><span><b>Generate test conversations</b><small>Scenario variations for this requirement</small></span></li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 12 8-12 8Z"/></svg><span><b>Run them against your agent</b><small>Capture responses + tool traces</small></span></li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><span><b>Judge against the rule</b><small>LLM evaluates captured evidence</small></span></li>
           </ol>
@@ -49,8 +51,8 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
           <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M16 12h36v56H16 M25 25h17M25 37h12"/><circle cx="50" cy="47" r="15"/><path d="m61 58 11 11m-31-23 6 6 11-12"/></svg>
           <h3>Evidence + findings</h3>
           <p class="assert-verdict"><span aria-hidden="true">✕</span> FAIL</p>
-          <p class="assert-risk">Canceled without verification.</p>
-          <p class="assert-engine-note">Trace: unverified → cancellation committed.<br>Illustrative mocked run.</p>
+          <p class="assert-risk">Address changed without verification.</p>
+          <p class="assert-engine-note">Trace: unverified → update committed.<br>Illustrative mocked run.</p>
         </article>
       </div>
       <div class="assert-footer"><p class="takeaway"><strong>Fix the agent. Re-run the same cases.</strong></p><button class="assert-detail-button" type="button" data-evaluation-dialog="assert-details" aria-controls="assert-details" aria-haspopup="dialog">Engineering details ↗</button></div>
