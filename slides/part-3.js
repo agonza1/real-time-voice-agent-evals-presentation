@@ -43,29 +43,27 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
       <p class="micro-note">Post-run evaluation · human confirmation before applying a proposed verdict. Open either component for details.</p>
       <dialog id="fact-details" class="judge-dialog" aria-labelledby="fact-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close fact-check details">×</button>
-        <p class="eyebrow">CHECK FACTS · AUTOMATED RECOVERY</p><h2 id="fact-details-title">A timeout can hide a completed action.</h2>
+        <p class="eyebrow">CHECK FACTS · FOLLOW THE EVIDENCE</p><h2 id="fact-details-title">No reply. Did the cancellation happen?</h2>
         <div class="judge-example-quote"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 8h32v24H22L12 42V32H8Z"/><path d="M16 16h16M16 23h11"/></svg><span>Caller: “Cancel my subscription.”</span></div>
-        <div class="fact-example-wrap"><svg class="fact-example-diagram fact-recovery-diagram" viewBox="0 0 1000 300" role="img" aria-labelledby="fact-example-title fact-example-desc">
-          <title id="fact-example-title">Automated recovery after a lost tool acknowledgment</title><desc id="fact-example-desc">The backend commits once at 180 milliseconds. The agent times out at 240 milliseconds, retries the original request at 450, and the backend deduplicates. Readback at 600 milliseconds matches the original request; confirmation is permitted at 750. Code checks the backend effect count, request correlation, and evidence available before speech.</desc>
-          <defs><marker id="fact-example-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#39d2ee"/></marker></defs>
-          <text class="recovery-lane-title" x="8" y="18">VOICE RUNTIME</text><text class="recovery-lane-title" x="8" y="177">BACKEND EVIDENCE</text>
-          <g class="example-arrows"><path d="M228 90 H263"/><path d="M478 90 H513"/><path d="M728 90 H763"/><path class="recovery-lost-ack" d="M118 196 V144"/><path d="M368 138 V189"/><path d="M618 196 V144"/></g>
-          <g class="example-node"><rect x="8" y="38" width="220" height="100" rx="14"/><rect x="258" y="38" width="220" height="100" rx="14"/><rect x="508" y="38" width="220" height="100" rx="14"/><rect x="758" y="38" width="234" height="100" rx="14"/></g>
-          <g class="example-icon"><circle cx="45" cy="75" r="16"/><path d="M45 64v12l8 5 M280 82a17 17 0 1 1 24 9 M280 82v-11 M280 82h11 M530 62h23v28h-23Z M534 75l6 6 9-12 M780 61h31v23h-14l-9 9V84h-8Z"/></g>
-          <g class="recovery-runtime-label"><text x="140" y="76">Timeout</text><text x="390" y="76">Retry</text><text x="640" y="76">Read back</text><text x="899" y="76">Confirm</text></g>
-          <g class="recovery-runtime-note"><text x="118" y="118">240 ms · outcome unknown</text><text x="368" y="118">450 ms · same request</text><text x="618" y="118">600 ms · matched result</text><text x="875" y="118">750 ms · TTS allowed</text></g>
-          <g class="recovery-state-node"><rect x="8" y="196" width="220" height="92" rx="14"/><rect x="258" y="196" width="220" height="92" rx="14"/><rect x="508" y="196" width="220" height="92" rx="14"/></g>
-          <g class="recovery-state-label"><text x="118" y="230">Committed once</text><text x="368" y="230">Deduplicated</text><text x="618" y="230">Canceled</text></g>
-          <g class="recovery-state-note"><text x="118" y="263">180 ms · ACK lost</text><text x="368" y="263">No additional effect</text><text x="618" y="263">Original request verified</text></g>
-          <g class="recovery-knowledge"><path d="M791 217h25v37h-25Z M798 234l5 5 9-11"/><text x="834" y="231">Proof reaches</text><text x="834" y="256">the agent</text></g>
+        <div class="fact-example-wrap"><svg class="fact-example-diagram fact-recovery-sequence" viewBox="0 0 1000 310" role="img" aria-labelledby="fact-example-title fact-example-desc">
+          <title id="fact-example-title">The application verifies a cancellation after the service reply is lost.</title><desc id="fact-example-desc">The agent application sends cancellation request A. The subscription service cancels once, but its reply is lost. The application times out and still does not know the outcome. It retries with the same idempotency key. The service deduplicates, so there is no second change. The application queries the result for request A and receives a matched completion result. Only then does its output gate release a confirmation. This sequence models application and backend behavior, not model reasoning or measured speech timing.</desc>
+          <defs><marker id="fact-example-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#39d2ee"/></marker><marker id="fact-proof-arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#47d7a0"/></marker></defs>
+          <text class="fact-sequence-heading" x="170" y="25">Agent application</text><text class="fact-sequence-heading" x="830" y="25">Subscription service</text>
+          <path class="fact-sequence-lifeline" d="M170 42V300M830 42V300"/>
+          <g class="example-arrows"><path d="M174 75H826"/><path d="M174 185H826"/><path d="M174 245H826"/><path class="fact-proof-arrow" d="M826 290H174"/></g>
+          <g class="fact-sequence-message"><text x="500" y="64">Cancel · request A</text><text x="500" y="174">Retry · same key A</text><text x="500" y="234">Check result for A</text><text class="fact-proof-label" x="500" y="279">A completed · canceled</text></g>
+          <path class="fact-lost-reply" d="M830 135H455"/><path class="fact-lost-cross" d="m447 127 16 16m0-16-16 16"/><text class="fact-sequence-note" x="620" y="122">Reply lost</text>
+          <rect class="fact-unknown-badge" x="20" y="112" width="300" height="44" rx="10"/><text class="fact-sequence-note fact-unknown-label" x="170" y="140">Timeout: outcome unknown</text>
+          <rect class="fact-backend-badge" x="745" y="83" width="245" height="30" rx="8"/><text class="fact-sequence-note fact-proof-label" x="867" y="104">Canceled once</text>
+          <text class="fact-sequence-note fact-proof-label" x="875" y="209">No second change</text>
         </svg></div>
+        <p class="fact-release"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 5h24v17H14l-7 6v-6H4Z"/><path d="m10 13 4 4 8-9"/></svg><span>Proof received → <strong>application releases confirmation.</strong></span></p>
         <div class="fact-check-cards fact-recovery-checks">
-          <section><svg viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="22" cy="10" rx="15" ry="6"/><path d="M7 10v24c0 8 30 8 30 0V10 M7 22c0 8 30 8 30 0 M30 34l5 5 9-12"/></svg><div><span>EFFECT COUNT</span><strong>One recorded commit</strong><code>2 requests · 1 effect ✓</code></div></section>
-          <section><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M19 29l10-10 M17 32l-3 3a8 8 0 0 1-11-11l8-8a8 8 0 0 1 11 0 M31 16l3-3a8 8 0 0 1 11 11l-8 8a8 8 0 0 1-11 0"/></svg><div><span>REQUEST CORRELATION</span><strong>Result belongs to this action</strong><code>readback ↔ original request ✓</code></div></section>
-          <section><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="M24 12v13h10 M29 36l5 5 10-13"/></svg><div><span>CONFIRMATION TIMING</span><strong>Proof before TTS</strong><code>600 ms &lt; 750 ms ✓</code></div></section>
+          <section><div><strong>One change ✓</strong><code>effects(A) == 1</code></div></section>
+          <section><div><strong>Same request ✓</strong><code>proof.id == A</code></div></section>
+          <section><div><strong>Proof first ✓</strong><code>proof_seen &lt; claim_released</code></div></section>
         </div>
-        <div class="judge-visual-verdict"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="m9 16 5 5 9-11"/></svg><strong>Check effects and evidence timing—not just tool status.</strong></div>
-        <p class="judge-detail-note">Tested teaching fixture · backend deduplication and trustworthy event ordering assumed · example assertions, not universal CAE checks. <a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation/blob/feat/concise-copy-echo-photo/scripts/engineering-model.js" target="_blank" rel="noopener noreferrer">Fixture ↗</a></p>
+        <p class="judge-detail-note">Illustrative sequence + pseudocode. Safe retry requires backend idempotency. Checks require a complete, trusted action log and event order. <a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation/blob/feat/concise-copy-echo-photo/scripts/engineering-model.js" target="_blank" rel="noopener noreferrer">Teaching fixture ↗</a></p>
       </dialog>
       <dialog id="behavior-details" class="judge-dialog" aria-labelledby="behavior-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close behavior-judge details">×</button>
