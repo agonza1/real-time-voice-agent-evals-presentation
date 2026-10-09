@@ -69,7 +69,7 @@ Plan for about 20 minutes of presentation and ten minutes of Q&A. There are 18 m
 | 8 · Four layers | 1:15 | 7:15 | Name each dimension. A good conversation score cannot excuse a wrong business action. |
 | 9 · Timeline | 2:00 | 9:15 | Switch to aggressive endpointing, then restore the full-request trace. Faster output loses the billing-period qualifier. |
 | 10 · Workbench | 1:00 | 10:15 | Introduce the Conversation Agent Evaluation (CAE) tool through Run → Evaluate → Compare, then explain framework roles. New rubric: re-score; changed agent: run again. |
-| 11 · ASSERT | 0:45 | 11:00 | Follow explicit requirements through test cases and per-behavior findings. Structure is reusable; trust requires calibration. |
+| 11 · ASSERT | 0:45 | 11:00 | Show the verification boundary, failing tool trace, and reusable artifacts. Zero failures in a small sample does not establish zero risk. |
 | 12 · vCon | 1:00 | 12:00 | The container carries observations and provenance. It does not supply a verdict. |
 | 13 · vCon JSON | 1:00 | 13:00 | Magnify Dialog, then Evaluation. Show where the conversation, recording, checks, and state evidence travel together. |
 | 14 · Outcomes | 1:00 | 14:00 | Read the two axes: business state and safe response. Unknown state stays outside this verified-state matrix. |
@@ -98,7 +98,7 @@ Transition: “We have defined what to check. Now we need to preserve the conver
 - **7 → 8:** “A new caller constraint can arrive while work is running. That affects the conversation, the execution, and the eventual outcome.”
 - **8 → 9:** “Start with speech timing: what did the system hear before it answered?”
 - **9 → 10:** “Now we need a repeatable workflow to collect these observations and compare changes.”
-- **10 → 11:** “ASSERT gives the semantic evaluation a reusable structure. Here is what that means for the cancellation workflow.”
+- **10 → 11:** “What does the framework buy an engineer? A behavior-specific suite, the tool trace behind a finding, and artifacts we can reuse after a code change.”
 - **11 → 12:** “Define what the agent must do, what it must avoid, and what proves success. To check those requirements later, retain the media, tool trace, and state evidence together.”
 - **12 → 13:** “Here is what those observations look like inside the evidence container.”
 - **13 → 14:** “With the conversation and supporting evidence together, we can judge whether the task finished and whether the response was supported.”
@@ -106,6 +106,14 @@ Transition: “We have defined what to check. Now we need to preserve the conver
 - **15 → 16:** “Combine verified facts and narrow judgments with an explicit policy. Then apply that policy across the same scenarios.”
 - **16 → 17:** “You can start small. Choose one workflow and one failure that matters.”
 - **17 → 18:** “Keep the evidence and repeat the test when the system changes. Production readiness is a systems property.”
+
+## ASSERT as an engineering test suite — slide 11
+
+“Take one risk: cancellation before identity verification. Specify the allowed boundary too: a verified caller must still be able to cancel. Generate cases, run the target, and judge this behavior using the captured action trace. In this illustrative case, the caller asks to skip verification and the mocked cancellation commits anyway. A fluent reply does not make that action safe. Keep the case, inference trace, verdict and reason, and aggregate metrics. Re-run the frozen cases after changing the application.”
+
+The behavior and artifact names come from ASSERT's documented [billing support example](https://github.com/responsibleai/ASSERT/tree/main/examples/billing_support_agent), checked October 8, 2026. Its tools are mocked; the baseline relies on prompt policy and intentionally does not enforce verification in the tools. The snippet is a shortened illustrative trace, not an executable API call, literal tool-output schema, measured result, or exported ASSERT verdict. The framework generates single- and multi-turn cases, runs a target, uses LLM judgment, and writes local JSON/JSONL artifacts. This describes the upstream workflow; CAE's optional semantic-review adapter does not imply all upstream generation and target-running features are integrated into CAE. Config snapshots and judge/model/prompt versions matter for reproducibility. Review generated cases and rubrics, keep held-out human-labeled cases for judge calibration, and record changes to both agent and evaluator.
+
+The numeric strip is a sample-size calculation, not a benchmark. With zero observed failures in N independent Bernoulli trials with a stable failure probability, the exact one-sided 95% upper confidence bound is p_upper = 1 - 0.05^(1/N). For N = 100 it is 2.951%; for N = 1,000 it is 0.299%. The familiar approximation is 3/N. This bounds failure probability under the sampled protocol, not all production traffic. Generated scenarios can be correlated or unrepresentative; an imperfect judge can miss failures. Neither a reused test set nor a clean LLM-scored report automatically satisfies these assumptions. The [NIST binomial confidence interval reference](https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm) gives the exact binomial method; the displayed values are calculated for zero failures with a one-sided alpha of 0.05. Audio, interruption timing, and receiver delivery need separate voice measurements.
 
 ## Outcome matrix — slide 14
 
