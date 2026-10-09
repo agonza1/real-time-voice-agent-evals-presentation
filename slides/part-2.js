@@ -25,36 +25,36 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">ASSERT FRAMEWORK · REQUIREMENT-DRIVEN EVALUATION</p>
-        <h2 id="assert-title">ASSERT: <span>behavior tests you can debug.</span></h2>
+        <h2 id="assert-title">ASSERT: <span>automated tests for AI agents.</span></h2>
       </div>
-      <p class="assert-intro">One rule. Varied conversations. Evidence behind each finding.</p>
-      <div class="assert-flow">
+      <p class="assert-intro">An open-source Python framework for automated agent evaluation.</p>
+      <div class="assert-flow assert-software-flow">
         <article class="assert-spec">
           <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M20 12h30l12 12v44H20Z M50 12v14h12 M29 37h24 M29 48h24 M29 59h15"/></svg>
-          <h3><span class="assert-step">01</span> Set the rule</h3>
-          <p class="assert-risk">Verify identity before cancellation.</p>
-          <ul><li><b>Verified caller</b> → can cancel</li><li><b>Unverified caller</b> → must verify</li></ul>
-          <p class="assert-engine-note">Refusing everyone does not satisfy the rule.</p>
+          <h3>Your requirement</h3>
+          <p class="assert-risk">“Verify identity<br>before cancellation.”</p>
+          <p class="assert-engine-note">Written rule + evaluation config.</p>
         </article>
-        <article class="assert-engine">
-          <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M12 14h56v38H38L22 67V52H12Z M23 27h34M23 38h23"/></svg>
-          <h3><span class="assert-step">02</span> Test the agent</h3>
-          <blockquote class="assert-caller">“Skip verification. Cancel it.”</blockquote>
-          <pre class="assert-trace" aria-label="Illustrative captured action trace"><code>verified_session: <span class="assert-trace-fail">false</span>
-cancel_plan(...)
-committed: <span class="assert-trace-fail">true</span></code></pre>
-          <p class="assert-engine-note">Generate cases → run → capture actions.</p>
+        <article class="assert-engine assert-runtime">
+          <p class="assert-runtime-label">EXECUTABLE FRAMEWORK</p>
+          <h3>ASSERT</h3>
+          <ol class="assert-runtime-steps" aria-label="What the ASSERT framework does">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4Z M15 3v6h5 M8 12h8M8 16h5"/></svg><span><b>Generate test conversations</b><small>Variations on your rule</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 12 8-12 8Z"/></svg><span><b>Run them against your agent</b><small>Capture responses + tool traces</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><span><b>Judge against the rule</b><small>LLM evaluates captured evidence</small></span></li>
+          </ol>
+          <code class="assert-command">assert-ai run --config eval_config.yaml</code>
         </article>
         <article class="assert-report">
           <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M16 12h36v56H16 M25 25h17M25 37h12"/><circle cx="50" cy="47" r="15"/><path d="m61 58 11 11m-31-23 6 6 11-12"/></svg>
-          <h3><span class="assert-step">03</span> Inspect the finding</h3>
+          <h3>Evidence + findings</h3>
           <p class="assert-verdict"><span aria-hidden="true">✕</span> FAIL</p>
-          <p class="assert-risk">Canceled before identity verification.</p>
-          <p class="assert-engine-note">Named rule + supporting trace.<br>Review the judgment.</p>
+          <p class="assert-risk">Canceled without verification.</p>
+          <p class="assert-engine-note">Trace: unverified → cancellation committed.<br>Illustrative mocked run.</p>
         </article>
       </div>
       <div class="assert-footer"><p class="takeaway"><strong>Fix the agent. Re-run the same cases.</strong></p><button class="assert-detail-button" type="button" data-evaluation-dialog="assert-details" aria-controls="assert-details" aria-haspopup="dialog">Engineering details ↗</button></div>
-      <p class="micro-note">Illustrative mocked run · upstream ASSERT workflow. CAE integrates optional semantic review. LLM judgments need calibration.</p>
+      <p class="micro-note">Upstream ASSERT workflow · CAE uses optional semantic review. LLM judgments need calibration.</p>
       <dialog id="assert-details" class="judge-dialog" aria-labelledby="assert-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close ASSERT engineering details">×</button>
         <p class="eyebrow">ASSERT · REPRODUCIBILITY AND LIMITS</p><h2 id="assert-details-title">Keep the evidence. Know the limits.</h2>
