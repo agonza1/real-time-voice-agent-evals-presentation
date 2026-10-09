@@ -43,29 +43,34 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
       <p class="micro-note">Post-run evaluation · human confirmation before applying a proposed verdict. Open either component for details.</p>
       <dialog id="fact-details" class="judge-dialog" aria-labelledby="fact-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close fact-check details">×</button>
-        <p class="eyebrow">CHECK FACTS · ACTUAL CAE FIXTURE</p><h2 id="fact-details-title">Cancellation rescue: did the agent pause?</h2>
-        <div class="judge-example-quote"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 8h32v24H22L12 42V32H8Z"/><path d="M16 16h16M16 23h11"/></svg><span>Caller: “I want to cancel my policy today.”</span></div>
-        <div class="fact-example-wrap"><svg class="fact-example-diagram" viewBox="0 0 1000 220" role="img" aria-labelledby="fact-example-title fact-example-desc">
-          <title id="fact-example-title">Recorded cancellation-rescue trace</title><desc id="fact-example-desc">Trace step 3 is policy hold entered, step 4 is operator steer applied, and step 5 is call wrapped. Code checks their list order and the fixture's final state.</desc>
+        <p class="eyebrow">CHECK FACTS · AUTOMATED RECOVERY</p><h2 id="fact-details-title">A timeout can hide a completed action.</h2>
+        <div class="judge-example-quote"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 8h32v24H22L12 42V32H8Z"/><path d="M16 16h16M16 23h11"/></svg><span>Caller: “Cancel my subscription.”</span></div>
+        <div class="fact-example-wrap"><svg class="fact-example-diagram fact-recovery-diagram" viewBox="0 0 1000 300" role="img" aria-labelledby="fact-example-title fact-example-desc">
+          <title id="fact-example-title">Automated recovery after a lost tool acknowledgment</title><desc id="fact-example-desc">The backend commits once at 180 milliseconds. The agent times out at 240 milliseconds, retries the original request at 450, and the backend deduplicates. Readback at 600 milliseconds matches the original request; confirmation is permitted at 750. Code checks the backend effect count, request correlation, and evidence available before speech.</desc>
           <defs><marker id="fact-example-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#39d2ee"/></marker></defs>
-          <g class="example-arrows"><path d="M285 105 H350"/><path d="M635 105 H700"/></g>
-          <g class="example-node"><rect x="5" y="15" width="280" height="190" rx="16"/><rect x="355" y="15" width="280" height="190" rx="16"/><rect x="705" y="15" width="290" height="190" rx="16"/></g>
-          <g class="example-icon"><circle cx="145" cy="66" r="28"/><path d="M138 54v24M152 54v24"/><circle cx="495" cy="56" r="12"/><path d="M474 91v-9a21 21 0 0 1 42 0 M520 60l7 7 14-17"/><path d="M831 43h31v47h-31Z M840 66l6 6 14-17"/></g>
-          <g class="example-label"><text x="145" y="127">Policy hold</text><text x="495" y="127">Operator approval</text><text x="850" y="127">Call wrap</text></g>
-          <g class="example-code"><text x="145" y="161">policy_hold_entered</text><text x="495" y="161">operator_steer_applied</text><text x="850" y="161">call_wrapped</text></g>
-          <g class="example-step"><text x="145" y="188">TRACE STEP 3</text><text x="495" y="188">TRACE STEP 4</text><text x="850" y="188">TRACE STEP 5</text></g>
+          <text class="recovery-lane-title" x="8" y="18">VOICE RUNTIME</text><text class="recovery-lane-title" x="8" y="177">BACKEND EVIDENCE</text>
+          <g class="example-arrows"><path d="M228 90 H263"/><path d="M478 90 H513"/><path d="M728 90 H763"/><path class="recovery-lost-ack" d="M118 196 V144"/><path d="M368 138 V189"/><path d="M618 196 V144"/></g>
+          <g class="example-node"><rect x="8" y="38" width="220" height="100" rx="14"/><rect x="258" y="38" width="220" height="100" rx="14"/><rect x="508" y="38" width="220" height="100" rx="14"/><rect x="758" y="38" width="234" height="100" rx="14"/></g>
+          <g class="example-icon"><circle cx="45" cy="75" r="16"/><path d="M45 64v12l8 5 M280 82a17 17 0 1 1 24 9 M280 82v-11 M280 82h11 M530 62h23v28h-23Z M534 75l6 6 9-12 M780 61h31v23h-14l-9 9V84h-8Z"/></g>
+          <g class="recovery-runtime-label"><text x="140" y="76">Timeout</text><text x="390" y="76">Retry</text><text x="640" y="76">Read back</text><text x="899" y="76">Confirm</text></g>
+          <g class="recovery-runtime-note"><text x="118" y="118">240 ms · outcome unknown</text><text x="368" y="118">450 ms · same request</text><text x="618" y="118">600 ms · matched result</text><text x="875" y="118">750 ms · TTS allowed</text></g>
+          <g class="recovery-state-node"><rect x="8" y="196" width="220" height="92" rx="14"/><rect x="258" y="196" width="220" height="92" rx="14"/><rect x="508" y="196" width="220" height="92" rx="14"/></g>
+          <g class="recovery-state-label"><text x="118" y="230">Committed once</text><text x="368" y="230">Deduplicated</text><text x="618" y="230">Canceled</text></g>
+          <g class="recovery-state-note"><text x="118" y="263">180 ms · ACK lost</text><text x="368" y="263">No additional effect</text><text x="618" y="263">Original request verified</text></g>
+          <g class="recovery-knowledge"><path d="M791 217h25v37h-25Z M798 234l5 5 9-11"/><text x="834" y="231">Proof reaches</text><text x="834" y="256">the agent</text></g>
         </svg></div>
-        <div class="fact-check-cards">
-          <section><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 12h12v12H6Z M30 24h12v12H30Z M18 18h18v6 M22 37l4 4 9-10"/></svg><div><span>ORDER CHECK</span><strong>Hold precedes resolution</strong><code>trace position: 3 &lt; 4 → PASS</code></div></section>
-          <section><svg viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="22" cy="10" rx="15" ry="6"/><path d="M7 10v24c0 8 30 8 30 0V10 M7 22c0 8 30 8 30 0 M30 34l5 5 9-12"/></svg><div><span>STATE CHECKS</span><code>complete = true ✓</code><code>outcome = scripted_wrap_complete ✓</code></div></section>
+        <div class="fact-check-cards fact-recovery-checks">
+          <section><svg viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="22" cy="10" rx="15" ry="6"/><path d="M7 10v24c0 8 30 8 30 0V10 M7 22c0 8 30 8 30 0 M30 34l5 5 9-12"/></svg><div><span>EFFECT COUNT</span><strong>One recorded commit</strong><code>2 requests · 1 effect ✓</code></div></section>
+          <section><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M19 29l10-10 M17 32l-3 3a8 8 0 0 1-11-11l8-8a8 8 0 0 1 11 0 M31 16l3-3a8 8 0 0 1 11 11l-8 8a8 8 0 0 1-11 0"/></svg><div><span>REQUEST CORRELATION</span><strong>Result belongs to this action</strong><code>readback ↔ original request ✓</code></div></section>
+          <section><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="18"/><path d="M24 12v13h10 M29 36l5 5 10-13"/></svg><div><span>CONFIRMATION TIMING</span><strong>Proof before TTS</strong><code>600 ms &lt; 750 ms ✓</code></div></section>
         </div>
-        <div class="judge-visual-verdict"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="m9 16 5 5 9-11"/></svg><strong>Declared checks pass</strong><span>Recorded wrap ≠ proof of cancellation</span></div>
-        <p class="judge-detail-note">Authored CAE starter fixture · selected checks · order uses trace positions · not production results. <a href="https://github.com/agonza1/ConversationAgentEvals/blob/main/apps/api/app/services/benchmark_catalog_extensions.py" target="_blank" rel="noopener noreferrer">Source ↗</a></p>
+        <div class="judge-visual-verdict"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="13"/><path d="m9 16 5 5 9-11"/></svg><strong>Check effects and evidence timing—not just tool status.</strong></div>
+        <p class="judge-detail-note">Tested teaching fixture · backend deduplication and trustworthy event ordering assumed · example assertions, not universal CAE checks. <a href="https://github.com/agonza1/real-time-voice-agent-evals-presentation/blob/feat/concise-copy-echo-photo/scripts/engineering-model.js" target="_blank" rel="noopener noreferrer">Fixture ↗</a></p>
       </dialog>
       <dialog id="behavior-details" class="judge-dialog" aria-labelledby="behavior-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close behavior-judge details">×</button>
         <p class="eyebrow">JUDGE BEHAVIOR · TWO OPTIONAL PATHS</p><h2 id="behavior-details-title">Same evidence. Different output contracts.</h2>
-        <div class="judge-shared-input"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 5h20l9 9v29H10Z M30 5v10h9 M17 23h15M17 30h15M17 37h9"/></svg><div><strong>Saved turns + rule + trace / state</strong><span>Rule: did the agent make an unapproved retention offer?</span></div></div>
+        <div class="judge-shared-input"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 5h20l9 9v29H10Z M30 5v10h9 M17 23h15M17 30h15M17 37h9"/></svg><div><strong>Saved turns + rule + trace / state</strong><span>Rule: did the agent claim completion without supporting evidence?</span></div></div>
         <div class="judge-options judge-visual-options">
           <section><span class="judge-option-status">EXISTING CAE PATH</span><h3>LLM / ASSERT</h3>
             <div class="judge-path-step"><svg viewBox="0 0 56 56" aria-hidden="true"><path d="M27 9c-10-8-22 4-16 13-10 7-5 22 5 21 0 8 11 9 11 1V9Z M29 9c10-8 22 4 16 13 10 7 5 22-5 21 0 8-11 9-11 1V9Z M17 18l10 5M15 34l12-5M39 18l-10 5M41 34l-12-5"/></svg><div><strong>Assess against rubric</strong><span>Behavior + conversational quality</span></div></div>
