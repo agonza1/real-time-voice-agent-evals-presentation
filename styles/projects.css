@@ -6,6 +6,7 @@
 .project-example figcaption { min-width: 0; }
 .project-example h3 { margin: 0 0 10px; font-size: clamp(1.2rem, 1.8vw, 1.8rem); line-height: 1.15; letter-spacing: -.025em; }
 .project-example p { margin: 0 0 12px; color: var(--muted); font-size: clamp(.85rem, 1.15vw, 1.1rem); line-height: 1.4; }
+.project-example .project-capability { margin-bottom: 8px; color: var(--cyan); font-size: clamp(.65rem, .85vw, .85rem); font-weight: 650; }
 .project-example a { color: var(--cyan); font-size: .7rem; text-underline-offset: 3px; }
 .projects-slide .takeaway { margin-top: 24px; }
 .projects-provenance { margin: 12px 0 0; color: var(--muted-2); font-size: .6rem; }

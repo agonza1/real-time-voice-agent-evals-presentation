@@ -60,27 +60,27 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">WHAT WE BUILD · WEBRTC.VENTURES</p>
-        <h2 id="projects-title">Voice AI <span>in real applications.</span></h2>
+        <h2 id="projects-title">We build <span>real-time voice systems.</span></h2>
       </div>
       <div class="projects-grid">
         <figure class="project-example">
           <img class="project-image" src="./assets/projects/ava-meeting.png" alt="Published AVA Intellect UI for configuring an AI agent, its knowledge bases, and tools" loading="eager" decoding="async">
-          <figcaption><h3>Meeting collaborators</h3><p>AVA Intellect: voice agents join meetings and use shared knowledge.</p><a href="https://webrtc.ventures/successes/ai-voice-agents-that-collaborate-and-contribute/" target="_blank" rel="noopener noreferrer">AVA success story ↗</a></figcaption>
+          <figcaption><p class="project-capability">Voice agents + meeting integration</p><h3>Meeting collaborators</h3><p>AVA Intellect: voice agents join meetings and use shared knowledge.</p><a href="https://webrtc.ventures/successes/ai-voice-agents-that-collaborate-and-contribute/" target="_blank" rel="noopener noreferrer">AVA success story ↗</a></figcaption>
         </figure>
         <figure class="project-example">
           <img class="project-image surgical-image" src="./assets/projects/surgical-dashboard.jpg" alt="Published surgical-audio project visual showing transcript, sentiment, and checklist panels" loading="eager" decoding="async">
-          <figcaption><h3>Surgical audio</h3><p>Capture operating-room conversations for transcription and review.</p><a href="https://webrtc.ventures/successes/audio-listening-device-to-improve-surgical-outcomes/" target="_blank" rel="noopener noreferrer">Audio success story ↗</a></figcaption>
+          <figcaption><p class="project-capability">Real-time audio capture</p><h3>Surgical audio</h3><p>Capture operating-room conversations for transcription and review.</p><a href="https://webrtc.ventures/successes/audio-listening-device-to-improve-surgical-outcomes/" target="_blank" rel="noopener noreferrer">Audio success story ↗</a></figcaption>
         </figure>
         <figure class="project-example">
           <img class="project-image" src="./assets/projects/ceta-screens.png" alt="CETA Global's published EBT-Sim visual showing an avatar roleplay session and simulation evaluation" loading="eager" decoding="async">
-          <figcaption><h3>Avatar roleplay</h3><p>CETA Global: practice clinical conversations with live AI coaching.</p><a href="https://webrtc.ventures/successes/ai-roleplay-training-simulator-case-study/" target="_blank" rel="noopener noreferrer">CETA success story ↗</a></figcaption>
+          <figcaption><p class="project-capability">WebRTC + AI orchestration</p><h3>Avatar roleplay</h3><p>CETA Global: practice clinical conversations with live AI coaching.</p><a href="https://webrtc.ventures/successes/ai-roleplay-training-simulator-case-study/" target="_blank" rel="noopener noreferrer">CETA success story ↗</a></figcaption>
         </figure>
         <figure class="project-example">
           <img class="project-image livekit-image" src="./assets/projects/livekit-call-flow.webp" alt="Detail of the published LiveKit call-center architecture: SIP calling, an inbound agent, and STT, LLM, and TTS providers" loading="eager" decoding="async">
-          <figcaption><h3>Agentic call center</h3><p>LiveKit voice agents handle SIP calls and warm transfers to humans.</p><a href="https://webrtc.ventures/wp-content/uploads/2026/07/Migrating-from-Kurento-to-LiveKit-in-Production.html#16" target="_blank" rel="noopener noreferrer">Production migration ↗</a></figcaption>
+          <figcaption><p class="project-capability">SIP + warm transfers</p><h3>Agentic call center</h3><p>LiveKit voice agents handle SIP calls and warm transfers to humans.</p><a href="https://webrtc.ventures/wp-content/uploads/2026/07/Migrating-from-Kurento-to-LiveKit-in-Production.html#16" target="_blank" rel="noopener noreferrer">Production migration ↗</a></figcaption>
         </figure>
       </div>
-      <p class="takeaway">Different applications. <strong>The complete system still needs evaluation.</strong></p>
+      <p class="takeaway">WebRTC media · SIP integration · Voice agents · AI avatars<br><strong>We build the whole interaction.</strong></p>
       <p class="projects-provenance">Published project visuals · WebRTC.ventures and CETA Global · Links open the original stories.</p>
     `
   },
@@ -90,7 +90,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
       <div class="section-heading">
         <p class="eyebrow">THE PROBLEM</p>
         <h2 id="problem-title">A fluent answer can hide <span>the wrong outcome.</span></h2>
-        <p>Fluent speech is not proof of completion.</p>
+        <p>Building these systems taught us: a fluent answer is only part of a successful call.</p>
       </div>
       <div class="truth-split">
         <article class="truth-card surface-card">
@@ -114,9 +114,9 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     id: "system",
     html: `
       <div class="section-heading">
-        <p class="eyebrow">THE SYSTEM</p>
+        <p class="eyebrow">THE SYSTEM · REAL-TIME VOICE ENGINEERING</p>
         <h2 id="system-title">A conventional voice agent is <span>a chain of systems</span></h2>
-        <p>STT → LLM → TTS. The caller experiences the whole loop.</p>
+        <p>Connect callers. Manage interruptions. Verify actions before speaking.</p>
       </div>
       <ol class="system-flow" aria-label="Caller input through media, turn detection, speech recognition, agent, control, and speech generation">
         <li><span>01</span><b>Caller</b><small>speech</small></li>

@@ -26,6 +26,8 @@ That is the question behind the Conversation Agent Evaluation (CAE) tool: testin
 
 Spend about 15 seconds per example. Keep the technical stack for Q&A:
 
+Use the capability labels to connect the examples to our engineering work: meeting integrations and voice agents, real-time media capture, WebRTC and AI orchestration, and SIP calling with warm transfers. The examples show systems we have built and continue to develop; the GPT-Live diagrams later in the talk explain a newer architecture pattern, not a claim about these deployments.
+
 - [AVA Intellect](https://webrtc.ventures/successes/ai-voice-agents-that-collaborate-and-contribute/): configurable assistants, shared knowledge, tools, and integration with meeting platforms. The image is the published agent configuration UI.
 - [Surgical audio](https://webrtc.ventures/successes/audio-listening-device-to-improve-surgical-outcomes/): Amazon Chime SDK capture with Symbl.ai transcription and conversation insights, plus postoperative speaker separation and oversight. Describe the system's purpose and functionality; this case study does not establish a quantified clinical improvement.
 - [CETA Global / EBT-Sim](https://webrtc.ventures/successes/ai-roleplay-training-simulator-case-study/): WebRTC.ventures helped build real-time communication, the training UI, cloud infrastructure, and AI orchestration with CETA's team. Integration with the broader practitioner ecosystem continues. The system uses push-to-talk, Google speech services, Google ADK agents, and HeyGen avatars. Deliberate thinking pauses motivated push-to-talk rather than automatic turn ending. The visual comes from [CETA's public product page](https://www.cetaglobal.org/solutions/cetaaitraining), linked in the success story.
@@ -35,7 +37,7 @@ All four visuals are from public project materials. The LiveKit image is a detai
 
 ### Transition into the problem slide
 
-“Let’s start with a case where the words sound right, but the evidence tells us something different.”
+"Building these systems taught us that a fluent answer is only one part of a successful call. Let’s start with a case where the words sound right, but the evidence tells us something different."
 
 The cancellation case is a teaching fixture, not a claim that it happened in a customer deployment.
 
@@ -122,6 +124,8 @@ The rows describe verified business state; the columns describe whether speech w
 An unknown state is not a failed task. Keep it unknown until operation-matched reconciliation establishes the result. The matrix applies the contract to separate business state from response safety; the release review then uses those verdicts across matched scenarios.
 
 ## Continuous voice — slides 6 and 7
+
+Frame slides 5–7 around engineering responsibilities: connect the caller, manage interruptions, coordinate tools, and verify action results before confirming completion. For native continuous voice, the application still owns permission checks, task updates, result correlation, and rejection of stale results. The on-slide controls are responsibilities to implement and evaluate, not guarantees supplied by a framework.
 
 Both diagrams are in the main route: the two-path architecture follows the conventional system on slide 6, and the appointment sequence follows on slide 7. Legacy architecture-review URLs open slide 6 without replacing the sequence.
 

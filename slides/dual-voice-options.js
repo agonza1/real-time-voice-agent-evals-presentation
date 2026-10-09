@@ -6,7 +6,7 @@
     architecture: {
       className: "voice-option-slide",
       html: `
-        <div class="section-heading"><p class="eyebrow">CONTINUOUS VOICE · ARCHITECTURE</p><h2 id="dual-voice-architecture-title">One conversation. <span>Two paths.</span></h2></div>
+        <div class="section-heading"><p class="eyebrow">CONTINUOUS VOICE · ARCHITECTURE</p><h2 id="dual-voice-architecture-title">One conversation. <span>Two paths.</span></h2><p>Keep audio flowing. Coordinate tools and verified results.</p></div>
         <svg class="voice-option-diagram voice-architecture-diagram" viewBox="0 0 1280 480" role="img" aria-labelledby="voice-architecture-title voice-architecture-desc">
           <title id="voice-architecture-title">A continuous voice loop delegates work to a separate reasoner.</title>
           <desc id="voice-architecture-desc">Caller audio flows into the native speech-to-speech voice model while generated speech returns to the caller. The model listens while speaking. It delegates work asynchronously to a reasoning model, which exchanges requests and results with tools. Results return to the voice model.</desc>
@@ -50,7 +50,7 @@
         <div class="section-heading"><p class="eyebrow">CONTINUOUS VOICE · IN ACTION</p><h2 id="dual-voice-title">Keep talking <span>while work runs.</span></h2></div>
         <svg class="voice-option-diagram" viewBox="0 0 1280 500" role="img" aria-labelledby="voice-sequence-title voice-sequence-desc">
           <title id="voice-sequence-title">An appointment search continues while the caller adds a constraint.</title>
-          <desc id="voice-sequence-desc">The caller asks for a Tuesday appointment. The voice model delegates an availability search. While the model says it will check, it listens to the caller adding after 3pm. It updates the delegated request. Tools return 3:30pm availability, which the reasoner sends to the voice model. The model asks whether to book it. No booking has been made.</desc>
+          <desc id="voice-sequence-desc">The caller asks for a Tuesday appointment. The voice model delegates an availability search. While the model says it will check, it listens to the caller adding after 3pm. Application logic updates or supersedes the delegated request and rejects stale results. Tools return 3:30pm availability, which the reasoner sends to the voice model. The model asks whether to book it. No booking has been made.</desc>
           ${markers("voice-sequence")}
           <text x="140" y="30" class="voice-svg-lane" text-anchor="middle">Caller</text>
           <text x="480" y="30" class="voice-svg-lane cyan" text-anchor="middle">Voice model</text>
@@ -80,7 +80,7 @@
           <path d="M475 480 H145" class="voice-svg-arrow cyan-arrow"/>
           <text x="310" y="465" class="voice-svg-message" text-anchor="middle">“3:30 is available. Book it?”</text>
         </svg>
-        <p class="takeaway">Did the agent <strong>apply the new constraint</strong><br>and <strong>discard stale results?</strong></p>
+        <p class="takeaway">Application controls: <strong>apply new constraints.</strong><br><strong>Reject stale results.</strong> Verify before confirming.</p>
         ${sources}
       `
     }
