@@ -193,3 +193,26 @@ body.presenting #close .closing-statement { font-size: clamp(2.8rem, 4.4vw, 4.8r
 .start-action a:focus-visible { outline: 3px solid var(--text); outline-offset: 5px; }
 @media (max-width: 1100px) { .start-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } .start-steps li { min-height: 0; } .start-steps li::after { display: none; } }
 @media (max-width: 520px) { .start-steps { grid-template-columns: 1fr; } }
+
+/* ASSERT's reusable workflow, distinct from the CAE integration boundary. */
+.assert-flow { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 70px; margin: 8px 0 26px; }
+.assert-flow article { position: relative; padding: 0 16px; }
+.assert-flow article:not(:last-child)::after { content: "→"; position: absolute; right: -48px; top: 130px; color: var(--muted); font-size: 2.2rem; }
+.assert-icon { width: 76px; height: 76px; fill: none; stroke: var(--cyan); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.assert-engine .assert-icon { stroke: var(--violet); }
+.assert-report .assert-icon { stroke: var(--green); }
+.assert-flow h3 { margin: 12px 0 22px; font-size: clamp(1.2rem, 2vw, 1.7rem); }
+.assert-flow ul, .assert-flow ol { margin: 0; padding: 0; list-style: none; font-size: clamp(1rem, 1.4vw, 1.35rem); line-height: 1.6; }
+.assert-spec li { border-left: 2px solid var(--cyan); padding-left: 16px; margin-bottom: 14px; }
+.assert-engine ol { counter-reset: assert-step; }
+.assert-engine li { counter-increment: assert-step; margin-bottom: 14px; }
+.assert-engine li::before { content: counter(assert-step, decimal-leading-zero); color: var(--violet); font: .85rem var(--mono); margin-right: 16px; }
+.assert-flow .assert-engine-note { margin: 16px 0 0; color: var(--muted); font-size: .85rem; }
+.assert-report dl { margin: 0; font-size: clamp(1rem, 1.4vw, 1.35rem); }
+.assert-report dl div { display: flex; justify-content: space-between; gap: 14px; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.assert-report dd { margin: 0; font-weight: 750; white-space: nowrap; }
+.assert-report dd span { font-size: .9rem; font-weight: 400; }
+.assert-pass { color: var(--green); }
+.assert-unknown { color: var(--violet); }
+#assert .takeaway { text-align: center; }
+@media (max-width: 820px) { .assert-flow { grid-template-columns: 1fr; gap: 30px; } .assert-flow article::after { display: none; } }

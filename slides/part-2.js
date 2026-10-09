@@ -21,6 +21,36 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
     `
   },
   {
+    id: "assert",
+    html: `
+      <div class="section-heading">
+        <p class="eyebrow">ASSERT · REQUIREMENT-DRIVEN EVALUATION</p>
+        <h2 id="assert-title">From product rules<br><span>to repeatable evaluations.</span></h2>
+      </div>
+      <div class="assert-flow">
+        <article class="assert-spec">
+          <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M20 12h30l12 12v44H20Z M50 12v14h12 M29 37h24 M29 48h24 M29 59h15"/></svg>
+          <h3>Your requirements</h3>
+          <ul><li>Cancel at period end</li><li>Keep access until then</li><li>Confirm only with proof</li></ul>
+        </article>
+        <article class="assert-engine">
+          <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><rect x="20" y="20" width="40" height="40" rx="8"/><path d="M28 8v12M40 8v12M52 8v12M28 60v12M40 60v12M52 60v12M8 28h12M8 40h12M8 52h12M60 28h12M60 40h12M60 52h12m-31-12 7 7 15-15"/></svg>
+          <h3>ASSERT</h3>
+          <ol><li>Generate test cases</li><li>Run the target</li><li>Judge each behavior</li></ol>
+          <p class="assert-engine-note">An LLM applies the criteria.</p>
+        </article>
+        <article class="assert-report">
+          <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M16 12h36v56H16 M25 25h17M25 37h12"/><circle cx="50" cy="47" r="15"/><path d="m61 58 11 11m-31-23 6 6 11-12"/></svg>
+          <h3>Inspectable results</h3>
+          <dl><div><dt>Timing</dt><dd class="assert-pass">✓ <span>period end</span></dd></div><div><dt>Access</dt><dd class="assert-pass">✓ <span>still active</span></dd></div><div><dt>Completion</dt><dd class="assert-unknown">? <span>no receipt</span></dd></div></dl>
+          <p class="assert-engine-note">Each finding links to evidence.</p>
+        </article>
+      </div>
+      <p class="takeaway"><strong>Reuse the checks. Calibrate the judge.</strong></p>
+      <p class="micro-note">Illustrative report · ? = not observable in captured evidence. <a href="https://github.com/responsibleai/ASSERT#why-assert" target="_blank" rel="noopener noreferrer">ASSERT framework ↗</a></p>
+    `
+  },
+  {
     id: "vcon",
     html: `
       <div class="vcon-layout">

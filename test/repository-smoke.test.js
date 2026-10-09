@@ -67,8 +67,8 @@ const localAssets = [
   assert.match(html, /id="helpDialog"/);
   assert.match(html, /styles\/vcon-enrichment\.css/);
   assert.match(html, /slides\/vcon-enrichment\.js/);
-  assert.match(html, /id="totalSlides">17<\/span>/);
-  assert.match(html, /id="presentTotal">17<\/span>/);
+  assert.match(html, /id="totalSlides">18<\/span>/);
+  assert.match(html, /id="presentTotal">18<\/span>/);
   assert.match(html, /scripts\/render-slides\.js/);
   assert.match(html, /scripts\/app\.js/);
   assert.doesNotMatch(html, /<script[^>]+src=["']https?:\/\//i);
@@ -79,7 +79,7 @@ const localAssets = [
   }
 });
 
- test("the slide data defines 17 main slides and three appendices", async () => {
+ test("the slide data defines 18 main slides and three appendices", async () => {
   const parts = await Promise.all([
     readRepositoryFile("slides/part-1.js"),
     readRepositoryFile("slides/part-2.js"),
@@ -87,9 +87,9 @@ const localAssets = [
     readRepositoryFile("slides/part-3.js"),
   ]);
   const ids = parts.flatMap((content) => [...content.matchAll(/\bid:\s*"([^"]+)"/g)].map((match) => match[1]));
-  assert.equal(ids.length, 20);
-  assert.equal(new Set(ids).size, 20);
-  for (const required of ["intro", "story", "problem", "system", "dual-voice-architecture", "dual-voice", "layers", "timeline", "vcon", "vcon-enrichment", "workbench", "demo", "comparison", "start", "boundary", "standards", "close"]) {
+  assert.equal(ids.length, 21);
+  assert.equal(new Set(ids).size, 21);
+  for (const required of ["intro", "story", "problem", "system", "dual-voice-architecture", "dual-voice", "layers", "timeline", "vcon", "vcon-enrichment", "workbench", "assert", "demo", "comparison", "start", "boundary", "standards", "close"]) {
     assert.ok(ids.includes(required), `missing required slide: ${required}`);
   }
   const combined = parts.join("\n");
@@ -139,10 +139,10 @@ const localAssets = [
   const document = { getElementById: () => deck, dispatchEvent: () => {} };
   new Function("window", "document", "location", "CustomEvent", renderer)(scope, document, { search: "" }, class {});
   const route = scope.VOICE_EVALS_SLIDES;
-  assert.deepEqual(route.map((slide) => slide.id), ["intro", "story", "projects", "problem", "system", "dual-voice-architecture", "dual-voice", "layers", "timeline", "workbench", "vcon", "vcon-enrichment", "outcomes", "judge-reliability", "comparison", "start", "close", "standards", "demo", "boundary"]);
-  assert.equal(route.filter((slide) => !slide.appendix).length, 17);
+  assert.deepEqual(route.map((slide) => slide.id), ["intro", "story", "projects", "problem", "system", "dual-voice-architecture", "dual-voice", "layers", "timeline", "workbench", "assert", "vcon", "vcon-enrichment", "outcomes", "judge-reliability", "comparison", "start", "close", "standards", "demo", "boundary"]);
+  assert.equal(route.filter((slide) => !slide.appendix).length, 18);
   assert.deepEqual(route.filter((slide) => slide.appendix).map((slide) => slide.id), ["standards", "demo", "boundary"]);
-  assert.match(deck.innerHTML, /aria-label="Slide 17 of 17"/);
+  assert.match(deck.innerHTML, /aria-label="Slide 18 of 18"/);
   assert.match(deck.innerHTML, /aria-label="Appendix A1 of 3"/);
   const elementIds = [...deck.innerHTML.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
   assert.equal(new Set(elementIds).size, elementIds.length, "diagrams must not duplicate heading or SVG marker IDs");
