@@ -54,6 +54,28 @@ The same notes include a 20-minute rehearsal route through 18 main slides, with 
 
 ## Run locally
 
+For a persistent local presentation, run this from the presentation repository:
+
+```bash
+docker compose up -d
+```
+
+Open `http://127.0.0.1:8080/?present=1`. The `von-presentation` service uses
+`restart: always`, so it returns when Docker Engine starts and restarts if the
+server process exits. Docker Desktop must itself be running. The read-only bind
+mount serves current repository files without rebuilding; responses disable
+caching so slide edits appear on refresh.
+
+Check status with `docker compose ps`. Stop with `docker compose stop`; the
+container returns on the next Docker Engine start. Use `docker compose down`
+to remove it and disable automatic startup until another `docker compose up -d`.
+
+Port 8080 is reserved for this presentation. The parent project's optional
+`rtc-asr` profile also maps host port 8080; give that service a different host
+port before running both. Keep the evaluator demo on its existing port 3012.
+
+For a temporary server without Docker:
+
 ```bash
 python3 -m http.server 8080
 ```
