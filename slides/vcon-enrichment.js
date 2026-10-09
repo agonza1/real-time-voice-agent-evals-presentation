@@ -9,7 +9,7 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
         <p>Illustrative pseudo-JSON. Select a section to magnify its fields.</p>
       </div>
 
-      <div class="vcon-json-layout" data-json-explorer data-json-focus="core">
+      <div class="vcon-json-layout" data-json-explorer data-json-focus="evaluation">
         <article class="vcon-json-panel" aria-label="Abbreviated illustrative vCon pseudo JSON">
           <div class="vcon-json-toolbar">
             <div class="json-window-title"><i></i><i></i><i></i><span>vcon-run-0247.json</span></div>
@@ -43,7 +43,7 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
 
         <aside class="vcon-json-inspector" aria-label="Interactive vCon section magnifier">
           <div class="json-zoom-square" aria-live="polite" aria-label="Magnified vCon section">
-            <article class="json-zoom-view is-active" data-json-zoom-view="core" aria-hidden="false">
+            <article class="json-zoom-view" data-json-zoom-view="core" aria-hidden="true">
               <span class="zoom-kicker">CORE VCON</span>
               <h3>Portable envelope</h3>
               <pre><code><span class="json-punctuation">{</span>
@@ -82,7 +82,7 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
   <span class="json-punctuation">]</span> <span class="json-punctuation">}</span>
 <span class="json-punctuation">}</span></code></pre>
             </article>
-            <article class="json-zoom-view" data-json-zoom-view="evaluation" aria-hidden="true">
+            <article class="json-zoom-view is-active" data-json-zoom-view="evaluation" aria-hidden="false">
               <span class="zoom-kicker">TOOL EVALUATION ANALYSIS</span>
               <h3>Run and outcome evidence</h3>
               <pre><code><span class="json-punctuation">{</span>
@@ -102,10 +102,10 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
           </div>
 
           <div class="json-focus-grid" role="group" aria-label="Choose a vCon section to magnify">
-            <button class="json-focus-button core-focus is-active" data-json-focus-button="core" aria-pressed="true" type="button"><span>01</span><b>Core envelope</b><small>version · parties</small></button>
+            <button class="json-focus-button core-focus" data-json-focus-button="core" aria-pressed="false" type="button"><span>01</span><b>Core envelope</b><small>version · parties</small></button>
             <button class="json-focus-button dialog-focus" data-json-focus-button="dialog" aria-pressed="false" type="button"><span>02</span><b>Dialog</b><small>text · recording</small></button>
             <button class="json-focus-button transcript-focus" data-json-focus-button="transcript" aria-pressed="false" type="button"><span>03</span><b>Transcript</b><small>speech provenance</small></button>
-            <button class="json-focus-button evaluation-focus" data-json-focus-button="evaluation" aria-pressed="false" type="button"><span>04</span><b>Evaluation</b><small>run · outcome</small></button>
+            <button class="json-focus-button evaluation-focus is-active" data-json-focus-button="evaluation" aria-pressed="true" type="button"><span>04</span><b>Evaluation</b><small>run · outcome</small></button>
           </div>
 
           <article class="json-boundary-note">
