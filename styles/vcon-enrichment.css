@@ -314,6 +314,14 @@
 body.presenting .vcon-enrichment-heading { margin-bottom: 15px; }
 body.presenting .json-line { font-size: clamp(.82rem, .96vw, .96rem); }
 
+@media (min-width: 1101px) and (max-height: 820px) {
+  body.presenting .vcon-json-code { max-height: calc(100svh - 280px); }
+  body.presenting .json-zoom-square { width: 280px; }
+  body.presenting .json-zoom-view { padding: 16px 16px 22px; }
+  body.presenting .json-zoom-view pre { font-size: .72rem; line-height: 1.35; }
+  body.presenting .json-focus-button { min-height: 48px; padding: 7px 9px; }
+}
+
 @media (max-width: 1100px) {
   .vcon-json-layout { grid-template-columns: 1fr; }
   .vcon-json-inspector {

@@ -5,25 +5,26 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     html: `
       <div class="hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow">VON EVOLUTION · ATLANTA · OCTOBER 15, 2026</p>
+          <p class="eyebrow">FALL '26 · VOICE AND CONVERSATIONS ON THE NET</p>
+          <p class="hero-event">ATLANTA · OCTOBER 15, 2026</p>
           <h1 id="intro-title">Evaluating Real-Time Voice Agents <span>Beyond AI Models</span></h1>
-          <p class="hero-subtitle">Building and using an <strong>open-source evaluation workbench</strong> with ConversationAgentEvals and portable vCon evidence.</p>
+          <p class="hero-subtitle">An <strong>open-source workbench</strong> for testing the complete voice-agent system.</p>
           <div class="hero-meta">
             <span>Alberto Gonzalez</span>
             <span>CTO · WebRTC.ventures</span>
             <span>Open source · Evidence first</span>
           </div>
           <div class="hero-actions">
-            <a class="primary-link" href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">Open ConversationAgentEvals ↗</a>
+            <a class="primary-link" data-evaluator-link href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">Open the conversation evaluator ↗</a>
             <a class="quiet-link" href="#story">Start the presentation →</a>
           </div>
         </div>
-        <div aria-label="Audio evidence enters a vCon proof envelope" class="hero-visual">
+        <div aria-label="Evaluate a voice agent through audio, actions, and outcomes" class="hero-visual">
           <div aria-hidden="true" class="audio-wave">${"<i></i>".repeat(12)}</div>
           <div class="vcon-envelope">
-            <div class="vcon-title"><strong>vCon</strong><span>portable evidence envelope</span></div>
-            <div class="vcon-tabs"><span>dialog</span><span>analysis</span><span>attachments</span></div>
-            <div class="vcon-proof"><i class="proof-dot cyan"></i><span>capture</span><i class="proof-dot violet"></i><span>assert</span><i class="proof-dot green"></i><span>compare</span></div>
+            <div class="vcon-title"><strong>Voice agent</strong><span>evaluate the complete system</span></div>
+            <div class="vcon-tabs"><span>audio</span><span>actions</span><span>outcomes</span></div>
+            <div class="vcon-proof"><i class="proof-dot cyan"></i><span>capture</span><i class="proof-dot violet"></i><span>evaluate</span><i class="proof-dot green"></i><span>compare</span></div>
           </div>
           <div aria-hidden="true" class="evidence-line"><span>AUDIO</span><b></b><span>RUNTIME EVIDENCE</span><b></b><span>OUTCOME</span></div>
         </div>
@@ -39,32 +40,48 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         <p class="eyebrow">MY FIRST VOICE AGENT → THE NEXT QUESTION</p>
         <h2 id="story-title">The technology changed.<br><span>So did the question.</span></h2>
       </div>
-      <ol class="story-arc" aria-label="From my first voice assistant to production evaluation">
-        <li>
-          <p class="story-era"><span>01</span> 2017 · ECHO SHOW</p>
-          <h3>“Can it <br>understand me?”</h3>
-          <p>My prototype needed the exact phrases I had anticipated.</p>
-          <strong>The human adapted to the system.</strong>
-        </li>
-        <li>
-          <p class="story-era"><span>02</span> OPEN-ENDED VOICE · WEBRTC</p>
-          <h3>“Can we <br>control it?”</h3>
-          <p>Natural conversation felt like magic. Calls, tools, and state still needed boundaries.</p>
-          <strong>The architecture had to contain the variability.</strong>
-        </li>
-        <li class="story-now">
-          <p class="story-era"><span>03</span> PRODUCTION · EVALUATION</p>
-          <h3>“How do we know <br>it still works?”</h3>
-          <p>A model changes. A caller interrupts. A tool times out.</p>
-          <strong>Verify the whole system—not only the model.</strong>
-        </li>
-      </ol>
-      <div class="story-bridge">
-        <p><span>AT CLUECON</span><strong>Build the controls.</strong></p>
-        <span class="story-arrow" aria-hidden="true">→</span>
-        <p><span>TODAY</span><strong>Test that they hold as the system changes.</strong></p>
+      <div class="story-layout">
+        <figure class="story-photo">
+          <img src="https://raw.githubusercontent.com/agonza1/agentic-contact-center/36f9cf3fb92843af516f8a8e09ea4cf0f4c52fc9/assets/cluecon/alberto-echo-show-prototype.jpg" alt="Alberto using his Echo Show voice assistant prototype" loading="eager" decoding="async" referrerpolicy="no-referrer">
+          <figcaption>2017 · My Echo Show prototype <a href="https://github.com/agonza1/agentic-contact-center/blob/36f9cf3fb92843af516f8a8e09ea4cf0f4c52fc9/assets/cluecon/alberto-echo-show-prototype.jpg" target="_blank" rel="noopener noreferrer">Original prototype photo ↗</a></figcaption>
+        </figure>
+        <ol class="story-arc" aria-label="From voice commands to production evaluation">
+          <li><p class="story-era"><span>01</span> 2017 · ECHO SHOW</p><h3>“Can it understand me?”</h3><p>It worked—with the exact phrases I anticipated.</p></li>
+          <li><p class="story-era"><span>02</span> OPEN-ENDED VOICE · WEBRTC</p><h3>“Can we control it?”</h3><p>Natural conversation. Bounded tools and state.</p></li>
+          <li class="story-now"><p class="story-era"><span>03</span> PRODUCTION · EVALUATION</p><h3>“Does it still work?”</h3><p>Models change. Callers interrupt. Tools time out.</p></li>
+        </ol>
       </div>
-      <p class="story-transition">That is the question behind <strong>ConversationAgentEvals.</strong></p>
+      <div class="story-bridge"><p><span>RUNTIME CONTROL</span><strong>Build the controls.</strong></p><span class="story-arrow" aria-hidden="true">→</span><p><span>Conversation Agent Evaluation (CAE) tool</span><strong>Test that they hold as the system changes.</strong></p></div>
+    `
+  },
+  {
+    id: "projects",
+    className: "projects-slide",
+    html: `
+      <div class="section-heading">
+        <p class="eyebrow">WHAT WE BUILD · WEBRTC.VENTURES</p>
+        <h2 id="projects-title">We build <span>real-time voice systems.</span></h2>
+      </div>
+      <div class="projects-grid">
+        <figure class="project-example">
+          <img class="project-image" src="./assets/projects/ava-meeting.png" alt="Published AVA Intellect UI for configuring an AI agent, its knowledge bases, and tools" loading="eager" decoding="async">
+          <figcaption><p class="project-capability">Voice agents + meeting integration</p><h3>Meeting collaborators</h3><p>AVA Intellect: voice agents join meetings and use shared knowledge.</p><a href="https://webrtc.ventures/successes/ai-voice-agents-that-collaborate-and-contribute/" target="_blank" rel="noopener noreferrer">AVA success story ↗</a></figcaption>
+        </figure>
+        <figure class="project-example">
+          <img class="project-image surgical-image" src="./assets/projects/surgical-dashboard.jpg" alt="Published surgical-audio project visual showing transcript, sentiment, and checklist panels" loading="eager" decoding="async">
+          <figcaption><p class="project-capability">Real-time audio capture</p><h3>Surgical audio</h3><p>Capture operating-room conversations for transcription and review.</p><a href="https://webrtc.ventures/successes/audio-listening-device-to-improve-surgical-outcomes/" target="_blank" rel="noopener noreferrer">Audio success story ↗</a></figcaption>
+        </figure>
+        <figure class="project-example">
+          <img class="project-image" src="./assets/projects/ceta-screens.png" alt="CETA Global's published EBT-Sim visual showing an avatar roleplay session and simulation evaluation" loading="eager" decoding="async">
+          <figcaption><p class="project-capability">WebRTC + AI orchestration</p><h3>Avatar roleplay</h3><p>CETA Global: practice clinical conversations with live AI coaching.</p><a href="https://webrtc.ventures/successes/ai-roleplay-training-simulator-case-study/" target="_blank" rel="noopener noreferrer">CETA success story ↗</a></figcaption>
+        </figure>
+        <figure class="project-example">
+          <img class="project-image livekit-image" src="./assets/projects/livekit-call-flow.webp" alt="Detail of the published LiveKit call-center architecture: SIP calling, an inbound agent, and STT, LLM, and TTS providers" loading="eager" decoding="async">
+          <figcaption><p class="project-capability">SIP + warm transfers</p><h3>Agentic call center</h3><p>LiveKit voice agents handle SIP calls and warm transfers to humans.</p><a href="https://webrtc.ventures/wp-content/uploads/2026/07/Migrating-from-Kurento-to-LiveKit-in-Production.html#16" target="_blank" rel="noopener noreferrer">Production migration ↗</a></figcaption>
+        </figure>
+      </div>
+      <p class="takeaway">WebRTC media · SIP integration · Voice agents · AI avatars<br><strong>We build the whole interaction.</strong></p>
+      <p class="projects-provenance">Published project visuals · WebRTC.ventures and CETA Global · Links open the original stories.</p>
     `
   },
   {
@@ -72,12 +89,12 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">THE PROBLEM</p>
-        <h2 id="problem-title">Without a runtime gate, <span>a fluent answer can be false.</span></h2>
-        <p>Language quality alone cannot establish completion. Runtime controls must prevent unsupported claims before speech.</p>
+        <h2 id="problem-title">A fluent answer can hide <span>the wrong outcome.</span></h2>
+        <p>Building these systems taught us: a fluent answer is only part of a successful call.</p>
       </div>
       <div class="truth-split">
         <article class="truth-card surface-card">
-          <p class="card-kicker">CONVERSATION SURFACE</p>
+          <p class="card-kicker">CALLER REQUEST · CANCEL AT PERIOD END</p>
           <blockquote>“Your subscription has been canceled.”</blockquote>
           <div class="quality-tags"><span>polite</span><span>relevant</span><span>confident</span></div>
           <div class="status-line pass"><span>LANGUAGE-ONLY CHECK</span><strong>PASS</strong></div>
@@ -86,7 +103,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         <article class="truth-card state-card">
           <p class="card-kicker">AUTHORITATIVE STATE</p>
           <div class="tool-row"><code>cancel_subscription</code><strong class="danger">→ TIMEOUT</strong></div>
-          <div class="database-state"><span>subscription.status</span><strong>ACTIVE</strong></div>
+          <div class="database-state"><span>Matched readback: cancellation_scheduled</span><strong>FALSE</strong></div>
           <div class="status-line fail"><span>BUSINESS OUTCOME</span><strong>FAIL</strong></div>
         </article>
       </div>
@@ -97,39 +114,58 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     id: "system",
     html: `
       <div class="section-heading">
-        <p class="eyebrow">THE SYSTEM</p>
-        <h2 id="system-title">A real-time voice agent is <span>a chain of systems</span></h2>
-        <p>The caller experiences the complete loop—not an isolated model response.</p>
+        <p class="eyebrow">THE SYSTEM · REAL-TIME VOICE ENGINEERING</p>
+        <h2 id="system-title">A conventional voice agent is <span>a chain of systems</span></h2>
+        <p>Connect callers. Manage interruptions. Verify actions before confirming.</p>
       </div>
-      <ol class="system-flow" aria-label="Real-time voice agent pipeline">
+      <ol class="system-flow" aria-label="Caller input through connection, turn detection, speech recognition, agent, control, and speech generation">
         <li><span>01</span><b>Caller</b><small>speech</small></li>
-        <li><span>02</span><b>Media</b><small>RTP / WebRTC</small></li>
+        <li><span>02</span><b>Connection</b><small>SIP signaling · RTP / WebRTC audio</small></li>
         <li><span>03</span><b>Turn</b><small>VAD / EOT</small></li>
         <li><span>04</span><b>STT</b><small>partials / final</small></li>
         <li class="model-node"><span>05</span><b>Agent</b><small>model + flow</small></li>
         <li><span>06</span><b>Control</b><small>policy / tools</small></li>
         <li><span>07</span><b>TTS</b><small>speech out</small></li>
-        <li><span>08</span><b>Backend</b><small>authoritative truth</small></li>
       </ol>
+      <div class="system-branches">
+        <div class="system-return" aria-label="Return audio: TTS sends speech through the audio connection back to the Caller">
+          <span class="system-path-label">RETURN AUDIO</span>
+          <p><b>Caller</b><span aria-hidden="true">←</span><b>Audio connection</b><span aria-hidden="true">←</span><b>TTS</b></p>
+          <small>Generated speech travels back over the media connection.</small>
+        </div>
+        <div class="system-backend" aria-label="Control exchanges tool requests and results with the Backend">
+          <span class="system-path-label">08 · TOOL REQUESTS / RESULTS</span>
+          <p><b>Control</b><span aria-hidden="true">↔</span><b>Backend</b></p>
+          <small>Authoritative state and operation evidence.</small>
+        </div>
+      </div>
       <div class="failure-strip" aria-label="Representative failure modes"><span>packet loss</span><span>early endpoint</span><span>transcript churn</span><span>wrong action</span><span>tool timeout</span><span>late speech</span></div>
       <p class="takeaway">The model can improve while <strong>the system regresses.</strong></p>
     `
+  },
+  {
+    id: "dual-voice-architecture",
+    ...window.VOICE_EVALS_DUAL_VOICE_OPTIONS.architecture
+  },
+  {
+    id: "dual-voice",
+    ...window.VOICE_EVALS_DUAL_VOICE_OPTIONS.sequence
   },
   {
     id: "layers",
     html: `
       <div class="section-heading">
         <p class="eyebrow">EVALUATION MODEL</p>
-        <h2 id="layers-title">ConversationAgentEvals scores <span>four connected layers</span></h2>
-        <p>Keep experience, understanding, execution, and outcome separate.</p>
+        <h2 id="layers-title">Evaluate <span>four connected layers</span></h2>
+        <p>Four dimensions. Separate scores.</p>
       </div>
       <div class="layer-grid">
-        <article class="layer-card cyan-card"><span class="layer-number">01</span><h3>Conversation experience</h3><p>Speech onset/end detection, silence, interruption recovery, audio continuity, and end-to-end turn latency.</p></article>
-        <article class="layer-card violet-card"><span class="layer-number">02</span><h3>Speech boundary</h3><p>Task-critical entity accuracy, partial-to-final stability, finalization delay, accents, noise, and disfluency.</p></article>
-        <article class="layer-card amber-card"><span class="layer-number">03</span><h3>Agent execution</h3><p>Required and forbidden actions, policy and authorization checks, tool selection, fallback, and recovery.</p></article>
-        <article class="layer-card green-card"><span class="layer-number">04</span><h3>Business outcome</h3><p>Authoritative state transition, durable completion, and agreement between spoken claims and backend truth.</p></article>
+        <article class="layer-card cyan-card"><span class="layer-number">01</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 14H7l-4 3V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v5a4 4 0 0 1-4 4Z"/><path d="M8 17v1a2 2 0 0 0 2 2h7l4 3V11a2 2 0 0 0-2-2"/></svg><h3>Conversation experience</h3><p>Turn timing, interruptions, silence, audio continuity, and latency.</p></article>
+        <article class="layer-card violet-card"><span class="layer-number">02</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 10v4M7 6v12M11 3v18M15 7v10M19 9v6M23 11v2"/></svg><h3>Speech boundary</h3><p>Entity / intent accuracy · accents and noise.<br>With ASR: partial stability and finalization delay.</p></article>
+        <article class="layer-card amber-card"><span class="layer-number">03</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="2" width="7" height="6" rx="1.5"/><rect x="14" y="16" width="7" height="6" rx="1.5"/><path d="M6.5 8v11h7.5M10 5h7.5v11M14.5 13l3 3 3-3"/></svg><h3>Agent execution</h3><p>Required and forbidden actions, policy checks, tool choice, fallback, and recovery.</p></article>
+        <article class="layer-card green-card"><span class="layer-number">04</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m7.5 12 3 3 6-6"/></svg><h3>Business outcome</h3><p>State transition, durable completion, and agreement between speech and backend truth.</p></article>
       </div>
-      <div class="one-call"><span>ONE CALL</span><strong>FOUR LAYERS</strong><em>Do not collapse them into one “quality” number.</em></div>
+      <div class="one-call"><span>ONE CALL</span><strong>FOUR LAYERS</strong><em>Not one average score.</em></div>
     `
   },
   {
@@ -138,10 +174,10 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
 <div class="section-heading">
         <p class="eyebrow">SYNCHRONIZED EVIDENCE</p>
         <h2 id="timeline-title">Faster at which boundary?<br><span>And did we cut the caller off?</span></h2>
-        <p>One request. Two endpointing policies. The same model and response path.</p>
+        <p>Same request and model. Different endpointing.</p>
       </div>
       <div class="eng-toolbar" role="group" aria-label="Endpointing policy">
-        <button type="button" data-endpoint="patient" aria-pressed="true">Wait for the complete request</button>
+        <button type="button" data-endpoint="patient" aria-pressed="true">Wait for the full request</button>
         <button type="button" data-endpoint="eager" aria-pressed="false">Aggressive endpointing</button>
         <span class="eng-label">ILLUSTRATIVE TIMINGS · SHARED FIXTURE CLOCK</span>
       </div>
@@ -151,35 +187,8 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         <div id="latencyReadings" class="eng-metrics" aria-live="polite"></div>
       </div>
       <p id="endpointInsight" class="takeaway" aria-live="polite"></p>
-      <p class="micro-note">First token ≠ generated audio ≠ receiver audio ≠ physical speaker playout. In real runs, record the observer and clock mapping; do not add component p95s.</p>
+      <p class="micro-note">Fixture clock. Real runs need observer and clock mapping. Receiver audio ≠ speaker playout. Never add component p95s.</p>
       <p class="eng-sources"><a href="https://docs.livekit.io/agents/logic/turns/turn-detector/" target="_blank" rel="noopener noreferrer">Turn detection beyond VAD ↗</a></p>
-    `
-  },
-  {
-    id: "truth",
-    html: `
-<div class="section-heading">
-        <p class="eyebrow">EVIDENCE &amp; TRUTH</p>
-        <h2 id="truth-title">A correct transcript.<br><span>Of the wrong audio?</span></h2>
-        <p>Preserve what was sent, what was received, and what the recognizer inferred.</p>
-      </div>
-      <div class="eng-columns">
-        <article class="eng-panel">
-          <p class="card-kicker">CONVERSATION EVIDENCE</p>
-          <div class="eng-audio-row"><div><b>Source audio</b><p>“Do <mark>not</mark> cancel my subscription.”</p></div><button type="button" data-audio="source">Play source</button></div>
-          <div class="eng-audio-row"><div><b>Simulated receiver audio</b><p>“Do <span class="eng-missing">[muted]</span> cancel my subscription.”</p></div><button type="button" data-audio="received">Play received</button></div>
-          <p id="audioStatus" class="eng-label" role="status">LOCAL SYNTHETIC SPEECH · “NOT” MUTED IN THE SAME RECORDING</p>
-          <details class="eng-details"><summary>Reveal the illustrative ASR interpretation</summary><p>“Do cancel my subscription.” <strong>The action-changing word is gone.</strong></p><p class="micro-note">Hypothetical ASR output, not a recognizer result. This controlled audio edit is not a packet-loss or codec simulation.</p></details>
-          <details class="eng-details"><summary>What WebRTC telemetry would help explain it?</summary><p><code>packetsDiscarded</code>: received too late/early for playout. <code>concealedSamples</code>: synthesized to cover loss or lateness. <code>jitterBufferDelay</code>: cumulative time buffered; use interval deltas divided by emitted-count deltas.</p><p class="micro-note">No RTCStats are collected in this slide. Those metrics explain media behavior, not whether meaning survived.</p></details>
-        </article>
-        <article class="eng-panel">
-          <p class="card-kicker">OPERATIONAL EVIDENCE</p>
-          <h3>The transcript still cannot prove the operation.</h3>
-          <ul class="clean-list"><li>Authorization and policy decision</li><li>Operation ID + tool request/response</li><li>State verified for that operation</li><li>Output gate decision before speech</li></ul>
-          <p class="eng-callout">An output gate protects claims about execution. It does not recover caller intent lost upstream.</p>
-        </article>
-      </div>
-      <p class="eng-sources"><a href="https://www.w3.org/TR/webrtc-stats/" target="_blank" rel="noopener noreferrer">WebRTC media statistics ↗</a><span>Source audio, receiver audio, ASR text, and human understanding are different observations.</span></p>
     `
   }
 ];

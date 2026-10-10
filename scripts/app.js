@@ -3,6 +3,7 @@
 
   const slides = Array.from(document.querySelectorAll(".slide"));
   if (!slides.length) return;
+  const mainCount = slides.filter((slide) => slide.dataset.appendix !== "true").length;
 
   const body = document.body;
   const presentButton = document.getElementById("presentButton");
@@ -25,13 +26,14 @@
 
   function updateUi(index) {
     activeIndex = clampIndex(index);
-    const human = activeIndex + 1;
-    const total = slides.length;
+    const inAppendix = activeIndex >= mainCount;
+    const human = inAppendix ? `A${activeIndex - mainCount + 1}` : activeIndex + 1;
+    const total = inAppendix ? slides.length - mainCount : mainCount;
     currentSlide.textContent = String(human);
     totalSlides.textContent = String(total);
     presentCurrent.textContent = String(human);
     presentTotal.textContent = String(total);
-    progressBar.style.width = `${(human / total) * 100}%`;
+    progressBar.style.width = `${(Math.min(activeIndex + 1, mainCount) / mainCount) * 100}%`;
 
     const currentId = slides[activeIndex].id;
     navLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${currentId}`));
@@ -39,7 +41,7 @@
 
     document.dispatchEvent(new CustomEvent("voice-evals:slide-change", { detail: { id: currentId } }));
     previousButton.disabled = activeIndex === 0;
-    nextButton.disabled = activeIndex === slides.length - 1;
+    nextButton.disabled = activeIndex === mainCount - 1 || activeIndex === slides.length - 1;
   }
 
   function goTo(index, behavior = "smooth") {
@@ -59,6 +61,10 @@
     presentButton.setAttribute("aria-pressed", "true");
     presentButton.lastChild.textContent = " Exit";
     goTo(index, "auto");
+  }
+
+  function goNext(behavior = "smooth") {
+    if (activeIndex !== mainCount - 1) goTo(activeIndex + 1, behavior);
   }
 
   function exitPresentation() {
@@ -85,7 +91,7 @@
 
   presentButton.addEventListener("click", togglePresentation);
   previousButton.addEventListener("click", () => goTo(activeIndex - 1));
-  nextButton.addEventListener("click", () => goTo(activeIndex + 1));
+  nextButton.addEventListener("click", () => goNext());
 
   document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener("click", (event) => {
@@ -106,6 +112,20 @@
   };
 
   helpButton.addEventListener("click", openHelp);
+
+  document.querySelectorAll("[data-evaluation-dialog]").forEach((button) => {
+    const dialog = document.getElementById(button.dataset.evaluationDialog);
+    if (!(dialog instanceof HTMLDialogElement)) return;
+    button.addEventListener("click", () => {
+      if (!dialog.open) dialog.showModal();
+    });
+    dialog.querySelector("[data-close-evaluation-dialog]")?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (event) => {
+      if (event.target !== dialog) return;
+      const bounds = dialog.getBoundingClientRect();
+      if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+    });
+  });
 
   document.addEventListener("keydown", (event) => {
     const target = event.target instanceof Element ? event.target : null;
@@ -134,7 +154,7 @@
 
     if (["ArrowRight", "PageDown"].includes(event.key) || (event.key === " " && !spaceConsumer)) {
       event.preventDefault();
-      goTo(activeIndex + 1, "auto");
+      goNext("auto");
     } else if (["ArrowLeft", "PageUp"].includes(event.key)) {
       event.preventDefault();
       goTo(activeIndex - 1, "auto");
@@ -143,7 +163,7 @@
       goTo(0, "auto");
     } else if (event.key === "End") {
       event.preventDefault();
-      goTo(slides.length - 1, "auto");
+      goTo(mainCount - 1, "auto");
     } else if (event.key === "Escape") {
       event.preventDefault();
       exitPresentation();
@@ -189,7 +209,11 @@
     setJsonFocus(pinnedFocus);
   }
 
-  const requestedId = location.hash.slice(1);
+  const params = new URLSearchParams(location.search);
+  const legacyOption = params.get("voice") || params.get("slide5");
+  const hashId = location.hash.slice(1);
+  const requestedId = legacyOption === "architecture" && (!hashId || hashId === "dual-voice")
+    ? "dual-voice-architecture" : hashId;
   const requestedIndex = slides.findIndex((slide) => slide.id === requestedId);
   updateUi(requestedIndex >= 0 ? requestedIndex : 0);
 

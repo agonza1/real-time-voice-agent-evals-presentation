@@ -10,15 +10,6 @@ test('latency comparison uses the same response pipeline and exposes premature r
   assert.equal(patient.receiveAfterCallerEnd,700); assert.equal(patient.premature,false);
   assert.throws(()=>m.latency('made-up'));
 });
-test('missing state removes only the unsupported conclusion, never fabricates failure', () => {
-  const full=m.evidence(true), partial=m.evidence(false);
-  assert.equal(full.findings.business_outcome,'verified_not_completed');
-  assert.equal(partial.findings.business_outcome,'unverified');
-  assert.equal(Object.hasOwn(partial,'final_state'),false);
-  assert.deepEqual(full.measurements,partial.measurements);
-  assert.deepEqual(full.action_trace,partial.action_trace);
-  assert.match(partial.note,/not a conformant vCon/);
-});
 test('default runtime control blocks false confirmation before TTS',()=>{
   const run=m.controlRun();
   assert.equal(run.verdict,'SAFE FAILURE'); assert.equal(run.unsupported,false);
@@ -72,4 +63,23 @@ test('release review cannot trade critical regressions for faster responses',()=
   assert.ok(candidate.p95<baseline.p95);assert.equal(candidate.decision,'HOLD');
   assert.equal(candidate.failures.length,2);assert.equal(baseline.failures.length,0);
   assert.equal(baseline.runs,100);assert.equal(candidate.runs,100);
+});
+
+test('fact checks reject duplicate effects, unrelated proof, and proof received after confirmation',()=>{
+  const {evidence}=m.controlRun({scenario:'lost',retries:1,reconciled:true});
+  assert.deepEqual(m.recoveryFactChecks(evidence),{oneRecordedEffect:true,sameRequest:true,proofBeforeConfirmation:true});
+  assert.equal(m.recoveryFactChecks({...evidence,effects:[...evidence.effects,...evidence.effects]}).oneRecordedEffect,false);
+  const wrong={...evidence,proof:{...evidence.proof,operationId:'op-other'}};
+  assert.equal(m.recoveryFactChecks(wrong).sameRequest,false);
+  assert.equal(m.recoveryFactChecks(wrong).proofBeforeConfirmation,false);
+  assert.equal(m.recoveryFactChecks({...evidence,proof:{...evidence.proof,receivedAt:800}}).proofBeforeConfirmation,false);
+  assert.equal(m.recoveryFactChecks({...evidence,proof:{...evidence.proof,state:'active'}}).proofBeforeConfirmation,false);
+});
+test('fact checks retain incomplete evidence and absent confirmation as unestablished or not applicable',()=>{
+  assert.deepEqual(m.recoveryFactChecks({complete:false}),{oneRecordedEffect:null,sameRequest:null,proofBeforeConfirmation:null});
+  const {evidence}=m.controlRun({scenario:'lost'});
+  assert.equal(m.recoveryFactChecks(evidence).sameRequest,null);
+  assert.equal(m.recoveryFactChecks(evidence).proofBeforeConfirmation,null);
+  const unverified=m.controlRun({scenario:'lost',gate:false});
+  assert.equal(m.recoveryFactChecks(unverified.evidence).proofBeforeConfirmation,false);
 });

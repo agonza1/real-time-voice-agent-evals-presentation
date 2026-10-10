@@ -7,9 +7,15 @@ const readRepositoryFile = (path) => readFile(new URL(path, repositoryRoot), "ut
 
 const localAssets = [
   "assets/favicon.svg",
-  "assets/negation.mp3",
+  "assets/linkedin-qr.png",
   "styles/engineering.css",
   "styles/story.css",
+  "styles/voice-options.css",
+  "styles/projects.css",
+  "assets/projects/ava-meeting.png",
+  "assets/projects/surgical-dashboard.jpg",
+  "assets/projects/ceta-screens.png",
+  "assets/projects/livekit-call-flow.webp",
   "scripts/engineering-model.js",
   "scripts/engineering-ui.js",
   "styles/base.css",
@@ -21,6 +27,7 @@ const localAssets = [
   "slides/part-2.js",
   "slides/vcon-enrichment.js",
   "slides/part-3.js",
+  "slides/dual-voice-options.js",
   "scripts/render-slides.js",
   "scripts/app.js",
 ];
@@ -37,7 +44,7 @@ const localAssets = [
  test("the README documents the canonical site and local server", async () => {
   const readme = await readRepositoryFile("README.md");
   assert.match(readme, /\*\*https:\/\/agonza1\.github\.io\/real-time-voice-agent-evals-presentation\/\*\*/);
-  assert.match(readme, /```bash\npython3 -m http\.server 8080\n```/);
+  assert.match(readme, /```bash\r?\npython3 -m http\.server 8080\r?\n```/);
   assert.match(readme, /No framework, build tool, package install, or external font dependency/);
 });
 
@@ -60,8 +67,8 @@ const localAssets = [
   assert.match(html, /id="helpDialog"/);
   assert.match(html, /styles\/vcon-enrichment\.css/);
   assert.match(html, /slides\/vcon-enrichment\.js/);
-  assert.match(html, /id="totalSlides">19<\/span>/);
-  assert.match(html, /id="presentTotal">19<\/span>/);
+  assert.match(html, /id="totalSlides">18<\/span>/);
+  assert.match(html, /id="presentTotal">18<\/span>/);
   assert.match(html, /scripts\/render-slides\.js/);
   assert.match(html, /scripts\/app\.js/);
   assert.doesNotMatch(html, /<script[^>]+src=["']https?:\/\//i);
@@ -72,7 +79,7 @@ const localAssets = [
   }
 });
 
- test("the slide data defines a complete 19-section narrative", async () => {
+ test("the slide data defines 18 main slides and three appendices", async () => {
   const parts = await Promise.all([
     readRepositoryFile("slides/part-1.js"),
     readRepositoryFile("slides/part-2.js"),
@@ -80,30 +87,30 @@ const localAssets = [
     readRepositoryFile("slides/part-3.js"),
   ]);
   const ids = parts.flatMap((content) => [...content.matchAll(/\bid:\s*"([^"]+)"/g)].map((match) => match[1]));
-  assert.equal(ids.length, 19);
-  assert.equal(new Set(ids).size, 19);
-  for (const required of ["intro", "story", "problem", "layers", "timeline", "vcon", "vcon-enrichment", "workbench", "contract", "demo", "comparison", "boundary", "standards", "close"]) {
+  assert.equal(ids.length, 21);
+  assert.equal(new Set(ids).size, 21);
+  for (const required of ["intro", "story", "problem", "system", "dual-voice-architecture", "dual-voice", "layers", "timeline", "vcon", "vcon-enrichment", "workbench", "assert", "demo", "comparison", "start", "boundary", "standards", "close"]) {
     assert.ok(ids.includes(required), `missing required slide: ${required}`);
   }
   const combined = parts.join("\n");
   assert.match(combined, /ConversationAgentEvals/);
   assert.match(combined, /portable evidence envelope/);
   assert.match(combined, /SCRIPTED FIXTURE · NOT LIVE SIP\/PSTN OR PRODUCTION MEDIA PROOF/);
-  assert.match(combined, /CONVERSATIONAGENTEVALS TODAY/);
-  assert.match(combined, /PLANNED IN CAE/);
+  assert.match(combined, /EVALUATION TOOL TODAY/);
+  assert.match(combined, /PLANNED IN THE TOOL/);
   assert.match(combined, /IETF vCon Core/);
   assert.match(combined, /Judging LLM-as-a-Judge/);
   assert.match(combined, /draft-ietf-vcon-vcon-core-04/i);
   assert.match(combined, /cae-execution-transcript-v1/);
   assert.match(combined, /cae-execution-evidence-v1/);
-  assert.match(combined, /portable recording is a <code>dialog<\/code> item/i);
-  assert.match(combined, /current CAE execution export is unsigned/i);
+  assert.match(combined, /External recordings use HTTPS/i);
+  assert.match(combined, /not a literal CAE export/i);
 });
 
  test("the vCon enrichment is concise pseudo JSON with an accessible magnifier", async () => {
   const enrichment = await readRepositoryFile("slides/vcon-enrichment.js");
   assert.doesNotThrow(() => new Function("window", enrichment)({}));
-  assert.match(enrichment, /HIGH-LEVEL PSEUDO JSON · CURRENT CAE SHAPE/);
+  assert.match(enrichment, /PSEUDO JSON · DRAFT-ALIGNED REVIEW EXAMPLE/);
   assert.match(enrichment, /class="vcon-json-code"/);
   assert.match(enrichment, /data-json-explorer/);
   assert.match(enrichment, /class="json-zoom-square"/);
@@ -118,15 +125,27 @@ const localAssets = [
   assert.match(enrichment, /<span class="json-key">"vcon"<\/span>/);
   assert.match(enrichment, /<span class="json-key">"dialog"<\/span>/);
   assert.match(enrichment, /<span class="json-key">"analysis"<\/span>/);
-  assert.match(enrichment, /base64url SHA-512/);
+  assert.match(enrichment, /sha512-&lt;base64url digest&gt;/);
   assert.match(enrichment, /<span class="json-key">"status"<\/span><span class="json-punctuation">:<\/span> <span class="json-string">"portable"<\/span>/);
 });
 
- test("the renderer places the enrichment immediately after the core vCon slide", async () => {
+ test("the rendered route introduces the workbench before evidence and ends before the appendix", async () => {
+  const scope = {};
+  for (const file of ["dual-voice-options", "part-1", "part-2", "part-3", "vcon-enrichment"]) {
+    new Function("window", await readRepositoryFile(`slides/${file}.js`))(scope);
+  }
   const renderer = await readRepositoryFile("scripts/render-slides.js");
-  assert.match(renderer, /part2\.slice\(0, 1\)/);
-  assert.match(renderer, /VOICE_EVALS_VCON_ENRICHMENT/);
-  assert.match(renderer, /part2\.slice\(1\)/);
+  const deck = { innerHTML: "" };
+  const document = { getElementById: () => deck, dispatchEvent: () => {} };
+  new Function("window", "document", "location", "CustomEvent", renderer)(scope, document, { search: "" }, class {});
+  const route = scope.VOICE_EVALS_SLIDES;
+  assert.deepEqual(route.map((slide) => slide.id), ["intro", "story", "projects", "problem", "system", "dual-voice-architecture", "dual-voice", "layers", "timeline", "outcomes", "workbench", "start", "vcon", "vcon-enrichment", "assert", "judge-reliability", "comparison", "close", "standards", "demo", "boundary"]);
+  assert.equal(route.filter((slide) => !slide.appendix).length, 18);
+  assert.deepEqual(route.filter((slide) => slide.appendix).map((slide) => slide.id), ["standards", "demo", "boundary"]);
+  assert.match(deck.innerHTML, /aria-label="Slide 18 of 18"/);
+  assert.match(deck.innerHTML, /aria-label="Appendix A1 of 3"/);
+  const elementIds = [...deck.innerHTML.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]);
+  assert.equal(new Set(elementIds).size, elementIds.length, "diagrams must not duplicate heading or SVG marker IDs");
 });
 
  test("presentation controls, the fixture, and vCon magnifier are wired accessibly", async () => {
@@ -154,31 +173,31 @@ const localAssets = [
  test("refinements keep conference identity separate from the product roadmap", async () => {
   const p2 = await readRepositoryFile("slides/part-2.js");
   const p3 = await readRepositoryFile("slides/part-3.js");
-  assert.match(p2, /Run → Evaluate → <span>Compare<\/span>/);
+  assert.match(p2, /Run → Evaluate → Compare/);
   assert.doesNotMatch(p2 + p3, /what VON extends|VON ROADMAP|VON \/ NEXT/);
   assert.match(p2, /Runtime output gate enabled/);
   assert.match(p2, /id="runtimeGate" type="checkbox" checked/);
-  assert.match(p2, /Inspect evidence/);
-  assert.match(p3, /SYNTHETIC COHORTS/);
+  assert.match(p3, /ILLUSTRATIVE NUMBERS · 100 TEST CALLS FOR EACH VERSION/);
 });
 
- test("the personal story follows the title and advances the ClueCon narrative", async () => {
+ test("the personal story follows the title and connects runtime controls to evaluation", async () => {
   const scope = {};
+  new Function("window", await readRepositoryFile("slides/dual-voice-options.js"))(scope);
   new Function("window", await readRepositoryFile("slides/part-1.js"))(scope);
   const slides = scope.VOICE_EVALS_SLIDES_PART_1;
-  assert.deepEqual(slides.slice(0, 3).map((slide) => slide.id), ["intro", "story", "problem"]);
+  assert.deepEqual(slides.slice(0, 8).map((slide) => slide.id), ["intro", "story", "projects", "problem", "system", "dual-voice-architecture", "dual-voice", "layers"]);
   const story = slides[1].html;
   assert.match(story, /2017 · ECHO SHOW/);
   assert.match(story, /exact phrases/);
   assert.match(story, /OPEN-ENDED VOICE · WEBRTC/);
-  assert.match(story, /AT CLUECON/);
+  assert.match(story, /RUNTIME CONTROL/);
   assert.match(story, /Test that they hold as the system changes/);
-  assert.match(story, /ConversationAgentEvals/);
+  assert.match(story, /Conversation Agent Evaluation \(CAE\) tool/);
   assert.match(slides[0].html, /href="#story">Start the presentation/);
   assert.match(await readRepositoryFile("index.html"), /href="#story">Story/);
   const notes = await readRepositoryFile("docs/speaker-notes.md");
-  assert.match(notes, /Some of you heard the beginning of this story at ClueCon/);
-  assert.match(notes, /not a transcript of the ClueCon recording/);
+  assert.doesNotMatch(story.replace(/(?:src|href)="[^"]*"/g, ""), /cluecon/i);
+  assert.doesNotMatch(notes, /cluecon/i);
 });
 
  test("the closing concerns production readiness rather than demo completion", async () => {
@@ -186,7 +205,7 @@ const localAssets = [
   new Function("window", await readRepositoryFile("slides/part-3.js"))(scope);
   const close = scope.VOICE_EVALS_SLIDES_PART_3.at(-1);
   assert.equal(close.id, "close");
-  assert.doesNotMatch(close.html, /\bdemo\b/i);
+  assert.doesNotMatch(close.html.replace(/<[^>]*>/g, ""), /\bdemo\b/i);
   assert.match(close.html, /Production readiness is <span>a systems property/);
   assert.match(close.html, /Runtime controls enforce policy/);
   assert.match(close.html, /re-test every change/);

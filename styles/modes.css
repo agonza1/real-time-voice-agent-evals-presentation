@@ -70,12 +70,11 @@ body.presenting .hero-slide { padding-top: clamp(25px, 4vh, 48px); }
   .hero-visual { min-height: 420px; transform: scale(.9); transform-origin: center top; }
   .truth-split { grid-template-columns: 1fr; }
   .versus { min-height: 30px; }
-  .layer-grid, .plane-grid, .contract-grid, .demo-grid, .boundary-grid, .sources-grid, .scorecard { grid-template-columns: 1fr; }
+  .layer-grid, .plane-grid, .demo-grid, .boundary-grid, .sources-grid, .scorecard { grid-template-columns: 1fr; }
   .metric-column { border-right: 0; border-bottom: 1px solid var(--line); }
   .workbench-flow { grid-template-columns: 1fr; }
   .flow-arrow { rotate: 90deg; justify-self: center; }
   .normalizer-core { width: 210px; min-height: 210px; justify-self: center; }
-  .integration-row { grid-template-columns: repeat(2, 1fr); }
   .timeline { min-height: 520px; margin: 0; }
   .timeline-axis { left: 28px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; background: linear-gradient(var(--cyan), var(--violet), var(--amber), var(--green)); }
   .timeline-event { left: 28px !important; top: var(--mobile-y, 0); width: calc(100% - 55px); translate: 0 -50%; text-align: left; padding-left: 30px; }
@@ -111,7 +110,7 @@ body.presenting .hero-slide { padding-top: clamp(25px, 4vh, 48px); }
   .hero-visual { min-height: 370px; transform: scale(.76); margin: -15px -50px -80px; }
   .system-flow { grid-template-columns: repeat(2, 1fr); }
   .layer-grid { grid-template-columns: 1fr; }
-  .timing-bands, .integration-row, .evidence-table, .classification { grid-template-columns: 1fr; }
+  .timing-bands, .evidence-table, .classification { grid-template-columns: 1fr; }
   .object-row { grid-template-columns: 1fr; gap: 7px; }
   .evaluation-loop { grid-template-columns: 1fr 1fr; }
   .outcome-grid { grid-template-columns: 1fr; }

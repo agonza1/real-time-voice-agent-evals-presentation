@@ -33,35 +33,18 @@
   document.querySelectorAll("[data-endpoint]").forEach((b) => b.addEventListener("click", () => showLatency(b.dataset.endpoint)));
   showLatency("patient");
 
-  const snapshot = byId("includeFinalState");
-  function updateEvidence() {
-    const value = model.evidence(snapshot.checked);
-    const statuses = ["Execution: complete", `Evidence: ${snapshot.checked ? "complete for shown checks" : "partial"}`, `Business result: ${snapshot.checked ? "verified" : "unverified"}`];
-    byId("evidenceStatus").replaceChildren(...statuses.map((text) => { const span = document.createElement("span"); span.textContent = text; return span; }));
-    put("scoreOutcome", snapshot.checked ? "Authoritative readback for op-247: subscription still active. Cancellation not completed." : "Final-state snapshot absent. The tool timeout alone cannot tell us whether cancellation committed.");
-    put("scoreReason", value.findings.reason);
-    put("scoreVerdict", snapshot.checked ? "VERIFIED INCOMPLETE" : "BUSINESS UNVERIFIED");
-    put("evidenceJson", JSON.stringify(value, null, 2));
-  }
-  snapshot.addEventListener("change", updateEvidence);
-  byId("inspectEvidence").addEventListener("click", () => byId("evidenceDialog").showModal());
-  byId("evidenceToVcon").addEventListener("click", () => byId("evidenceDialog").close());
-  byId("downloadEvidence").addEventListener("click", () => {
-    const url = URL.createObjectURL(new Blob([JSON.stringify(model.evidence(snapshot.checked), null, 2)], { type: "application/json" }));
-    const anchor = document.createElement("a"); anchor.href = url; anchor.download = "presentation-evidence-run-0247.json";
-    document.body.append(anchor); anchor.click(); anchor.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
-  });
-  updateEvidence();
-
   let reconciled = false, retries = 0;
   function updateControl() {
     const scenario = byId("operationScenario").value;
     const run = model.controlRun({ scenario, gate: byId("runtimeGate").checked, reconciled, retries, interrupted: byId("interruptSpeech").checked });
     put("controlVerdict", run.verdict); byId("controlResult").dataset.tone = run.tone;
+    const claimPass = run.checks.claim_supported_before_speech;
+    put("completionAssertion", `${claimPass ? "PASS" : "FAIL"} · No unsupported completion`);
+    byId("completionAssertion").dataset.pass = String(claimPass);
     put("allowedSpeech", run.speech); put("toolObservation", run.tool); put("agentKnowledge", run.knowledge);
     put("claimDecision", run.gateDecision); put("fixtureTruth", run.truth); put("controlExplanation", run.explanation);
     put("gateStatus", byId("runtimeGate").checked ? "ON: VALIDATE STRUCTURED COMPLETION ACTION BEFORE TTS" : "BYPASSED: DELIBERATE ANTI-PATTERN, NOT AN INEVITABLE AI FAILURE");
-    put("operationLedger", `${run.operationId} · ${run.requests} request(s) · ${run.commits} commit(s) · ${run.responseGeneration}`);
+    put("operationLedger", `${run.requests} request(s) · ${run.commits} completed action(s)`);
     byId("reconcileOperation").disabled = scenario !== "lost" || reconciled;
     byId("retryOperation").disabled = retries >= 20;
     byId("operationTrace").replaceChildren(...run.events.map(([ms, actor, event]) => {
@@ -71,63 +54,25 @@
     put("controlAssertions", Object.entries(run.checks).map(([key, pass]) => `${pass ? "PASS" : "FAIL"}: ${key.replaceAll("_", " ")}`).join(" · "));
   }
   byId("operationScenario").addEventListener("change", () => { reconciled = false; retries = 0; updateControl(); });
+  byId("resetControl").addEventListener("click", () => {
+    byId("operationScenario").value = "lost";
+    byId("runtimeGate").checked = true;
+    byId("interruptSpeech").checked = false;
+    reconciled = false; retries = 0; updateControl();
+  });
   ["runtimeGate", "interruptSpeech"].forEach((id) => byId(id).addEventListener("change", updateControl));
   byId("reconcileOperation").addEventListener("click", () => { reconciled = true; updateControl(); });
   byId("retryOperation").addEventListener("click", () => { retries = Math.min(20, retries + 1); updateControl(); });
   updateControl();
 
   function showRelease(version) {
-    pressed("[data-release]", "release", version);
     const result = model.releaseReview(version), panel = byId("releaseDecision");
     panel.dataset.tone = result.failures.length ? "fail" : "pass";
-    const verdict = document.createElement("strong"); verdict.textContent = result.decision;
-    const reason = document.createElement("p"); reason.textContent = result.explanation;
-    const checks = document.createElement("small"); checks.textContent = result.failures.length ? `Failed gates: ${result.failures.join("; ")}.` : "All configured gates met in this synthetic cohort.";
+    const verdict = document.createElement("strong"); verdict.textContent = result.failures.length ? "DO NOT RELEASE THIS CHANGE" : "MEETS THESE REQUIREMENTS";
+    const reason = document.createElement("p"); reason.textContent = result.failures.length ? "It answers faster, but more often speaks before callers finish and cancels at the wrong time." : result.explanation;
+    const checks = document.createElement("small"); checks.textContent = result.failures.length ? "The proposed change fails the caller-finish and cancellation-timing requirements." : "All configured requirements met in these illustrative test calls.";
     panel.replaceChildren(verdict, reason, checks);
   }
-  document.querySelectorAll("[data-release]").forEach((b) => b.addEventListener("click", () => showRelease(b.dataset.release)));
   showRelease("candidate");
 
-  // The same locally synthesized recording is played unchanged or with only the
-  // documented negation window muted. No fake ASR, network, or RTCStats output.
-  let context, audioBuffer, activeAudio, loadPromise, audioSession = 0;
-  async function loadAudio() {
-    if (audioBuffer) return audioBuffer;
-    if (!loadPromise) loadPromise = (async () => {
-      const response = await fetch(new URL("../assets/negation.mp3", document.querySelector('script[src$="engineering-ui.js"]').src));
-      if (!response.ok) throw new Error("Audio fixture unavailable");
-      audioBuffer = await context.decodeAudioData(await response.arrayBuffer()); return audioBuffer;
-    })().catch((error) => { loadPromise = undefined; throw error; });
-    return loadPromise;
-  }
-  function stopAudio() { audioSession++; if (activeAudio) { activeAudio.stop(); activeAudio = undefined; } document.querySelectorAll("[data-audio]").forEach((b) => { b.disabled = false; }); }
-  document.querySelectorAll("[data-audio]").forEach((button) => button.addEventListener("click", async () => {
-    try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContext) throw new Error("Web Audio unavailable");
-      context ||= new AudioContext();
-      stopAudio(); const session = audioSession; await context.resume();
-      document.querySelectorAll("[data-audio]").forEach((b) => { b.disabled = true; });
-      const source = await loadAudio();
-      if (session !== audioSession) return;
-      const received = button.dataset.audio === "received";
-      let buffer = source;
-      if (received) {
-        buffer = context.createBuffer(source.numberOfChannels, source.length, source.sampleRate);
-        for (let ch = 0; ch < source.numberOfChannels; ch++) {
-          const samples = buffer.getChannelData(ch); samples.set(source.getChannelData(ch));
-          samples.fill(0, Math.floor(0.60 * source.sampleRate), Math.ceil(1.20 * source.sampleRate));
-        }
-      }
-      activeAudio = context.createBufferSource(); activeAudio.buffer = buffer; activeAudio.connect(context.destination);
-      activeAudio.onended = () => { document.querySelectorAll("[data-audio]").forEach((b) => { b.disabled = false; }); };
-      activeAudio.start();
-      put("audioStatus", received ? "PLAYING: SAME RECORDING, 0.60–1.20 s MUTED · NOT A NETWORK TEST" : "PLAYING: LOCAL SYNTHETIC SOURCE · NO MICROPHONE OR API");
-    } catch (error) {
-      put("audioStatus", "Audio unavailable in this browser. The labeled text example remains usable.");
-      document.querySelectorAll("[data-audio]").forEach((b) => { b.disabled = false; });
-    }
-  }));
-  document.addEventListener("voice-evals:slide-change", (e) => { if (e.detail.id !== "truth") stopAudio(); });
-  document.addEventListener("visibilitychange", () => { if (document.hidden) stopAudio(); });
 })();

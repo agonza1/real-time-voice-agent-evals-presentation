@@ -2,9 +2,9 @@
 
 ## Building and Using an Open-Source Evaluation Workbench with vCon
 
-A clean, self-contained HTML/CSS/JavaScript presentation for VON Evolution 2026.
+A clean, self-contained HTML/CSS/JavaScript presentation for Fall '26 Voice and Conversations on the Net.
 
-The presentation argues that a production voice agent must be evaluated as a complete real-time system—not only as an AI model or final transcript. It connects conversation experience, speech boundaries, agent execution, tool evidence, authoritative business state, and portable vCon artifacts to the open-source [ConversationAgentEvals](https://github.com/agonza1/ConversationAgentEvals) workbench.
+The presentation argues that a production voice agent must be evaluated as a complete real-time system—not only as an AI model or final transcript. It connects conversation experience, speech boundaries, agent execution, tool evidence, authoritative business state, and portable vCon artifacts to the open-source [Conversation Agent Evaluation (CAE) tool](https://github.com/agonza1/ConversationAgentEvals) workbench.
 
 ## Open the presentation
 
@@ -18,15 +18,17 @@ Every push to `main` is validated and deployed automatically through GitHub Acti
 
 ## Opening and closing
 
-The new story slide briefly revisits Alberto’s 2017 Echo Show origin, then advances
-from ClueCon’s runtime-control question to this talk’s evaluation question:
+The story slide briefly revisits Alberto’s 2017 Echo Show origin, then advances
+from runtime controls to the evaluation question:
 **How do we know the system still works when it changes?**
 
 The closing is about **production readiness as a systems property**, not completing
 a demo. The interactive experiments remain explicitly labeled as teaching fixtures.
 
-[Opening and closing speaker notes](docs/speaker-notes.md) include a short callback
-for returning ClueCon attendees and a self-contained story for new listeners.
+[Opening and closing speaker notes](docs/speaker-notes.md) include a self-contained
+story for the Fall '26 audience.
+
+The same notes include a 20-minute rehearsal route through 18 main slides, with ten minutes reserved for Q&A in the 30-minute slot. The vCon JSON explorer follows the vCon overview in the main presentation. References, the lost-ack experiment, and capabilities/roadmap are three optional appendix slides.
 
 ## Features
 
@@ -46,11 +48,33 @@ for returning ClueCon attendees and a self-contained story for new listeners.
 | `P` | Toggle presentation mode |
 | `←` / `→` | Previous / next slide |
 | `Space` | Next slide |
-| `Home` / `End` | First / last slide |
+| `Home` / `End` | Title / closing slide |
 | `Esc` | Exit presentation mode |
 | `?` | Keyboard help |
 
 ## Run locally
+
+For a persistent local presentation, run this from the presentation repository:
+
+```bash
+docker compose up -d
+```
+
+Open `http://127.0.0.1:8080/?present=1`. The `von-presentation` service uses
+`restart: always`, so it returns when Docker Engine starts and restarts if the
+server process exits. Docker Desktop must itself be running. The read-only bind
+mount serves current repository files without rebuilding; responses disable
+caching so slide edits appear on refresh.
+
+Check status with `docker compose ps`. Stop with `docker compose stop`; the
+container returns on the next Docker Engine start. Use `docker compose down`
+to remove it and disable automatic startup until another `docker compose up -d`.
+
+Port 8080 is reserved for this presentation. The parent project's optional
+`rtc-asr` profile also maps host port 8080; give that service a different host
+port before running both. Keep the evaluator demo on its existing port 3012.
+
+For a temporary server without Docker:
 
 ```bash
 python3 -m http.server 8080
@@ -72,11 +96,11 @@ The smoke test uses Node's built-in test runner. It needs no package installatio
 
 This repository contains the interactive presentation—not a second evaluation engine.
 
-- [ConversationAgentEvals](https://github.com/agonza1/ConversationAgentEvals) owns test orchestration, evidence normalization, evaluation artifacts, reports, and regression comparisons.
+- [Conversation Agent Evaluation (CAE) tool](https://github.com/agonza1/ConversationAgentEvals) owns test orchestration, evidence normalization, evaluation artifacts, reports, and regression comparisons.
 - [Agentic Contact Center](https://github.com/agonza1/agentic-contact-center) is an optional reference target and failure-path demonstration.
 - [rtc-asr](https://github.com/agonza1/rtc-asr) provides optional streaming speech evidence and reproducible ASR benchmarks.
 - [ASSERT](https://github.com/responsibleai/ASSERT) provides compatible contracts and optional upstream semantic judging.
-- [vCon Core](https://datatracker.ietf.org/doc/draft-ietf-vcon-vcon-core/) is the portable conversation container; CAE-specific evaluation schemas remain versioned application conventions.
+- [vCon Core](https://datatracker.ietf.org/doc/draft-ietf-vcon-vcon-core/) is the portable conversation container; the tool’s evaluation schemas remain versioned application conventions.
 
 The interactive demo in this site is clearly labeled as a fixture. It does not claim to prove SIP/PSTN execution, browser-microphone interoperability, production network behavior, or full-duplex barge-in.
 
@@ -96,45 +120,38 @@ MIT
 ## Engineering experiments (presentation fixtures)
 
 The engineering sections, vCon JSON magnifier, and visual system are preserved.
-A short personal story after the title brings the presentation to 19 slides.
+A personal story, a visual project overview, and a continuous-voice sequence lead into the evaluation workflow. The route has 18 main slides and three appendix slides. Forward navigation stops at the closing slide; use its links to revisit the JSON explorer or open references, the lost-ack experiment, or capabilities. The outcome matrix defines success before the workbench and first-evaluation demo. After the demo, the route follows portable evidence and its JSON example, ASSERT, evaluator reliability, and the release decision. Speaker notes reserve 3½ minutes for the live demo within a 20-minute talk, plus a one-minute buffer and nine minutes of Q&A.
 The focused additions are:
 
 - **Timeline:** switch between complete-request and aggressive endpointing traces.
   Timings are synthetic and share one clock. Receiver frames are not physical
   speaker playout; negative delay means a response before the caller finished.
-- **Evidence:** listen to one locally synthesized utterance, unchanged or with
-  the negation muted. The hypothetical ASR text is labeled; no recognizer runs.
-  No microphone permission, external TTS, live network, or RTCStats is used.
-- **Scorecard:** remove the final-state snapshot and inspect/export the teaching
-  JSON. Only unsupported business conclusions become unverified; captured timing
-  and safe-output observations remain. This JSON is not a conformant vCon export.
-- **Runtime protection:** the completion-action gate defaults ON. It controls
+- **Lost-acknowledgment experiment (appendix only):** follow operation evidence → caller response → evaluation. The default action commits while its acknowledgment is lost. Checking the original operation establishes evidence before confirmation. The completion-action gate defaults ON. It controls
   the structured action before fixed demonstration speech reaches TTS; it is not
   a keyword filter or a general natural-language safety guarantee. Deliberate
   bypass exposes false/unsupported confirmation. Lost acknowledgments preserve
   uncertainty; operation-ID-matched reconciliation restores verified knowledge.
   Same-ID retries are deduplicated by the fixture backend. Interruptions suppress
   superseded responses without undoing committed effects.
-- **Release review:** compare illustrative 100-run cohorts against explicit gates.
-  Faster p95 cannot compensate for premature responses or wrong cancellation timing.
+- **Release review:** compare current settings with a proposed shorter wait before answering, using illustrative numbers for the same 100 test calls on each version. Both versions are shown together. Faster responses cannot compensate for replying before the caller finishes or canceling at the wrong time.
 
-These are browser teaching experiments, not shipped CAE runtime functionality or
-measured customer benchmarks. No customer data or customer names were added.
+These are browser teaching experiments, not shipped evaluation tool runtime functionality or
+measured customer benchmarks. The project overview uses public success stories and locally stored published visuals.
 Runtime controls prevent violations; evaluation verifies the controls and exposes
 regressions. The simplified workflow is **Run → Evaluate → Compare**.
 
-### Audio fixture provenance
+### Continuous voice — slides 6 and 7
 
-`assets/negation.mp3` was generated locally with eSpeak (en-us, 165 words/minute)
-from “Do”, “not”, and “cancel my subscription.” Segments start at 0.08, 0.69,
-and 1.34 seconds. The received variant zeros 0.60–1.20 seconds in the decoded
-copy of that same recording. It is a deliberate content dropout, not an RTP
-packet-loss/PLC model. The browser playback is user-initiated, and stops when
-leaving the evidence slide or hiding the page.
+The conventional system on slide 5 leads into two complementary views:
+
+- [Slide 6 · Two-path architecture](http://127.0.0.1:8080/?present=1#dual-voice-architecture): the live audio loop delegates reasoning and tool work.
+- [Slide 7 · Conversation sequence](http://127.0.0.1:8080/?present=1#dual-voice): a caller adds an appointment constraint while the voice model speaks.
+
+Legacy `voice=architecture` and `slide5=architecture` review URLs open the architecture slide. The diagrams are illustrative, not captured runtime traces. [Project image sources](assets/projects/SOURCES.md) document the real visuals used on slide 3.
 
 ### Tests
 
 `npm test` uses Node's built-in test runner with no dependencies. Tests cover
-measurement boundaries, evidence absence, protected/bypassed speech, lost-ack
+measurement boundaries, protected/bypassed speech, lost-ack
 reconciliation, wrong-operation evidence, idempotent retry fixtures, interrupted
 response generations, release gates, and preservation of the vCon explorer.

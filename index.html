@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="An interactive presentation about evaluating the complete real-time voice-agent loop with ConversationAgentEvals and portable vCon evidence." name="description"/>
+<meta content="An interactive presentation about evaluating the complete real-time voice-agent loop with the Conversation Agent Evaluation (CAE) tool and portable vCon evidence." name="description"/>
 <meta content="#071119" name="theme-color"/>
 <meta content="Evaluating Real-Time Voice Agents Beyond AI Models" property="og:title"/>
 <meta content="Building and using an open-source evaluation workbench with vCon." property="og:description"/>
@@ -15,25 +15,25 @@
 <link href="./assets/favicon.svg" rel="icon" type="image/svg+xml"/>
 
 
-<link href="./styles/base.css" rel="stylesheet"/><link href="./styles/slides-a.css" rel="stylesheet"/><link href="./styles/slides-b.css" rel="stylesheet"/><link href="./styles/vcon-enrichment.css" rel="stylesheet"/><link href="./styles/modes.css" rel="stylesheet"/><link href="./styles/engineering.css" rel="stylesheet"/><link href="./styles/story.css" rel="stylesheet"/><script defer src="./slides/part-1.js"></script><script defer src="./slides/part-2.js"></script><script defer src="./slides/vcon-enrichment.js"></script><script defer src="./slides/part-3.js"></script><script defer src="./scripts/render-slides.js"></script><script defer src="./scripts/app.js"></script><script defer src="./scripts/engineering-model.js"></script><script defer src="./scripts/engineering-ui.js"></script></head>
+<link href="./styles/base.css" rel="stylesheet"/><link href="./styles/slides-a.css" rel="stylesheet"/><link href="./styles/slides-b.css?v=assert-engineering" rel="stylesheet"/><link href="./styles/vcon-enrichment.css" rel="stylesheet"/><link href="./styles/modes.css" rel="stylesheet"/><link href="./styles/engineering.css?v=behavior-detail-fit" rel="stylesheet"/><link href="./styles/story.css" rel="stylesheet"/><link href="./styles/voice-options.css" rel="stylesheet"/><link href="./styles/projects.css" rel="stylesheet"/><script defer src="./slides/dual-voice-options.js"></script><script defer src="./slides/part-1.js"></script><script defer src="./slides/part-2.js?v=assert-detail-cli"></script><script defer src="./slides/vcon-enrichment.js?v=main-route"></script><script defer src="./slides/part-3.js?v=fact-order-behavior"></script><script defer src="./scripts/render-slides.js"></script><script defer src="./scripts/app.js?v=judge-visual-modals"></script><script defer src="./scripts/engineering-model.js?v=fact-evidence-cards"></script><script defer src="./scripts/engineering-ui.js"></script></head>
 <body>
 <a class="skip-link" href="#intro">Skip to presentation</a>
 <header aria-label="Presentation controls" class="site-header">
 <a aria-label="Return to title" class="brand" href="#intro">
 <span aria-hidden="true" class="brand-mark"><i></i><i></i><i></i><i></i></span>
-<span><b>VOICE AGENT EVALS</b><small>VON Evolution 2026</small></span>
+<span><b>VOICE AGENT EVALS</b><small>Fall '26 · Voice and Conversations on the Net</small></span>
 </a>
 <nav aria-label="Sections" class="section-nav">
 <a href="#story">Story</a>
 <a href="#problem">Problem</a>
 <a href="#layers">Framework</a>
-<a href="#vcon">vCon</a>
+<a href="#outcomes">Outcomes</a>
 <a href="#workbench">Workbench</a>
-<a href="#demo">Demo</a>
+<a href="#vcon">vCon</a>
 <a href="#standards">Sources</a>
 </nav>
 <div class="header-actions">
-<span aria-live="polite" class="slide-count"><b id="currentSlide">1</b>/<span id="totalSlides">19</span></span>
+<span aria-live="polite" class="slide-count"><b id="currentSlide">1</b>/<span id="totalSlides">18</span></span>
 <button aria-label="Show keyboard help" class="icon-button" id="helpButton" title="Keyboard help (?)" type="button">?</button>
 <button class="present-button" id="presentButton" type="button">
 <span aria-hidden="true">▣</span>
@@ -45,7 +45,7 @@
 <main id="deck"></main>
 <aside aria-label="Slide navigation" class="present-controls">
 <button aria-label="Previous slide" id="previousButton" type="button">←</button>
-<span><b id="presentCurrent">1</b>/<span id="presentTotal">19</span></span>
+<span><b id="presentCurrent">1</b>/<span id="presentTotal">18</span></span>
 <button aria-label="Next slide" id="nextButton" type="button">→</button>
 </aside>
 <dialog class="help-dialog" id="helpDialog">
@@ -57,7 +57,7 @@
 <div><dt><kbd>P</kbd></dt><dd>Toggle presentation mode</dd></div>
 <div><dt><kbd>←</kbd> <kbd>→</kbd></dt><dd>Previous / next slide</dd></div>
 <div><dt><kbd>Space</kbd></dt><dd>Next slide</dd></div>
-<div><dt><kbd>Home</kbd> <kbd>End</kbd></dt><dd>First / last slide</dd></div>
+<div><dt><kbd>Home</kbd> <kbd>End</kbd></dt><dd>Title / closing slide</dd></div>
 <div><dt><kbd>Esc</kbd></dt><dd>Exit presentation mode</dd></div>
 <div><dt><kbd>?</kbd></dt><dd>Open this help</dd></div>
 </dl>
