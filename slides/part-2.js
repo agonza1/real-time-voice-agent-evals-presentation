@@ -24,10 +24,10 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
     id: "assert",
     html: `
       <div class="section-heading">
-        <p class="eyebrow">ASSERT FRAMEWORK · REQUIREMENT-DRIVEN EVALUATION</p>
-        <h2 id="assert-title">ASSERT: <span>automated tests for AI agents.</span></h2>
+        <p class="eyebrow">ASSERT + CAE · REQUIREMENT-DRIVEN VOICE TESTS</p>
+        <h2 id="assert-title">Generate with ASSERT. <span>Run voice tests with CAE.</span></h2>
       </div>
-      <p class="assert-intro">An open-source Python framework for automated agent evaluation.</p>
+      <p class="assert-intro">ASSERT is a Python evaluation framework. CAE runs the voice workflow.</p>
       <div class="assert-flow assert-software-flow">
         <article class="assert-spec">
           <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M20 12h30l12 12v44H20Z M50 12v14h12 M29 37h24 M29 48h24 M29 59h15"/></svg>
@@ -43,12 +43,13 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
           </ul>
         </article>
         <article class="assert-engine assert-runtime">
-          <p class="assert-runtime-label">EXECUTABLE FRAMEWORK</p>
-          <h3>ASSERT</h3>
-          <ol class="assert-runtime-steps" aria-label="What the ASSERT framework does">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4Z M15 3v6h5 M8 12h8M8 16h5"/></svg><span><b>Generate test conversations</b><small>Variations for each behavior</small></span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 12 8-12 8Z"/></svg><span><b>Run them against your agent</b><small>Capture the conversation</small></span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><span><b>Evaluate each behavior</b><small>LLM judge + supporting evidence</small></span></li>
+          <p class="assert-runtime-label">WHO DOES WHAT</p>
+          <h3>ASSERT + CAE</h3>
+          <ol class="assert-runtime-steps" aria-label="ASSERT generates cases, reviewed cases run in CAE, then ASSERT judges evidence">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4Z M15 3v6h5 M8 12h8M8 16h5"/></svg><span><b>ASSERT generates caller cases</b><small>Normal · boundary · adversarial · proposed integration</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16v18H4Z M8 12l3 3 6-7"/></svg><span><b>Review and freeze in CAE</b><small>Approve a reusable test set</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 12 8-12 8Z"/></svg><span><b>CAE runs the voice agent</b><small>Keep voice execution + captured evidence</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><span><b>ASSERT judges behavior</b><small>CAE retains facts + semantic assessment</small></span></li>
           </ol>
         </article>
         <article class="assert-report">
@@ -64,20 +65,19 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
         </article>
       </div>
       <div class="assert-footer"><p class="takeaway"><strong>Fix the agent. Re-run the same cases.</strong></p><button class="assert-detail-button" type="button" data-evaluation-dialog="assert-details" aria-controls="assert-details" aria-haspopup="dialog">Engineering details ↗</button></div>
-      <p class="micro-note">Illustrative conversation results · upstream ASSERT workflow; CAE uses optional semantic review.</p>
+      <p class="micro-note">Illustrative results · ASSERT generation integration proposed; CAE voice execution and optional ASSERT judging remain separate.</p>
       <dialog id="assert-details" class="judge-dialog" aria-labelledby="assert-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close ASSERT engineering details">×</button>
         <p class="eyebrow">ASSERT · REPRODUCIBILITY AND LIMITS</p><h2 id="assert-details-title">Keep the evidence. Know the limits.</h2>
-        <code class="assert-command">assert-ai run --config eval_config.yaml</code>
-        <dl class="assert-artifacts assert-detail-artifacts"><div><dt><code>test_set.jsonl</code></dt><dd>test conversations</dd></div><div><dt><code>inference_set.jsonl</code></dt><dd>responses + captured tool trace</dd></div><div><dt><code>scores.jsonl</code></dt><dd>verdict + explanation</dd></div><div><dt><code>metrics.json</code></dt><dd>aggregate violation rates</dd></div></dl>
-        <p class="judge-detail-note">A scenario contains several requirements. ASSERT can test behaviors in separate suites with many conversation variations. These four results illustrate conversational requirements, not a measured ASSERT report or proof that the backend address changed. Tool traces can add evidence when available.</p>
-        <p class="judge-detail-note">Version the cases, agent configuration, and judge. Repeat the frozen cases after changes; calibrate judgments against held-out human-labeled evidence.</p>
+        <dl class="assert-artifacts assert-detail-artifacts"><div><dt><code>test_set.jsonl</code> · ASSERT</dt><dd>Caller prompts linked to reviewed behavior IDs</dd></div><div><dt>Approved suite · CAE</dt><dd>Reviewed caller cases + frozen requirements</dd></div><div><dt>Voice execution · CAE</dt><dd>Captured conversation + available execution evidence</dd></div><div><dt>Judge outputs · ASSERT</dt><dd><code>scores.jsonl</code> + <code>metrics.json</code></dd></div></dl>
+        <p class="judge-detail-note">The proposed integration runs ASSERT's test_set stage against reviewed requirements. It imports caller prompts as CAE drafts; approval and publication happen before voice execution. ASSERT's judge stage reads the saved executed conversation afterward. Generated cases do not contain target responses.</p>
+        <p class="judge-detail-note">Keep generation provenance, approved case version, agent configuration, evidence, and judge configuration linked. Calibrate judgments against held-out human-labeled evidence. Results shown here are illustrative; conversational confirmation does not prove a backend address changed.</p>
         <aside class="assert-sample-math" aria-label="Sample-size illustration for zero observed failures">
           <div><strong>Zero failures ≠ zero risk</strong><span>95% upper bound on the failure rate</span></div>
           <p><b>0 / 100</b><span>tests →</span><strong>~3%</strong></p>
           <p><b>0 / 1,000</b><span>tests →</span><strong>~0.3%</strong></p>
         </aside>
-        <p class="judge-detail-note">Sample-size math, not measured CAE results. Assumes independent, representative trials and correct failure labels. Upstream generation and target execution are not implied by CAE’s semantic-review adapter.</p>
+        <p class="judge-detail-note">Sample-size math, not measured CAE results. Assumes independent, representative trials and correct failure labels. The generation proposal keeps CAE voice execution; it does not invoke ASSERT’s target-inference stage.</p>
         <p class="eng-sources"><a href="https://github.com/responsibleai/ASSERT/tree/main/examples/billing_support_agent" target="_blank" rel="noopener noreferrer">ASSERT example ↗</a><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm" target="_blank" rel="noopener noreferrer">Statistics ↗</a></p>
       </dialog>
     `

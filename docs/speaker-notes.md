@@ -68,7 +68,7 @@ Plan for 20 minutes of presentation including a 3½-minute demo, one minute of d
 | 5 · System | 0:45 | 3:55 | SIP establishes the session; RTP carries audio. Trace the conceptual cascade and return audio, with tool requests and results. |
 | 6 · Two-path architecture | 0:40 | 4:35 | A newer architecture pattern: native audio continues while reasoning and tools run. |
 | 7 · Continuous-voice sequence | 0:40 | 5:15 | The application applies the changed constraint and rejects stale results. |
-| 8 · Four layers | 1:00 | 6:15 | Separate conversation, speech, execution, and outcome. ASR-specific measures apply only when ASR is present. |
+| 8 · Four Cs | 1:00 | 6:15 | Conversation, comprehension, conduct, completion. Score each separately; ASR-specific measures apply only when ASR is present. |
 | 9 · Timeline | 1:45 | 8:00 | Switch endpointing once, then restore. A faster system-endpoint-to-audio interval can hide premature turn acceptance. |
 | 10 · Outcomes | 0:50 | 8:50 | Define completion and evidence-supported speech before introducing the tool. Unknown stays unknown; authorization is a separate check. |
 | 11 · Workbench | 0:45 | 9:35 | Run → Evaluate → Compare. Name framework roles briefly. |
@@ -100,18 +100,22 @@ Transition: “We have defined what to check. Now we need to preserve the conver
 - **9 → 10:** “Faster at one boundary does not establish success. What would count as a successful outcome?”
 - **10 → 11 → 12:** “Now we can state the checks. Here is the workbench, and one evaluation with the evidence behind its finding.”
 - **12 → 13 → 14:** “The report depends on captured observations. Keep the conversation, trace, and state together so another system can inspect them.”
-- **14 → 15:** “The evidence is portable; ASSERT adds repeatable behavior tests and inspectable judgments.”
+- **14 → 15:** “The evidence is portable. Generate behavior-focused caller cases with ASSERT, then run them through CAE's voice execution.”
 - **15 → 16:** “Take that same address-change failure. The caller corrected 14 to 40, but the agent confirmed 14. Follow the conversation evidence, interpret the correction, and retain the failed requirement.”
 - **16 → 17:** “Apply that policy to matched scenarios. Would you release a faster version with these regressions?”
 - **17 → 18:** “We build the conversation and verify the whole system. Keep the evidence and repeat the evaluation when it changes.”
 
-## ASSERT as an engineering test suite — slide 15
+## ASSERT + CAE voice-test workflow — slide 15
 
-“ASSERT is executable Python software. Billing Address Change is the scenario; collecting the address, preserving corrections, explaining invoice impact, and avoiding full card numbers are example behavior requirements. ASSERT generates conversation variations, runs them against the configured agent, and uses an LLM judge to assess the behavior with supporting evidence. Different behaviors can have separate suites and many test cases. Here, three conversational requirements pass, but the correction fails: the caller says 40 Pine St and the agent confirms 14. Fix the agent and repeat the frozen cases.”
+“ASSERT is a Python evaluation framework. Use it to generate behavior-focused cases from reviewed requirements. Review and freeze those cases in CAE. CAE runs the voice agent and captures the conversation and available evidence; ASSERT judges behavior afterward. CAE's deterministic findings remain separate. Generation integration is proposed; voice execution and ASSERT semantic review already have their own paths.”
 
-The four checks are a conversational subset of the larger scenario, not its complete business or security contract. A scenario describes the caller, goal, required and forbidden actions, expected state, and evidence needs; each check isolates a specific behavior. CAE’s application suite groups scenarios, while the documented ASSERT example uses separate suites per behavior. Asking for identifiers can be assessed from the conversation; successful backend identity verification is a different assertion. The checks here do not require internal tool telemetry. Explaining invoice impact means communicating the configured policy, not proving that an invoice was generated. The Engineering details button opens artifact names, reproducibility guidance, and sample-size limits for Q&A.
+Billing Address Change remains the scenario. Collecting the address, preserving caller corrections, explaining invoice impact, and avoiding full card numbers are its example behavior requirements. The displayed correction failure—caller says 40 Pine St, agent confirms 14—is illustrative, not a measured result or literal ASSERT output. These conversational requirements do not prove a backend update. Keep the same frozen cases when comparing agent versions; calibrate the judge on held-out human-labeled evidence.
 
-The requirements are adapted to CAE’s Billing Address Change scenario and this caller-correction variation. The displayed conversation and results are illustrative, not measured agent results or literal ASSERT output. The framework workflow and artifact names come from ASSERT's documented [billing support example](https://github.com/responsibleai/ASSERT/tree/main/examples/billing_support_agent), checked October 9, 2026. Its mocked billing tools demonstrate optional internal action evidence; our main example uses the caller-visible conversation instead. The CLI command remains in Engineering details. It is the documented entry point, assuming an installed package, valid configuration, configured target, and model credentials. The upstream framework generates single- and multi-turn cases, runs a target, uses LLM judgment, and writes local JSON/JSONL artifacts; CAE's optional semantic-review adapter does not imply all of those upstream features are integrated into CAE. Review generated cases and rubrics, calibrate against held-out human-labeled cases, and version both agent and evaluator.
+The planned integration uses pinned ASSERT 0.3.0's test_set stage with reviewed behavior IDs as its taxonomy inputs, preserving the approved policy instead of regenerating it. It adapts caller prompts into reviewable CAE cases with normal, boundary, and adversarial coverage. Generated prompts and caller instructions are not prewritten target answers. CAE retains its voice execution/tester adapters; the proposal does not replace them with ASSERT's inference stage. ASSERT judgment consumes the saved executed conversation afterward. The main slide labels generation as proposed until the PR is merged and the deployment is verified. Current CAE draft generation uses CAE's configured LLM rather than upstream ASSERT generation.
+
+The upstream framework and artifact names are described in the [ASSERT repository](https://github.com/responsibleai/ASSERT), checked October 9, 2026. The source generation artifact, adapted cases, approved spec version, agent configuration, evidence, and judge configuration remain linked for reproducibility. The details dialog distinguishes ASSERT's generated test_set.jsonl from the approved CAE suite, CAE voice execution, and ASSERT judge outputs.
+
+Planned UI walkthrough: approve the Evaluation design's behavior requirements; select ASSERT for Generate runnable case drafts; inspect and edit the caller cases; approve, save a version, and publish it to Scenarios. In Runs, select the saved suite and a supported voice target. After execution, inspect the captured evidence and request ASSERT semantic review. Generating cases does not start a voice call or judge run.
 
 The numeric strip in the Engineering details dialog is a sample-size calculation, not a benchmark. With zero observed failures in N independent Bernoulli trials with a stable failure probability, the exact one-sided 95% upper confidence bound is p_upper = 1 - 0.05^(1/N). For N = 100 it is 2.951%; for N = 1,000 it is 0.299%. The familiar approximation is 3/N. This bounds failure probability under the sampled protocol, not all production traffic. Generated scenarios can be correlated or unrepresentative; an imperfect judge can miss failures. Neither a reused test set nor a clean LLM-scored report automatically satisfies these assumptions. The [NIST binomial confidence interval reference](https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm) gives the exact binomial method; the displayed values are calculated for zero failures with a one-sided alpha of 0.05. Audio, interruption timing, and receiver delivery need separate voice measurements.
 
@@ -159,6 +163,19 @@ Background reading: [gpt-realtime introduction, August 28, 2025](https://openai.
 Research checked October 5, 2026. The August GPT-Live article describes an upcoming API; current LiveKit and Pipecat documentation now includes GPT-Live integrations. Avoid inferring account availability from the article alone. STT → LLM → TTS is an alternative speech pipeline, not a required extra synthesis stage for delegated reasoning. If both paths can generate speech, the application must coordinate output and interruption policy.
 
 Transition: “These changes move the boundaries. They do not remove the four things we have to evaluate.”
+
+## Four Cs — slide 8
+
+“How it flows. What it understands. How it acts. What it achieves.”
+
+Use the four Cs as a memory aid for the existing evaluation dimensions, not as four sequential runtime stages. Full-duplex systems can overlap listening, speaking, and tool work.
+
+- **Conversation:** turn timing, interruptions, silence, audio continuity, and latency. Did the conversation flow naturally?
+- **Comprehension:** whether the agent preserved the caller’s entities, intent, and corrections across accents and noise. Judge observable understanding from the response and actions. When ASR exists, transcript accuracy, partial stability, and finalization delay help diagnose failures; native speech systems do not necessarily expose those ASR measures.
+- **Conduct:** required and forbidden actions, policy checks, tool choice, fallback, and recovery. Did the agent take the right actions and follow the rules?
+- **Completion:** whether the caller’s goal was achieved. Evaluate what the conversation establishes; where available, action receipts and final state provide additional confirmation of state transitions, durable completion, and agreement between speech and execution. Missing backend records do not make the whole call unjudgeable or automatically a failure.
+
+“A call can sound smooth, misunderstand ‘at period end,’ execute the wrong cancellation, and leave the customer with the wrong result.” That is why we score each C separately: a good conversation score cannot erase a failed comprehension, conduct, or completion check.
 
 ## Workbench — frameworks behind the workflow
 
