@@ -107,7 +107,7 @@ Transition: “We have defined what to check. Now we need to preserve the conver
 
 ## ASSERT + CAE voice-test workflow — slide 15
 
-“Use ASSERT to generate behavior-focused cases from reviewed requirements. Review and freeze those cases in CAE. CAE runs the voice agent and captures the conversation and available evidence; ASSERT judges behavior afterward. CAE's deterministic findings remain separate. Generation integration is being proposed in a PR; voice execution and ASSERT semantic review already have their own paths.”
+“ASSERT is a Python evaluation framework. Use it to generate behavior-focused cases from reviewed requirements. Review and freeze those cases in CAE. CAE runs the voice agent and captures the conversation and available evidence; ASSERT judges behavior afterward. CAE's deterministic findings remain separate. Generation integration is proposed; voice execution and ASSERT semantic review already have their own paths.”
 
 Billing Address Change remains the scenario. Collecting the address, preserving caller corrections, explaining invoice impact, and avoiding full card numbers are its example behavior requirements. The displayed correction failure—caller says 40 Pine St, agent confirms 14—is illustrative, not a measured result or literal ASSERT output. These conversational requirements do not prove a backend update. Keep the same frozen cases when comparing agent versions; calibrate the judge on held-out human-labeled evidence.
 

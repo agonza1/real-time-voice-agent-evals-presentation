@@ -27,7 +27,7 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
         <p class="eyebrow">ASSERT + CAE · REQUIREMENT-DRIVEN VOICE TESTS</p>
         <h2 id="assert-title">Generate with ASSERT. <span>Run voice tests with CAE.</span></h2>
       </div>
-      <p class="assert-intro">Reviewed requirements → generated caller cases → voice execution → behavior findings.</p>
+      <p class="assert-intro">ASSERT is a Python evaluation framework. CAE runs the voice workflow.</p>
       <div class="assert-flow assert-software-flow">
         <article class="assert-spec">
           <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M20 12h30l12 12v44H20Z M50 12v14h12 M29 37h24 M29 48h24 M29 59h15"/></svg>
