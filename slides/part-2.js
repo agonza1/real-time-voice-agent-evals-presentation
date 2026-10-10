@@ -45,7 +45,6 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 12 8-12 8Z"/></svg><span><b>Run them against your agent</b><small>Capture responses + tool traces</small></span></li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><span><b>Judge against the rule</b><small>LLM evaluates captured evidence</small></span></li>
           </ol>
-          <code class="assert-command">assert-ai run --config eval_config.yaml</code>
         </article>
         <article class="assert-report">
           <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M16 12h36v56H16 M25 25h17M25 37h12"/><circle cx="50" cy="47" r="15"/><path d="m61 58 11 11m-31-23 6 6 11-12"/></svg>
@@ -60,6 +59,7 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
       <dialog id="assert-details" class="judge-dialog" aria-labelledby="assert-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close ASSERT engineering details">×</button>
         <p class="eyebrow">ASSERT · REPRODUCIBILITY AND LIMITS</p><h2 id="assert-details-title">Keep the evidence. Know the limits.</h2>
+        <code class="assert-command">assert-ai run --config eval_config.yaml</code>
         <dl class="assert-artifacts assert-detail-artifacts"><div><dt><code>test_set.jsonl</code></dt><dd>test conversations</dd></div><div><dt><code>inference_set.jsonl</code></dt><dd>responses + captured tool trace</dd></div><div><dt><code>scores.jsonl</code></dt><dd>verdict + explanation</dd></div><div><dt><code>metrics.json</code></dt><dd>aggregate violation rates</dd></div></dl>
         <p class="judge-detail-note">Version the cases, agent configuration, and judge. Repeat the frozen cases after changes; calibrate judgments against held-out human-labeled evidence.</p>
         <aside class="assert-sample-math" aria-label="Sample-size illustration for zero observed failures">

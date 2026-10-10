@@ -163,6 +163,8 @@ body.presenting :is(#timeline,#demo,#comparison):has(details[open]) { overflow-y
 .example-arrows { fill: none; stroke: var(--cyan); stroke-width: 2; marker-end: url(#fact-example-arrow); }
 .example-label { font-size: 25px; font-weight: 700; }.fact-example-diagram .example-code { font-size: 18px; }.fact-example-diagram .example-code text { font-family: var(--mono); fill: var(--muted); }.example-step { font-size: 14px; letter-spacing: 1px; }
 #fact-details { padding: 24px; }
+#behavior-details { padding-block: 24px; }
+#behavior-details .judge-shared-input { margin-block: 14px; }
 #fact-details .judge-example-quote { padding: 10px 18px; margin: 14px 0; }
 #fact-details .judge-example-quote > svg { width: 36px; height: 36px; }
 #fact-details .fact-check-cards { margin-top: 12px; }
