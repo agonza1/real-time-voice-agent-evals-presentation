@@ -83,3 +83,24 @@ test('fact checks retain incomplete evidence and absent confirmation as unestabl
   const unverified=m.controlRun({scenario:'lost',gate:false});
   assert.equal(m.recoveryFactChecks(unverified.evidence).proofBeforeConfirmation,false);
 });
+
+test('an address update with matched completion proof still fails skipped verification',()=>{
+  const evidence=m.billingAddressEvidence;
+  assert.deepEqual(m.addressChangeFactChecks(evidence),{verifiedBeforeUpdate:false,requestedAddressSaved:true,proofBeforeConfirmation:true});
+  const verified={...evidence,verification:{succeeded:true,accountId:evidence.accountId,succeededAt:40}};
+  assert.equal(m.addressChangeFactChecks(verified).verifiedBeforeUpdate,true);
+  assert.equal(m.addressChangeFactChecks({...verified,verification:{...verified.verification,succeededAt:200}}).verifiedBeforeUpdate,false);
+  assert.equal(m.addressChangeFactChecks({...verified,verification:{...verified.verification,accountId:'other'}}).verifiedBeforeUpdate,false);
+});
+
+test('address proof must match account, operation, requested address, and confirmation ordering',()=>{
+  const evidence=m.billingAddressEvidence;
+  for(const change of [{operationId:'other'},{accountId:'other'},{address:'old-address'}]) {
+    const result=m.addressChangeFactChecks({...evidence,proof:{...evidence.proof,...change}});
+    assert.equal(result.requestedAddressSaved,false);
+    assert.equal(result.proofBeforeConfirmation,false);
+  }
+  assert.equal(m.addressChangeFactChecks({...evidence,proof:{...evidence.proof,receivedAt:800}}).proofBeforeConfirmation,false);
+  assert.deepEqual(m.addressChangeFactChecks({...evidence,complete:false}),{verifiedBeforeUpdate:null,requestedAddressSaved:null,proofBeforeConfirmation:null});
+  assert.equal(m.addressChangeFactChecks({...evidence,proof:null}).requestedAddressSaved,null);
+});

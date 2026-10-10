@@ -189,6 +189,13 @@ body.presenting :is(#timeline,#demo,#comparison):has(details[open]) { overflow-y
 .fact-unknown-badge { fill: var(--surface-solid); stroke: var(--amber); }
 .fact-recovery-sequence .fact-unknown-label { fill: var(--amber); }
 .fact-backend-badge { fill: var(--surface-solid); }
+.fact-violation-badge { fill: var(--surface-solid); stroke: var(--danger); }
+.fact-recovery-sequence .fact-violation-label { fill: var(--danger); }
+.fact-check-cards .fact-check-fail { border-color: var(--danger); }
+.fact-check-cards .fact-check-fail svg, .fact-violation-verdict svg { stroke: var(--danger); }
+.fact-check-fail small, .fact-violation-verdict strong { color: var(--danger); }
+#fact-details .fact-check-fail small { color: var(--danger); }
+#fact-details .fact-violation-verdict svg { stroke: var(--danger); }
 .fact-recovery-sequence .fact-proof-label { fill: var(--green); }
 .example-arrows .fact-proof-arrow { stroke: var(--green); marker-end: url(#fact-proof-arrowhead); }
 #fact-details .judge-example-quote { margin: 10px 0; }
