@@ -156,16 +156,15 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">EVALUATION MODEL</p>
-        <h2 id="layers-title">Evaluate <span>four connected layers</span></h2>
-        <p>Four dimensions. Separate scores.</p>
+        <h2 id="layers-title">One call. <span>Four Cs.</span></h2>
       </div>
       <div class="layer-grid">
-        <article class="layer-card cyan-card"><span class="layer-number">01</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 14H7l-4 3V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v5a4 4 0 0 1-4 4Z"/><path d="M8 17v1a2 2 0 0 0 2 2h7l4 3V11a2 2 0 0 0-2-2"/></svg><h3>Conversation experience</h3><p>Turn timing, interruptions, silence, audio continuity, and latency.</p></article>
-        <article class="layer-card violet-card"><span class="layer-number">02</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 10v4M7 6v12M11 3v18M15 7v10M19 9v6M23 11v2"/></svg><h3>Speech boundary</h3><p>Entity / intent accuracy · accents and noise.<br>With ASR: partial stability and finalization delay.</p></article>
-        <article class="layer-card amber-card"><span class="layer-number">03</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="2" width="7" height="6" rx="1.5"/><rect x="14" y="16" width="7" height="6" rx="1.5"/><path d="M6.5 8v11h7.5M10 5h7.5v11M14.5 13l3 3 3-3"/></svg><h3>Agent execution</h3><p>Required and forbidden actions, policy checks, tool choice, fallback, and recovery.</p></article>
-        <article class="layer-card green-card"><span class="layer-number">04</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m7.5 12 3 3 6-6"/></svg><h3>Business outcome</h3><p>State transition, durable completion, and agreement between speech and backend truth.</p></article>
+        <article class="layer-card cyan-card"><span class="layer-number">01</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 14H7l-4 3V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v5a4 4 0 0 1-4 4Z"/><path d="M8 17v1a2 2 0 0 0 2 2h7l4 3V11a2 2 0 0 0-2-2"/></svg><h3>Conversation</h3><p>Did the conversation flow naturally?</p></article>
+        <article class="layer-card violet-card"><span class="layer-number">02</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 8.5a7 7 0 0 1 14 0c0 4-2 5-4 7-1 1-1 2-2 4a4 4 0 0 1-7-1M10 8.5a3 3 0 0 1 6 0c0 2-2 2.5-3 3.5v2"/></svg><h3>Comprehension</h3><p>Did it understand the caller correctly?</p></article>
+        <article class="layer-card amber-card"><span class="layer-number">03</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m9 3 .5-1h5l.5 3 2 1 2.8-1 2.5 4.3-2.3 2v2.4l2.3 2-2.5 4.3-2.8-1-2 1-.5 3h-5l-.5-3-2-1-2.8 1-2.5-4.3 2.3-2v-2.4l-2.3-2L3.7 4l2.8 1 2-1Z"/><circle cx="12" cy="12" r="3.5"/></svg><h3>Conduct</h3><p>Did it take the right actions and follow the rules?</p></article>
+        <article class="layer-card green-card"><span class="layer-number">04</span><svg class="layer-symbol" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m7.5 12 3 3 6-6"/></svg><h3>Completion</h3><p>Was the caller’s goal achieved?</p></article>
       </div>
-      <div class="one-call"><span>ONE CALL</span><strong>FOUR LAYERS</strong><em>Not one average score.</em></div>
+      <div class="one-call"><strong>Score each C separately.</strong></div>
     `
   },
   {

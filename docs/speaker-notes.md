@@ -68,7 +68,7 @@ Plan for 20 minutes of presentation including a 3½-minute demo, one minute of d
 | 5 · System | 0:45 | 3:55 | SIP establishes the session; RTP carries audio. Trace the conceptual cascade and return audio, with tool requests and results. |
 | 6 · Two-path architecture | 0:40 | 4:35 | A newer architecture pattern: native audio continues while reasoning and tools run. |
 | 7 · Continuous-voice sequence | 0:40 | 5:15 | The application applies the changed constraint and rejects stale results. |
-| 8 · Four layers | 1:00 | 6:15 | Separate conversation, speech, execution, and outcome. ASR-specific measures apply only when ASR is present. |
+| 8 · Four Cs | 1:00 | 6:15 | Conversation, comprehension, conduct, completion. Score each separately; ASR-specific measures apply only when ASR is present. |
 | 9 · Timeline | 1:45 | 8:00 | Switch endpointing once, then restore. A faster system-endpoint-to-audio interval can hide premature turn acceptance. |
 | 10 · Outcomes | 0:50 | 8:50 | Define completion and evidence-supported speech before introducing the tool. Unknown stays unknown; authorization is a separate check. |
 | 11 · Workbench | 0:45 | 9:35 | Run → Evaluate → Compare. Name framework roles briefly. |
@@ -163,6 +163,19 @@ Background reading: [gpt-realtime introduction, August 28, 2025](https://openai.
 Research checked October 5, 2026. The August GPT-Live article describes an upcoming API; current LiveKit and Pipecat documentation now includes GPT-Live integrations. Avoid inferring account availability from the article alone. STT → LLM → TTS is an alternative speech pipeline, not a required extra synthesis stage for delegated reasoning. If both paths can generate speech, the application must coordinate output and interruption policy.
 
 Transition: “These changes move the boundaries. They do not remove the four things we have to evaluate.”
+
+## Four Cs — slide 8
+
+“How it flows. What it understands. How it acts. What it achieves.”
+
+Use the four Cs as a memory aid for the existing evaluation dimensions, not as four sequential runtime stages. Full-duplex systems can overlap listening, speaking, and tool work.
+
+- **Conversation:** turn timing, interruptions, silence, audio continuity, and latency. Did the conversation flow naturally?
+- **Comprehension:** whether the agent preserved the caller’s entities, intent, and corrections across accents and noise. Judge observable understanding from the response and actions. When ASR exists, transcript accuracy, partial stability, and finalization delay help diagnose failures; native speech systems do not necessarily expose those ASR measures.
+- **Conduct:** required and forbidden actions, policy checks, tool choice, fallback, and recovery. Did the agent take the right actions and follow the rules?
+- **Completion:** whether the caller’s goal was achieved. Evaluate what the conversation establishes; where available, action receipts and final state provide additional confirmation of state transitions, durable completion, and agreement between speech and execution. Missing backend records do not make the whole call unjudgeable or automatically a failure.
+
+“A call can sound smooth, misunderstand ‘at period end,’ execute the wrong cancellation, and leave the customer with the wrong result.” That is why we score each C separately: a good conversation score cannot erase a failed comprehension, conduct, or completion check.
 
 ## Workbench — frameworks behind the workflow
 
