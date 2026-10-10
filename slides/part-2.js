@@ -34,33 +34,43 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
           <p class="assert-scenario-label">SCENARIO</p>
           <h3>Billing Address Change</h3>
           <p class="assert-scenario-context">Moved customer · update before the next invoice.</p>
-          <p class="assert-engine-note">Context + goal + behavior rules</p>
-          <div class="assert-selected-check"><small>ONE REQUIREMENT TO TEST</small><p>Verify identity before updating the address.</p></div>
+          <p class="assert-scenario-label">EXAMPLE REQUIREMENTS</p>
+          <ul class="assert-requirements">
+            <li>Collect the new address.</li>
+            <li>Preserve caller corrections.</li>
+            <li>Explain the invoice impact.</li>
+            <li>Never request a full card number.</li>
+          </ul>
         </article>
         <article class="assert-engine assert-runtime">
           <p class="assert-runtime-label">EXECUTABLE FRAMEWORK</p>
           <h3>ASSERT</h3>
           <ol class="assert-runtime-steps" aria-label="What the ASSERT framework does">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4Z M15 3v6h5 M8 12h8M8 16h5"/></svg><span><b>Generate test conversations</b><small>Scenario variations for this requirement</small></span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 12 8-12 8Z"/></svg><span><b>Run them against your agent</b><small>Capture responses + tool traces</small></span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><span><b>Judge against the rule</b><small>LLM evaluates captured evidence</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4Z M15 3v6h5 M8 12h8M8 16h5"/></svg><span><b>Generate test conversations</b><small>Variations for each behavior</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 12 8-12 8Z"/></svg><span><b>Run them against your agent</b><small>Capture the conversation</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><span><b>Evaluate each behavior</b><small>LLM judge + supporting evidence</small></span></li>
           </ol>
         </article>
         <article class="assert-report">
           <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M16 12h36v56H16 M25 25h17M25 37h12"/><circle cx="50" cy="47" r="15"/><path d="m61 58 11 11m-31-23 6 6 11-12"/></svg>
-          <h3>Evidence + findings</h3>
-          <p class="assert-verdict"><span aria-hidden="true">✕</span> FAIL</p>
-          <p class="assert-risk">Address changed without verification.</p>
-          <p class="assert-engine-note">Trace: unverified → update committed.<br>Illustrative mocked run.</p>
+          <h3>Results by behavior</h3>
+          <dl class="assert-behavior-results">
+            <div><dt>Address collected</dt><dd class="assert-pass" aria-label="Pass">✓</dd></div>
+            <div class="assert-result-fail"><dt>Correction preserved</dt><dd aria-label="Fail">✕</dd></div>
+            <div><dt>Invoice impact explained</dt><dd class="assert-pass" aria-label="Pass">✓</dd></div>
+            <div><dt>No full card requested</dt><dd class="assert-pass" aria-label="Pass">✓</dd></div>
+          </dl>
+          <p class="assert-engine-note">Caller: <b>40 Pine St</b><br>Agent confirms: <b class="assert-trace-fail">14 Pine St</b></p>
         </article>
       </div>
       <div class="assert-footer"><p class="takeaway"><strong>Fix the agent. Re-run the same cases.</strong></p><button class="assert-detail-button" type="button" data-evaluation-dialog="assert-details" aria-controls="assert-details" aria-haspopup="dialog">Engineering details ↗</button></div>
-      <p class="micro-note">Upstream ASSERT workflow · CAE uses optional semantic review. LLM judgments need calibration.</p>
+      <p class="micro-note">Illustrative conversation results · upstream ASSERT workflow; CAE uses optional semantic review.</p>
       <dialog id="assert-details" class="judge-dialog" aria-labelledby="assert-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close ASSERT engineering details">×</button>
         <p class="eyebrow">ASSERT · REPRODUCIBILITY AND LIMITS</p><h2 id="assert-details-title">Keep the evidence. Know the limits.</h2>
         <code class="assert-command">assert-ai run --config eval_config.yaml</code>
         <dl class="assert-artifacts assert-detail-artifacts"><div><dt><code>test_set.jsonl</code></dt><dd>test conversations</dd></div><div><dt><code>inference_set.jsonl</code></dt><dd>responses + captured tool trace</dd></div><div><dt><code>scores.jsonl</code></dt><dd>verdict + explanation</dd></div><div><dt><code>metrics.json</code></dt><dd>aggregate violation rates</dd></div></dl>
+        <p class="judge-detail-note">A scenario contains several requirements. ASSERT can test behaviors in separate suites with many conversation variations. These four results illustrate conversational requirements, not a measured ASSERT report or proof that the backend address changed. Tool traces can add evidence when available.</p>
         <p class="judge-detail-note">Version the cases, agent configuration, and judge. Repeat the frozen cases after changes; calibrate judgments against held-out human-labeled evidence.</p>
         <aside class="assert-sample-math" aria-label="Sample-size illustration for zero observed failures">
           <div><strong>Zero failures ≠ zero risk</strong><span>95% upper bound on the failure rate</span></div>

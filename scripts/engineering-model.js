@@ -96,29 +96,6 @@
         proof.receivedAt < confirmation.releasedAt
     };
   }
-  // Slide 15/16 share an intentionally unverified address-update example.
-  const billingAddressEvidence = Object.freeze({
-    complete: true, operationId: "A", accountId: "account-1", requestedAddress: "new-billing-address",
-    verification: null,
-    update: { operationId: "A", accountId: "account-1", committedAt: 180 },
-    proof: { operationId: "A", accountId: "account-1", address: "new-billing-address", receivedAt: 600 },
-    confirmation: { releasedAt: 750 }
-  });
-  function addressChangeFactChecks({ complete, operationId, accountId, requestedAddress, verification, update, proof, confirmation } = {}) {
-    if (!complete || !operationId || !accountId || !requestedAddress || !update || !Number.isFinite(update.committedAt)) {
-      return { verifiedBeforeUpdate: null, requestedAddressSaved: null, proofBeforeConfirmation: null };
-    }
-    const matchedUpdate = update.operationId === operationId && update.accountId === accountId;
-    const requestedAddressSaved = proof ? matchedUpdate && proof.operationId === operationId &&
-      proof.accountId === accountId && proof.address === requestedAddress : null;
-    return {
-      verifiedBeforeUpdate: matchedUpdate && Boolean(verification && verification.succeeded === true &&
-        verification.accountId === accountId && Number.isFinite(verification.succeededAt) && verification.succeededAt < update.committedAt),
-      requestedAddressSaved,
-      proofBeforeConfirmation: !confirmation ? null : requestedAddressSaved === true &&
-        Number.isFinite(proof.receivedAt) && Number.isFinite(confirmation.releasedAt) && proof.receivedAt < confirmation.releasedAt
-    };
-  }
   function releaseReview(version) {
     choice(version, ["baseline", "candidate"]);
     const data = version === "baseline" ? { runs: 100, p95: 1100, premature: 2, wrongTiming: 0, evidence: 100, unanswered: 0 } : { runs: 100, p95: 780, premature: 12, wrongTiming: 4, evidence: 100, unanswered: 0 };
@@ -130,5 +107,5 @@
     if (data.unanswered !== 0) failures.push("answered-turn requirement");
     return { ...data, failures, decision: failures.length ? "HOLD" : "MEETS THIS TEST GATE", explanation: failures.length ? "Lower latency does not compensate for cutting callers off or canceling at the wrong time." : "This illustrative cohort meets the configured requirements. It is not a guarantee of zero failures in production." };
   }
-  root.VoiceEvalEngineering = Object.freeze({ latency, controlRun, recoveryFactChecks, billingAddressEvidence, addressChangeFactChecks, releaseReview });
+  root.VoiceEvalEngineering = Object.freeze({ latency, controlRun, recoveryFactChecks, releaseReview });
 })(globalThis);
