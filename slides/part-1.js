@@ -196,75 +196,80 @@ barge-in stop: 5320 − 5100 = 220</code></pre>
       <dialog id="layer-comprehension-details" class="judge-dialog layer-detail-dialog" aria-labelledby="layer-comprehension-title" style="--detail-accent: var(--violet)">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close Comprehension engineering details">×</button>
         <p class="eyebrow">02 · COMPREHENSION · INTENT + ENTITIES</p>
-        <h2 id="layer-comprehension-title">Track meaning across corrections</h2>
-        <div class="layer-detail-layout">
-          <dl class="layer-detail-checks">
-            <div><dt>Measure</dt><dd>Critical entity accuracy, intent handling, and preservation of the caller’s latest correction across accents and noise.</dd></div>
-            <div><dt>Capture</dt><dd>Caller audio, the expected meaning for the case, and the agent’s spoken response. Link each finding to the relevant audio or transcript spans.</dd></div>
-            <div><dt>Check</dt><dd>Compare the response with the latest request. With ASR, also inspect transcript accuracy, partial revisions, and finalization delay to diagnose the failure.</dd></div>
-          </dl>
-          <section class="layer-detail-example" aria-label="Illustrative address correction evaluation record">
-            <p class="layer-detail-label">ILLUSTRATIVE EVALUATION RECORD</p>
-            <pre><code>behavior: preserve_latest_address
-caller: "40 Pine St, not 14."
-expected_address: "40 Pine St"
-agent_readback:   "14 Pine St"
-
-verdict: FAIL
-evidence: caller 00:12 → agent 00:18</code></pre>
-            <p class="layer-detail-result">A fluent reply can preserve the wrong number.</p>
+        <h2 id="layer-comprehension-title">Measure words and preserved meaning</h2>
+        <dl class="layer-media-stats layer-metric-six" aria-label="Speech recognition and comprehension metrics">
+          <div><dt>WER · word error rate</dt><dd>Transcript substitutions, deletions, insertions.<code>100 × (S + D + I) / reference words</code></dd></div>
+          <div><dt>CER · character error rate</dt><dd>Character-level transcript edits.<code>100 × edits / reference characters</code></dd></div>
+          <div><dt>Entity fidelity</dt><dd>Addresses, amounts, dates, names.<code>correct critical fields / expected fields</code></dd></div>
+          <div><dt>Intent handling</dt><dd>Response matches the caller’s request.<code>matched intent cases / scored cases</code></dd></div>
+          <div><dt>Correction retention</dt><dd>The latest instruction survives.<code>preserved corrections / tested corrections</code></dd></div>
+          <div><dt>Streaming ASR</dt><dd>Partial revisions + finalization lag.<code>speech end → final transcript · ms</code></dd></div>
+        </dl>
+        <div class="layer-media-bottom">
+          <section class="layer-media-timing" aria-label="Illustrative word error rate and critical entity example">
+            <p class="layer-detail-label">EXCERPT · 20-WORD TEACHING CASE</p>
+            <pre><code>reference: “… forty Pine Street …”
+ASR:       “… fourteen Pine Street …”
+S=1, D=0, I=0 → WER = 5%</code></pre>
+            <p class="layer-metric-insight">One changed word. Wrong address.</p>
+          </section>
+          <section aria-label="Comprehension scoring inputs">
+            <p class="layer-detail-label">CAPTURE & COMPARE</p>
+            <p>Human reference + ASR output + agent response. Freeze tokenization and number normalization. Check critical meaning against the response, not just the transcript.</p>
           </section>
         </div>
-        <p class="layer-detail-note">Evaluate observable understanding from responses and actions. Word error rate alone does not establish preserved meaning; native speech models may expose no ASR stream.</p>
+        <p class="layer-detail-note">WER / CER diagnose ASR; they do not prove agent understanding. Native speech: evaluate audio and responses if no ASR is exposed. Example and case metrics are illustrative. <a href="https://github.com/usnistgov/SCTK/blob/master/doc/sclite.htm" target="_blank" rel="noopener noreferrer">NIST transcript scoring ↗</a></p>
       </dialog>
       <dialog id="layer-conduct-details" class="judge-dialog layer-detail-dialog" aria-labelledby="layer-conduct-title" style="--detail-accent: var(--amber)">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close Conduct engineering details">×</button>
         <p class="eyebrow">03 · CONDUCT · REQUIREMENTS + POLICY</p>
-        <h2 id="layer-conduct-title">Check decisions against the contract</h2>
-        <div class="layer-detail-layout">
-          <dl class="layer-detail-checks">
-            <div><dt>Specify</dt><dd>Required steps, forbidden requests, permitted tool arguments, and expected recovery or escalation for this workflow.</dd></div>
-            <div><dt>Capture</dt><dd>Conversation evidence supports checks on requests and explanations. Available tool traces add argument, retry, and execution-order checks.</dd></div>
-            <div><dt>Check</dt><dd>Use deterministic comparisons for structured facts and calibrated semantic judgment for paraphrased behavior. Return a finding for each requirement with evidence.</dd></div>
-          </dl>
-          <section class="layer-detail-example" aria-label="Illustrative forbidden behavior evaluation record">
-            <p class="layer-detail-label">ILLUSTRATIVE EVALUATION RECORD</p>
-            <pre><code>rule: never_request_full_card_number
-agent: "Read all 16 card digits."
-
-finding: prohibited_request
-verdict: FAIL
-evidence_ref: agent_audio[9.0:11.5]</code></pre>
-            <p class="layer-detail-result">This violation is observable in the conversation.</p>
-          </section>
-        </div>
-        <p class="layer-detail-note">Requirements belong to the product’s policy. This example record is illustrative, not ASSERT syntax or an implemented universal CAE rule. Semantic findings still need calibration.</p>
+        <h2 id="layer-conduct-title">Test policy, contracts, and recovery</h2>
+        <dl class="layer-media-stats layer-metric-six" aria-label="Agent execution checks">
+          <div><dt>Required steps</dt><dd>Applicable requirements satisfied.<code>criterion_id → verdict + evidence</code></dd></div>
+          <div><dt>Policy violations</dt><dd>Forbidden requests or actions.<code>count by rule + severity</code></dd></div>
+          <div><dt>Tool contract</dt><dd>Tool choice, schema, critical arguments.<code>recorded request ↔ expected request</code></dd></div>
+          <div><dt>Action order</dt><dd>Preconditions before side effects.<code>required event ≺ dependent action</code></dd></div>
+          <div><dt>Recovery</dt><dd>Retries, reconciliation, escalation.<code>timeout → allowed recovery path</code></dd></div>
+          <div><dt>Claim discipline</dt><dd>Completion claim agrees with known evidence.<code>evidence available at speech time</code></dd></div>
+        </dl>
+        <section class="layer-contract-trace" aria-label="Illustrative tool argument contract failure">
+          <p class="layer-detail-label">ILLUSTRATIVE CONTRACT TRACE</p>
+          <ol class="layer-trace-steps">
+            <li><span>CALLER CORRECTION</span><strong>40 Pine St, not 14</strong></li>
+            <li><span>RECORDED TOOL REQUEST</span><code>update_address({address: "14 Pine St"})</code></li>
+            <li><span>CONTRACT CHECK</span><strong class="layer-check-pass">Schema ✓</strong><strong class="layer-check-fail">Address match ✕</strong></li>
+          </ol>
+        </section>
+        <p class="layer-metric-insight">A valid request can carry the wrong argument.</p>
+        <p class="layer-detail-note">Audio / transcript supports behavioral checks; tool and ordering checks use available traces. Missing telemetry is not a violation. Semantic findings need calibration. Reference checks, not universal CAE rules.</p>
       </dialog>
       <dialog id="layer-completion-details" class="judge-dialog layer-detail-dialog" aria-labelledby="layer-completion-title" style="--detail-accent: var(--green)">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close Completion engineering details">×</button>
         <p class="eyebrow">04 · COMPLETION · CALLER GOAL</p>
-        <h2 id="layer-completion-title">Define what “done” means</h2>
-        <p class="judge-dialog-intro">Billing address change: correct address, confirmation, and next-invoice impact.</p>
-        <div class="layer-detail-layout">
-          <dl class="layer-detail-checks">
-            <div><dt>Specify</dt><dd>Explicit goal checks and expected final state. A successful tool status may still leave the caller’s workflow incomplete.</dd></div>
-            <div><dt>Capture</dt><dd>Conversation evidence for the resolution and explanation; optional receipts or a state adapter for additional persistence checks.</dd></div>
-            <div><dt>Check</dt><dd>Report achieved, missing, and unobservable checks separately. A missing explanation is an observable failure even without backend access.</dd></div>
-          </dl>
-          <section class="layer-detail-example" aria-label="Illustrative incomplete billing address workflow record">
-            <p class="layer-detail-label">ILLUSTRATIVE OUTCOME RECORD</p>
-            <pre><code>goal_checks:
-  address_readback: PASS  # 40 Pine St
-  invoice_impact:   FAIL  # not explained
-caller_goal: INCOMPLETE
-
-# Additional state evidence, if supplied:
-stored_address: "40 Pine St"
-write_receipt: matched_to_this_case</code></pre>
-            <p class="layer-detail-result">The address can be saved while the caller’s goal remains incomplete.</p>
+        <h2 id="layer-completion-title">Evaluate an explicit goal contract</h2>
+        <dl class="layer-media-stats layer-metric-six" aria-label="Workflow completion measures">
+          <div><dt>Goal completion</dt><dd>All required goal checks satisfied.<code>PASS · FAIL · unresolved</code></dd></div>
+          <div><dt>Resolution time</dt><dd>Time to the defined goal, for successes.<code>goal_met_at − call_started_at</code></dd></div>
+          <div><dt>Final-state agreement</dt><dd>Expected vs observed state, when available.<code>expected_state ↔ state readback</code></dd></div>
+          <div><dt>Claim–result agreement</dt><dd>Spoken result matches observed outcome.<code>completion claim ↔ outcome evidence</code></dd></div>
+          <div><dt>Handoff completion</dt><dd>Required escalation reaches its destination.<code>offered ≠ connected</code></dd></div>
+          <div><dt>Outcome coverage</dt><dd>How much of the goal can be established?<code>known / required checks + unresolved count</code></dd></div>
+        </dl>
+        <div class="layer-media-bottom">
+          <section class="layer-media-timing" aria-label="Illustrative billing address goal contract">
+            <p class="layer-detail-label">ILLUSTRATIVE GOAL CONTRACT</p>
+            <pre><code>goal = correct_readback
+       AND invoice_impact_explained</code></pre>
+            <p>Observable conversation requirements.</p>
+          </section>
+          <section class="layer-goal-checks" aria-label="Illustrative goal contract findings">
+            <p class="layer-detail-label">FINDINGS · BILLING ADDRESS CHANGE</p>
+            <div><span>Readback: 40 Pine St</span><strong class="layer-check-pass">PASS ✓</strong></div>
+            <div><span>Next-invoice impact: not explained</span><strong class="layer-check-fail">FAIL ✕</strong></div>
+            <p class="layer-metric-insight">Goal contract: incomplete</p>
           </section>
         </div>
-        <p class="layer-detail-note">Keep conversation resolution and verified persistence distinct. Missing backend evidence does not make the whole call unjudgeable or automatically a failure.</p>
+        <p class="layer-detail-note">This conversation contract does not prove persistence. Add state / handoff checks when evidence supports them; report unresolved checks separately. Missing records do not make the whole call unjudgeable.</p>
       </dialog>
     `
   },
