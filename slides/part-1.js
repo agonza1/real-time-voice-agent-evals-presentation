@@ -255,16 +255,20 @@ ASR:       “… fourteen Pine Street …”
           <div><dt>${voiceMetricIcon('reset')}Recovery</dt><dd>Retry · reconcile · escalate</dd></div>
           <div><dt>${voiceMetricIcon('speaker')}Claims</dt><dd>Evidence before speech</dd></div>
         </dl>
-        <section class="layer-contract-trace" aria-label="Illustrative tool argument contract failure">
-          <p class="layer-detail-label">ILLUSTRATIVE CONTRACT TRACE</p>
-          <ol class="layer-trace-steps">
-            <li><span>CALLER CORRECTION</span><strong>40 Pine St, not 14</strong></li>
-            <li><span>RECORDED TOOL REQUEST</span><code>update_address({address: "14 Pine St"})</code></li>
-            <li><span>CONTRACT CHECK</span><strong class="layer-check-pass">Schema ✓</strong><strong class="layer-check-fail">Address match ✕</strong></li>
+        <section class="layer-contract-trace" aria-label="Illustrative confirmed-address guard before tool execution">
+          <p class="layer-detail-label">ILLUSTRATIVE · BEFORE EXECUTION</p>
+          <ol class="layer-trace-steps layer-conduct-sequence">
+            <li>${voiceMetricIcon('pin')}<span>CALLER</span><strong>“40 Pine St”</strong></li>
+            <li>${voiceMetricIcon('speaker')}<span>AGENT READBACK</span><strong>“40 Pine St?”</strong></li>
+            <li>${voiceMetricIcon('check')}<span>CALLER CONFIRMS</span><strong class="layer-check-pass">“Yes” ✓</strong></li>
+            <li>${voiceMetricIcon('code')}<span>PROPOSED REQUEST</span><pre><code>update_address({
+  address: "14 Pine St"
+})</code></pre></li>
+            <li>${voiceMetricIcon('shield')}<span>ARGUMENT GUARD</span><strong class="layer-check-pass">Schema ✓</strong><strong class="layer-check-fail">Address ✕ · blocked</strong></li>
           </ol>
         </section>
-        <p class="layer-metric-insight">A valid request can carry the wrong argument.</p>
-        <p class="layer-detail-note">Illustrative checks · use available traces · missing telemetry ≠ violation.</p>
+        <p class="layer-metric-insight layer-conduct-rule"><code>request.address === confirmedAddress</code><strong>Mismatch → block before execution.</strong></p>
+        <p class="layer-detail-note">Illustrative guard · assumes stored caller-confirmed address · missing telemetry ≠ violation.</p>
       </dialog>
       <dialog id="layer-completion-details" class="judge-dialog layer-detail-dialog" aria-labelledby="layer-completion-title" style="--detail-accent: var(--green)">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close Completion engineering details">×</button>
