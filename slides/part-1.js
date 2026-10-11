@@ -256,11 +256,11 @@ ASR:       “… fourteen Pine Street …”
           <div><dt>${voiceMetricIcon('speaker')}Claims</dt><dd>Evidence before speech</dd></div>
         </dl>
         <section class="layer-contract-trace" aria-label="Illustrative confirmed-address guard before tool execution">
-          <p class="layer-detail-label">ILLUSTRATIVE · BEFORE EXECUTION</p>
+          <p class="layer-detail-label">ILLUSTRATIVE · STALE STATE → WRONG ARGUMENT</p>
           <ol class="layer-trace-steps layer-conduct-sequence">
-            <li>${voiceMetricIcon('pin')}<span>NEW ADDRESS</span><strong>“40 Pine St”</strong></li>
-            <li>${voiceMetricIcon('speaker')}<span>AGENT READBACK</span><strong>“40 Pine St?”</strong></li>
-            <li>${voiceMetricIcon('check')}<span>CALLER CONFIRMS</span><strong class="layer-check-pass">“Yes” ✓</strong></li>
+            <li>${voiceMetricIcon('pin')}<span>CALLER CORRECTION</span><strong>“40 Pine St, not 14”</strong></li>
+            <li>${voiceMetricIcon('speaker')}<span>READBACK + CONFIRM</span><strong>“40 Pine St?”</strong><strong class="layer-check-pass">Caller: “Yes” ✓</strong></li>
+            <li class="layer-stale-field">${voiceMetricIcon('database')}<span>EARLIER DRAFT · STALE</span><code>draft.address</code><strong class="layer-check-fail">“14 Pine St”</strong><small>Correction not saved</small></li>
             <li>${voiceMetricIcon('code')}<span>PROPOSED REQUEST</span><pre><code>update_address({
   address: "14 Pine St"
 })</code></pre></li>
@@ -268,7 +268,7 @@ ASR:       “… fourteen Pine Street …”
           </ol>
         </section>
         <p class="layer-metric-insight layer-conduct-rule"><code>request.address === confirmedNewAddress</code><strong>Mismatch → block before execution.</strong></p>
-        <p class="layer-detail-note">Store the new address after readback + caller confirmation. Compare the tool value with it before execution: 40 ≠ 14.</p>
+        <p class="layer-detail-note">Speech reflects the correction; the tool reads an old draft. Compare its value with the caller-confirmed new address: 14 ≠ 40.</p>
       </dialog>
       <dialog id="layer-completion-details" class="judge-dialog layer-detail-dialog" aria-labelledby="layer-completion-title" style="--detail-accent: var(--green)">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close Completion engineering details">×</button>
