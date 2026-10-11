@@ -18,7 +18,7 @@ But that changed the question. It was no longer just, “Can it understand me?�
 
 Building those controls leads to the next question: how do we know they still work when the model, network, or workflow changes?
 
-That is the question behind the Conversation Agent Evaluation (CAE) tool: testing the complete interaction, inspecting the evidence, and deciding whether the next version is ready for production.
+That is the question behind the VoiceAI QA (CAE): testing the complete interaction, inspecting the evidence, and deciding whether the next version is ready for production.
 
 ## Projects — slide 3
 

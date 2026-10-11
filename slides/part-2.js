@@ -4,7 +4,7 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">OPEN-SOURCE WORKBENCH</p>
-        <h2 id="workbench-title">Conversation Agent Evaluation <span>(CAE) tool</span></h2>
+        <h2 id="workbench-title">VoiceAI QA <span>(CAE)</span></h2>
         <p>Run → Evaluate → Compare</p>
       </div>
       <div class="workbench-stages">

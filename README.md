@@ -4,7 +4,7 @@
 
 A clean, self-contained HTML/CSS/JavaScript presentation for Fall '26 Voice and Conversations on the Net.
 
-The presentation argues that a production voice agent must be evaluated as a complete real-time system—not only as an AI model or final transcript. It connects conversation experience, speech boundaries, agent execution, tool evidence, authoritative business state, and portable vCon artifacts to the open-source [Conversation Agent Evaluation (CAE) tool](https://github.com/agonza1/ConversationAgentEvals) workbench.
+The presentation argues that a production voice agent must be evaluated as a complete real-time system—not only as an AI model or final transcript. It connects conversation experience, speech boundaries, agent execution, tool evidence, authoritative business state, and portable vCon artifacts to the open-source [VoiceAI QA (CAE)](https://github.com/agonza1/ConversationAgentEvals) workbench.
 
 ## Open the presentation
 
@@ -96,7 +96,7 @@ The smoke test uses Node's built-in test runner. It needs no package installatio
 
 This repository contains the interactive presentation—not a second evaluation engine.
 
-- [Conversation Agent Evaluation (CAE) tool](https://github.com/agonza1/ConversationAgentEvals) owns test orchestration, evidence normalization, evaluation artifacts, reports, and regression comparisons.
+- [VoiceAI QA (CAE)](https://github.com/agonza1/ConversationAgentEvals) owns test orchestration, evidence normalization, evaluation artifacts, reports, and regression comparisons.
 - [Agentic Contact Center](https://github.com/agonza1/agentic-contact-center) is an optional reference target and failure-path demonstration.
 - [rtc-asr](https://github.com/agonza1/rtc-asr) provides optional streaming speech evidence and reproducible ASR benchmarks.
 - [ASSERT](https://github.com/responsibleai/ASSERT) provides compatible contracts and optional upstream semantic judging.
