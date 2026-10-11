@@ -227,7 +227,30 @@ body.presenting #close .closing-statement { font-size: clamp(2.8rem, 4.4vw, 4.8r
 .assert-footer { display: flex; justify-content: space-between; align-items: center; gap: 20px; border-top: 1px solid var(--line-strong); padding-top: 24px; }
 .assert-footer .takeaway { margin: 0; }
 .assert-detail-button { border: 1px solid var(--line-strong); border-radius: 10px; padding: 10px 16px; color: var(--cyan); background: var(--surface); font-size: .85rem; }
-#assert-details h2 { font-size: clamp(1.7rem, 2.5vw, 2.3rem); }
+#assert-details h2 { font-size: clamp(1.7rem, 2.5vw, 2.3rem); margin: 0; }
+.assert-trail-intro { margin: 12px 0 24px; color: var(--muted); font-size: 1rem; }
+.assert-score-trail { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px; margin: 0 0 24px; padding: 0; list-style: none; }
+.assert-score-trail li { position: relative; padding: 16px 0; border-top: 2px solid var(--cyan); }
+.assert-score-trail li:nth-child(2) { border-color: var(--violet); }
+.assert-score-trail li:nth-child(3) { border-color: var(--green); }
+.assert-score-trail li:not(:last-child)::after { content: "→"; position: absolute; right: -24px; top: 50%; color: var(--muted); font-size: 1.4rem; }
+.assert-trail-icon { width: 34px; height: 34px; fill: none; stroke: var(--cyan); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.assert-score-trail li:nth-child(2) .assert-trail-icon { stroke: var(--violet); }
+.assert-score-trail li:nth-child(3) .assert-trail-icon { stroke: var(--green); }
+.assert-score-trail strong, .assert-score-trail small { display: block; }
+.assert-score-trail strong { font-size: 1rem; }
+.assert-score-trail small { margin-top: 7px; color: var(--muted); font-size: .85rem; line-height: 1.4; }
+.assert-review-example { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+.assert-trail-label { margin: 0 0 12px; color: var(--muted); font-size: .7rem; font-weight: 800; letter-spacing: .04em; }
+.assert-review-example pre { margin: 0; padding: 14px; border-radius: 8px; background: var(--bg-deep); font-size: .82rem; line-height: 1.6; white-space: pre-wrap; }
+.assert-human-check > div { display: flex; align-items: center; gap: 12px; }
+.assert-human-check b { color: var(--cyan); font-size: 1.5rem; }
+.assert-human-check p:not(.assert-trail-label) { color: var(--muted); font-size: .88rem; line-height: 1.5; margin: 12px 0 0; }
+.assert-more { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 12px; }
+.assert-more summary { cursor: pointer; color: var(--cyan); font-size: .9rem; font-weight: 650; }
+.assert-more summary:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+.assert-more .eng-sources { margin-bottom: 0; }
+@media (max-width: 700px) { .assert-score-trail, .assert-review-example { grid-template-columns: 1fr; } .assert-score-trail li:not(:last-child)::after { display: none; } }
 .assert-detail-artifacts { margin: 24px 0; }
 .assert-detail-artifacts > div { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--line); }
 .assert-detail-artifacts dd { margin: 0; }
