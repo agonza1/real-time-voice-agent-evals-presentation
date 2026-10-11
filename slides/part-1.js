@@ -258,17 +258,17 @@ ASR:       “… fourteen Pine Street …”
         <section class="layer-contract-trace" aria-label="Illustrative confirmed-address guard before tool execution">
           <p class="layer-detail-label">ILLUSTRATIVE · BEFORE EXECUTION</p>
           <ol class="layer-trace-steps layer-conduct-sequence">
-            <li>${voiceMetricIcon('pin')}<span>CALLER</span><strong>“40 Pine St”</strong></li>
+            <li>${voiceMetricIcon('pin')}<span>NEW ADDRESS</span><strong>“40 Pine St”</strong></li>
             <li>${voiceMetricIcon('speaker')}<span>AGENT READBACK</span><strong>“40 Pine St?”</strong></li>
             <li>${voiceMetricIcon('check')}<span>CALLER CONFIRMS</span><strong class="layer-check-pass">“Yes” ✓</strong></li>
             <li>${voiceMetricIcon('code')}<span>PROPOSED REQUEST</span><pre><code>update_address({
   address: "14 Pine St"
 })</code></pre></li>
-            <li>${voiceMetricIcon('shield')}<span>ARGUMENT GUARD</span><strong class="layer-check-pass">Schema ✓</strong><strong class="layer-check-fail">Address ✕ · blocked</strong></li>
+            <li>${voiceMetricIcon('shield')}<span>ARGUMENT GUARD</span><strong class="layer-check-pass">Valid format ✓</strong><strong class="layer-check-fail">Wrong address ✕</strong></li>
           </ol>
         </section>
-        <p class="layer-metric-insight layer-conduct-rule"><code>request.address === confirmedAddress</code><strong>Mismatch → block before execution.</strong></p>
-        <p class="layer-detail-note">Illustrative guard · assumes stored caller-confirmed address · missing telemetry ≠ violation.</p>
+        <p class="layer-metric-insight layer-conduct-rule"><code>request.address === confirmedNewAddress</code><strong>Mismatch → block before execution.</strong></p>
+        <p class="layer-detail-note">Store the new address after readback + caller confirmation. Compare the tool value with it before execution: 40 ≠ 14.</p>
       </dialog>
       <dialog id="layer-completion-details" class="judge-dialog layer-detail-dialog" aria-labelledby="layer-completion-title" style="--detail-accent: var(--green)">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close Completion engineering details">×</button>
