@@ -61,7 +61,7 @@ test('gate holds for every fixture combination, including repeated requests',()=
 test('release review cannot trade critical regressions for faster responses',()=>{
   const baseline=m.releaseReview('baseline'), candidate=m.releaseReview('candidate');
   assert.ok(candidate.p95<baseline.p95);assert.equal(candidate.decision,'HOLD');
-  assert.equal(candidate.failures.length,2);assert.equal(baseline.failures.length,0);
+  assert.deepEqual(candidate.failures,['premature-response budget','caller-correction preservation','confirmed tool arguments','invoice-impact explanation']);assert.equal(baseline.failures.length,0);
   assert.equal(baseline.runs,100);assert.equal(candidate.runs,100);
 });
 

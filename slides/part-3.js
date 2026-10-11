@@ -89,15 +89,17 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
     id: "comparison",
     html: `
 <div class="section-heading">
-        <p class="eyebrow">REGRESSION → RELEASE DECISION</p>
-        <h2 id="comparison-title">Faster is not enough<br><span>to approve the release.</span></h2>
-        <p>Proposed change: answer sooner after a pause. Test the same calls on both versions.</p>
+        <p class="eyebrow">PRE-RELEASE COMPARISON · FOUR DIMENSIONS</p>
+        <h2 id="comparison-title">Evaluate all four <span>before release.</span></h2>
+        <p>Billing Address Change · same cases, same checks, two agent versions.</p>
       </div>
+      <div class="release-speed-strip" aria-label="Illustrative response-time improvement"><span>p95 response*</span><b>1,100 ms</b><span aria-hidden="true">→</span><strong>780 ms</strong><small>Both meet the 1,200 ms budget.</small></div>
       <p class="release-example-label">ILLUSTRATIVE NUMBERS · 100 TEST CALLS FOR EACH VERSION</p>
-      <div class="comparison-wrap"><table class="comparison-table eng-release-table"><thead><tr><th scope="col">Measure</th><th scope="col">Current version<small>Waits longer before answering</small></th><th scope="col">Proposed change<small>Shorter wait before answering</small></th><th scope="col">Requirement to approve<small>Example thresholds</small></th></tr></thead><tbody>
-        <tr><th scope="row">Response time · 95th percentile*</th><td>1,100 ms</td><td class="release-better">780 ms</td><td>≤ 1,200 ms</td></tr>
-        <tr><th scope="row">Replies before the caller finishes</th><td>2 / 100</td><td class="release-regression">12 / 100</td><td>At most 3 / 100</td></tr>
-        <tr><th scope="row">Cancels at the wrong time</th><td>0 / 100</td><td class="release-regression">4 / 100</td><td>0 in these test calls</td></tr>
+      <div class="comparison-wrap"><table class="comparison-table eng-release-table"><thead><tr><th scope="col">Dimension / failure</th><th scope="col">Current</th><th scope="col">Candidate</th><th scope="col">Example limit</th></tr></thead><tbody>
+        <tr><th scope="row"><div class="release-dimension" style="--dimension-accent: var(--cyan)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v14H9l-6 4Z M7 8h10M7 12h6"/></svg><span><b>Conversation</b><small>Replies before caller finishes</small></span></div></th><td>2 / 100</td><td class="release-regression">12 / 100</td><td>≤ 3 / 100</td></tr>
+        <tr><th scope="row"><div class="release-dimension" style="--dimension-accent: var(--violet)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8.5a7 7 0 0 1 14 0c0 4-2 5-4 7-1 1-1 2-2 4a4 4 0 0 1-7-1M10 8.5a3 3 0 0 1 6 0c0 2-2 2.5-3 3.5v2"/></svg><span><b>Comprehension</b><small>Reads back 14 after correction to 40</small></span></div></th><td>0 / 100</td><td class="release-regression">8 / 100</td><td>0 / 100</td></tr>
+        <tr><th scope="row"><div class="release-dimension" style="--dimension-accent: var(--amber)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z M8 12l3 3 5-6"/></svg><span><b>Conduct</b><small>Tool value differs from confirmed address</small></span></div></th><td>0 / 100</td><td class="release-regression">4 / 100</td><td>0 / 100</td></tr>
+        <tr><th scope="row"><div class="release-dimension" style="--dimension-accent: var(--green)"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m7 12 3 3 7-7"/></svg><span><b>Completion</b><small>Missing required invoice explanation</small></span></div></th><td>1 / 100</td><td class="release-regression">6 / 100</td><td>≤ 1 / 100</td></tr>
       </tbody></table></div>
       <div id="releaseDecision" class="eng-release-decision" aria-live="polite"></div>
       <p class="micro-note">*End-of-turn decision → received audio. Early cutoffs can make this look faster. Synthetic counts—not production results or guarantees.</p>
