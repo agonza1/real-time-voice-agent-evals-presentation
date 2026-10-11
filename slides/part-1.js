@@ -168,26 +168,30 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
       <dialog id="layer-conversation-details" class="judge-dialog layer-detail-dialog" aria-labelledby="layer-conversation-title" style="--detail-accent: var(--cyan)">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close Conversation engineering details">×</button>
         <p class="eyebrow">01 · CONVERSATION · MEDIA + TURN TIMING</p>
-        <h2 id="layer-conversation-title">Measure the caller’s experience</h2>
-        <div class="layer-detail-layout">
-          <dl class="layer-detail-checks">
-            <div><dt>Measure</dt><dd>Turn gap, interruption stop time, cut-offs, silence, and audible glitches. Report median / p95 timing alongside failure counts.</dd></div>
-            <div><dt>Capture</dt><dd>Separate caller and received-agent audio with aligned timestamps and annotated turn boundaries. Runtime events help locate the delay.</dd></div>
-            <div><dt>Check</dt><dd>Compare against the case’s turn-taking policy and latency budget. Token or TTS generation time alone does not measure what the caller heard.</dd></div>
-          </dl>
-          <section class="layer-detail-example" aria-label="Illustrative conversation timing record">
-            <p class="layer-detail-label">ILLUSTRATIVE TIMING RECORD · ms</p>
-            <pre><code>caller_turn_end:       3200
-receiver_reply_start:  3900
-turn_gap:              700
-
-caller_interrupt:     5100
-receiver_speech_stop:  5320
-barge_in_stop:         220</code></pre>
-            <p class="layer-detail-result">Measure at received audio. Use one aligned time base.</p>
+        <h2 id="layer-conversation-title">Measure media quality and turn-taking</h2>
+        <dl class="layer-media-stats" aria-label="WebRTC audio quality statistics reference">
+          <div><dt>Jitter</dt><dd>Packet arrival variation.<code>jitter · seconds</code></dd></div>
+          <div><dt>RTT</dt><dd>Selected ICE path, round trip.<code>currentRoundTripTime · seconds</code></dd></div>
+          <div><dt>Bitrate</dt><dd>Received RTP payload rate.<code>8 × ΔbytesReceived / Δseconds</code></dd></div>
+          <div><dt>Packet loss</dt><dd>Missing packets over an interval.<code>packetsLost · packetsReceived</code></dd></div>
+          <div><dt>Discarded packets</dt><dd>Arrived outside the playout window.<code>packetsDiscarded</code></dd></div>
+          <div><dt>Concealment</dt><dd>Audio synthesized to cover gaps.<code>concealedSamples · concealmentEvents</code></dd></div>
+          <div><dt>Buffer delay</dt><dd>Time held before playout.<code>ΔjitterBufferDelay / ΔjitterBufferEmittedCount</code></dd></div>
+          <div><dt>Audio level</dt><dd>Signal level; inspect unexpected silence.<code>audioLevel · 0–1 linear</code></dd></div>
+        </dl>
+        <div class="layer-media-bottom">
+          <section class="layer-media-timing" aria-label="Illustrative conversation timing calculations">
+            <p class="layer-detail-label">TURN-TAKING · ILLUSTRATIVE ms</p>
+            <pre><code>turn gap:      3900 − 3200 = 700
+barge-in stop: 5320 − 5100 = 220</code></pre>
+            <p>Aligned caller and received-agent audio.</p>
+          </section>
+          <section class="layer-media-capture" aria-label="Capture and interpretation guidance">
+            <p class="layer-detail-label">CAPTURE & CORRELATE</p>
+            <p>Poll <code>pc.getStats()</code>; retain stream IDs, direction, codec, and timestamps. Use interval deltas for counters. Align spikes with audio gaps, cut-offs, and interruptions.</p>
           </section>
         </div>
-        <p class="layer-detail-note">Full-duplex overlap can be intentional. Flag unwanted cut-offs or ignored interruptions; do not treat every overlap as a failure. These timestamps are teaching data, not measured results.</p>
+        <p class="layer-detail-note">Use codec / DTX context and case-specific budgets. RTT is not one-way audio delay; full-duplex overlap can be intentional. Metric reference only; no live stats collected. <a href="https://www.w3.org/TR/webrtc-stats/" target="_blank" rel="noopener noreferrer">WebRTC stats definitions ↗</a></p>
       </dialog>
       <dialog id="layer-comprehension-details" class="judge-dialog layer-detail-dialog" aria-labelledby="layer-comprehension-title" style="--detail-accent: var(--violet)">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close Comprehension engineering details">×</button>

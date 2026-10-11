@@ -170,7 +170,7 @@ Transition: “These changes move the boundaries. They do not remove the four th
 
 Use the four Cs as a memory aid for the existing evaluation dimensions, not as four sequential runtime stages. Full-duplex systems can overlap listening, speaking, and tool work.
 
-- **Conversation:** turn timing, interruptions, silence, audio continuity, and latency. Did the conversation flow naturally?
+- **Conversation:** turn timing, interruptions, silence, audio continuity, and latency, plus WebRTC media-quality evidence: jitter, RTT, bitrate, packet loss, jitter-buffer discards/delay, concealment, and audio level. Did the conversation flow naturally?
 - **Comprehension:** whether the agent preserved the caller’s entities, intent, and corrections across accents and noise. Judge observable understanding from the response and actions. When ASR exists, transcript accuracy, partial stability, and finalization delay help diagnose failures; native speech systems do not necessarily expose those ASR measures.
 - **Conduct:** required and forbidden actions, policy checks, tool choice, fallback, and recovery. Did the agent take the right actions and follow the rules?
 - **Completion:** whether the caller’s goal was achieved. Evaluate what the conversation establishes; where available, action receipts and final state provide additional confirmation of state transitions, durable completion, and agreement between speech and execution. Missing backend records do not make the whole call unjudgeable or automatically a failure.
@@ -178,6 +178,18 @@ Use the four Cs as a memory aid for the existing evaluation dimensions, not as f
 “A call can sound smooth, misunderstand ‘at period end,’ execute the wrong cancellation, and leave the customer with the wrong result.” That is why we score each C separately: a good conversation score cannot erase a failed comprehension, conduct, or completion check.
 
 Each C opens an optional engineering dialog. Use these for a technical question rather than opening all four during the main route. Conversation shows aligned caller-side timing; Comprehension follows the “40, not 14” address correction; Conduct shows a forbidden full-card-number request; Completion shows why a saved address still leaves the workflow incomplete when next-invoice impact is not explained. These are illustrative records, not captured calls, universal thresholds, ASSERT syntax, or implemented CAE checks. The dialogs use the existing modal behavior: Escape or Close returns to the same slide and slide-navigation keys are suspended while a dialog is open.
+
+Conversation’s WebRTC reference follows the [W3C stats definitions](https://www.w3.org/TR/webrtc-stats/), checked October 10, 2026. Collect audio `inbound-rtp` stats at each receiver to distinguish caller → agent from agent → caller. Preserve `id`, `ssrc`, `codecId`, `transportId`, direction, and timestamps. Resolve the transport’s `selectedCandidatePairId` for ICE RTT; do not select an arbitrary candidate pair. Browser support varies; missing fields are unavailable, not zero. With SIP/RTP or hosted media, equivalent receiver telemetry may come from the media server rather than browser `getStats()`.
+
+- `jitter` is RTP interarrival jitter in seconds; multiply by 1,000 to display milliseconds. It is arrival variation, not added playout delay.
+- `currentRoundTripTime` is the selected ICE pair’s latest STUN round-trip measurement in seconds. `remote-inbound-rtp.roundTripTime`, when present, is a separate RTCP-based RTT for outbound media. Neither establishes one-way mouth-to-ear delay.
+- Received RTP payload bitrate is `8 × ΔbytesReceived / Δseconds` in bits per second. `bytesReceived` includes retransmissions and excludes RTP headers/padding. Use `bytesSent` for the sending direction; this is observed throughput, not available bandwidth. Interpret changes with codec, DTX, and speech/silence context.
+- For a valid interval, estimated RTP loss fraction is `ΔpacketsLost / (ΔpacketsReceived + ΔpacketsLost)`, with a positive denominator. Loss counters can decrease with late/duplicate arrivals; flag negative deltas or counter resets rather than presenting a misleading percentage. Preserve raw counters and stream identity. Loss and jitter-buffer discards are distinct; do not add them as if they were the same event.
+- `packetsDiscarded` counts packets discarded by the jitter buffer for early/late arrival. `concealedSamples` and `concealmentEvents` show synthesized replacement audio and its episodes. Interval concealed-sample fraction is `ΔconcealedSamples / ΔtotalSamplesReceived` when the denominator is positive. Concealment can cover loss or lateness, so received packet loss alone can miss playout impairment.
+- Interval mean buffer delay is `ΔjitterBufferDelay / ΔjitterBufferEmittedCount` in seconds; require emitted samples in the interval. The numerator is cumulative time, not an instantaneous latency value.
+- `audioLevel` is a linear 0–1 level estimate. Correlate an unexpected low level with expected speech and the audio; low level alone does not prove a muted microphone or unintelligibility. `totalAudioEnergy` / `totalSamplesDuration` can support interval RMS calculations where available.
+
+Use distributions and impaired-interval counts alongside turn gap, interruption stop time, cut-offs, and received-audio review. No universal jitter/RTT/loss threshold or MOS estimate is claimed here. The dialog lists what to collect and interpret; it does not collect a live WebRTC session.
 
 ## Workbench — frameworks behind the workflow
 
