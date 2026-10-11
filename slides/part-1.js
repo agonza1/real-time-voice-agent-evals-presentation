@@ -99,12 +99,12 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
           <figcaption><p class="project-capability">WebRTC + AI orchestration</p><h3>Avatar roleplay</h3><p>CETA Global: practice clinical conversations with live AI coaching.</p><a href="https://webrtc.ventures/successes/ai-roleplay-training-simulator-case-study/" target="_blank" rel="noopener noreferrer">CETA success story ↗</a></figcaption>
         </figure>
         <figure class="project-example">
-          <img class="project-image livekit-image" src="./assets/projects/livekit-call-flow.webp" alt="Detail of the published LiveKit call-center architecture: SIP calling, an inbound agent, and STT, LLM, and TTS providers" loading="eager" decoding="async">
+          <img class="project-image livekit-image" src="./assets/projects/livekit-warm-transfer-illustration.png" alt="Generated illustration of a SIP caller connected to a LiveKit voice agent, with a context handoff and continuing call to a human" width="1774" height="887" loading="eager" decoding="async">
           <figcaption><p class="project-capability">SIP + warm transfers</p><h3>Agentic call center</h3><p>LiveKit voice agents handle SIP calls and warm transfers to humans.</p><a href="https://webrtc.ventures/wp-content/uploads/2026/07/Migrating-from-Kurento-to-LiveKit-in-Production.html#16" target="_blank" rel="noopener noreferrer">Production migration ↗</a></figcaption>
         </figure>
       </div>
       <p class="takeaway">WebRTC media · SIP integration · Voice agents · AI avatars<br><strong>We build the whole interaction.</strong></p>
-      <p class="projects-provenance">Published project visuals · WebRTC.ventures and CETA Global · Links open the original stories.</p>
+      <p class="projects-provenance">Project visuals: WebRTC.ventures + CETA Global · Call-center illustration generated.</p>
     `
   },
   {

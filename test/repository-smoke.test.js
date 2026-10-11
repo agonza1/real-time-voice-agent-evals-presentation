@@ -16,6 +16,7 @@ const localAssets = [
   "assets/projects/surgical-dashboard.jpg",
   "assets/projects/ceta-screens.png",
   "assets/projects/livekit-call-flow.webp",
+  "assets/projects/livekit-warm-transfer-illustration.png",
   "scripts/engineering-model.js",
   "scripts/engineering-ui.js",
   "styles/base.css",
