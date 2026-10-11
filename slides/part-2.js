@@ -24,10 +24,10 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
     id: "assert",
     html: `
       <div class="section-heading">
-        <p class="eyebrow">ASSERT FRAMEWORK · REQUIREMENT-DRIVEN EVALUATION</p>
-        <h2 id="assert-title">ASSERT: <span>automated tests for AI agents.</span></h2>
+        <p class="eyebrow">ASSERT + CAE · REQUIREMENT-DRIVEN VOICE TESTS</p>
+        <h2 id="assert-title">Generate with ASSERT. <span>Run voice tests with CAE.</span></h2>
       </div>
-      <p class="assert-intro">An open-source Python framework for automated agent evaluation.</p>
+      <p class="assert-intro">ASSERT is a Python evaluation framework. CAE runs the voice workflow.</p>
       <div class="assert-flow assert-software-flow">
         <article class="assert-spec">
           <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M20 12h30l12 12v44H20Z M50 12v14h12 M29 37h24 M29 48h24 M29 59h15"/></svg>
@@ -43,12 +43,13 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
           </ul>
         </article>
         <article class="assert-engine assert-runtime">
-          <p class="assert-runtime-label">EXECUTABLE FRAMEWORK</p>
-          <h3>ASSERT</h3>
-          <ol class="assert-runtime-steps" aria-label="What the ASSERT framework does">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4Z M15 3v6h5 M8 12h8M8 16h5"/></svg><span><b>Generate test conversations</b><small>Variations for each behavior</small></span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 12 8-12 8Z"/></svg><span><b>Run them against your agent</b><small>Capture the conversation</small></span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><span><b>Evaluate each behavior</b><small>LLM judge + supporting evidence</small></span></li>
+          <p class="assert-runtime-label">WHO DOES WHAT</p>
+          <h3>ASSERT + CAE</h3>
+          <ol class="assert-runtime-steps" aria-label="ASSERT generates cases, reviewed cases run in CAE, then ASSERT judges evidence">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4Z M15 3v6h5 M8 12h8M8 16h5"/></svg><span><b>ASSERT generates caller cases</b><small>Normal · boundary · adversarial · proposed integration</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16v18H4Z M8 12l3 3 6-7"/></svg><span><b>Review and freeze in CAE</b><small>Approve a reusable test set</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 12 8-12 8Z"/></svg><span><b>CAE runs the voice agent</b><small>Keep voice execution + captured evidence</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><span><b>ASSERT judges behavior</b><small>CAE retains facts + semantic assessment</small></span></li>
           </ol>
         </article>
         <article class="assert-report">
@@ -64,21 +65,38 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
         </article>
       </div>
       <div class="assert-footer"><p class="takeaway"><strong>Fix the agent. Re-run the same cases.</strong></p><button class="assert-detail-button" type="button" data-evaluation-dialog="assert-details" aria-controls="assert-details" aria-haspopup="dialog">Engineering details ↗</button></div>
-      <p class="micro-note">Illustrative conversation results · upstream ASSERT workflow; CAE uses optional semantic review.</p>
+      <p class="micro-note">Illustrative results · ASSERT generation integration proposed; CAE voice execution and optional ASSERT judging remain separate.</p>
       <dialog id="assert-details" class="judge-dialog" aria-labelledby="assert-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close ASSERT engineering details">×</button>
-        <p class="eyebrow">ASSERT · REPRODUCIBILITY AND LIMITS</p><h2 id="assert-details-title">Keep the evidence. Know the limits.</h2>
-        <code class="assert-command">assert-ai run --config eval_config.yaml</code>
-        <dl class="assert-artifacts assert-detail-artifacts"><div><dt><code>test_set.jsonl</code></dt><dd>test conversations</dd></div><div><dt><code>inference_set.jsonl</code></dt><dd>responses + captured tool trace</dd></div><div><dt><code>scores.jsonl</code></dt><dd>verdict + explanation</dd></div><div><dt><code>metrics.json</code></dt><dd>aggregate violation rates</dd></div></dl>
-        <p class="judge-detail-note">A scenario contains several requirements. ASSERT can test behaviors in separate suites with many conversation variations. These four results illustrate conversational requirements, not a measured ASSERT report or proof that the backend address changed. Tool traces can add evidence when available.</p>
-        <p class="judge-detail-note">Version the cases, agent configuration, and judge. Repeat the frozen cases after changes; calibrate judgments against held-out human-labeled evidence.</p>
-        <aside class="assert-sample-math" aria-label="Sample-size illustration for zero observed failures">
-          <div><strong>Zero failures ≠ zero risk</strong><span>95% upper bound on the failure rate</span></div>
-          <p><b>0 / 100</b><span>tests →</span><strong>~3%</strong></p>
-          <p><b>0 / 1,000</b><span>tests →</span><strong>~0.3%</strong></p>
-        </aside>
-        <p class="judge-detail-note">Sample-size math, not measured CAE results. Assumes independent, representative trials and correct failure labels. Upstream generation and target execution are not implied by CAE’s semantic-review adapter.</p>
-        <p class="eng-sources"><a href="https://github.com/responsibleai/ASSERT/tree/main/examples/billing_support_agent" target="_blank" rel="noopener noreferrer">ASSERT example ↗</a><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm" target="_blank" rel="noopener noreferrer">Statistics ↗</a></p>
+        <p class="eyebrow">ASSERT + CAE · EXPLAIN THE SCORE</p><h2 id="assert-details-title">Keep the call behind the score.</h2>
+        <p class="assert-trail-intro">Save what was tested, what happened, and how it was judged.</p>
+        <ol class="assert-score-trail" aria-label="Linked test setup, captured call, and judgment">
+          <li><svg class="assert-trail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4Z M15 3v6h5 M8 12h8M8 16h5"/></svg><h3>Test setup</h3><strong>Case + requirements</strong><small>Approved version + agent configuration</small></li>
+          <li><svg class="assert-trail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h3l2-7 4 14 3-10 2 3h6"/></svg><h3>Saved call</h3><strong>Audio + transcript</strong><small>Tool / state evidence when available</small></li>
+          <li><svg class="assert-trail-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><h3>Judgment</h3><strong>Verdict + evidence</strong><small>Judge model + rubric version</small></li>
+        </ol>
+        <div class="assert-review-example">
+          <section aria-label="Illustrative evidence-linked finding"><p class="assert-trail-label">WHY THIS FAILED · ILLUSTRATIVE</p><pre><code>Correction preserved: FAIL
+Caller: 40 Pine St | Agent: 14 Pine St
+Evidence: call-042 → turn 6</code></pre></section>
+          <section class="assert-human-check" aria-label="Validate the judge against independent human review"><p class="assert-trail-label">CHECK THE JUDGE, TOO</p><div><svg class="assert-trail-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-3a8 8 0 0 1 16 0v3"/></svg><strong>Human review</strong><b aria-hidden="true">↔</b><strong>ASSERT</strong></div><p>Compare on calls not used to tune the judge.<br>Count missed failures and false alarms.</p></section>
+        </div>
+        <p class="judge-detail-note">Conversation evidence can establish a behavior failure; it does not prove a backend address changed.</p>
+        <details class="assert-more"><summary>Files and proposed integration</summary>
+          <dl class="assert-artifacts assert-detail-artifacts"><div><dt><code>test_set.jsonl</code> · ASSERT</dt><dd>Generated caller prompts + behavior IDs</dd></div><div><dt>Approved suite · CAE</dt><dd>Reviewed caller cases + frozen requirements</dd></div><div><dt>Saved voice run · CAE</dt><dd>Captured call + available execution evidence</dd></div><div><dt>Judge outputs · ASSERT</dt><dd><code>scores.jsonl</code> + <code>metrics.json</code></dd></div></dl>
+          <p class="judge-detail-note">Proposed: ASSERT drafts caller cases → CAE reviews and runs voice calls → ASSERT judges saved conversations. Generated cases contain no target answers; CAE keeps voice execution. Link generation source, approved cases, agent setup, call evidence, and judge setup.</p>
+          <p class="eng-sources"><a href="https://github.com/responsibleai/ASSERT/tree/main/examples/billing_support_agent" target="_blank" rel="noopener noreferrer">ASSERT example ↗</a></p>
+        </details>
+        <details class="assert-more"><summary>Why zero failures does not mean zero risk</summary>
+          <p class="judge-detail-note">Rare failures can be missed: at a true 3% failure rate, 100 independent calls still have about a 5% chance of showing none.</p>
+          <aside class="assert-sample-math" aria-label="Sample-size illustration for zero observed failures">
+            <div><strong>0 observed failures</strong><span>Approximate 95% upper failure-rate limits</span></div>
+            <p><b>100</b><span>calls →</span><strong>~3%</strong></p>
+            <p><b>1,000</b><span>calls →</span><strong>~0.3%</strong></p>
+          </aside>
+          <p class="judge-detail-note">Sample-size math, not CAE results. Requires independent, representative trials with correct failure labels. Repeating similar generated calls or missing failures in judging can invalidate those assumptions.</p>
+          <p class="eng-sources"><a href="https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm" target="_blank" rel="noopener noreferrer">Statistics ↗</a></p>
+        </details>
       </dialog>
     `
   },

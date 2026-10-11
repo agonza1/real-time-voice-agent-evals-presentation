@@ -98,14 +98,16 @@
   }
   function releaseReview(version) {
     choice(version, ["baseline", "candidate"]);
-    const data = version === "baseline" ? { runs: 100, p95: 1100, premature: 2, wrongTiming: 0, evidence: 100, unanswered: 0 } : { runs: 100, p95: 780, premature: 12, wrongTiming: 4, evidence: 100, unanswered: 0 };
+    const data = version === "baseline" ? { runs: 100, p95: 1100, premature: 2, correctionErrors: 0, wrongAddress: 0, missingInvoiceImpact: 1, evidence: 100, unanswered: 0 } : { runs: 100, p95: 780, premature: 12, correctionErrors: 8, wrongAddress: 4, missingInvoiceImpact: 6, evidence: 100, unanswered: 0 };
     const failures = [];
     if (data.p95 > 1200) failures.push("response deadline");
     if (data.premature > 3) failures.push("premature-response budget");
-    if (data.wrongTiming !== 0) failures.push("correct cancellation timing");
+    if (data.correctionErrors !== 0) failures.push("caller-correction preservation");
+    if (data.wrongAddress !== 0) failures.push("confirmed tool arguments");
+    if (data.missingInvoiceImpact > 1) failures.push("invoice-impact explanation");
     if (data.evidence !== data.runs) failures.push("required evidence coverage");
     if (data.unanswered !== 0) failures.push("answered-turn requirement");
-    return { ...data, failures, decision: failures.length ? "HOLD" : "MEETS THIS TEST GATE", explanation: failures.length ? "Lower latency does not compensate for cutting callers off or canceling at the wrong time." : "This illustrative cohort meets the configured requirements. It is not a guarantee of zero failures in production." };
+    return { ...data, failures, decision: failures.length ? "HOLD" : "MEETS THIS TEST GATE", explanation: failures.length ? "Faster responses do not compensate for early replies, lost corrections, wrong tool arguments, or missing goal steps." : "This illustrative cohort meets the configured requirements. It is not a guarantee of zero failures in production." };
   }
   root.VoiceEvalEngineering = Object.freeze({ latency, controlRun, recoveryFactChecks, releaseReview });
 })(globalThis);

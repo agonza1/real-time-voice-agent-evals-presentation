@@ -69,8 +69,8 @@
     const result = model.releaseReview(version), panel = byId("releaseDecision");
     panel.dataset.tone = result.failures.length ? "fail" : "pass";
     const verdict = document.createElement("strong"); verdict.textContent = result.failures.length ? "DO NOT RELEASE THIS CHANGE" : "MEETS THESE REQUIREMENTS";
-    const reason = document.createElement("p"); reason.textContent = result.failures.length ? "It answers faster, but more often speaks before callers finish and cancels at the wrong time." : result.explanation;
-    const checks = document.createElement("small"); checks.textContent = result.failures.length ? "The proposed change fails the caller-finish and cancellation-timing requirements." : "All configured requirements met in these illustrative test calls.";
+    const reason = document.createElement("p"); reason.textContent = result.explanation;
+    const checks = document.createElement("small"); checks.textContent = result.failures.length ? "Candidate exceeds the example limits in all four dimensions." : "All configured requirements met in these illustrative test calls.";
     panel.replaceChildren(verdict, reason, checks);
   }
   showRelease("candidate");
