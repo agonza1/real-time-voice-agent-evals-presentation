@@ -41,6 +41,10 @@
 .layer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
 .layer-card { min-height: 200px; position: relative; padding: 28px 30px; border-radius: var(--radius); background: rgba(13, 28, 39, 0.72); overflow: hidden; }
 .layer-card::after { content: ""; position: absolute; width: 150px; height: 150px; border-radius: 50%; right: -70px; top: -70px; background: currentColor; opacity: 0.08; filter: blur(4px); }
+.layer-card-open { position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%; padding: 0; border: 0; border-radius: inherit; background: transparent; color: inherit; cursor: pointer; text-align: right; }
+.layer-card-open span { position: absolute; right: 22px; bottom: 15px; font-size: 1.25rem; }
+.layer-card-open:hover { background: rgba(255, 255, 255, 0.035); }
+.layer-card-open:focus-visible { outline: 3px solid currentColor; outline-offset: -5px; }
 .layer-number { display: inline-grid; place-items: center; width: 35px; height: 35px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid currentColor; font-size: 0.68rem; font-weight: 800; }
 .layer-symbol { position: absolute; top: 24px; right: 30px; width: 76px; height: 76px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .layer-card h3 { margin: 25px 0 10px; color: var(--text); font-size: clamp(1.35rem, 2.4vw, 1.9rem); }
@@ -53,6 +57,20 @@
 .one-call span, .one-call strong { font-weight: 800; letter-spacing: 0.08em; font-size: 0.76rem; }
 .one-call strong { color: var(--cyan); font-size: 1rem; letter-spacing: 0.02em; }
 .one-call em { font-style: normal; font-size: 0.82rem; }
+
+/* Optional engineering explanations for the four Cs. */
+#layers .layer-detail-dialog h2 { margin: 0; font-size: clamp(1.6rem, 2.7vw, 2.15rem); }
+.layer-detail-dialog .eyebrow { color: var(--detail-accent); }
+.layer-detail-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 26px; margin-top: 22px; }
+.layer-detail-checks { display: grid; gap: 18px; margin: 0; }
+.layer-detail-checks dt { color: var(--detail-accent); font-size: .8rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.layer-detail-checks dd { margin: 6px 0 0; font-size: 1.02rem; line-height: 1.45; }
+.layer-detail-example { min-width: 0; border-left: 2px solid var(--detail-accent); padding-left: 22px; }
+.layer-detail-label { margin: 0 0 12px; color: var(--muted); font-size: .73rem; font-weight: 800; letter-spacing: .04em; }
+.layer-detail-example pre { margin: 0; padding: 18px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-deep); font-size: .88rem; line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+.layer-detail-result { color: var(--detail-accent); font-size: 1rem; font-weight: 650; line-height: 1.45; margin: 16px 0 0; }
+.layer-detail-note { color: var(--muted); font-size: .85rem; line-height: 1.5; margin: 22px 0 0; border-top: 1px solid var(--line); padding-top: 14px; }
+@media (max-width: 700px) { .layer-detail-layout { grid-template-columns: 1fr; gap: 22px; } .layer-detail-example { padding-left: 14px; } }
 
 /* Timeline */
 .timeline { position: relative; min-height: 310px; margin: 20px 25px 0; }

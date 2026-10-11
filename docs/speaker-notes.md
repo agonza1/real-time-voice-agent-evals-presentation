@@ -177,6 +177,8 @@ Use the four Cs as a memory aid for the existing evaluation dimensions, not as f
 
 “A call can sound smooth, misunderstand ‘at period end,’ execute the wrong cancellation, and leave the customer with the wrong result.” That is why we score each C separately: a good conversation score cannot erase a failed comprehension, conduct, or completion check.
 
+Each C opens an optional engineering dialog. Use these for a technical question rather than opening all four during the main route. Conversation shows aligned caller-side timing; Comprehension follows the “40, not 14” address correction; Conduct shows a forbidden full-card-number request; Completion shows why a saved address still leaves the workflow incomplete when next-invoice impact is not explained. These are illustrative records, not captured calls, universal thresholds, ASSERT syntax, or implemented CAE checks. The dialogs use the existing modal behavior: Escape or Close returns to the same slide and slide-navigation keys are suspended while a dialog is open.
+
 ## Workbench — frameworks behind the workflow
 
 “The framework names matter because each does a different job. FastAPI exposes run and evidence APIs; Pydantic validates their structured data. Pipecat drives tester conversations and voice transport. ASSERT supplies behavior contracts and, when enabled, semantic judgment over saved evidence.”
