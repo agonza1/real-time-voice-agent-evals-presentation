@@ -193,7 +193,7 @@ const localAssets = [
   assert.match(story, /OPEN-ENDED VOICE · WEBRTC/);
   assert.match(story, /RUNTIME CONTROL/);
   assert.match(story, /Test that they hold as the system changes/);
-  assert.match(story, /Conversation Agent Evaluation \(CAE\) tool/);
+  assert.match(story, /VoiceAI QA \(CAE\)/);
   assert.match(slides[0].html, /href="#story">Start the presentation/);
   assert.match(await readRepositoryFile("index.html"), /href="#story">Story/);
   const notes = await readRepositoryFile("docs/speaker-notes.md");

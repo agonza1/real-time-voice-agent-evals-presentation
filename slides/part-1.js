@@ -38,7 +38,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
             <span>Open source · Evidence first</span>
           </div>
           <div class="hero-actions">
-            <a class="primary-link" data-evaluator-link href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">Open the conversation evaluator ↗</a>
+            <a class="primary-link" data-evaluator-link href="https://github.com/agonza1/ConversationAgentEvals" rel="noreferrer" target="_blank">Open VoiceAI QA ↗</a>
             <a class="quiet-link" href="#story">Start the presentation →</a>
           </div>
         </div>
@@ -74,7 +74,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
           <li class="story-now"><p class="story-era"><span>03</span> PRODUCTION · EVALUATION</p><h3>“Does it still work?”</h3><p>Models change. Callers interrupt. Tools time out.</p></li>
         </ol>
       </div>
-      <div class="story-bridge"><p><span>RUNTIME CONTROL</span><strong>Build the controls.</strong></p><span class="story-arrow" aria-hidden="true">→</span><p><span>Conversation Agent Evaluation (CAE) tool</span><strong>Test that they hold as the system changes.</strong></p></div>
+      <div class="story-bridge"><p><span>RUNTIME CONTROL</span><strong>Build the controls.</strong></p><span class="story-arrow" aria-hidden="true">→</span><p><span>VoiceAI QA (CAE)</span><strong>Test that they hold as the system changes.</strong></p></div>
     `
   },
   {
