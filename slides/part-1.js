@@ -96,7 +96,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         </figure>
         <figure class="project-example">
           <img class="project-image" src="./assets/projects/ceta-screens.png" alt="CETA Global's published EBT-Sim visual showing an avatar roleplay session and simulation evaluation" loading="eager" decoding="async">
-          <figcaption><p class="project-capability">WebRTC + AI orchestration</p><h3>Avatar roleplay</h3><p>CETA Global: practice clinical conversations with live AI coaching.</p><a href="https://webrtc.ventures/successes/ai-roleplay-training-simulator-case-study/" target="_blank" rel="noopener noreferrer">CETA success story ↗</a></figcaption>
+          <figcaption><p class="project-capability">Live avatars + AI orchestration</p><h3>Avatar roleplay</h3><p>CETA Global: practice clinical conversations with live AI coaching.</p><a href="https://webrtc.ventures/successes/ai-roleplay-training-simulator-case-study/" target="_blank" rel="noopener noreferrer">CETA success story ↗</a></figcaption>
         </figure>
         <figure class="project-example">
           <img class="project-image livekit-image" src="./assets/projects/livekit-warm-transfer-illustration.png" alt="Generated illustration of a SIP caller connected to a LiveKit voice agent, with a context handoff and continuing call to a human" width="1774" height="887" loading="eager" decoding="async">
@@ -113,14 +113,14 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
       <div class="section-heading">
         <p class="eyebrow">THE PROBLEM</p>
         <h2 id="problem-title">A fluent answer can hide <span>the wrong outcome.</span></h2>
-        <p>Building these systems taught us: a fluent answer is only part of a successful call.</p>
+        <p>Illustrative call · cancellation requested at the end of the billing period.</p>
       </div>
       <div class="truth-split">
         <article class="truth-card surface-card">
           <p class="card-kicker">CALLER REQUEST · CANCEL AT PERIOD END</p>
-          <blockquote>“Your subscription has been canceled.”</blockquote>
+          <blockquote>“Your plan will end after this billing period.”</blockquote>
           <div class="quality-tags"><span>polite</span><span>relevant</span><span>confident</span></div>
-          <div class="status-line pass"><span>LANGUAGE-ONLY CHECK</span><strong>PASS</strong></div>
+          <div class="status-line pass"><span>FLUENCY CHECK</span><strong>PASS</strong></div>
         </article>
         <div aria-hidden="true" class="versus">≠</div>
         <article class="truth-card state-card">
@@ -139,7 +139,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
       <div class="section-heading">
         <p class="eyebrow">THE SYSTEM · REAL-TIME VOICE ENGINEERING</p>
         <h2 id="system-title">A conventional voice agent is <span>a chain of systems</span></h2>
-        <p>Connect callers. Manage interruptions. Verify actions before confirming.</p>
+        <p>Conceptual flow · streaming recognition, turn detection, and generation can overlap.</p>
       </div>
       <ol class="system-flow" aria-label="Caller input through connection, turn detection, speech recognition, agent, control, and speech generation">
         <li><span>01</span><b>Caller</b><small>speech</small></li>
@@ -221,8 +221,8 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         <p class="eyebrow">02 · COMPREHENSION · INTENT + ENTITIES</p>
         <h2 id="layer-comprehension-title">Right words. Right meaning.</h2>
         <dl class="layer-media-stats layer-metric-six" aria-label="Speech recognition and comprehension metrics">
-          <div><dt>${voiceMetricIcon('text')}WER</dt><dd>Word errors<code>100 × (S + D + I) / words</code></dd></div>
-          <div><dt>${voiceMetricIcon('text')}CER</dt><dd>Character errors<code>100 × edits / characters</code></dd></div>
+          <div><dt>${voiceMetricIcon('text')}WER</dt><dd>Word errors<code>100 × word edits / reference words</code></dd></div>
+          <div><dt>${voiceMetricIcon('text')}CER</dt><dd>Character errors<code>100 × edits / reference characters</code></dd></div>
           <div><dt>${voiceMetricIcon('pin')}Entities</dt><dd>Address · amount · date</dd></div>
           <div><dt>${voiceMetricIcon('target')}Intent</dt><dd>Request ↔ response</dd></div>
           <div><dt>${voiceMetricIcon('reset')}Corrections</dt><dd>Latest instruction retained</dd></div>
