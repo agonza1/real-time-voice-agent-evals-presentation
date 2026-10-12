@@ -2,7 +2,7 @@
 
 These speaker notes connect Alberto’s first voice agent with published WebRTC.ventures projects and the evaluation workflow for the Fall '26 audience. The cancellation and timing examples remain teaching fixtures.
 
-For stage delivery, use the concise [20-minute rehearsal notes](rehearsal-notes.md). The [standalone demo backup](../demo-backup.html) contains actual evaluator screenshots and an exported-result excerpt from clearly labeled synthetic billing-address evidence. It can open directly from disk without services.
+For stage delivery, use the concise [30-minute rehearsal notes](rehearsal-notes.md). The [standalone demo backup](../demo-backup.html) contains actual evaluator screenshots and an exported-result excerpt from clearly labeled synthetic billing-address evidence. It can open directly from disk without services.
 
 ## Title slide — orient the audience
 
@@ -26,7 +26,7 @@ That is the question behind the VoiceAI QA (CAE): testing the complete interacti
 
 “This is the range of voice work our team has built and continues to develop. AVA brings an AI participant into a meeting. The surgical system listens and organizes conversation evidence. CETA turns voice and avatars into a training environment. The agentic call center uses LiveKit to handle voice calls and transfers to humans. Each application has a different job, and each requires us to test more than the model.”
 
-Spend about 15 seconds per example. Keep the technical stack for Q&A:
+Spend about 20 seconds per example. Keep the technical stack for Q&A:
 
 Use the capability labels to connect the examples to our engineering work: meeting integrations and voice agents, real-time media capture, live avatars and AI orchestration, and SIP calling with warm transfers. The examples show systems we have built and continue to develop; the GPT-Live diagrams later in the talk explain a newer architecture pattern, not a claim about these deployments.
 
@@ -61,32 +61,31 @@ Leave the closing slide up during Q&A so attendees can scan the QR to [connect w
 
 ## 30-minute stage route
 
-Plan for 20 minutes of presentation including a 3½-minute demo, one minute of delivery buffer, and nine minutes of Q&A. There are 18 main slides and three optional appendices. Keep the scope to one evaluation example; do not narrate every field or open every disclosure.
+Plan for a full 30-minute talk including a five-minute demo. Q&A follows afterward. There are 18 main slides and three optional appendices. The budgets include transitions and planned interactions; keep the scope to one evaluation example rather than a broad product tour.
 
-Treat this as a pacing budget until a spoken rehearsal confirms it. The architecture slides have different jobs: slide 6 explains the paths; slide 7 demonstrates a changed request during delegation. The vCon slides likewise introduce the container, then inspect one evaluation. In the final sequence, slide 15 defines reusable behavior tests, slide 16 explains how to judge them responsibly, and slide 17 applies the results to a release. Reuse the address correction without retelling the full dialogue at each step. Keep the four dimension dialogs, ASSERT file/statistics disclosures, provider comparison, and appendices for Q&A. During the main route, use only the endpointing toggle, one demo result, the brief JSON magnifier, and at most 20 seconds of the fact-check dialog.
+Treat this as a pacing budget until a spoken rehearsal confirms it. Slide 6 explains the paths; slide 7 demonstrates a changed request during delegation. The vCon slides introduce the container, then inspect one evaluation. Slide 15 defines reusable behavior tests, slide 16 explains responsible judgment, and slide 17 applies results to a release. Reuse the address workflow without retelling the same dialogue. During the main route, allow about 40 seconds for Conduct, 30 seconds for the ASSERT evidence trail, and 30 seconds for the fact-check dialog, alongside the endpointing toggle, one demo result, and the JSON magnifier. Keep other dimension dialogs, file/statistics disclosures, provider comparison, and appendices for Q&A. Follow the added engineering cues in rehearsal-notes.md.
 
 | Slide | Time | Finish by | Point and stage action |
 | --- | --- | --- | --- |
-| 1 · Title | 0:30 | 0:30 | Introduce evaluation of the complete real-time voice system. |
-| 2 · Story | 0:50 | 1:20 | Move from voice commands to controlling actions and testing changes. |
-| 3 · Projects | 1:00 | 2:20 | Emphasize our WebRTC, audio capture, avatar orchestration, and SIP engineering experience. |
-| 4 · Problem | 0:50 | 3:10 | For a period-end request, the operation-matched readback shows no cancellation scheduled; the timeout alone proves neither success nor failure. |
-| 5 · System | 0:45 | 3:55 | SIP establishes the session; RTP carries audio. Trace the conceptual cascade and return audio, with tool requests and results. |
-| 6 · Two-path architecture | 0:40 | 4:35 | A newer architecture pattern: native audio continues while reasoning and tools run. |
-| 7 · Continuous-voice sequence | 0:40 | 5:15 | The application applies the changed constraint and rejects stale results. |
-| 8 · Four Cs | 1:00 | 6:15 | Conversation, comprehension, conduct, completion. Score each separately; ASR-specific measures apply only when ASR is present. |
-| 9 · Timeline | 1:45 | 8:00 | Switch endpointing once, then restore. A faster system-endpoint-to-audio interval can hide premature turn acceptance. |
-| 10 · Outcomes | 0:50 | 8:50 | Define completion and evidence-supported speech before introducing the tool. Unknown stays unknown; authorization is a separate check. |
-| 11 · Workbench | 0:45 | 9:35 | Run → Evaluate → Compare. Name framework roles briefly. |
-| 12 · First evaluation + live demo | 3:30 | 13:05 | Checklist in 20 seconds; spend the remaining time on one recorded call, one finding, and its supporting trace/state. Use a prepared captured result if a live run is slow. |
-| 13 · vCon | 0:35 | 13:40 | Portable evidence, not a verdict. |
-| 14 · vCon JSON | 0:45 | 14:25 | Magnify Dialog and Evaluation only. Unknown outcome requires review; the sample is illustrative, not a literal export. |
-| 15 · ASSERT | 1:30 | 15:55 | Several behavior requirements → ASSERT Python framework → individual results. Highlight the failed caller correction; keep artifacts and sample-size limits in Engineering details. |
-| 16 · Judge reliability | 1:50 | 17:45 | Distinguish established values from semantic interpretation. Explain human calibration and a proposed verdict, not automatic release approval. If useful, show fact details for at most 20 seconds; keep provider comparisons for Q&A. |
-| 17 · Release decision | 1:50 | 19:35 | Matched scenario cohort: speed improves while critical behavior regresses. Hold the candidate. These are illustrative data. |
-| 18 · Close | 0:25 | 20:00 | Production readiness is a system property. Leave the contact QR visible. |
-| Delivery buffer | 1:00 | 21:00 | Allow for transitions and opening the evaluator. |
-| Q&A | 9:00 | 30:00 | Keep the closing visible; open appendix material when useful. |
+| 1 · Title | 0:45 | 0:45 | Introduce evaluation of the complete real-time voice system. |
+| 2 · Story | 1:15 | 2:00 | Move from voice commands to controlling actions and testing changes. |
+| 3 · Projects | 1:30 | 3:30 | Emphasize our WebRTC, audio capture, avatar orchestration, and SIP engineering experience. |
+| 4 · Problem | 1:15 | 4:45 | For a period-end request, the operation-matched readback shows no cancellation scheduled; the timeout alone proves neither success nor failure. |
+| 5 · System | 1:15 | 6:00 | SIP establishes the session; RTP carries audio. Trace the conceptual cascade and return audio, with tool requests and results. |
+| 6 · Two-path architecture | 1:30 | 7:30 | A newer architecture pattern: native audio continues while reasoning and tools run. |
+| 7 · Continuous-voice sequence | 1:15 | 8:45 | The application applies the changed constraint and rejects stale results. |
+| 8 · Four Cs | 2:00 | 10:45 | Conversation, comprehension, conduct, completion. Show the stale draft in Conduct for about 40 seconds; ASR-specific measures apply only when ASR is present. |
+| 9 · Timeline | 2:15 | 13:00 | Switch endpointing once, then restore. A faster system-endpoint-to-audio interval can hide premature turn acceptance. |
+| 10 · Outcomes | 1:15 | 14:15 | Define completion and evidence-supported speech before introducing the tool. Unknown stays unknown; authorization is a separate check. |
+| 11 · Workbench | 1:15 | 15:30 | Run → Evaluate → Compare. Name framework roles briefly. |
+| 12 · First evaluation + live demo | 5:00 | 20:30 | Use the prepared synthetic Billing Address Change transcript and deterministic result: diagnostic 100, needs review, semantic review pending, backend state unmeasured. Follow the five-minute demo card; switch to the standalone backup after 10 seconds of waiting. |
+| 13 · vCon | 0:45 | 21:15 | Portable evidence, not a verdict. |
+| 14 · vCon JSON | 1:15 | 22:30 | Magnify Dialog and Evaluation only. Unknown outcome requires review; the sample is illustrative, not a literal export. |
+| 15 · ASSERT | 2:30 | 25:00 | Several behavior requirements → ASSERT Python framework → individual results. Highlight the failed caller correction; show setup → saved call → judgment for about 30 seconds. Keep file/statistics disclosures for Q&A. |
+| 16 · Judge reliability | 2:15 | 27:15 | Distinguish established values from semantic interpretation. Explain human calibration and a proposed verdict, not automatic release approval. Show fact details for about 30 seconds; keep provider comparisons for Q&A. |
+| 17 · Release decision | 2:00 | 29:15 | Matched scenario cohort: speed improves while critical behavior regresses. Hold the candidate. These are illustrative data. |
+| 18 · Close | 0:45 | 30:00 | Production readiness is a system property. Leave the contact QR visible. |
+| Q&A | After talk | After 30:00 | Keep the closing visible; open appendix material when useful. |
 
 The JSON explorer is slide 14. Appendix A1 contains standards and research; A2 contains the lost-ack experiment; A3 contains capabilities and roadmap. Normal forward navigation stops at the closing. End returns to the closing; Home returns to the title.
 
@@ -262,13 +261,13 @@ Before going on stage, load the original Echo Show photo and leave disclosures c
 
 If an interaction fails, explain its expected before/after result and move on.
 
-Check the clock after slide 9 (8:00), the demo on slide 12 (13:05), and slide 16 (17:45). If behind, shorten the architecture narration, framework explanation, or JSON field tour. Preserve the outcome definitions, release decision, and closing. Keep provider comparisons and the lost-ack experiment for Q&A.
+Check the clock after slide 9 (13:00), the demo on slide 12 (20:30), and slide 16 (27:15). If behind, shorten the architecture narration, framework explanation, or JSON field tour. Preserve the outcome definitions, release decision, and closing. Keep provider comparisons and the lost-ack experiment for Q&A.
 
 The event name follows the [official Fall '26 conference site](https://www.vonevolution.com/). The October 15 talk date is retained from the existing deck.
 
 ## First evaluation — slide 12
 
-This slide opens the live demo in the middle of the talk. Before rehearsing, choose one real captured call and an inspectable finding in the evaluator, with a captured report available as backup. Show the requirement, the supporting conversation and available trace/state, and the verdict; avoid a broad UI tour or presenting a teaching fixture as a customer benchmark. This is an audience checklist, not an automatic CAE workflow. Start with one important business task. Write the required and forbidden behavior and evidence for each goal explicitly, then test pauses, interruptions, corrections, and unavailable tools on a controlled target or with imported evidence. Evaluate observable conversation goals without internal logs; distinguish them from independently verified backend state. Inspect the evidence behind each finding and compare the same cases after a change. Do not imply CAE's simple scenario form extracts these rules or that it injects every listed failure automatically.
+This slide opens the five-minute evaluator demo. Preload the built-in synthetic Billing Address Change transcript and its prepared deterministic result. It scores 100 but remains needs_review, with semantic review pending and backend state unmeasured. The standalone backup contains the actual saved views and report excerpt. Show the requirement, supporting conversation, evaluation basis, and verdict; avoid a broad UI tour or presenting a teaching fixture as a customer benchmark. This is an audience checklist, not an automatic CAE workflow. Start with one important business task. Write the required and forbidden behavior and evidence for each goal explicitly, then test pauses, interruptions, corrections, and unavailable tools on a controlled target or with imported evidence. Evaluate observable conversation goals without internal logs; distinguish them from independently verified backend state. Inspect the evidence behind each finding and compare the same cases after a change. Do not imply CAE's simple scenario form extracts these rules or that it injects every listed failure automatically.
 
 The four icons carry the stage checklist. Choose one costly failure in a workflow such as cancellation at period end, an address change, or transfer to a human. Define what must happen, what must never happen, and what evidence can establish each goal. Exercise pauses, interruptions, corrections, and unavailable tools across representative calls. Inspect each finding and its supporting evidence, fix the agent, and re-run the same cases. Begin with a small test set you can explain.
 
@@ -278,7 +277,7 @@ The former main-route capability list is available for Q&A. Distinguish configur
 
 ## vCon JSON explorer — slide 14
 
-Begin with the envelope, then select Dialog to show caller/agent turns and the recording pointer. Select Evaluation to show retained checks and state evidence. Keep the magnifier interaction; the excerpt is illustrative pseudo-JSON, not a complete runnable document or a measured result. Distinguish vCon core fields from CAE application conventions. This is a concrete view of the container from slide 13. The review fields are illustrative: needs_review and complete:null express unknown completion, not verified noncompletion. The current CAE exporter uses a bare base64url hash; the draft-aligned example uses the sha512- prefix required by vCon Core section 2.2. This is a presentation correction, not an exporter migration. The exported document is currently unsigned. Core also supports inline media.
+Start with Evaluation to show the retained checks and unknown state, then select Dialog to follow the finding to caller/agent turns and the recording pointer. Keep the magnifier interaction; the excerpt is illustrative pseudo-JSON, not a complete runnable document or a measured result. Distinguish vCon core fields from CAE application conventions. This is a concrete view of the container from slide 13. The review fields are illustrative: needs_review and complete:null express unknown completion, not verified noncompletion. The current CAE exporter uses a bare base64url hash; the draft-aligned example uses the sha512- prefix required by vCon Core section 2.2. This is a presentation correction, not an exporter migration. The exported document is currently unsigned. Core also supports inline media.
 
 ## Judge reliability — slide 16
 
