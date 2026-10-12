@@ -20,7 +20,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
     html: `
       <div class="section-heading">
         <p class="eyebrow">EVALUATE THE EVALUATOR</p>
-        <h2 id="judge-reliability-title">Separate facts, judgments, <span>and release decisions.</span></h2>
+        <h2 id="judge-reliability-title">Separate facts, judgments, <span>and verdicts.</span></h2>
         <p>Billing Address Change · the caller corrects the address. The agent confirms the old one.</p>
       </div>
       <svg class="judge-diagram" viewBox="0 0 1280 370" role="group" aria-labelledby="judge-diagram-title judge-diagram-desc">
@@ -40,7 +40,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
         <text class="judge-node-title" x="960" y="273" text-anchor="middle">Review policy</text><text class="judge-node-note" x="960" y="302" text-anchor="middle">In code</text>
         <g class="judge-result-pass"><circle cx="1120" cy="70" r="22"/><path d="M1110 70 L1118 78 L1131 62"/><text x="1155" y="79">Pass</text></g><g class="judge-result-fail"><circle cx="1120" cy="180" r="22"/><path d="M1112 172 L1128 188 M1128 172 L1112 188"/><text x="1155" y="189">Fail</text></g><g class="judge-result-review"><circle cx="1120" cy="290" r="22"/><text x="1120" y="299" text-anchor="middle">?</text><text x="1155" y="299">Review</text></g>
       </svg>
-      <p class="takeaway"><strong>Fail the correction check. Keep the other results.</strong></p>
+      <p class="takeaway"><strong>Calibrate the judge. Preserve critical failures.</strong></p>
       <p class="micro-note">Post-run evaluation · human confirmation before applying a proposed verdict. Open either component for details.</p>
       <dialog id="fact-details" class="judge-dialog" aria-labelledby="fact-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close fact-check details">×</button>
@@ -96,7 +96,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
       <div class="release-speed-strip" aria-label="Illustrative response-time improvement"><span>p95 response*</span><b>1,100 ms</b><span aria-hidden="true">→</span><strong>780 ms</strong><small>Both meet the 1,200 ms budget.</small></div>
       <p class="release-example-label">ILLUSTRATIVE NUMBERS · 100 TEST CALLS FOR EACH VERSION</p>
       <div class="comparison-wrap"><table class="comparison-table eng-release-table"><thead><tr><th scope="col">Dimension / failure</th><th scope="col">Current</th><th scope="col">Candidate</th><th scope="col">Example limit</th></tr></thead><tbody>
-        <tr><th scope="row"><div class="release-dimension" style="--dimension-accent: var(--cyan)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v14H9l-6 4Z M7 8h10M7 12h6"/></svg><span><b>Conversation</b><small>Replies before caller finishes</small></span></div></th><td>2 / 100</td><td class="release-regression">12 / 100</td><td>≤ 3 / 100</td></tr>
+        <tr><th scope="row"><div class="release-dimension" style="--dimension-accent: var(--cyan)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v14H9l-6 4Z M7 8h10M7 12h6"/></svg><span><b>Conversation</b><small>Cuts off an unfinished request</small></span></div></th><td>2 / 100</td><td class="release-regression">12 / 100</td><td>≤ 3 / 100</td></tr>
         <tr><th scope="row"><div class="release-dimension" style="--dimension-accent: var(--violet)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8.5a7 7 0 0 1 14 0c0 4-2 5-4 7-1 1-1 2-2 4a4 4 0 0 1-7-1M10 8.5a3 3 0 0 1 6 0c0 2-2 2.5-3 3.5v2"/></svg><span><b>Comprehension</b><small>Reads back 14 after correction to 40</small></span></div></th><td>0 / 100</td><td class="release-regression">8 / 100</td><td>0 / 100</td></tr>
         <tr><th scope="row"><div class="release-dimension" style="--dimension-accent: var(--amber)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z M8 12l3 3 5-6"/></svg><span><b>Conduct</b><small>Tool value differs from confirmed address</small></span></div></th><td>0 / 100</td><td class="release-regression">4 / 100</td><td>0 / 100</td></tr>
         <tr><th scope="row"><div class="release-dimension" style="--dimension-accent: var(--green)"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m7 12 3 3 7-7"/></svg><span><b>Completion</b><small>Missing required invoice explanation</small></span></div></th><td>1 / 100</td><td class="release-regression">6 / 100</td><td>≤ 1 / 100</td></tr>
@@ -114,7 +114,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
       </div>
       <ol class="start-steps">
         <li><span>01</span><svg class="start-icon" viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="32"/><circle cx="48" cy="48" r="18"/><circle cx="48" cy="48" r="4" class="start-icon-fill"/><path d="M48 8v12M48 76v12M8 48h12M76 48h12"/></svg><h3>Choose a workflow</h3><p>One costly failure.</p></li>
-        <li><span>02</span><svg class="start-icon" viewBox="0 0 96 96" aria-hidden="true"><rect x="22" y="18" width="52" height="66" rx="7"/><rect x="35" y="10" width="26" height="16" rx="4" class="start-icon-solid"/><path d="m33 42 5 5 9-10M54 43h10m-31 20 5 5 9-10M54 64h10"/></svg><h3>Define success</h3><p>Must happen. Must never happen.<br>Proof of the final state.</p></li>
+        <li><span>02</span><svg class="start-icon" viewBox="0 0 96 96" aria-hidden="true"><rect x="22" y="18" width="52" height="66" rx="7"/><rect x="35" y="10" width="26" height="16" rx="4" class="start-icon-solid"/><path d="m33 42 5 5 9-10M54 43h10m-31 20 5 5 9-10M54 64h10"/></svg><h3>Define success</h3><p>Required + forbidden behavior.<br>Evidence for each goal.</p></li>
         <li><span>03</span><svg class="start-icon" viewBox="0 0 96 96" aria-hidden="true"><path d="M8 48h9l7-19 9 38 9-54 9 68 9-46 8 13h20"/><path class="start-icon-accent" d="M14 82 82 14"/></svg><h3>Test failures</h3><p>Pause. Correct. Break a tool.</p></li>
         <li><span>04</span><svg class="start-icon" viewBox="0 0 96 96" aria-hidden="true"><circle cx="42" cy="40" r="22"/><path d="m58 57 22 23m-49-40 8 8 14-16"/><path class="start-icon-accent" d="M14 62a35 35 0 0 0 39 19m-39-19v13m0-13h13"/></svg><h3>Inspect &amp; repeat</h3><p>Check evidence. Fix. Re-run.</p></li>
       </ol>
@@ -170,7 +170,7 @@ window.VOICE_EVALS_SLIDES_PART_3 = [
           <a href="https://arxiv.org/abs/2410.17196" rel="noreferrer" target="_blank"><b>VoiceBench</b><span>speech robustness</span></a>
           <a href="https://arxiv.org/abs/2603.13686" rel="noreferrer" target="_blank"><b>τ-Voice</b><span>task-oriented voice-agent evaluation</span></a>
           <a href="https://arxiv.org/abs/2605.13841" rel="noreferrer" target="_blank"><b>EVA-Bench</b><span>real-time spoken-agent evaluation</span></a>
-          <a href="https://arxiv.org/abs/2604.04847" rel="noreferrer" target="_blank"><b>Full-Duplex-Bench-v3</b><span>latency, turn-taking, and interruption</span></a>
+          <a href="https://arxiv.org/abs/2604.04847" rel="noreferrer" target="_blank"><b>Full-Duplex-Bench-v3</b><span>disfluency + multi-step tool use</span></a>
           <a href="https://arxiv.org/abs/2306.05685" rel="noreferrer" target="_blank"><b>Judging LLM-as-a-Judge</b><span>judge bias + calibration</span></a>
         </article>
       </div>

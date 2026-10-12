@@ -5,10 +5,10 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
       <div class="section-heading">
         <p class="eyebrow">OPEN-SOURCE WORKBENCH</p>
         <h2 id="workbench-title">VoiceAI QA <span>(CAE)</span></h2>
-        <p>Run → Evaluate → Compare</p>
+        <p>Conversation Agent Evaluation · Run → Evaluate → Compare</p>
       </div>
       <div class="workbench-stages">
-        <article><span class="stage-number">01</span><h3>Run</h3><p>Execute a target or import evidence.</p><dl><dt>Target</dt><dd>WebRTC · API · recordings</dd><dt>Evidence</dt><dd>Audio, transcript, tools, and final state</dd></dl></article>
+        <article><span class="stage-number">01</span><h3>Run</h3><p>Execute a target or import evidence.</p><dl><dt>Target</dt><dd>WebRTC · API · recordings</dd><dt>Evidence</dt><dd>Conversation + available tool / state evidence</dd></dl></article>
         <article><span class="stage-number">02</span><h3>Evaluate</h3><p>Check behavior against the scenario contract.</p><dl><dt>Normalize</dt><dd>vCon evidence with provenance</dd><dt>Judge</dt><dd>Deterministic checks + optional semantic judgment</dd></dl></article>
         <article><span class="stage-number">03</span><h3>Compare</h3><p>Compare matched scenarios and versions.</p><dl><dt>Report</dt><dd>Scores, traces, and regressions</dd><dt>Decide</dt><dd>Evidence informs approve or hold</dd></dl></article>
       </div>
@@ -143,6 +143,7 @@ Evidence: call-042 → turn 6</code></pre></section>
         <article class="recovery-step recovery-evaluation" id="controlResult"><span class="recovery-step-label">03 · EVALUATION</span><h3>Did the protection hold?</h3><p id="completionAssertion" class="recovery-assertion"></p><p id="controlVerdict" class="recovery-verdict"></p><p class="recovery-proof">Check the evidence available when speech was permitted.</p></article>
       </div>
       <p class="takeaway"><strong>A timeout does not tell you whether the action happened.</strong></p>
+      <p class="fixture-label">SCRIPTED FIXTURE · NOT LIVE SIP/PSTN OR PRODUCTION MEDIA PROOF</p>
       <details class="eng-details" id="advancedDrill"><summary>Explore other failures and inspect the evidence</summary>
         <div class="recovery-advanced-grid">
           <div><label class="eng-select">Operation / acknowledgment<select id="operationScenario"><option value="success">Committed + acknowledged</option><option value="failure">Rejected + timeout; readback confirms active</option><option value="lost" selected>Committed + acknowledgment lost</option></select></label>
@@ -152,7 +153,6 @@ Evidence: call-042 → turn 6</code></pre></section>
         </div>
         <ol id="operationTrace" class="eng-event-list"></ol>
       </details>
-      <p class="fixture-label">SCRIPTED FIXTURE · NOT LIVE SIP/PSTN OR PRODUCTION MEDIA PROOF</p>
       <p class="eng-sources"><a href="https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/" target="_blank" rel="noopener noreferrer">Timeouts and idempotency ↗</a><a href="https://docs.livekit.io/agents/logic/tools/definition/" target="_blank" rel="noopener noreferrer">Speech interruption ≠ tool cancellation ↗</a></p>
     `
   }

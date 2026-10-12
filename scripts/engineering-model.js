@@ -107,7 +107,7 @@
     if (data.missingInvoiceImpact > 1) failures.push("invoice-impact explanation");
     if (data.evidence !== data.runs) failures.push("required evidence coverage");
     if (data.unanswered !== 0) failures.push("answered-turn requirement");
-    return { ...data, failures, decision: failures.length ? "HOLD" : "MEETS THIS TEST GATE", explanation: failures.length ? "Faster responses do not compensate for early replies, lost corrections, wrong tool arguments, or missing goal steps." : "This illustrative cohort meets the configured requirements. It is not a guarantee of zero failures in production." };
+    return { ...data, failures, decision: failures.length ? "HOLD" : "MEETS THIS TEST GATE", explanation: failures.length ? "Faster responses do not compensate for caller cut-offs, lost corrections, wrong tool arguments, or missing goal steps." : "This illustrative cohort meets the configured requirements. It is not a guarantee of zero failures in production." };
   }
   root.VoiceEvalEngineering = Object.freeze({ latency, controlRun, recoveryFactChecks, releaseReview });
 })(globalThis);
