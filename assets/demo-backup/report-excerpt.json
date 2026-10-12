@@ -1,0 +1,26 @@
+{
+  "source": "Actual VoiceAI QA deterministic evaluation of built-in synthetic Billing Address Change sample",
+  "evaluated_at": "2026-10-12T17:04:16.577736-04:00",
+  "scenario": "Billing Address Change",
+  "verdict": "needs_review",
+  "score": 100,
+  "scoring_mode": "transcript",
+  "semantic_review_required": true,
+  "completed_actions": [
+    "greet caller and identify intent",
+    "verify account using at least two identifiers",
+    "collect new billing address",
+    "confirm address update",
+    "explain next invoice impact"
+  ],
+  "missing_actions": [],
+  "task_completion_score": null,
+  "final_state_score": null,
+  "evidence": {
+    "transcript_present": true,
+    "action_trace_present": false,
+    "final_state_present": false
+  },
+  "scenario_contract_sha256": "e2adba8611b5bc053c3e3297b22f917fdd4aa08250debf0edd97c00d432b6a72",
+  "transcript": "User: Hi, I moved recently and need to update my billing address before the next invoice.\nAgent (starter sample agent): Thanks for calling. I can help with the billing address update.\nUser: I need help with my account.\nAgent (starter sample agent): Before I change the account, can you verify two details, like ZIP code and phone number?\nUser: Sure — ZIP 94107, phone ending 4421.\nAgent (starter sample agent): Thanks. What is the new billing address?\nUser: New billing address is 12 Market St, Apt 4.\nAgent (starter sample agent): I have the new address and can confirm the billing address update.\nUser: New billing address is 12 Market St, Apt 4.\nAgent (starter sample agent): The next invoice should reflect the updated billing address on the next billing cycle.\nAgent (starter sample agent): All set — The account is verified, the billing address update is confirmed, and the caller knows when the next invoice will reflect the change."
+}
