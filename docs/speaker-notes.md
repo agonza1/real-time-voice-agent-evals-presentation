@@ -2,6 +2,8 @@
 
 These speaker notes connect Alberto’s first voice agent with published WebRTC.ventures projects and the evaluation workflow for the Fall '26 audience. The cancellation and timing examples remain teaching fixtures.
 
+For stage delivery, use the concise [20-minute rehearsal notes](rehearsal-notes.md). The [standalone demo backup](../demo-backup.html) contains actual evaluator screenshots and an exported-result excerpt from clearly labeled synthetic billing-address evidence. It can open directly from disk without services.
+
 ## Title slide — orient the audience
 
 “A voice agent can understand the words and still mishandle the conversation. Today is about evaluating the complete real-time system: what the caller experiences, what the agent is allowed to do, and what actually happens.”
