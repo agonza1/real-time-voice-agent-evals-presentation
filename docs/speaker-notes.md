@@ -1,6 +1,6 @@
 # Speaker notes — Fall '26 Voice and Conversations on the Net
 
-These speaker notes connect Alberto’s first voice agent with published WebRTC.ventures projects and the evaluation workflow for the Fall '26 audience. The cancellation and timing examples remain teaching fixtures.
+These speaker notes connect voice technology milestones and Alberto’s own experience with published WebRTC.ventures projects and the evaluation workflow for the Fall '26 audience. The cancellation and timing examples remain teaching fixtures.
 
 For stage delivery, use the concise [30-minute rehearsal notes](rehearsal-notes.md). The [standalone demo backup](../demo-backup.html) contains actual evaluator screenshots and an exported-result excerpt from clearly labeled synthetic billing-address evidence. It can open directly from disk without services.
 
@@ -12,15 +12,33 @@ Keep the Echo Show story on the next slide rather than revealing it over the tit
 
 ## Story slide — the engineering question evolved
 
-In 2017, I built a voice assistant for the Echo Show. It could trigger impressive actions—but only when people used the phrases I had anticipated. The human had to adapt to the system.
+Keep this to the existing 1:15 budget: point across the five industry milestones, then to the photo and the control/evaluation bridge. This is a selective history, not a claim that voice technology began with these products or that each generation replaced the last.
 
-Years later, putting an open-ended language model on a WebRTC call felt like magic. The conversation no longer had to follow my script.
+### What to say
 
-But that changed the question. It was no longer just, “Can it understand me?” It became, “Can we keep the whole system under control when someone interrupts or a tool times out?”
+“In the 1960s, you could already call a computer, check inventory, and place an order. What changed is how we express the request.
 
-Building those controls leads to the next question: how do we know they still work when the model, network, or workflow changes?
+Siri and Alexa brought voice assistants into our phones and homes. In 2017, my Echo Show prototype worked—but people needed the phrases I anticipated.
 
-That is the question behind the VoiceAI QA (CAE): testing the complete interaction, inspecting the evidence, and deciding whether the next version is ready for production.
+Google Duplex demonstrated natural phone conversations in 2018. The crucial engineering detail: bounded tasks and human fallback.
+
+GPT-4 marked a shift toward more open-ended language. Putting an LLM on a WebRTC call felt like magic. The Realtime API followed in 2024 with streaming speech-to-speech.
+
+But understanding a request is not completing it correctly.
+
+Better models expand what the system can do. We define what it may do—and test that it did the right thing.
+
+That’s the perspective we bring from building real-time systems: the conversation, and everything around it.”
+
+### Historical anchors and qualifications — reference, not stage copy
+
+- **1960s · Early IVR / audio response.** IBM’s *System/360 Introduction to Teleprocessing* (July 1968), printed page 11 / PDF page 11, describes a caller entering a product number with telephone buttons, hearing an inventory-derived delivery estimate, and entering an order. It names the IBM 7770 and 7772. Use “early IVR,” not an unsupported exact first-invention date. The example is keypad input with recorded-word output, not speech recognition or an LLM. [IBM manual, Audio Response](https://bitsavers.trailing-edge.com/pdf/ibm/datacomm/GC30-2007-1_IBM_System360_Introduction_to_Teleprocessing_196807.pdf#page=11).
+- **2011 and 2014 · Voice assistants.** The Siri milestone is its introduction on iPhone 4S, not the first-ever Siri app or first voice assistant. Apple announced it October 4, 2011. Amazon dates the Echo launch to November 6, 2014. [Apple announcement](https://www.apple.com/newsroom/2011/10/04Apple-Launches-iPhone-4S-iOS-5-iCloud/) · [Amazon retrospective](https://www.amazon.science/blog/alexa-at-five-looking-back-looking-forward). The exact-phrases limitation describes Alberto’s prototype; do not generalize it to every Siri or Alexa interaction.
+- **2018 · Google Duplex.** Google’s May 8 announcement describes natural phone conversations in narrowly trained domains, with self-monitoring and a human operator for tasks it cannot finish autonomously. Naturalness did not imply general-purpose autonomy. [Google Research](https://research.google/blog/google-duplex-an-ai-system-for-accomplishing-real-world-tasks-over-the-phone/).
+- **2023 · GPT-4 and LLM-based voice.** GPT-4 was announced March 14, 2023 with text output; the slide places it inside a speech-recognition → text LLM → speech-synthesis pipeline. Do not describe the original GPT-4 launch as native speech-to-speech or the invention of conversational AI. Alberto’s later WebRTC experience is a personal milestone, not a claim about a deployment on the launch date. [GPT-4 announcement](https://openai.com/index/gpt-4-research/) · [Realtime announcement’s comparison with cascaded voice](https://openai.com/index/introducing-the-realtime-api/).
+- **2024 · Real-time speech.** October 1 marks the Realtime API **public beta**, with streaming audio input/output; it does not date the invention of real-time speech or claim general availability in 2024. This is a historical anchor, not a comparison of today’s providers. [Realtime API announcement](https://openai.com/index/introducing-the-realtime-api/).
+
+The through-line is engineering responsibility, not product ranking: a more flexible conversational interface still needs authorization, reliable state, safe fallback, and evidence-supported outcomes. Runtime controls enforce those boundaries; VoiceAI QA (CAE) tests their behavior as models, networks, tools, and workflows change. Keep the project examples on the next slide.
 
 ## Projects — slide 3
 
@@ -68,7 +86,7 @@ Treat this as a pacing budget until a spoken rehearsal confirms it. Slide 6 expl
 | Slide | Time | Finish by | Point and stage action |
 | --- | --- | --- | --- |
 | 1 · Title | 0:45 | 0:45 | Introduce evaluation of the complete real-time voice system. |
-| 2 · Story | 1:15 | 2:00 | Move from voice commands to controlling actions and testing changes. |
+| 2 · Story | 1:15 | 2:00 | Trace IVR → assistants → Duplex → LLM voice → real-time speech; connect the Echo Show / WebRTC milestones to control and evaluation. |
 | 3 · Projects | 1:30 | 3:30 | Emphasize our WebRTC, audio capture, avatar orchestration, and SIP engineering experience. |
 | 4 · Problem | 1:15 | 4:45 | For a period-end request, the operation-matched readback shows no cancellation scheduled; the timeout alone proves neither success nor failure. |
 | 5 · System | 1:15 | 6:00 | SIP establishes the session; RTP carries audio. Trace the conceptual cascade and return audio, with tool requests and results. |

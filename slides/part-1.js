@@ -60,21 +60,39 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     className: "story-slide",
     html: `
       <div class="section-heading story-heading">
-        <p class="eyebrow">MY FIRST VOICE AGENT → THE NEXT QUESTION</p>
+        <p class="eyebrow">FROM IVR TO REAL-TIME VOICE AGENTS</p>
         <h2 id="story-title">The technology changed.<br><span>So did the question.</span></h2>
       </div>
+      <ol class="story-timeline" aria-label="Selected voice technology milestones">
+        <li><p class="story-era">1960s</p><h3>Early IVR</h3><p>IBM audio response.<br>Keypad in, speech out.</p></li>
+        <li><p class="story-era">2011 · 2014</p><h3>Voice assistants</h3><p>Siri on iPhone.<br>Echo + Alexa.</p></li>
+        <li><p class="story-era">2018</p><h3>Google Duplex</h3><p>Natural calls.<br>Bounded tasks + human fallback.</p></li>
+        <li><p class="story-era">2023</p><h3>LLM-based voice</h3><p>GPT-4 with<br>STT → LLM → TTS.</p></li>
+        <li class="story-now"><p class="story-era">2024</p><h3>Real-time speech</h3><p>Realtime API beta.<br>Streaming audio in + out.</p></li>
+      </ol>
       <div class="story-layout">
         <figure class="story-photo">
           <img src="https://raw.githubusercontent.com/agonza1/agentic-contact-center/36f9cf3fb92843af516f8a8e09ea4cf0f4c52fc9/assets/cluecon/alberto-echo-show-prototype.jpg" alt="Alberto using his Echo Show voice assistant prototype" loading="eager" decoding="async" referrerpolicy="no-referrer">
           <figcaption>2017 · My Echo Show prototype <a href="https://github.com/agonza1/agentic-contact-center/blob/36f9cf3fb92843af516f8a8e09ea4cf0f4c52fc9/assets/cluecon/alberto-echo-show-prototype.jpg" target="_blank" rel="noopener noreferrer">Original prototype photo ↗</a></figcaption>
         </figure>
-        <ol class="story-arc" aria-label="From voice commands to production evaluation">
-          <li><p class="story-era"><span>01</span> 2017 · ECHO SHOW</p><h3>“Can it understand me?”</h3><p>It worked—with the exact phrases I anticipated.</p></li>
-          <li><p class="story-era"><span>02</span> OPEN-ENDED VOICE · WEBRTC</p><h3>“Can we control it?”</h3><p>Natural conversation. Bounded tools and state.</p></li>
-          <li class="story-now"><p class="story-era"><span>03</span> PRODUCTION · EVALUATION</p><h3>“Does it still work?”</h3><p>Models change. Callers interrupt. Tools time out.</p></li>
-        </ol>
+        <div class="story-milestone">
+          <p class="story-era">2017 · ECHO SHOW</p><h3>“Can it understand me?”</h3>
+          <p>My prototype needed the exact phrases I anticipated.</p>
+        </div>
+        <div class="story-milestone">
+          <p class="story-era">OPEN-ENDED VOICE · WEBRTC</p><h3>“Can we control it?”</h3>
+          <p>The conversation opened up. Permissions and state still belonged to the application.</p>
+        </div>
       </div>
       <div class="story-bridge"><p><span>RUNTIME CONTROL</span><strong>Build the controls.</strong></p><span class="story-arrow" aria-hidden="true">→</span><p><span>VoiceAI QA (CAE)</span><strong>Test that they hold as the system changes.</strong></p></div>
+      <p class="story-sources">History sources:
+        <a href="https://bitsavers.trailing-edge.com/pdf/ibm/datacomm/GC30-2007-1_IBM_System360_Introduction_to_Teleprocessing_196807.pdf#page=11" target="_blank" rel="noopener noreferrer">IBM ↗</a>
+        <a href="https://www.apple.com/newsroom/2011/10/04Apple-Launches-iPhone-4S-iOS-5-iCloud/" target="_blank" rel="noopener noreferrer">Siri ↗</a>
+        <a href="https://www.amazon.science/blog/alexa-at-five-looking-back-looking-forward" target="_blank" rel="noopener noreferrer">Echo ↗</a>
+        <a href="https://research.google/blog/google-duplex-an-ai-system-for-accomplishing-real-world-tasks-over-the-phone/" target="_blank" rel="noopener noreferrer">Duplex ↗</a>
+        <a href="https://openai.com/index/gpt-4-research/" target="_blank" rel="noopener noreferrer">GPT-4 ↗</a>
+        <a href="https://openai.com/index/introducing-the-realtime-api/" target="_blank" rel="noopener noreferrer">Realtime API ↗</a>
+      </p>
     `
   },
   {
