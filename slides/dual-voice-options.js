@@ -41,6 +41,12 @@
           <span class="voice-framework-arrow" aria-hidden="true">↔</span>
           <p>GPT-Live <span>+ async delegation</span></p>
         </div>
+        <div class="voice-model-options" aria-label="Other speech model options">
+          <span>Other speech options</span>
+          <a href="https://ai.google.dev/gemini-api/docs/live-api" target="_blank" rel="noopener noreferrer">Gemini Live ↗</a>
+          <a href="https://aws.amazon.com/nova/models/" target="_blank" rel="noopener noreferrer">Amazon Nova Sonic ↗</a>
+          <a href="https://docs.ultravox.ai/voices/bring-your-own" target="_blank" rel="noopener noreferrer" title="Ultravox understands audio directly and outputs text; TTS generates the spoken response.">Ultravox + TTS ↗</a>
+        </div>
         ${sources}
       `
     },

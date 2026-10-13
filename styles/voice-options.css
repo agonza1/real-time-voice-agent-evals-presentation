@@ -1,5 +1,6 @@
 /* Editable continuous-voice diagrams. Theme, typography, and stage controls are shared. */
 .voice-option-diagram { display: block; width: 100%; height: clamp(320px, 51vh, 570px); overflow: visible; font-family: var(--font); }
+.voice-architecture-diagram { height: clamp(300px, 48vh, 550px); }
 .voice-svg-node { fill: var(--surface); stroke-width: 2; }
 .cyan-node { stroke: var(--cyan); }
 .violet-node { stroke: var(--violet); }
@@ -17,6 +18,9 @@
 .voice-framework-arrow { color: var(--violet); font-size: 1.6rem; }
 .voice-frameworks p { margin: 0; color: var(--cyan); font-weight: 650; }
 .voice-frameworks p span { color: var(--muted); font-weight: 400; }
+.voice-model-options { display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; gap: 6px 18px; margin: 10px 0 0; color: var(--muted); font-size: .82rem; }
+.voice-model-options a { color: var(--cyan); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.voice-model-options a:hover, .voice-model-options a:focus-visible { color: var(--text); }
 .voice-option-diagram .cyan { fill: var(--cyan); }
 .voice-option-diagram .violet { fill: var(--violet); }
 .voice-option-diagram .green { fill: var(--green); }
