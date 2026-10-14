@@ -1,0 +1,49 @@
+name: Validate presentation PR
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: presentation-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate presentation and original photo
+        run: npm test
+      - name: Capture history slide at presentation sizes
+        run: |
+          mkdir -p /tmp/history-preview
+          python3 -m http.server 8080 --bind 127.0.0.1 > /tmp/history-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/ > /dev/null; then break; fi
+            sleep 0.5
+          done
+          curl --fail --silent http://127.0.0.1:8080/ > /dev/null
+          for size in 1440,900 1280,720; do
+            google-chrome --headless --no-sandbox --disable-gpu --hide-scrollbars \
+              --window-size="$size" --virtual-time-budget=10000 \
+              --screenshot="/tmp/history-preview/history-${size/,/x}.png" \
+              'http://127.0.0.1:8080/?present=1#story'
+          done
+      - name: Upload slide previews
+        uses: actions/upload-artifact@v4
+        with:
+          name: history-slide-preview
+          path: /tmp/history-preview/*.png
+          if-no-files-found: error
+          retention-days: 7
