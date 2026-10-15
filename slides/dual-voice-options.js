@@ -9,14 +9,14 @@
         <div class="section-heading"><p class="eyebrow">CONTINUOUS VOICE · ARCHITECTURE</p><h2 id="dual-voice-architecture-title">One conversation. <span>Two paths.</span></h2><p>Keep audio flowing. Coordinate tools and verified results.</p></div>
         <svg class="voice-option-diagram voice-architecture-diagram" viewBox="0 0 1280 480" role="img" aria-labelledby="voice-architecture-title voice-architecture-desc">
           <title id="voice-architecture-title">A continuous voice loop delegates work to a separate reasoner.</title>
-          <desc id="voice-architecture-desc">Caller audio flows into the native speech-to-speech voice model while generated speech returns to the caller. The model listens while speaking. It delegates work asynchronously to a reasoning model, which exchanges requests and results with tools. Results return to the voice model.</desc>
+          <desc id="voice-architecture-desc">Caller audio flows into the native speech-to-speech voice model while generated speech returns to the caller. With full-duplex support, the model listens while speaking. It delegates work asynchronously to a reasoning model, which exchanges requests and results with tools. Results return to the voice model.</desc>
           ${markers("voice-architecture")}
           <text x="40" y="32" class="voice-svg-kicker cyan">LIVE AUDIO</text>
           <rect x="40" y="76" width="270" height="138" rx="20" class="voice-svg-node cyan-node"/>
           <text x="175" y="155" class="voice-svg-node-name" text-anchor="middle">Caller</text>
           <rect x="670" y="76" width="350" height="138" rx="20" class="voice-svg-node cyan-node"/>
-          <text x="845" y="135" class="voice-svg-node-name" text-anchor="middle">GPT-Live</text>
-          <text x="845" y="177" class="voice-svg-sub" text-anchor="middle">native speech ↔ speech</text>
+          <text x="845" y="135" class="voice-svg-node-name" text-anchor="middle">Speech-to-speech</text>
+          <text x="845" y="177" class="voice-svg-sub" text-anchor="middle">model</text>
           <path d="M335 115 H645" class="voice-svg-arrow cyan-arrow"/>
           <text x="490" y="96" class="voice-svg-label cyan" text-anchor="middle">listen</text>
           <path d="M645 180 H335" class="voice-svg-arrow cyan-arrow"/>
@@ -36,13 +36,14 @@
           <path d="M973 380 H1030" class="voice-svg-arrow violet-arrow"/>
           <path d="M1030 430 H973" class="voice-svg-arrow green-arrow"/>
         </svg>
-        <div class="voice-frameworks" aria-label="LiveKit and Pipecat provide GPT-Live integrations with asynchronous delegation">
-          <div class="voice-framework-names"><a href="https://docs.livekit.io/agents/models/realtime/plugins/gpt-live/" target="_blank" rel="noopener noreferrer" title="LiveKit GPTLiveModel">LiveKit</a><a href="https://docs.pipecat.ai/api-reference/server/services/s2s/openai-live" target="_blank" rel="noopener noreferrer" title="Pipecat OpenAILiveLLMService">Pipecat</a></div>
+        <div class="voice-frameworks" aria-label="Speech-model orchestration with LiveKit and Pipecat">
+          <div class="voice-framework-names"><a href="https://docs.livekit.io/agents/models/realtime/plugins/gpt-live/" target="_blank" rel="noopener noreferrer" title="Example integration: LiveKit GPTLiveModel">LiveKit</a><a href="https://docs.pipecat.ai/api-reference/server/services/s2s/openai-live" target="_blank" rel="noopener noreferrer" title="Example integration: Pipecat OpenAILiveLLMService">Pipecat</a></div>
           <span class="voice-framework-arrow" aria-hidden="true">↔</span>
-          <p>GPT-Live <span>+ async delegation</span></p>
+          <p>Speech model <span>+ async delegation</span></p>
         </div>
-        <div class="voice-model-options" aria-label="Other speech model options">
-          <span>Other speech options</span>
+        <div class="voice-model-options" aria-label="Speech model options">
+          <span>Speech options</span>
+          <a href="https://openai.com/index/continuous-voice-interaction-with-gpt-live/" target="_blank" rel="noopener noreferrer">GPT-Live ↗</a>
           <a href="https://ai.google.dev/gemini-api/docs/live-api" target="_blank" rel="noopener noreferrer">Gemini Live ↗</a>
           <a href="https://aws.amazon.com/nova/models/" target="_blank" rel="noopener noreferrer">Amazon Nova Sonic ↗</a>
           <a href="https://docs.ultravox.ai/voices/bring-your-own" target="_blank" rel="noopener noreferrer" title="Ultravox understands audio directly and outputs text; TTS generates the spoken response.">Ultravox + TTS ↗</a>
