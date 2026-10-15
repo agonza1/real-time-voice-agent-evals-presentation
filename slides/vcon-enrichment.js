@@ -6,9 +6,8 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
       <div class="section-heading vcon-enrichment-heading">
         <p class="eyebrow">ILLUSTRATIVE EVIDENCE + REVIEW</p>
         <h2 id="vcon-enrichment-title">Voice-agent evidence <span>inside vCon</span></h2>
-        <p>Requirement → finding → evidence. Keep the unresolved outcome visible.</p>
+        <p>Capture → calculate → assess. Link each result to its inputs.</p>
       </div>
-
       <div class="vcon-json-layout" data-json-explorer data-json-focus="evaluation">
         <article class="vcon-json-panel" aria-label="Abbreviated illustrative vCon pseudo JSON">
           <div class="vcon-json-toolbar">
@@ -18,99 +17,88 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
           <pre class="vcon-json-code"><code><span class="json-line json-neutral"><span class="json-punctuation">{</span></span>
 <span class="json-line json-core">  <span class="json-key">"vcon"</span><span class="json-punctuation">:</span> <span class="json-string">"0.4.0"</span><span class="json-punctuation">,</span></span>
 <span class="json-line json-core">  <span class="json-key">"uuid"</span><span class="json-punctuation">:</span> <span class="json-string">"4b4f…"</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-core">  <span class="json-key">"created_at"</span><span class="json-punctuation">:</span> <span class="json-string">"2026-10-15T14:50:00Z"</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-core">  <span class="json-key">"subject"</span><span class="json-punctuation">:</span> <span class="json-string">"cancellation-rescue"</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-core">  <span class="json-key">"parties"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span> <span class="json-punctuation">{</span> <span class="json-key">"name"</span><span class="json-punctuation">:</span> <span class="json-string">"Caller"</span><span class="json-punctuation">,</span> <span class="json-ellipsis">…</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span> <span class="json-punctuation">{</span> <span class="json-key">"name"</span><span class="json-punctuation">:</span> <span class="json-string">"Agent"</span><span class="json-punctuation">,</span> <span class="json-ellipsis">…</span> <span class="json-punctuation">}</span> <span class="json-punctuation">]</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-core">  <span class="json-key">"parties"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span> <span class="json-ellipsis">… Caller, Agent, Test collector …</span> <span class="json-punctuation">]</span><span class="json-punctuation">,</span></span>
 <span class="json-line json-neutral json-skip">  <span class="json-ellipsis">… envelope fields omitted …</span></span>
 <span class="json-line json-dialog">  <span class="json-key">"dialog"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span></span>
-<span class="json-line json-dialog">    <span class="json-punctuation">{</span> <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"text"</span><span class="json-punctuation">,</span> <span class="json-key">"parties"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span><span class="json-number">0</span><span class="json-punctuation">]</span><span class="json-punctuation">,</span> <span class="json-key">"body"</span><span class="json-punctuation">:</span> <span class="json-string">"Please cancel my plan."</span><span class="json-punctuation">,</span> <span class="json-ellipsis">…</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-dialog">    <span class="json-punctuation">{</span> <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"text"</span><span class="json-punctuation">,</span> <span class="json-key">"parties"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span><span class="json-number">1</span><span class="json-punctuation">]</span><span class="json-punctuation">,</span> <span class="json-key">"body"</span><span class="json-punctuation">:</span> <span class="json-string">"I couldn’t confirm cancellation."</span><span class="json-punctuation">,</span> <span class="json-ellipsis">…</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-dialog">    <span class="json-punctuation">{</span> <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"recording"</span><span class="json-punctuation">,</span> <span class="json-key">"parties"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span><span class="json-number">0</span><span class="json-punctuation">,</span> <span class="json-number">1</span><span class="json-punctuation">]</span><span class="json-punctuation">,</span> <span class="json-key">"url"</span><span class="json-punctuation">:</span> <span class="json-string">"https://…"</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-dialog">      <span class="json-key">"content_hash"</span><span class="json-punctuation">:</span> <span class="json-string">"sha512-pQ1j8Y…"</span><span class="json-punctuation">,</span> <span class="json-key">"duration"</span><span class="json-punctuation">:</span> <span class="json-number">18.2</span><span class="json-punctuation">,</span> <span class="json-ellipsis">…</span> <span class="json-punctuation">}</span></span>
+<span class="json-line json-dialog">    <span class="json-punctuation">{</span> <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"text"</span><span class="json-punctuation">,</span> <span class="json-key">"parties"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span><span class="json-number">0</span><span class="json-punctuation">]</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-dialog">      <span class="json-key">"body"</span><span class="json-punctuation">:</span> <span class="json-string">"Please cancel my plan."</span><span class="json-punctuation">,</span> … <span class="json-punctuation">}</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-dialog">    <span class="json-punctuation">{</span> <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"text"</span><span class="json-punctuation">,</span> <span class="json-key">"parties"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span><span class="json-number">1</span><span class="json-punctuation">]</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-dialog">      <span class="json-key">"body"</span><span class="json-punctuation">:</span> <span class="json-string">"I couldn’t confirm cancellation."</span><span class="json-punctuation">,</span> … <span class="json-punctuation">}</span></span>
 <span class="json-line json-dialog">  <span class="json-punctuation">]</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-transcript">  <span class="json-key">"analysis"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span></span>
-<span class="json-line json-transcript">    <span class="json-punctuation">{</span> <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"transcript"</span><span class="json-punctuation">,</span> <span class="json-key">"schema"</span><span class="json-punctuation">:</span> <span class="json-string json-schema">"cae-execution-transcript-v1"</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-transcript">      <span class="json-key">"body"</span><span class="json-punctuation">:</span> <span class="json-punctuation">{</span> <span class="json-key">"turns"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span> <span class="json-ellipsis">… spoken_text + peer_asr_receipt …</span> <span class="json-punctuation">]</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span> <span class="json-ellipsis">…</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-evaluation">    <span class="json-punctuation">{</span> <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"evaluation"</span><span class="json-punctuation">,</span> <span class="json-key">"dialog"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span><span class="json-number">0, 1</span><span class="json-punctuation">]</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-evaluation">      <span class="json-key">"vendor"</span><span class="json-punctuation">:</span> <span class="json-string">"Example evaluator"</span><span class="json-punctuation">,</span> <span class="json-key">"schema"</span><span class="json-punctuation">:</span> <span class="json-string json-schema">"illustrative-review-v1"</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-evaluation">      <span class="json-key">"mediatype"</span><span class="json-punctuation">:</span> <span class="json-string">"application/json"</span><span class="json-punctuation">,</span> <span class="json-key">"encoding"</span><span class="json-punctuation">:</span> <span class="json-string">"json"</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-evaluation">      <span class="json-key">"body"</span><span class="json-punctuation">:</span> <span class="json-punctuation">{</span></span>
-<span class="json-line json-evaluation">        <span class="json-key">"verdict"</span><span class="json-punctuation">:</span> <span class="json-string">"needs_review"</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-evaluation">        <span class="json-key">"checks"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[{</span> <span class="json-key">"requirement"</span><span class="json-punctuation">:</span> <span class="json-string">"State uncertainty"</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-evaluation">          <span class="json-key">"result"</span><span class="json-punctuation">:</span> <span class="json-string">"supported"</span><span class="json-punctuation">,</span> <span class="json-key">"evidence"</span><span class="json-punctuation">:</span> <span class="json-string">"dialog[1]"</span> <span class="json-punctuation">}],</span></span>
-<span class="json-line json-evaluation">        <span class="json-key">"final_state"</span><span class="json-punctuation">:</span> <span class="json-punctuation">{</span> <span class="json-key">"complete"</span><span class="json-punctuation">:</span> <span class="json-boolean">null</span><span class="json-punctuation">,</span> <span class="json-key">"outcome"</span><span class="json-punctuation">:</span> <span class="json-string">"unknown"</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span></span>
-<span class="json-line json-evaluation">        <span class="json-key">"review_reason"</span><span class="json-punctuation">:</span> <span class="json-string">"No matched operation result"</span></span>
-<span class="json-line json-evaluation">      <span class="json-punctuation">}</span> <span class="json-punctuation">}</span></span>
-<span class="json-line json-neutral">  <span class="json-punctuation">]</span></span>
+<span class="json-line json-transcript">  <span class="json-key">"attachments"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span></span>
+<span class="json-line json-transcript">    <span class="json-punctuation">{</span> <span class="json-key">"party"</span><span class="json-punctuation">:</span> <span class="json-number">2</span><span class="json-punctuation">,</span> <span class="json-key">"dialog"</span><span class="json-punctuation">:</span> <span class="json-number">0</span><span class="json-punctuation">,</span> <span class="json-key">"start"</span><span class="json-punctuation">:</span> <span class="json-string">"2026-10-14T14:50:00Z"</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-transcript">      <span class="json-key">"body"</span><span class="json-punctuation">:</span> <span class="json-punctuation">{</span> <span class="json-key">"asr"</span><span class="json-punctuation">:</span> <span class="json-punctuation">{</span> <span class="json-key">"confidence"</span><span class="json-punctuation">:</span> <span class="json-punctuation">{</span> <span class="json-key">"value"</span><span class="json-punctuation">:</span> <span class="json-number">0.92</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span> <span class="json-ellipsis">… }, …</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span> … <span class="json-punctuation">}</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-transcript">    <span class="json-punctuation">{</span> <span class="json-key">"party"</span><span class="json-punctuation">:</span> <span class="json-number">2</span><span class="json-punctuation">,</span> <span class="json-key">"dialog"</span><span class="json-punctuation">:</span> <span class="json-number">1</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-transcript">      <span class="json-key">"body"</span><span class="json-punctuation">:</span> <span class="json-punctuation">{</span> <span class="json-key">"rtc_stats"</span><span class="json-punctuation">:</span> <span class="json-punctuation">{</span> <span class="json-ellipsis">… raw snapshots …</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-transcript">        <span class="json-key">"tool_events"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span> <span class="json-ellipsis">… request + timeout …</span> <span class="json-punctuation">]</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-transcript">        <span class="json-key">"coverage"</span><span class="json-punctuation">:</span> <span class="json-punctuation">{</span> <span class="json-key">"backend_state"</span><span class="json-punctuation">:</span> <span class="json-string">"not_captured"</span><span class="json-punctuation">,</span> <span class="json-ellipsis">… }, …</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span> … <span class="json-punctuation">}</span></span>
+<span class="json-line json-transcript">  <span class="json-punctuation">]</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-evaluation">  <span class="json-key">"analysis"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span></span>
+<span class="json-line json-evaluation">    <span class="json-punctuation">{</span> <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"report"</span><span class="json-punctuation">,</span> <span class="json-key">"dialog"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span><span class="json-number">0</span><span class="json-punctuation">,</span> <span class="json-number">1</span><span class="json-punctuation">]</span><span class="json-punctuation">,</span> <span class="json-key">"attachment"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span><span class="json-number">0</span><span class="json-punctuation">,</span> <span class="json-number">1</span><span class="json-punctuation">]</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-evaluation">      <span class="json-key">"vendor"</span><span class="json-punctuation">:</span> <span class="json-string">"Example evaluator"</span><span class="json-punctuation">,</span> <span class="json-key">"schema"</span><span class="json-punctuation">:</span> <span class="json-string">"illustrative-checks-v1"</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-evaluation">      <span class="json-key">"body"</span><span class="json-punctuation">:</span> <span class="json-punctuation">{</span> <span class="json-key">"checks"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span></span>
+<span class="json-line json-evaluation">        <span class="json-punctuation">{</span> <span class="json-key">"metric"</span><span class="json-punctuation">:</span> <span class="json-string">"response_gap"</span><span class="json-punctuation">,</span> <span class="json-key">"value"</span><span class="json-punctuation">:</span> <span class="json-number">700</span><span class="json-punctuation">,</span> <span class="json-key">"unit"</span><span class="json-punctuation">:</span> <span class="json-string">"ms"</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-evaluation">          <span class="json-key">"evidence"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span><span class="json-string">"/attachments/0/body/events/0"</span><span class="json-punctuation">,</span> <span class="json-ellipsis">…] }, …</span> <span class="json-punctuation">]</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-evaluation">        <span class="json-key">"final_state"</span><span class="json-punctuation">:</span> <span class="json-punctuation">{</span> <span class="json-key">"complete"</span><span class="json-punctuation">:</span> <span class="json-boolean">null</span><span class="json-punctuation">,</span> <span class="json-key">"outcome"</span><span class="json-punctuation">:</span> <span class="json-string">"unknown"</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span> <span class="json-ellipsis">… }, …</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-evaluation">    <span class="json-punctuation">{</span> <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"report"</span><span class="json-punctuation">,</span> <span class="json-key">"schema"</span><span class="json-punctuation">:</span> <span class="json-string">"illustrative-judge-v1"</span><span class="json-punctuation">,</span></span>
+<span class="json-line json-evaluation">      <span class="json-key">"body"</span><span class="json-punctuation">:</span> <span class="json-punctuation">{</span> <span class="json-key">"status"</span><span class="json-punctuation">:</span> <span class="json-string">"not_run"</span><span class="json-punctuation">,</span> <span class="json-key">"assessments"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span><span class="json-punctuation">]</span><span class="json-punctuation">,</span> <span class="json-ellipsis">… }, …</span> <span class="json-punctuation">}</span></span>
+<span class="json-line json-evaluation">  <span class="json-punctuation">]</span></span>
 <span class="json-line json-neutral"><span class="json-punctuation">}</span></span></code></pre>
         </article>
-
         <aside class="vcon-json-inspector" aria-label="Interactive vCon section magnifier">
           <div class="json-zoom-square" aria-live="polite" aria-label="Magnified vCon section">
             <article class="json-zoom-view" data-json-zoom-view="core" aria-hidden="true">
-              <span class="zoom-kicker">CORE VCON</span>
+              <span class="zoom-kicker">CORE VCON · DRAFT-04</span>
               <h3>Portable envelope</h3>
-              <pre><code><span class="json-punctuation">{</span>
-  <span class="json-key">"vcon"</span><span class="json-punctuation">:</span> <span class="json-string">"0.4.0"</span><span class="json-punctuation">,</span>
-  <span class="json-key">"uuid"</span><span class="json-punctuation">:</span> <span class="json-string">"4b4f…"</span><span class="json-punctuation">,</span>
-  <span class="json-key">"subject"</span><span class="json-punctuation">:</span> <span class="json-string">"cancellation-rescue"</span><span class="json-punctuation">,</span>
-  <span class="json-key">"parties"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span>
-    <span class="json-punctuation">{</span> <span class="json-key">"name"</span><span class="json-punctuation">:</span> <span class="json-string">"Caller"</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span>
-    <span class="json-punctuation">{</span> <span class="json-key">"name"</span><span class="json-punctuation">:</span> <span class="json-string">"Agent"</span> <span class="json-punctuation">}</span>
-  <span class="json-punctuation">]</span>
-<span class="json-punctuation">}</span></code></pre>
+              <pre><code><span class="json-key">"vcon"</span><span class="json-punctuation">:</span> <span class="json-string">"0.4.0"</span><span class="json-punctuation">,</span>
+<span class="json-key">"parties"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span>
+  <span class="json-punctuation">{</span> <span class="json-key">"name"</span><span class="json-punctuation">:</span> <span class="json-string">"Caller"</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span>
+  <span class="json-punctuation">{</span> <span class="json-key">"name"</span><span class="json-punctuation">:</span> <span class="json-string">"Agent"</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span>
+  <span class="json-punctuation">{</span> <span class="json-key">"name"</span><span class="json-punctuation">:</span> <span class="json-string">"Test collector"</span> <span class="json-punctuation">}</span>
+<span class="json-punctuation">]</span></code></pre>
+              <p class="json-dialog-pointer">Collector is the attachment contributor.</p>
             </article>
             <article class="json-zoom-view" data-json-zoom-view="dialog" aria-hidden="true">
-              <span class="zoom-kicker">DIALOG EVIDENCE</span>
-              <h3>Follow the finding to speech</h3>
-              <pre><code><span class="json-key">"dialog"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span>
-  <span class="json-punctuation">{</span> <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"text"</span><span class="json-punctuation">,</span>
-    <span class="json-key">"parties"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span><span class="json-number">0</span><span class="json-punctuation">]</span><span class="json-punctuation">,</span>
-    <span class="json-key">"body"</span><span class="json-punctuation">:</span> <span class="json-string">"Please cancel my plan."</span> <span class="json-punctuation">}</span><span class="json-punctuation">,</span>
-  <span class="json-punctuation">{</span> <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"text"</span><span class="json-punctuation">,</span>
-    <span class="json-key">"parties"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span><span class="json-number">1</span><span class="json-punctuation">]</span><span class="json-punctuation">,</span>
-    <span class="json-key">"body"</span><span class="json-punctuation">:</span>
-      <span class="json-string">"I couldn’t confirm cancellation."</span> <span class="json-punctuation">}</span>
-<span class="json-punctuation">]</span></code></pre>
-              <p class="json-dialog-pointer"><code>dialog[1]</code> → agent’s uncertainty statement</p>
-            </article>
-            <article class="json-zoom-view" data-json-zoom-view="transcript" aria-hidden="true">
-              <span class="zoom-kicker">TOOL TRANSCRIPT ANALYSIS</span>
-              <h3>Speech provenance</h3>
-              <pre><code><span class="json-punctuation">{</span>
-  <span class="json-key">"type"</span><span class="json-punctuation">:</span> <span class="json-string">"transcript"</span><span class="json-punctuation">,</span>
-  <span class="json-key">"vendor"</span><span class="json-punctuation">:</span> <span class="json-string">"ConversationAgentEvals"</span><span class="json-punctuation">,</span>
-  <span class="json-key">"product"</span><span class="json-punctuation">:</span> <span class="json-string">"CAE Execution"</span><span class="json-punctuation">,</span>
-  <span class="json-key">"schema"</span><span class="json-punctuation">:</span>
-    <span class="json-string json-schema">"cae-execution-transcript-v1"</span><span class="json-punctuation">,</span>
-  <span class="json-key">"body"</span><span class="json-punctuation">:</span> <span class="json-punctuation">{</span> <span class="json-key">"turns"</span><span class="json-punctuation">:</span> <span class="json-punctuation">[</span>
-    <span class="json-ellipsis">… source speech + ASR receipt …</span>
-  <span class="json-punctuation">]</span> <span class="json-punctuation">}</span>
-<span class="json-punctuation">}</span></code></pre>
-            </article>
-            <article class="json-zoom-view is-active" data-json-zoom-view="evaluation" aria-hidden="false">
-              <span class="zoom-kicker">ILLUSTRATIVE APPLICATION REVIEW</span>
-              <h3>Why needs_review?</h3>
+              <span class="zoom-kicker">DIALOG · CONVERSATION CONTENT</span>
+              <h3>Keep what was said</h3>
               <dl class="json-review-trail">
-                <div><dt>Requirement</dt><dd>State uncertainty</dd></div>
-                <div><dt>Finding</dt><dd class="json-review-supported">Supported by the dialogue ✓</dd></div>
-                <div><dt>Evidence · <code>dialog[1]</code></dt><dd>“I couldn’t confirm cancellation.”</dd></div>
-                <div><dt>Outcome · unknown</dt><dd>No matched operation result.</dd></div>
+                <div><dt>Caller · <code>/dialog/0/body</code></dt><dd>“Please cancel my plan.”</dd></div>
+                <div><dt>Agent · <code>/dialog/1/body</code></dt><dd>“I couldn’t confirm cancellation.”</dd></div>
+                <div><dt>Media, when available</dt><dd>Recording + integrity hash</dd></div>
               </dl>
             </article>
+            <article class="json-zoom-view" data-json-zoom-view="transcript" aria-hidden="true">
+              <span class="zoom-kicker">ATTACHMENTS · COLLECTOR OBSERVATIONS</span>
+              <h3>Inputs for the four dimensions</h3>
+              <dl class="json-review-trail json-capture-trail">
+                <div><dt>◉ Conversation</dt><dd>RTP counters + turn timestamps</dd></div>
+                <div><dt>≋ Comprehension</dt><dd>ASR text + provider confidence</dd></div>
+                <div><dt>⌘ Conduct</dt><dd>Tool name, arguments + response</dd></div>
+                <div><dt>✓ Completion</dt><dd>State / receipt, when available</dd></div>
+              </dl>
+              <p class="json-dialog-pointer">Retain source, clock, IDs + missing inputs.</p>
+            </article>
+            <article class="json-zoom-view is-active" data-json-zoom-view="evaluation" aria-hidden="false">
+              <span class="zoom-kicker">EVALUATION · SEPARATE REPORTS</span>
+              <h3>Evidence first. Judgment separate.</h3>
+              <dl class="json-review-trail json-evaluation-trail">
+                <div><dt>01 · Captured inputs</dt><dd>Audio / text · telemetry · tool events</dd></div>
+                <div><dt>02 · Calculated checks</dt><dd><code>gap: 700 ms · IDs match ✓</code></dd></div>
+                <div><dt>03 · Optional LLM assessment</dt><dd>Verdict + rationale + evidence refs</dd></div>
+              </dl>
+              <p class="json-dialog-pointer">This fixture: judge not run · outcome unknown.</p>
+            </article>
           </div>
-
           <div class="json-focus-grid" role="group" aria-label="Choose a vCon section to magnify">
             <button class="json-focus-button core-focus" data-json-focus-button="core" aria-pressed="false" type="button"><span>01</span><b>Core envelope</b><small>version · parties</small></button>
             <button class="json-focus-button dialog-focus" data-json-focus-button="dialog" aria-pressed="false" type="button"><span>02</span><b>Dialog</b><small>text · recording</small></button>
-            <button class="json-focus-button transcript-focus" data-json-focus-button="transcript" aria-pressed="false" type="button"><span>03</span><b>Transcript</b><small>speech provenance</small></button>
-            <button class="json-focus-button evaluation-focus is-active" data-json-focus-button="evaluation" aria-pressed="true" type="button"><span>04</span><b>Evaluation</b><small>requirement · evidence · limits</small></button>
+            <button class="json-focus-button transcript-focus" data-json-focus-button="transcript" aria-pressed="false" type="button"><span>03</span><b>Captured evidence</b><small>ASR · media · tools · state</small></button>
+            <button class="json-focus-button evaluation-focus is-active" data-json-focus-button="evaluation" aria-pressed="true" type="button"><span>04</span><b>Evaluation</b><small>code checks ≠ judge assessment</small></button>
           </div>
-
           <article class="json-boundary-note">
-            <strong>Dialogue supports the finding. Cancellation stays unknown.</strong>
-            <p>Illustrative review fields, not a literal CAE export. External recordings use HTTPS + <code>sha512-&lt;base64url digest&gt;</code>.</p>
-            <nav aria-label="vCon enrichment sources"><a href="https://datatracker.ietf.org/doc/html/draft-ietf-vcon-vcon-core-04#section-4.5" rel="noreferrer" target="_blank">vCon analysis ↗</a><a href="./assets/examples/vcon-review-example.json" rel="noreferrer" target="_blank">Full text-only example ↗</a></nav>
+            <strong>No matched operation result → outcome unknown.</strong>
+            <p>Synthetic data · app schemas, not a literal CAE export. ASR confidence ≠ correctness. External recordings use HTTPS + <code>sha512-&lt;base64url digest&gt;</code>.</p>
+            <nav aria-label="vCon enrichment sources"><a href="https://datatracker.ietf.org/doc/html/draft-ietf-vcon-vcon-core-04#section-4.4" rel="noreferrer" target="_blank">vCon draft-04 ↗</a><a href="./assets/examples/vcon-review-example.json" rel="noreferrer" target="_blank">Full evidence example ↗</a></nav>
           </article>
         </aside>
       </div>
