@@ -323,6 +323,8 @@
   font-weight: 750;
 }
 .json-boundary-note a:hover { color: var(--text); }
+.json-boundary-note nav button { padding: 0; border: 0; background: transparent; color: var(--cyan); font: 750 .57rem var(--font); cursor: pointer; }
+.json-boundary-note nav button:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
 
 body.presenting .vcon-enrichment-heading { margin-bottom: 15px; }
 body.presenting .json-line { font-size: clamp(.82rem, .96vw, .96rem); }

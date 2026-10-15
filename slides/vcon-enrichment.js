@@ -98,10 +98,29 @@ window.VOICE_EVALS_VCON_ENRICHMENT = [
           <article class="json-boundary-note">
             <strong>No matched operation result → outcome unknown.</strong>
             <p>Synthetic data · app schemas, not a literal CAE export. ASR confidence ≠ correctness. External recordings use HTTPS + <code>sha512-&lt;base64url digest&gt;</code>.</p>
-            <nav aria-label="vCon enrichment sources"><a href="https://datatracker.ietf.org/doc/html/draft-ietf-vcon-vcon-core-04#section-4.4" rel="noreferrer" target="_blank">vCon draft-04 ↗</a><a href="./assets/examples/vcon-review-example.json" rel="noreferrer" target="_blank">Full evidence example ↗</a></nav>
+            <nav aria-label="vCon enrichment sources"><a href="https://datatracker.ietf.org/doc/html/draft-ietf-vcon-vcon-core-04#section-4.4" rel="noreferrer" target="_blank">vCon draft-04 ↗</a><a href="./assets/examples/vcon-review-example.json" rel="noreferrer" target="_blank">Full evidence example ↗</a><button type="button" data-evaluation-dialog="mrl-evidence-details" aria-controls="mrl-evidence-details" aria-haspopup="dialog">Latency example ↗</button></nav>
           </article>
         </aside>
       </div>
+      <dialog id="mrl-evidence-details" class="judge-dialog mrl-dialog" aria-labelledby="mrl-evidence-title">
+        <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close response latency example">×</button>
+        <p class="eyebrow">RESPONSE LATENCY · ILLUSTRATIVE EVENT ARITHMETIC</p>
+        <h2 id="mrl-evidence-title">Keep the measurement behind the number.</h2>
+        <ol class="mrl-event-sequence" aria-label="Separate synthetic caller-clock timing example, not a draft-compliant measurement">
+          <li><svg class="layer-metric-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h3l2-7 4 14 3-10 2 3h6"/></svg><span>Last speech sample sent</span><code>184220 ms</code></li>
+          <li><svg class="layer-metric-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18m-6-6 6 6-6 6M3 5v14"/></svg><span>Response onset arrives</span><code>184840 ms</code></li>
+          <li><svg class="layer-metric-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9h4l5-4v14l-5-4H3ZM16 9a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12"/></svg><span>Modeled buffer release</span><code>184895 ms</code></li>
+        </ol>
+        <div class="mrl-example-results"><p><span>To arrival</span><strong>620 ms</strong></p><p><span>To modeled playout</span><strong>675 ms</strong></p><small>Same synthetic caller clock · no capture or calibration supplied</small></div>
+        <div class="mrl-vcon-map">
+          <section><h3>Attachments · preserve inputs</h3><p>Capture bytes + packet timestamps<br>Source, clock + integrity hash</p></section>
+          <span aria-hidden="true">→</span>
+          <section><h3>Analysis · report results</h3><p>Method + arrival / playout results<br>Settings, uncertainty + capture refs</p></section>
+        </div>
+        <p class="mrl-scope-note"><strong>Current vCon fixture: 700 ms receiver gap.</strong> Draft MRL is <code>not_measured</code>; the required capture and method evidence are absent.</p>
+        <p class="judge-detail-note">The draft uses an annotated speech endpoint, one caller clock, and a declared de-jitter model; modeled playout excludes speaker hardware. Retain negative results. Separate first-audio timing from useful-answer quality.</p>
+        <p class="eng-sources"><a href="https://www.ietf.org/archive/id/draft-nygate-ippm-mrl-00.html#section-9.2" target="_blank" rel="noopener noreferrer">Individual draft · report format ↗</a><a href="./assets/examples/vcon-review-example.json" target="_blank" rel="noopener noreferrer">Fixture + missing measurements ↗</a></p>
+      </dialog>
     `
   }
 ];
