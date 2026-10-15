@@ -126,32 +126,6 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
     `
   },
   {
-    id: "problem",
-    html: `
-      <div class="section-heading">
-        <p class="eyebrow">THE PROBLEM</p>
-        <h2 id="problem-title">A fluent answer can hide <span>the wrong outcome.</span></h2>
-        <p>Illustrative call · cancellation requested at the end of the billing period.</p>
-      </div>
-      <div class="truth-split">
-        <article class="truth-card surface-card">
-          <p class="card-kicker">CALLER REQUEST · CANCEL AT PERIOD END</p>
-          <blockquote>“Your plan will end after this billing period.”</blockquote>
-          <div class="quality-tags"><span>polite</span><span>relevant</span><span>confident</span></div>
-          <div class="status-line pass"><span>FLUENCY CHECK</span><strong>PASS</strong></div>
-        </article>
-        <div aria-hidden="true" class="versus">≠</div>
-        <article class="truth-card state-card">
-          <p class="card-kicker">AUTHORITATIVE STATE</p>
-          <div class="tool-row"><code>cancel_subscription</code><strong class="danger">→ TIMEOUT</strong></div>
-          <div class="database-state"><span>Matched readback: cancellation_scheduled</span><strong>FALSE</strong></div>
-          <div class="status-line fail"><span>BUSINESS OUTCOME</span><strong>FAIL</strong></div>
-        </article>
-      </div>
-      <p class="takeaway"><strong>Prevent with runtime controls. Verify with evaluation.</strong></p>
-    `
-  },
-  {
     id: "system",
     html: `
       <div class="section-heading">

@@ -51,17 +51,13 @@ Use the capability labels to connect the examples to our engineering work: meeti
 - [AVA Intellect](https://webrtc.ventures/successes/ai-voice-agents-that-collaborate-and-contribute/): configurable assistants, shared knowledge, tools, and integration with meeting platforms. The image is the published agent configuration UI.
 - [Surgical audio](https://webrtc.ventures/successes/audio-listening-device-to-improve-surgical-outcomes/): Amazon Chime SDK capture with Symbl.ai transcription and conversation insights, plus postoperative speaker separation and oversight. Describe the system's purpose and functionality; this case study does not establish a quantified clinical improvement.
 - [CETA Global / EBT-Sim](https://webrtc.ventures/successes/ai-roleplay-training-simulator-case-study/): WebRTC.ventures helped build real-time communication, the training UI, cloud infrastructure, and AI orchestration with CETA's team. Integration with the broader practitioner ecosystem continues. The current case study describes a WebSocket voice/session pipeline with push-to-talk, Google speech services, Google ADK agents, and HeyGen avatars; do not label its voice transport WebRTC. Deliberate thinking pauses motivated push-to-talk rather than automatic turn ending. The visual comes from [CETA's public product page](https://www.cetaglobal.org/solutions/cetaaitraining), linked in the success story. Case-study transport description checked October 11, 2026.
-- [LiveKit production migration, slides 16–19](https://webrtc.ventures/wp-content/uploads/2026/07/Migrating-from-Kurento-to-LiveKit-in-Production.html#16): LiveKit SIP dispatches inbound calls and agents into a room. Scoped agents identify intent, search for human agents, check availability, transfer, or offer voicemail. The implementation retained STT → LLM → TTS with Azure providers. Do not describe this project as the full-duplex speech-to-speech architecture on slide 6.
+- [LiveKit production migration, slides 16–19](https://webrtc.ventures/wp-content/uploads/2026/07/Migrating-from-Kurento-to-LiveKit-in-Production.html#16): LiveKit SIP dispatches inbound calls and agents into a room. Scoped agents identify intent, search for human agents, check availability, transfer, or offer voicemail. The implementation retained STT → LLM → TTS with Azure providers. Do not describe this project as the full-duplex speech-to-speech architecture on slide 5.
 
 The first three visuals are from public project materials. The call-center card uses a generated illustration selected by Alberto: SIP caller ↔ LiveKit voice agent, consultation/context handoff to a human, and the continuing caller–human conversation. These are conceptual roles and call phases, not a literal network topology or a deployed-product screenshot; the continuing-call line does not imply bypassing SIP/media infrastructure. The original published architecture diagram remains in the repository for reference, and the production-migration link is unchanged. Files and provenance are retained in `assets/projects/SOURCES.md`.
 
-### Transition into the problem slide
+### Transition into the system architecture
 
-"Building these systems taught us that a fluent answer is only one part of a successful call. Let’s start with a case where the words sound right, but the evidence tells us something different."
-
-The cancellation case is a teaching fixture, not a claim that it happened in a customer deployment.
-
-Slide 4's fluency check assesses presentation of the answer only. It is not a claim that every transcript-based judge would pass it. “Your plan will end after this billing period” matches the requested timing, but the operation-matched readback shows that cancellation was not scheduled. The readback establishes the failure in this example; a timeout alone would leave the outcome unknown.
+“These systems combine speech, reasoning, retrieval, and actions. We need to evaluate how those components work together.”
 
 ## Closing — production readiness
 
@@ -79,33 +75,33 @@ Leave the closing slide up during Q&A so attendees can scan the QR to [connect w
 
 ## 30-minute stage route
 
-Plan for a full 30-minute talk including a five-minute demo. Q&A follows afterward. There are 18 main slides and three optional appendices. The budgets include transitions and planned interactions; keep the scope to one evaluation example rather than a broad product tour.
+Plan for a 28:45 talk including a five-minute demo, with a 1:15 buffer in the 30-minute slot. Q&A follows afterward. There are 17 main slides and three optional appendices. The budgets include transitions and planned interactions; keep the scope to one evaluation example rather than a broad product tour.
 
-Treat this as a pacing budget until a spoken rehearsal confirms it. Slide 6 explains the paths; slide 7 demonstrates a changed request during delegation. The vCon slides introduce the container, then inspect one evaluation. Slide 15 defines reusable behavior tests, slide 16 explains responsible judgment, and slide 17 applies results to a release. Reuse the address workflow without retelling the same dialogue. During the main route, allow about 40 seconds for Conduct, 30 seconds for the ASSERT evidence trail, and 30 seconds for the fact-check dialog, alongside the endpointing toggle, one demo result, and the JSON magnifier. Keep other dimension dialogs, file/statistics disclosures, provider comparison, and appendices for Q&A. Follow the added engineering cues in rehearsal-notes.md.
+Treat this as a pacing budget until a spoken rehearsal confirms it. Slide 5 explains the paths; slide 6 demonstrates a changed request during delegation. The vCon slides introduce the container, then inspect one evaluation. Slide 14 defines reusable behavior tests, slide 15 explains responsible judgment, and slide 16 applies results to a release. Reuse the address workflow without retelling the same dialogue. During the main route, allow about 40 seconds for Conduct, 30 seconds for the ASSERT evidence trail, and 30 seconds for the fact-check dialog, alongside the endpointing toggle, one demo result, and the JSON magnifier. Keep other dimension dialogs, file/statistics disclosures, provider comparison, and appendices for Q&A. Follow the added engineering cues in rehearsal-notes.md.
 
 | Slide | Time | Finish by | Point and stage action |
 | --- | --- | --- | --- |
 | 1 · Title | 0:45 | 0:45 | Introduce evaluation of the complete real-time voice system. |
 | 2 · Story | 1:15 | 2:00 | Trace IVR → assistants → Duplex → LLM voice → real-time speech; connect the Echo Show / WebRTC milestones to control and evaluation. |
 | 3 · Projects | 1:30 | 3:30 | Emphasize our WebRTC, audio capture, avatar orchestration, and SIP engineering experience. |
-| 4 · Problem | 1:15 | 4:45 | For a period-end request, the operation-matched readback shows no cancellation scheduled; the timeout alone proves neither success nor failure. |
-| 5 · System | 1:15 | 6:00 | SIP establishes the session; RTP carries audio. Trace the conceptual cascade and return audio, with tool requests and results. |
-| 6 · Two-path architecture | 1:30 | 7:30 | A newer architecture pattern: native audio continues while reasoning and tools run. |
-| 7 · Continuous-voice sequence | 1:15 | 8:45 | The application applies the changed constraint and rejects stale results. |
-| 8 · Four Cs | 2:00 | 10:45 | Conversation, comprehension, conduct, completion. Show the stale draft in Conduct for about 40 seconds; ASR-specific measures apply only when ASR is present. |
-| 9 · Timeline | 2:15 | 13:00 | Switch endpointing once, then restore. A faster system-endpoint-to-audio interval can hide premature turn acceptance. |
-| 10 · Outcomes | 1:15 | 14:15 | Define completion and evidence-supported speech before introducing the tool. Unknown stays unknown; authorization is a separate check. |
-| 11 · Workbench | 1:15 | 15:30 | Run → Evaluate → Compare. Name framework roles briefly. |
-| 12 · First evaluation + live demo | 5:00 | 20:30 | Use the prepared synthetic Billing Address Change transcript and deterministic result: diagnostic 100, needs review, semantic review pending, backend state unmeasured. Follow the five-minute demo card; switch to the standalone backup after 10 seconds of waiting. |
-| 13 · vCon | 0:45 | 21:15 | Portable evidence, not a verdict. |
-| 14 · vCon JSON | 1:15 | 22:30 | Capture → calculate → assess. Start on Evaluation; open Captured evidence. 700 ms gap and matching IDs are separate from unknown cancellation. Synthetic fixture; optional judge not run. |
-| 15 · ASSERT | 2:30 | 25:00 | Several behavior requirements → ASSERT Python framework → individual results. Highlight the failed caller correction; show setup → saved call → judgment for about 30 seconds. Keep file/statistics disclosures for Q&A. |
-| 16 · Judge reliability | 2:15 | 27:15 | Distinguish established values from semantic interpretation. Explain human calibration and a proposed verdict, not automatic release approval. Show fact details for about 30 seconds; keep provider comparisons for Q&A. |
-| 17 · Release decision | 2:00 | 29:15 | Matched scenario cohort: speed improves while critical behavior regresses. Hold the candidate. These are illustrative data. |
-| 18 · Close | 0:45 | 30:00 | Production readiness is a system property. Leave the contact QR visible. |
+| 4 · System | 1:15 | 4:45 | SIP establishes the session; RTP carries audio. Trace the conceptual cascade and return audio, with tool requests and results. |
+| 5 · Two-path architecture | 1:30 | 6:15 | A newer architecture pattern: native audio continues while reasoning and tools run. |
+| 6 · Continuous-voice sequence | 1:15 | 7:30 | The application applies the changed constraint and rejects stale results. |
+| 7 · Four Cs | 2:00 | 9:30 | Conversation, comprehension, conduct, completion. Show the stale draft in Conduct for about 40 seconds; ASR-specific measures apply only when ASR is present. |
+| 8 · Timeline | 2:15 | 11:45 | Switch endpointing once, then restore. A faster system-endpoint-to-audio interval can hide premature turn acceptance. |
+| 9 · Outcomes | 1:15 | 13:00 | Define completion and evidence-supported speech before introducing the tool. Unknown stays unknown; authorization is a separate check. |
+| 10 · Workbench | 1:15 | 14:15 | Run → Evaluate → Compare. Name framework roles briefly. |
+| 11 · First evaluation + live demo | 5:00 | 19:15 | Use the prepared synthetic Billing Address Change transcript and deterministic result: diagnostic 100, needs review, semantic review pending, backend state unmeasured. Follow the five-minute demo card; switch to the standalone backup after 10 seconds of waiting. |
+| 12 · vCon | 0:45 | 20:00 | Portable evidence, not a verdict. |
+| 13 · vCon JSON | 1:15 | 21:15 | Capture → calculate → assess. Start on Evaluation; open Captured evidence. 700 ms gap and matching IDs are separate from unknown cancellation. Synthetic fixture; optional judge not run. |
+| 14 · ASSERT | 2:30 | 23:45 | Several behavior requirements → ASSERT Python framework → individual results. Highlight the failed caller correction; show setup → saved call → judgment for about 30 seconds. Keep file/statistics disclosures for Q&A. |
+| 15 · Judge reliability | 2:15 | 26:00 | Distinguish established values from semantic interpretation. Explain human calibration and a proposed verdict, not automatic release approval. Show fact details for about 30 seconds; keep provider comparisons for Q&A. |
+| 16 · Release decision | 2:00 | 28:00 | Matched scenario cohort: speed improves while critical behavior regresses. Hold the candidate. These are illustrative data. |
+| 17 · Close | 0:45 | 28:45 | Production readiness is a system property. Leave the contact QR visible. |
+| Buffer | 1:15 | 30:00 | Allow for transitions or finish early. |
 | Q&A | After talk | After 30:00 | Keep the closing visible; open appendix material when useful. |
 
-The JSON explorer is slide 14. Appendix A1 contains standards and research; A2 contains the lost-ack experiment; A3 contains capabilities and roadmap. Normal forward navigation stops at the closing. End returns to the closing; Home returns to the title.
+The JSON explorer is slide 13. Appendix A1 contains standards and research; A2 contains the lost-ack experiment; A3 contains capabilities and roadmap. Normal forward navigation stops at the closing. End returns to the closing; Home returns to the title.
 
 ## Spoken bridge — workbench to evidence
 
@@ -117,18 +113,18 @@ Transition: “We have defined what to check. Now we need to preserve the conver
 
 ## Bridges between slides
 
-- **4 → 5:** “Which part of the system can establish that this action happened?”
-- **5 → 6 → 7:** “The cascade is one architecture. Newer native speech systems can listen while speaking and delegate work. The application still has to manage changed requests and stale results.”
-- **7 → 8 → 9:** “The architecture changes, but we still evaluate the caller experience, speech, execution, and outcome. Start with this timing failure.”
-- **9 → 10:** “Faster at one boundary does not establish success. What would count as a successful outcome?”
-- **10 → 11 → 12:** “Now we can state the checks. Here is the workbench, and one evaluation with the evidence behind its finding.”
-- **12 → 13 → 14:** “The report depends on captured observations. Keep the conversation, trace, and state together so another system can inspect them.”
-- **14 → 15:** “Now make the checks reusable. ASSERT orchestrates an LLM to draft caller cases from the requirements. Review them, run the voice agent in CAE, and use a separate LLM call to judge the saved conversation.”
-- **15 → 16:** “The score is useful only if we can trust how it was reached. Compare the recorded values, interpret the correction, and check the judge against human-reviewed calls. Keep critical failures visible.”
-- **16 → 17:** “Apply that policy to matched scenarios. Would you release a faster version with these regressions?”
-- **17 → 18:** “We build the conversation and verify the whole system. Keep the evidence and repeat the evaluation when it changes.”
+- **3 → 4:** “These systems combine speech, reasoning, retrieval, and actions. We need to evaluate how those components work together.”
+- **4 → 5 → 6:** “The cascade is one architecture. Newer native speech systems can listen while speaking and delegate work. The application still has to manage changed requests and stale results.”
+- **6 → 7 → 8:** “The architecture changes, but we still evaluate the caller experience, speech, execution, and outcome. Start with this timing failure.”
+- **8 → 9:** “Faster at one boundary does not establish success. What would count as a successful outcome?”
+- **9 → 10 → 11:** “Now we can state the checks. Here is the workbench, and one evaluation with the evidence behind its finding.”
+- **11 → 12 → 13:** “The report depends on captured observations. Keep the conversation, trace, and state together so another system can inspect them.”
+- **13 → 14:** “Now make the checks reusable. ASSERT orchestrates an LLM to draft caller cases from the requirements. Review them, run the voice agent in CAE, and use a separate LLM call to judge the saved conversation.”
+- **14 → 15:** “The score is useful only if we can trust how it was reached. Compare the recorded values, interpret the correction, and check the judge against human-reviewed calls. Keep critical failures visible.”
+- **15 → 16:** “Apply that policy to matched scenarios. Would you release a faster version with these regressions?”
+- **16 → 17:** “We build the conversation and verify the whole system. Keep the evidence and repeat the evaluation when it changes.”
 
-## ASSERT + CAE voice-test workflow — slide 15
+## ASSERT + CAE voice-test workflow — slide 14
 
 “ASSERT is a Python framework, not the model. It organizes requirements, prompts, model calls, and artifacts. A configured LLM drafts caller cases through ASSERT. We review and freeze them in CAE, which runs the voice agent and records observations and code-check findings. A separate configured LLM judges the saved evidence against the rubric through ASSERT. That assessment does not overwrite the original evidence or prove execution.”
 
@@ -148,19 +144,19 @@ Configured UI route (verify provider readiness before a demo): approve the Evalu
 
 The numeric strip in the optional sample-size disclosure is a calculation, not a benchmark. A plain-language example precedes it: with a true 3% failure rate, P(no failures in 100 independent calls) = 0.97^100 = 4.76%, rounded to about 5%. This explains how a clean sample can miss a nonzero rate; it is not a posterior probability that the system is safe. With zero observed failures in N independent Bernoulli trials with a stable failure probability, the exact one-sided 95% upper confidence bound is p_upper = 1 - 0.05^(1/N). For N = 100 it is 2.951%; for N = 1,000 it is 0.299%. The familiar approximation is 3/N. This bounds failure probability under the sampled protocol, not all production traffic. Generated scenarios can be correlated or unrepresentative; an imperfect judge can miss failures. Neither a reused test set nor a clean LLM-scored report automatically satisfies these assumptions. The [NIST binomial confidence interval reference](https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm) gives the exact binomial method; the displayed values are calculated for zero failures with a one-sided alpha of 0.05. Audio, interruption timing, and receiver delivery need separate voice measurements.
 
-## Outcome matrix — slide 10
+## Outcome matrix — slide 9
 
 The rows describe verified business state; the columns describe whether speech was supported at the time it was emitted. A task can finish while the agent confirms it without sufficient evidence. That claim might be true by luck, but the confirmation remains unsupported. Conversely, a truthful expression of uncertainty can be safe even if the backend already committed.
 
 Authorization, privacy, and timing are separate checks; this matrix only addresses completion claims. An unknown state is not a failed task. Keep it unknown until operation-matched reconciliation establishes the result. The matrix applies the contract to separate business state from completion-claim support; the release review then uses those verdicts across matched scenarios.
 
-## Continuous voice — slides 6 and 7
+## Continuous voice — slides 5 and 6
 
-Slide 5 is a conceptual cascade, not a strictly serial scheduling or latency model: VAD, endpointing, streaming recognition, and output generation can overlap. SIP handles session signaling; RTP carries media, with SRTP protecting WebRTC audio. The SIP leg and WebRTC leg may have different signaling and transport endpoints. For native speech-to-speech, ASR partial/final metrics apply only if that observation is available. Test audio entity and intent handling end to end; generated captions are not independent proof of what the model heard.
+Slide 4 is a conceptual cascade, not a strictly serial scheduling or latency model: VAD, endpointing, streaming recognition, and output generation can overlap. SIP handles session signaling; RTP carries media, with SRTP protecting WebRTC audio. The SIP leg and WebRTC leg may have different signaling and transport endpoints. For native speech-to-speech, ASR partial/final metrics apply only if that observation is available. Test audio entity and intent handling end to end; generated captions are not independent proof of what the model heard.
 
-Frame slides 5–7 around engineering responsibilities: connect the caller, manage interruptions, coordinate tools, and verify action results before confirming completion. For native continuous voice, the application still owns permission checks, task updates, result correlation, and rejection of stale results. The on-slide controls are responsibilities to implement and evaluate, not guarantees supplied by a framework.
+Frame slides 4–6 around engineering responsibilities: connect the caller, manage interruptions, coordinate tools, and verify action results before confirming completion. For native continuous voice, the application still owns permission checks, task updates, result correlation, and rejection of stale results. The on-slide controls are responsibilities to implement and evaluate, not guarantees supplied by a framework.
 
-Both diagrams are in the main route: the two-path architecture follows the conventional system on slide 6, and the appointment sequence follows on slide 7. Legacy architecture-review URLs open slide 6 without replacing the sequence.
+Both diagrams are in the main route: the conventional system is slide 4, the two-path architecture is slide 5, and the appointment sequence is slide 6. Legacy architecture-review URLs open slide 5 without replacing the sequence.
 
 - `architecture`: trace the cyan audio loop first, then the delegated reasoning and tool requests below it. “The live conversation continues while deeper work runs. The result comes back to the voice model.”
 - `sequence`: follow the appointment search from top to bottom. The cyan overlap highlights the caller adding “after 3pm” while the voice model speaks. Point to the application controls: apply the new constraint and discard stale results. These are checks for the evaluation, rather than capabilities proven by the illustration. Availability returns to the same conversation; “Shall I book it?” does not claim that a booking happened.
@@ -169,11 +165,11 @@ Both diagrams are illustrative. An implementation must update or supersede backg
 
 ### Framework mapping behind the small labels
 
-The LiveKit/Pipecat badges on slide 6 mean direct GPT-Live integrations, not that every model in either framework is full duplex. GPT-Live owns simultaneous listening and speaking; the adapters connect media and asynchronous delegation. Both support an OpenAI-hosted Responses reasoner or a backend controlled by your application. The backend returns text/context for the voice model to communicate, rather than a second spoken pipeline.
+The LiveKit/Pipecat badges on slide 5 mean direct GPT-Live integrations, not that every model in either framework is full duplex. GPT-Live owns simultaneous listening and speaking; the adapters connect media and asynchronous delegation. Both support an OpenAI-hosted Responses reasoner or a backend controlled by your application. The backend returns text/context for the voice model to communicate, rather than a second spoken pipeline.
 
 - [LiveKit GPT-Live plugin](https://docs.livekit.io/agents/models/realtime/plugins/gpt-live/): `GPTLiveModel` runs within `AgentSession`. Responses delegation runs the configured text model; custom `@function_tool` handlers execute in the agent process. Client delegation emits `delegation_created`; your application derives the request from chat context plus `pending_transcript`, runs its own workflow, and returns commentary or thinking with the delegation ID. Client mode does not execute registered `@function_tool` methods automatically.
 - [Pipecat GPT-Live service](https://docs.pipecat.ai/api-reference/server/services/s2s/openai-live): `OpenAILiveLLMService` streams audio and supports `ResponsesDelegation` or `ClientDelegation`. The latter uses a `BackendLLMWorker` with its own LLM, context, and tools. Its outputs become commentary or silent context according to `prefers_spoken`; that flag is a hint rather than a guarantee of exact spoken wording.
-- [OpenAI delegation and task-state guidance](https://developers.openai.com/api/docs/guides/live-delegation): application logic owns task state, permission checks, and verified results. The delegation event contains metadata rather than a structured task request. Speech interruption leaves backend work running. In slide 7, “App updates: after 3pm” therefore represents application behavior: update or supersede the active search and ignore stale results. Framework support does not supply that business rule automatically.
+- [OpenAI delegation and task-state guidance](https://developers.openai.com/api/docs/guides/live-delegation): application logic owns task state, permission checks, and verified results. The delegation event contains metadata rather than a structured task request. Speech interruption leaves backend work running. In slide 6, “App updates: after 3pm” therefore represents application behavior: update or supersede the active search and ignore stale results. Framework support does not supply that business rule automatically.
 
 Checked October 6, 2026. Running either integration requires GPT-Live account access. Keep SDK class names and access details for Q&A.
 
@@ -193,7 +189,7 @@ Research checked October 5, 2026. The August GPT-Live article describes an upcom
 
 Transition: “These changes move the boundaries. They do not remove the four things we have to evaluate.”
 
-## Four Cs — slide 8
+## Four Cs — slide 7
 
 “How it flows. What it understands. How it acts. What it achieves.”
 
@@ -226,7 +222,7 @@ Use distributions and impaired-interval counts alongside turn gap, interruption 
 
 Comprehension’s WER formula is linked to the maintained [Microsoft Speech evaluation guide](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-custom-speech-evaluate-data#evaluate-word-error-rate-wer), checked October 14, 2026. The on-slide link replaces the historical SCLITE repository document. WER is `100 × (substitutions + deletions + insertions) / reference words`; CER applies edit distance to the chosen character sequence. Fix reference preparation, punctuation/case handling, number normalization, tokenization, and the treatment of spaces before comparing runs. WER may exceed 100% because of insertions; empty references require explicit handling. Corpus WER sums edits and reference words, rather than averaging per-utterance percentages without weighting. The linked guide explains WER; it does not validate our entity checks, provide universal release thresholds, or define CER normalization.
 
-Decision models are an optional judging method, not a fifth evaluation dimension. In Comprehension, a bounded question can ask whether the response preserved the caller's intent or latest correction; compare the relevant caller context with the actual response, not ASR edits alone. The displayed Yes / No / Unclear choices are an illustrative output contract with no selected result, not an executed judge call or literal provider payload. In Conduct, semantic judgment can interpret policy compliance, while exact argument equality and declared event ordering stay in code. The [OpenAI Decisions guide](https://developers.openai.com/api/docs/guides/decisions) documents bounded choices; it does not prove a chosen judgment is correct. Calibrate either use on held-out human labels, preserve refusals/insufficient evidence, and do not infer backend execution from a semantic answer. Provider integration remains optional/proposed as described on slide 16.
+Decision models are an optional judging method, not a fifth evaluation dimension. In Comprehension, a bounded question can ask whether the response preserved the caller's intent or latest correction; compare the relevant caller context with the actual response, not ASR edits alone. The displayed Yes / No / Unclear choices are an illustrative output contract with no selected result, not an executed judge call or literal provider payload. In Conduct, semantic judgment can interpret policy compliance, while exact argument equality and declared event ordering stay in code. The [OpenAI Decisions guide](https://developers.openai.com/api/docs/guides/decisions) documents bounded choices; it does not prove a chosen judgment is correct. Calibrate either use on held-out human labels, preserve refusals/insufficient evidence, and do not infer backend execution from a semantic answer. Provider integration remains optional/proposed as described on slide 15.
 
 Name the audio observation point: ASR accuracy needs a human reference for the audio at the recognizer’s input. A source-audio reference can additionally reveal errors introduced by transport, but then the discrepancy is not attributable to ASR alone. Preserve those boundaries when interpreting transcript edits.
 
@@ -255,7 +251,7 @@ Implementation checked against ConversationAgentEvals commit `31671ee6a5d12e8e8a
 - [ASSERT integration boundary](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/docs/assert-boundary-and-schemas.md): local deterministic evaluation and explicit upstream semantic judge.
 - [Web dependencies](https://github.com/agonza1/ConversationAgentEvals/blob/31671ee6a5d12e8e8a999c87d644642f17af8f64/apps/web/package.json): Next.js and React.
 
-## Release comparison — slide 17
+## Release comparison — slide 16
 
 “Before release, compare the same billing-address scenarios on the current and candidate agents. The candidate responds faster, but regressions appear across conversation, comprehension, conduct, and completion. These are illustrative numbers, not measured production results.”
 
@@ -267,7 +263,7 @@ All 100 cases in each cohort include the caller correction, an applicable invoic
 
 The current version is not perfect: two caller cut-offs and one missing explanation are within this example's budgets. Zero observed address errors is a threshold for this test set, not a guarantee of zero production errors. In both fixtures, required evidence is complete for 100/100 runs and there are no unanswered test turns. Scenarios, transport, load, and scoring requirements are matched; the agent version changes. These data do not isolate a single causal configuration change or claim a measured CAE feature.
 
-The 95th percentile summarizes the upper end of response times. This fixture measures from the system's end-of-turn decision to received audio. Accepting the turn boundary too early can make this number look better while missing a caller's later qualifier, as in slide 9.
+The 95th percentile summarizes the upper end of response times. This fixture measures from the system's end-of-turn decision to received audio. Accepting the turn boundary too early can make this number look better while missing a caller's later qualifier, as in slide 8.
 
 ## Appendix A2 · Lost-ack experiment — optional three-minute Q&A demonstration
 
@@ -289,11 +285,11 @@ Before going on stage, load the original Echo Show photo and leave disclosures c
 
 If an interaction fails, explain its expected before/after result and move on.
 
-Check the clock after slide 9 (13:00), the demo on slide 12 (20:30), and slide 16 (27:15). If behind, shorten the architecture narration, framework explanation, or JSON field tour. Preserve the outcome definitions, release decision, and closing. Keep provider comparisons and the lost-ack experiment for Q&A.
+Check the clock after slide 8 (11:45), the demo on slide 11 (19:15), and slide 15 (26:00). If behind, shorten the architecture narration, framework explanation, or JSON field tour. Preserve the outcome definitions, release decision, and closing. Keep provider comparisons and the lost-ack experiment for Q&A.
 
 The event name follows the [official Fall '26 conference site](https://www.vonevolution.com/). The October 15 talk date is retained from the existing deck.
 
-## First evaluation — slide 12
+## First evaluation — slide 11
 
 This slide opens the five-minute evaluator demo. Preload the built-in synthetic Billing Address Change transcript and its prepared deterministic result. It scores 100 but remains needs_review, with semantic review pending and backend state unmeasured. The standalone backup contains the actual saved views and report excerpt. Show the requirement, supporting conversation, evaluation basis, and verdict; avoid a broad UI tour or presenting a teaching fixture as a customer benchmark. This is an audience checklist, not an automatic CAE workflow. Start with one important business task. Write the required and forbidden behavior and evidence for each goal explicitly, then test pauses, interruptions, corrections, and unavailable tools on a controlled target or with imported evidence. Evaluate observable conversation goals without internal logs; distinguish them from independently verified backend state. Inspect the evidence behind each finding and compare the same cases after a change. Do not imply CAE's simple scenario form extracts these rules or that it injects every listed failure automatically.
 
@@ -303,7 +299,7 @@ The four icons carry the stage checklist. Choose one costly failure in a workflo
 
 The former main-route capability list is available for Q&A. Distinguish configured scenario contracts from the simple scenario creation form and separate current product support from the presentation's teaching fixtures. Explain the roadmap only when asked.
 
-## vCon JSON explorer — slide 14
+## vCon JSON explorer — slide 13
 
 “Keep the inputs, the calculations, and the model’s assessment separate. The test receiver records speech boundaries, RTP statistics, recognizer output, and tool events. Code calculates the gap and correlates the response. An optional model can judge how the agent communicated uncertainty. Neither can turn a timeout into proof that cancellation happened.”
 
@@ -319,7 +315,7 @@ The 700 ms response gap is 3900 minus 3200 on the same synthetic test clock. It 
 
 The existing [CAE exporter](https://github.com/agonza1/ConversationAgentEvals/blob/main/apps/api/app/services/execution_vcon.py) uses its own cae-execution-evidence-v1 application summary. This richer record illustrates a useful portable capture contract; it does not change that exporter or claim universal collection support. Producer/version, capture point, clock, event IDs, units, evidence coverage, and separate calculation/judge provenance make the data inspectable. Schema-valid JSON does not authenticate inputs, establish a backend commit, or calibrate a judge.
 
-## Judge reliability — slide 16
+## Judge reliability — slide 15
 
 A semantic judge can infer facts that were never established, produce an unsupported explanation, or return an incorrect verdict. Separate the work: code checks declared events, terminal tool status, and recorded final-state predicates; models interpret specific conversational behaviors; code combines results into a proposed pass, fail, or review. The Decisions adapter requires the original deterministic result first and records a pending review; it does not automatically approve a release. Missing evidence, refusals, contradictions, and uncertainty must remain visible rather than turning into a pass.
 
@@ -347,15 +343,15 @@ The policy preserves deterministic failure and never promotes an original needs_
 Architecture inspected against [CAE draft PR #157](https://github.com/agonza1/ConversationAgentEvals/pull/157), commit `2dd4aee`, including `openai_decisions_judge.py`, `design_enforcement.py`, `benchmark_catalog_extensions.py`, and `assert_taxonomy_adapter.py`. The draft's automated tests check integration and policy behavior, not semantic accuracy or calibrated thresholds.
 
 
-### Detail modals — slide 16
+### Detail modals — slide 15
 
 The main slide now shows the compact flow. Activate **Check facts** for its input → checks → findings view, or **Judge behavior** for the side-by-side existing LLM/ASSERT and decision-model paths. These are presentation explanations, not provider-selection controls. Keep both modal walkthroughs brief; use the detailed comparison during Q&A when possible. Escape, the close button, or a click outside the dialog closes it and returns to the diagram. Slide navigation is suspended while a modal is open.
 
 The traditional LLM/ASSERT path remains the existing semantic judge. OpenAI Decisions is an optional draft integration in PR #157; Jev is an alternative candidate, not a shipped CAE integration. Provider-specific confidence and probability semantics must not be conflated. Compare judge paths on human-labeled calls before switching; multiple judges agreeing does not prove execution.
 
-### Visual component walkthroughs — slide 16
+### Visual component walkthroughs — slide 15
 
-The fact-check modal continues Billing Address Change from slide 15 with three illustrative turns. Caller turn 01 requests 14 Pine St. Caller turn 02 corrects it to 40 Pine St. Agent turn 03 confirms 14 Pine St and explains that the address will appear on the next invoice. The comparison preserves a concrete failure without requiring access to the agent's private verification or billing tools. Earlier cancellation examples and Appendix A2 remain separate cases illustrating timeout ambiguity and recovery with richer backend evidence.
+The fact-check modal continues Billing Address Change from slide 14 with three illustrative turns. Caller turn 01 requests 14 Pine St. Caller turn 02 corrects it to 40 Pine St. Agent turn 03 confirms 14 Pine St and explains that the address will appear on the next invoice. The comparison preserves a concrete failure without requiring access to the agent's private verification or billing tools. Earlier cancellation examples and Appendix A2 remain separate cases illustrating timeout ambiguity and recovery with richer backend evidence.
 
 The values shown in the fact cards are clear, manually identified values from the illustrative dialogue, not output from a universal address extractor. The semantic step identifies turn 02 as superseding turn 01; the fact comparison then exposes 40 versus 14. Real recordings need speaker attribution and reliable audio/transcript alignment. Spoken number variants, ambiguous audio, corrections, retractions, and address normalization need contextual judgment; a raw string comparison is not a general solution. Review ambiguous cases rather than assigning a confident failure from an ASR error.
 
