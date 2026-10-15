@@ -306,6 +306,7 @@ h3 { font-size: 1.22rem; line-height: 1.18; }
 .vcon-envelope::before { content: ""; position: absolute; inset: 12px; border: 1px solid rgba(167, 139, 250, 0.18); border-radius: 20px; pointer-events: none; }
 .vcon-title { display: grid; text-align: center; }
 .vcon-title strong { font-size: 3.4rem; letter-spacing: -0.07em; }
+.hero-agent-face { display: block; width: 160px; height: auto; margin: -8px auto 8px; }
 .vcon-title span { color: var(--muted); font-size: 0.82rem; }
 .vcon-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 34px 0 20px; }
 .vcon-tabs span { padding: 9px 7px; border-radius: 9px; text-align: center; border: 1px solid var(--line); background: rgba(255, 255, 255, 0.025); color: var(--muted); font-size: 0.72rem; }
