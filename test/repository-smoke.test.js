@@ -103,7 +103,7 @@ const localAssets = [
   assert.match(combined, /Judging LLM-as-a-Judge/);
   assert.match(combined, /draft-ietf-vcon-vcon-core-04/i);
   assert.match(combined, /cae-execution-transcript-v1/);
-  assert.match(combined, /cae-execution-evidence-v1/);
+  assert.match(combined, /illustrative-review-v1/);
   assert.match(combined, /External recordings use HTTPS/i);
   assert.match(combined, /not a literal CAE export/i);
 });
@@ -127,7 +127,25 @@ const localAssets = [
   assert.match(enrichment, /<span class="json-key">"dialog"<\/span>/);
   assert.match(enrichment, /<span class="json-key">"analysis"<\/span>/);
   assert.match(enrichment, /sha512-&lt;base64url digest&gt;/);
-  assert.match(enrichment, /<span class="json-key">"status"<\/span><span class="json-punctuation">:<\/span> <span class="json-string">"portable"<\/span>/);
+  assert.match(enrichment, /No matched operation result/);
+  assert.match(enrichment, /dialog\[1\]/);
+});
+
+test("the full review example cites actual dialogue without turning an unknown outcome into failure", async () => {
+  const example = JSON.parse(await readRepositoryFile("assets/examples/vcon-review-example.json"));
+  for (const analysis of example.analysis) {
+    for (const index of analysis.dialog) assert.ok(example.dialog[index], "analysis must refer to existing dialog");
+    for (const check of analysis.body.checks) {
+      const pointer = /^dialog\[(\d+)\]$/.exec(check.evidence);
+      assert.ok(pointer, "the teaching pointer must identify one dialog entry");
+      const index = Number(pointer[1]);
+      assert.ok(analysis.dialog.includes(index), "a finding must cite dialogue in the analysis scope");
+      assert.equal(example.dialog[index].body, check.quote, "the quoted evidence must match the cited turn");
+    }
+    assert.equal(analysis.body.final_state.complete, null);
+    assert.equal(analysis.body.verdict, "needs_review");
+    assert.equal(analysis.schema, "illustrative-review-v1");
+  }
 });
 
  test("the rendered route introduces the workbench before evidence and ends before the appendix", async () => {
