@@ -28,7 +28,7 @@ a demo. The interactive experiments remain explicitly labeled as teaching fixtur
 [Opening and closing speaker notes](docs/speaker-notes.md) include a self-contained
 story for the Fall '26 audience.
 
-The same notes include a 20-minute rehearsal route through 18 main slides, with ten minutes reserved for Q&A in the 30-minute slot. The vCon JSON explorer follows the vCon overview in the main presentation. References, the lost-ack experiment, and capabilities/roadmap are three optional appendix slides.
+The same notes include a 28:45 rehearsal route through 17 main slides, with a 1:15 buffer in the 30-minute talk slot. The vCon JSON explorer follows the vCon overview in the main presentation. References, the lost-ack experiment, and capabilities/roadmap are three optional appendix slides.
 
 ## Features
 
@@ -120,7 +120,7 @@ MIT
 ## Engineering experiments (presentation fixtures)
 
 The engineering sections, vCon JSON magnifier, and visual system are preserved.
-A personal story, a visual project overview, and a continuous-voice sequence lead into the evaluation workflow. The route has 18 main slides and three appendix slides. Forward navigation stops at the closing slide; use its links to revisit the JSON explorer or open references, the lost-ack experiment, or capabilities. The outcome matrix defines success before the workbench and first-evaluation demo. After the demo, the route follows portable evidence and its JSON example, ASSERT, evaluator reliability, and the release decision. Speaker notes reserve 3½ minutes for the live demo within a 20-minute talk, plus a one-minute buffer and nine minutes of Q&A.
+A personal story and visual project overview lead directly into the system architecture, continuous-voice sequence, and evaluation workflow. The route has 17 main slides and three appendix slides. Forward navigation stops at the closing slide; use its links to revisit the JSON explorer or open references, the lost-ack experiment, or capabilities. The outcome matrix defines success before the workbench and first-evaluation demo. After the demo, the route follows portable evidence and its JSON example, ASSERT, evaluator reliability, and the release decision. Speaker notes reserve five minutes for the demo within the 28:45 route, leaving a 1:15 buffer before Q&A.
 The focused additions are:
 
 - **Timeline:** switch between complete-request and aggressive endpointing traces.
@@ -140,12 +140,12 @@ measured customer benchmarks. The project overview uses public success stories a
 Runtime controls prevent violations; evaluation verifies the controls and exposes
 regressions. The simplified workflow is **Run → Evaluate → Compare**.
 
-### Continuous voice — slides 6 and 7
+### Continuous voice — slides 5 and 6
 
-The conventional system on slide 5 leads into two complementary views:
+The conventional system on slide 4 leads into two complementary views:
 
-- [Slide 6 · Two-path architecture](http://127.0.0.1:8080/?present=1#dual-voice-architecture): the live audio loop delegates reasoning and tool work.
-- [Slide 7 · Conversation sequence](http://127.0.0.1:8080/?present=1#dual-voice): a caller adds an appointment constraint while the voice model speaks.
+- [Slide 5 · Two-path architecture](http://127.0.0.1:8080/?present=1#dual-voice-architecture): the live audio loop delegates reasoning and tool work.
+- [Slide 6 · Conversation sequence](http://127.0.0.1:8080/?present=1#dual-voice): a caller adds an appointment constraint while the voice model speaks.
 
 Legacy `voice=architecture` and `slide5=architecture` review URLs open the architecture slide. The diagrams are illustrative, not captured runtime traces. [Project image sources](assets/projects/SOURCES.md) document the real visuals used on slide 3.
 
