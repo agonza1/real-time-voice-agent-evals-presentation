@@ -12,7 +12,7 @@ Keep the Echo Show story on the next slide rather than revealing it over the tit
 
 ## Story slide — the engineering question evolved
 
-Keep this to the existing 1:15 budget: point across the five industry milestones, then to the photo and the control/evaluation bridge. This is a selective history, not a claim that voice technology began with these products or that each generation replaced the last.
+Keep this to the existing 1:15 budget: point across the six milestones, then to the photo and the control/evaluation bridge. This is a selective history, not a claim that voice technology began with these products or that each generation replaced the last.
 
 ### What to say
 
@@ -24,9 +24,11 @@ Google Duplex demonstrated natural phone conversations in 2018. The crucial engi
 
 GPT-4 marked a shift toward more open-ended language. Putting an LLM on a WebRTC call felt like magic. The Realtime API followed in 2024 with streaming speech-to-speech.
 
-But understanding a request is not completing it correctly.
+Recognition has improved, and newer models make fewer factual mistakes on measured tasks. That progress is real. It varies by model, task, and benchmark.
 
-Better models expand what the system can do. We define what it may do—and test that it did the right thing.
+But imagine an agent that hears the caller perfectly and makes no factual mistakes—then issues the refund twice after a timeout. That is not a transcription problem or a hallucination problem. It is a systems problem.
+
+Better models reduce some errors; they do not replace the rules governing actions. Control what can happen. Test what actually happens.
 
 That’s the perspective we bring from building real-time systems: the conversation, and everything around it.”
 
@@ -37,6 +39,16 @@ That’s the perspective we bring from building real-time systems: the conversat
 - **2018 · Google Duplex.** Google’s May 8 announcement describes natural phone conversations in narrowly trained domains, with self-monitoring and a human operator for tasks it cannot finish autonomously. Naturalness did not imply general-purpose autonomy. [Google Research](https://research.google/blog/google-duplex-an-ai-system-for-accomplishing-real-world-tasks-over-the-phone/).
 - **2023 · GPT-4 and LLM-based voice.** GPT-4 was announced March 14, 2023 with text output; the slide places it inside a speech-recognition → text LLM → speech-synthesis pipeline. Do not describe the original GPT-4 launch as native speech-to-speech or the invention of conversational AI. Alberto’s later WebRTC experience is a personal milestone, not a claim about a deployment on the launch date. [GPT-4 announcement](https://openai.com/index/gpt-4-research/) · [Realtime announcement’s comparison with cascaded voice](https://openai.com/index/introducing-the-realtime-api/).
 - **2024 · Real-time speech.** October 1 marks the Realtime API **public beta**, with streaming audio input/output; it does not date the invention of real-time speech or claim general availability in 2024. This is a historical anchor, not a comparison of today’s providers. [Realtime API announcement](https://openai.com/index/introducing-the-realtime-api/).
+
+### Model accuracy — supporting evidence, not a universal trend line
+
+The **2025–2026** milestone acknowledges measured progress; it does not date the beginning of speech-recognition or factuality improvements. Keep the slide qualitative. The following are distinct vendor-reported evaluations, not one comparable time series:
+
+- **Speech recognition before LLM voice:** Microsoft reported **5.1% WER on Switchboard in August 2017**, matching a revised human-transcription comparison on that test. This did not mean speech recognition was solved across accents, languages, noise, and microphones. [Microsoft Research](https://www.microsoft.com/en-us/research/blog/microsoft-researchers-achieve-new-conversational-speech-recognition-milestone/).
+- **Transcription improvements:** In **March 2025**, OpenAI reported that **GPT-4o Transcribe** improved WER over Whisper on multiple benchmarks, including multilingual FLEURS. WER means word error rate; lower is better on a matched test. It does not establish intent comprehension, tool correctness, or end-to-end task success. [Audio-model announcement](https://openai.com/index/introducing-our-next-generation-audio-models/).
+- **LLM factuality improvements:** In **March 2026**, OpenAI reported that **GPT-5.4 versus GPT-5.2** had **33% fewer false claims and 18% fewer responses containing errors** on de-identified prompts where users had flagged factual errors. These are relative reductions on that evaluation, not absolute hallucination rates and not results for every task or voice model. [GPT-5.4 announcement](https://openai.com/index/introducing-gpt-5-4/).
+
+**On-slide qualification:** Progress varies by model, task, and benchmark; errors are not eliminated. Do not connect the above results into one downward curve: WER and factual-error measures cover different outcomes and test sets. The refund example is a hypothetical systems failure, not a claim about a measured incident. Even with perfect transcription and factual answers, the application still owns permissions, authoritative state, safe retries, and recovery. Controls implement the application's rules; they are not merely a workaround for weak models. Sources checked October 15, 2026.
 
 The through-line is engineering responsibility, not product ranking: a more flexible conversational interface still needs authorization, reliable state, safe fallback, and evidence-supported outcomes. Runtime controls enforce those boundaries; VoiceAI QA (CAE) tests their behavior as models, networks, tools, and workflows change. Keep the project examples on the next slide.
 
