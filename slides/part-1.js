@@ -68,8 +68,10 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         <li><p class="story-era">2011 · 2014</p><h3>Voice assistants</h3><p>Siri on iPhone.<br>Echo + Alexa.</p></li>
         <li><p class="story-era">2018</p><h3>Google Duplex</h3><p>Natural calls.<br>Bounded tasks + human fallback.</p></li>
         <li><p class="story-era">2023</p><h3>LLM-based voice</h3><p>GPT-4 with<br>STT → LLM → TTS.</p></li>
-        <li class="story-now"><p class="story-era">2024</p><h3>Real-time speech</h3><p>Realtime API beta.<br>Streaming audio in + out.</p></li>
+        <li><p class="story-era">2024</p><h3>Real-time speech</h3><p>Realtime API beta.<br>Streaming audio in + out.</p></li>
+        <li class="story-now" aria-describedby="story-accuracy-caveat"><p class="story-era">2025–2026</p><h3>Better model accuracy</h3><p>Speech: lower word error rates.<br>LLMs: fewer hallucinations.*</p></li>
       </ol>
+      <p id="story-accuracy-caveat" class="story-caveat">*Progress varies by model, task, and benchmark; errors are not eliminated.</p>
       <div class="story-layout">
         <figure class="story-photo">
           <img src="https://raw.githubusercontent.com/agonza1/agentic-contact-center/36f9cf3fb92843af516f8a8e09ea4cf0f4c52fc9/assets/cluecon/alberto-echo-show-prototype.jpg" alt="Alberto using his Echo Show voice assistant prototype" loading="eager" decoding="async" referrerpolicy="no-referrer">
@@ -80,18 +82,20 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
           <p>My prototype needed the exact phrases I anticipated.</p>
         </div>
         <div class="story-milestone">
-          <p class="story-era">OPEN-ENDED VOICE · WEBRTC</p><h3>“Can we control it?”</h3>
-          <p>The conversation opened up. Permissions and state still belonged to the application.</p>
+          <p class="story-era">FROM MODEL ACCURACY TO SYSTEM RELIABILITY</p><h3>“Can we control it?”</h3>
+          <p>Better recognition. Fewer hallucinations.<br>The application still owns permissions, state, and recovery.</p>
         </div>
       </div>
-      <div class="story-bridge"><p><span>RUNTIME CONTROL</span><strong>Build the controls.</strong></p><span class="story-arrow" aria-hidden="true">→</span><p><span>VoiceAI QA (CAE)</span><strong>Test that they hold as the system changes.</strong></p></div>
-      <p class="story-sources">History sources:
+      <div class="story-bridge"><p><span>RUNTIME CONTROL</span><strong>Control what can happen.</strong></p><span class="story-arrow" aria-hidden="true">→</span><p><span>VoiceAI QA (CAE)</span><strong>Test what actually happens.</strong></p></div>
+      <p class="story-sources">Sources:
         <a href="https://bitsavers.trailing-edge.com/pdf/ibm/datacomm/GC30-2007-1_IBM_System360_Introduction_to_Teleprocessing_196807.pdf#page=11" target="_blank" rel="noopener noreferrer">IBM ↗</a>
         <a href="https://www.apple.com/newsroom/2011/10/04Apple-Launches-iPhone-4S-iOS-5-iCloud/" target="_blank" rel="noopener noreferrer">Siri ↗</a>
         <a href="https://www.amazon.science/blog/alexa-at-five-looking-back-looking-forward" target="_blank" rel="noopener noreferrer">Echo ↗</a>
         <a href="https://research.google/blog/google-duplex-an-ai-system-for-accomplishing-real-world-tasks-over-the-phone/" target="_blank" rel="noopener noreferrer">Duplex ↗</a>
         <a href="https://openai.com/index/gpt-4-research/" target="_blank" rel="noopener noreferrer">GPT-4 ↗</a>
         <a href="https://openai.com/index/introducing-the-realtime-api/" target="_blank" rel="noopener noreferrer">Realtime API ↗</a>
+        <a href="https://openai.com/index/introducing-our-next-generation-audio-models/" target="_blank" rel="noopener noreferrer">WER ↗</a>
+        <a href="https://openai.com/index/introducing-gpt-5-4/" target="_blank" rel="noopener noreferrer">LLM factuality ↗</a>
       </p>
     `
   },

@@ -266,9 +266,9 @@ test("vCon measurements recompute from observations without inventing WER, execu
   const story = slides[1].html;
   assert.match(story, /2017 · ECHO SHOW/);
   assert.match(story, /exact phrases/);
-  assert.match(story, /OPEN-ENDED VOICE · WEBRTC/);
+  assert.match(story, /FROM MODEL ACCURACY TO SYSTEM RELIABILITY/);
   assert.match(story, /RUNTIME CONTROL/);
-  assert.match(story, /Test that they hold as the system changes/);
+  assert.match(story, /Test what actually happens/);
   assert.match(story, /VoiceAI QA \(CAE\)/);
   assert.match(slides[0].html, /href="#story">Start the presentation/);
   assert.match(await readRepositoryFile("index.html"), /href="#story">Story/);
