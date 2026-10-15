@@ -102,8 +102,8 @@ const localAssets = [
   assert.match(combined, /IETF vCon Core/);
   assert.match(combined, /Judging LLM-as-a-Judge/);
   assert.match(combined, /draft-ietf-vcon-vcon-core-04/i);
-  assert.match(combined, /cae-execution-transcript-v1/);
-  assert.match(combined, /illustrative-review-v1/);
+  assert.match(combined, /illustrative-checks-v1/);
+  assert.match(combined, /illustrative-judge-v1/);
   assert.match(combined, /External recordings use HTTPS/i);
   assert.match(combined, /not a literal CAE export/i);
 });
@@ -128,24 +128,79 @@ const localAssets = [
   assert.match(enrichment, /<span class="json-key">"analysis"<\/span>/);
   assert.match(enrichment, /sha512-&lt;base64url digest&gt;/);
   assert.match(enrichment, /No matched operation result/);
-  assert.match(enrichment, /dialog\[1\]/);
+  assert.match(enrichment, /\/dialog\/1\/body/);
+  assert.match(enrichment, /data-json-focus="evaluation"/);
 });
 
-test("the full review example cites actual dialogue without turning an unknown outcome into failure", async () => {
+test("the vCon fixture uses draft-04 attachment and analysis containers with resolvable evidence", async () => {
   const example = JSON.parse(await readRepositoryFile("assets/examples/vcon-review-example.json"));
-  for (const analysis of example.analysis) {
-    for (const index of analysis.dialog) assert.ok(example.dialog[index], "analysis must refer to existing dialog");
-    for (const check of analysis.body.checks) {
-      const pointer = /^dialog\[(\d+)\]$/.exec(check.evidence);
-      assert.ok(pointer, "the teaching pointer must identify one dialog entry");
-      const index = Number(pointer[1]);
-      assert.ok(analysis.dialog.includes(index), "a finding must cite dialogue in the analysis scope");
-      assert.equal(example.dialog[index].body, check.quote, "the quoted evidence must match the cited turn");
-    }
-    assert.equal(analysis.body.final_state.complete, null);
-    assert.equal(analysis.body.verdict, "needs_review");
-    assert.equal(analysis.schema, "illustrative-review-v1");
+  assert.equal(example.vcon, "0.4.0");
+  const resolve = (pointer) => {
+    assert.ok(pointer.startsWith("/"));
+    return pointer.slice(1).split("/").reduce((value, key) => {
+      const decoded = key.replace(/~1/g, "/").replace(/~0/g, "~");
+      assert.ok(value != null && Object.hasOwn(value, decoded), `unresolved evidence: ${pointer}`);
+      return value[decoded];
+    }, example);
+  };
+  for (const attachment of example.attachments) {
+    assert.ok(Number.isFinite(Date.parse(attachment.start)));
+    assert.equal(attachment.party, 2);
+    assert.ok(example.parties[attachment.party]);
+    assert.ok(Number.isInteger(attachment.dialog) && example.dialog[attachment.dialog]);
+    assert.equal(attachment.encoding, "json");
+    assert.equal(attachment.mediatype, "application/json");
+    assert.equal(attachment.body.synthetic, true);
+    assert.equal(attachment.body.schema, "illustrative-capture-v1");
+    assert.ok(attachment.body.producer.version);
   }
+  for (const analysis of example.analysis) {
+    assert.equal(analysis.type, "report");
+    assert.ok(analysis.vendor && analysis.schema);
+    assert.equal(analysis.encoding, "json");
+    assert.equal(analysis.mediatype, "application/json");
+    for (const index of analysis.dialog) assert.ok(example.dialog[index], "analysis must refer to existing dialog");
+    for (const index of analysis.attachment) assert.ok(example.attachments[index]);
+    for (const check of analysis.body.checks ?? [analysis.body]) {
+      for (const pointer of check.evidence) {
+        resolve(pointer);
+        const [, container, index] = pointer.split("/");
+        assert.ok(container === "dialog" || container === "attachments", "findings cite inputs, not another verdict");
+        assert.ok(analysis[container === "dialog" ? "dialog" : "attachment"].includes(Number(index)));
+      }
+    }
+  }
+});
+
+test("vCon measurements recompute from observations without inventing WER, execution, or a judge result", async () => {
+  const example = JSON.parse(await readRepositoryFile("assets/examples/vcon-review-example.json"));
+  const [caller, agent] = example.attachments.map(entry => entry.body);
+  assert.deepEqual(caller.clock, agent.clock, "timing subtraction requires the same clock");
+  const report = example.analysis.find(entry => entry.schema === "illustrative-checks-v1").body;
+  const metric = name => report.checks.find(check => check.metric === name);
+  assert.equal(metric("response_gap").value, agent.events[0].elapsed_ms - caller.events[0].elapsed_ms);
+  const [before, after] = agent.rtc_stats.snapshots;
+  assert.equal(before.id, after.id);
+  assert.equal(before.ssrc, after.ssrc);
+  assert.equal(before.codecId, agent.rtc_stats.codec.id);
+  assert.equal(metric("rtp_payload_bitrate").value, 8 * (after.bytesReceived - before.bytesReceived) / (after.timestamp - before.timestamp));
+  const lost = after.packetsLost - before.packetsLost;
+  assert.equal(metric("interval_packet_loss").value, 100 * lost / (after.packetsReceived - before.packetsReceived + lost));
+  assert.equal(metric("WER").value, null);
+  assert.equal(metric("WER").result, "not_measured");
+  const [request, response] = agent.tool_events;
+  assert.equal(request.request_id, response.request_id);
+  assert.equal(request.operation_id, response.operation_id);
+  assert.equal(response.status, "timeout");
+  assert.deepEqual(agent.state_observations, []);
+  assert.equal(report.checks.find(check => check.dimension === "completion").result, "not_observable");
+  assert.deepEqual(report.final_state, { complete: null, outcome: "unknown" });
+  assert.equal(report.verdict, "needs_review");
+  assert.deepEqual(new Set(report.checks.map(check => check.dimension)), new Set(["conversation", "comprehension", "conduct", "completion"]));
+  const judge = example.analysis.find(entry => entry.schema === "illustrative-judge-v1").body;
+  assert.equal(judge.status, "not_run");
+  assert.equal(judge.model, null);
+  assert.deepEqual(judge.assessments, []);
 });
 
  test("the rendered route introduces the workbench before evidence and ends before the appendix", async () => {

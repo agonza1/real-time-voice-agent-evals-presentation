@@ -1,53 +1,118 @@
 {
   "vcon": "0.4.0",
   "uuid": "4b4f0247-8c14-4b3f-b70c-743dd42212dc",
-  "created_at": "2026-10-15T14:50:00Z",
-  "subject": "Illustrative cancellation review — synthetic text only",
-  "parties": [
-    { "name": "Caller" },
-    { "name": "Agent" }
-  ],
+  "created_at": "2026-10-14T14:50:00Z",
+  "subject": "Synthetic cancellation fixture — observations, code findings, optional judge",
+  "parties": [{ "name": "Caller", "type": "person" }, { "name": "Agent", "type": "bot" }, { "name": "Example test collector", "type": "bot" }],
   "dialog": [
+    { "type": "text", "start": "2026-10-14T14:50:00Z", "parties": [0], "mediatype": "text/plain", "encoding": "none", "body": "Please cancel my plan." },
+    { "type": "text", "start": "2026-10-14T14:50:03.900Z", "parties": [1], "mediatype": "text/plain", "encoding": "none", "body": "I couldn’t confirm cancellation." }
+  ],
+  "attachments": [
     {
-      "type": "text",
-      "parties": [0],
-      "mediatype": "text/plain",
-      "encoding": "none",
-      "body": "Please cancel my plan."
+      "purpose": "Caller-side observations — synthetic teaching data",
+      "start": "2026-10-14T14:50:00Z", "party": 2, "dialog": 0,
+      "mediatype": "application/json", "encoding": "json",
+      "body": {
+        "schema": "illustrative-capture-v1", "synthetic": true,
+        "producer": { "name": "Example test collector", "version": "fixture-v1" },
+        "clock": { "id": "test-clock", "origin": "2026-10-14T14:50:00Z", "unit": "ms" },
+        "capture_point": "test receiver",
+        "events": [{ "kind": "caller_speech_end", "elapsed_ms": 3200 }],
+        "asr": {
+          "producer": "Example recognizer", "model_version": "synthetic-v1",
+          "final_at_ms": 3280, "text": "Please cancel my plan.",
+          "confidence": { "value": 0.92, "scale": "0–1 provider estimate; not calibrated correctness" }
+        },
+        "coverage": { "source_audio": "not_included", "independent_reference_transcript": "not_captured" }
+      }
     },
     {
-      "type": "text",
-      "parties": [1],
-      "mediatype": "text/plain",
-      "encoding": "none",
-      "body": "I couldn’t confirm cancellation."
+      "purpose": "Agent-side media and tool observations — synthetic teaching data",
+      "start": "2026-10-14T14:50:03.300Z", "party": 2, "dialog": 1,
+      "mediatype": "application/json", "encoding": "json",
+      "body": {
+        "schema": "illustrative-capture-v1", "synthetic": true,
+        "producer": { "name": "Example test collector", "version": "fixture-v1" },
+        "clock": { "id": "test-clock", "origin": "2026-10-14T14:50:00Z", "unit": "ms" },
+        "capture_point": "test receiver; agent-to-caller audio",
+        "events": [{ "kind": "agent_audio_received_start", "elapsed_ms": 3900 }],
+        "tool_events": [
+          { "kind": "request", "elapsed_ms": 3300, "request_id": "req-247", "operation_id": "op-247", "name": "cancel_subscription", "arguments": { "subscription_id": "synthetic-subscription" } },
+          { "kind": "response", "elapsed_ms": 3550, "request_id": "req-247", "operation_id": "op-247", "status": "timeout", "outcome": "unknown" }
+        ],
+        "rtc_stats": {
+          "units": { "timestamp": "ms on test-clock", "jitter": "seconds", "bytesReceived": "bytes", "packetsReceived": "packets", "packetsLost": "packets" },
+          "codec": { "id": "codec-opus", "mimeType": "audio/opus", "clockRate": 48000 },
+          "snapshots": [
+            { "id": "audio-in", "type": "inbound-rtp", "kind": "audio", "ssrc": 12345678, "codecId": "codec-opus", "timestamp": 4000, "bytesReceived": 12800, "packetsReceived": 400, "packetsLost": 0, "jitter": 0.006 },
+            { "id": "audio-in", "type": "inbound-rtp", "kind": "audio", "ssrc": 12345678, "codecId": "codec-opus", "timestamp": 5000, "bytesReceived": 16000, "packetsReceived": 499, "packetsLost": 1, "jitter": 0.008 }
+          ]
+        },
+        "state_observations": [],
+        "coverage": { "tool_trace": "request_and_timeout_only", "backend_state": "not_captured", "interruption": "not_exercised", "audio_playout": "not_captured" }
+      }
     }
   ],
   "analysis": [
     {
-      "type": "evaluation",
-      "dialog": [0, 1],
-      "vendor": "Example evaluator",
-      "product": "Presentation teaching fixture",
-      "schema": "illustrative-review-v1",
-      "mediatype": "application/json",
-      "encoding": "json",
+      "type": "report", "dialog": [0, 1], "attachment": [0, 1],
+      "vendor": "Example evaluator", "product": "Presentation teaching fixture",
+      "schema": "illustrative-checks-v1", "mediatype": "application/json", "encoding": "json",
       "body": {
-        "synthetic": true,
-        "method": "Illustrative review; no judge has been run",
-        "rubric_version": "demo-v1",
-        "evidence_scope": "synthetic_transcript_only",
-        "verdict": "needs_review",
+        "synthetic": true, "method": "deterministic calculations on synthetic observations",
+        "calculator_version": "fixture-v1", "evidence_pointer_format": "RFC 6901 JSON Pointer, relative to this vCon",
         "checks": [
           {
-            "requirement": "State uncertainty",
-            "result": "supported",
-            "evidence": "dialog[1]",
-            "quote": "I couldn’t confirm cancellation."
+            "dimension": "conversation", "metric": "response_gap", "value": 700, "unit": "ms", "result": "measured",
+            "formula": "agent_audio_received_start.elapsed_ms - caller_speech_end.elapsed_ms",
+            "evidence": ["/attachments/0/body/events/0", "/attachments/1/body/events/0"],
+            "limit": "Receiver observation; not a speaker-playout measurement or universal pass threshold."
+          },
+          {
+            "dimension": "conversation", "metric": "rtp_payload_bitrate", "value": 25.6, "unit": "kb/s", "result": "measured",
+            "formula": "8 * delta(bytesReceived) / delta(timestamp_ms)",
+            "evidence": ["/attachments/1/body/rtc_stats/snapshots/0", "/attachments/1/body/rtc_stats/snapshots/1"]
+          },
+          {
+            "dimension": "conversation", "metric": "interval_packet_loss", "value": 1, "unit": "%", "result": "measured",
+            "formula": "100 * delta(packetsLost) / (delta(packetsReceived) + delta(packetsLost))",
+            "evidence": ["/attachments/1/body/rtc_stats/snapshots/0", "/attachments/1/body/rtc_stats/snapshots/1"],
+            "limit": "Same inbound stream, no reset or negative loss delta in this fixture; not an audibility score."
+          },
+          {
+            "dimension": "comprehension", "metric": "WER", "value": null, "result": "not_measured",
+            "evidence": ["/attachments/0/body/asr", "/attachments/0/body/coverage"],
+            "reason": "No independent audio-aligned reference; recognizer confidence is not WER or proof of understanding."
+          },
+          {
+            "dimension": "conduct", "requirement": "Correlate the recorded tool response with its request", "result": "pass",
+            "evidence": ["/attachments/1/body/tool_events/0", "/attachments/1/body/tool_events/1"],
+            "limit": "Matching request and operation IDs only; does not establish authorization, policy compliance, or a backend commit."
+          },
+          {
+            "dimension": "completion", "requirement": "Subscription is canceled", "result": "not_observable",
+            "evidence": ["/attachments/1/body/tool_events/1", "/attachments/1/body/coverage", "/dialog/1/body"],
+            "reason": "A timeout and an uncertainty statement do not establish whether the operation committed."
           }
         ],
+        "verdict": "needs_review", "policy": "Fixture policy: leave the cancellation outcome unresolved",
         "final_state": { "complete": null, "outcome": "unknown" },
-        "review_reason": "No operation-matched cancellation confirmation is included."
+        "review_reason": "No matched operation result establishing completion; this is not an automatic failure."
+      }
+    },
+    {
+      "type": "report", "dialog": [0, 1], "attachment": [0, 1],
+      "vendor": "Example evaluator", "product": "Optional semantic review",
+      "schema": "illustrative-judge-v1", "mediatype": "application/json", "encoding": "json",
+      "body": {
+        "synthetic": true, "status": "not_run", "method": "optional_llm_assessment",
+        "model": null, "prompt_version": null, "rubric_version": "demo-v1",
+        "requirements": ["State uncertainty when cancellation cannot be confirmed", "Do not claim cancellation succeeded without supporting evidence"],
+        "evidence_pointer_format": "RFC 6901 JSON Pointer, relative to this vCon",
+        "evidence": ["/dialog/1/body", "/attachments/1/body/tool_events/1"],
+        "assessments": [],
+        "output_contract": "When run, retain per-requirement verdict, rationale, evidence pointers, and model/prompt/rubric provenance separately from observations and code findings."
       }
     }
   ]
