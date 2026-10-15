@@ -45,7 +45,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         <div aria-label="Evaluate a voice agent through audio, actions, and outcomes" class="hero-visual">
           <div aria-hidden="true" class="audio-wave">${"<i></i>".repeat(12)}</div>
           <div class="vcon-envelope">
-            <div class="vcon-title"><strong>Voice agent</strong><span>evaluate the complete system</span></div>
+            <div class="vcon-title"><img class="hero-agent-face" src="./assets/voice-agent-face.svg" alt="Friendly cartoon voice AI robot wearing a headset" width="220" height="180"><span>evaluate the complete system</span></div>
             <div class="vcon-tabs"><span>audio</span><span>actions</span><span>outcomes</span></div>
             <div class="vcon-proof"><i class="proof-dot cyan"></i><span>capture</span><i class="proof-dot violet"></i><span>evaluate</span><i class="proof-dot green"></i><span>compare</span></div>
           </div>
