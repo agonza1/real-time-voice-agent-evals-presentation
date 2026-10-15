@@ -313,7 +313,11 @@ ASR:       “… fourteen Pine Street …”
       </div>
       <p id="endpointInsight" class="takeaway" aria-live="polite"></p>
       <p class="micro-note">Fixture clock. Real runs need observer and clock mapping. Receiver audio ≠ speaker playout. Never add component p95s.</p>
-      <p class="eng-sources"><a href="https://docs.livekit.io/agents/logic/turns/turn-detector/" target="_blank" rel="noopener noreferrer">Turn detection beyond VAD ↗</a></p>
+      <aside class="mrl-draft-note" aria-label="Emerging mouth-to-ear response latency proposal">
+        <div class="mrl-draft-label"><strong>MRL · caller-side response latency</strong><small>Individual Internet-Draft · not an adopted standard</small></div>
+        <div class="mrl-mini-flow"><span>${voiceMetricIcon('wave')}Last speech sample sent</span><b aria-hidden="true">→</b><span>${voiceMetricIcon('packets')}Arrival <small>Ingress</small></span><b aria-hidden="true">/</b><span>${voiceMetricIcon('speaker')}Modeled playout <small>Playout</small></span></div>
+        <nav aria-label="Response latency sources"><a href="https://datatracker.ietf.org/doc/draft-nygate-ippm-mrl/" target="_blank" rel="noopener noreferrer">MRL draft ↗</a><a href="https://docs.livekit.io/agents/logic/turns/turn-detector/" target="_blank" rel="noopener noreferrer">Turn detection beyond VAD ↗</a></nav>
+      </aside>
     `
   }
 ];

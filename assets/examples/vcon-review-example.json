@@ -70,6 +70,12 @@
             "limit": "Receiver observation; not a speaker-playout measurement or universal pass threshold."
           },
           {
+            "dimension": "conversation", "metric": "mouth_to_ear_response_latency", "value": null, "result": "not_measured",
+            "method_reference": "draft-nygate-ippm-mrl-00",
+            "evidence": ["/attachments/0/body/coverage", "/attachments/1/body/coverage"],
+            "reason": "Receiver event labels alone do not establish the draft method: no sample-annotated transmitted speech/RTP capture, onset analysis, playout model or calibration is supplied."
+          },
+          {
             "dimension": "conversation", "metric": "rtp_payload_bitrate", "value": 25.6, "unit": "kb/s", "result": "measured",
             "formula": "8 * delta(bytesReceived) / delta(timestamp_ms)",
             "evidence": ["/attachments/1/body/rtc_stats/snapshots/0", "/attachments/1/body/rtc_stats/snapshots/1"]

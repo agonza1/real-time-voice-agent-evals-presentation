@@ -299,6 +299,16 @@ The four icons carry the stage checklist. Choose one costly failure in a workflo
 
 The former main-route capability list is available for Q&A. Distinguish configured scenario contracts from the simple scenario creation form and separate current product support from the presentation's teaching fixtures. Explain the roadmap only when asked.
 
+## Emerging response-latency proposal — slide 8; optional detail on slide 13
+
+Point to the small MRL note after restoring patient endpointing: “Measure from the caller’s transmitted speech end. State whether the response has arrived or reached modeled playout.” Spend about 10 seconds here within the existing 2:15 budget; keep the vCon **Latency example** for Q&A.
+
+Source: [draft-nygate-ippm-mrl-00](https://www.ietf.org/archive/id/draft-nygate-ippm-mrl-00.html), checked October 14, 2026. This is an individual proposal, not an adopted standard. It distinguishes Ingress and Playout MRL. Its method uses offline sample annotation and a single caller clock. Playout refers to a declared de-jitter model, not physical speaker output. Keep signed results. The report format is mrl-report/1; minimum summaries include mean, p50, p95, maximum, attempted/reported/discarded counts, and method/calibration information. Follow the complete draft before claiming conformance.
+
+Our two teaching cases stay distinct. The existing vCon fixture contains a 700 ms receiver gap; the added draft-MRL check is null/not_measured. The detail modal has a separate synthetic clock example: 184840 minus 184220 gives 620 ms to arrival; 184895 minus 184220 gives 675 ms to modeled release. No capture, calibration or model execution backs those illustrative timestamps. The 55 ms difference must not be presented as a measured network delay or inferred buffer target.
+
+For a real vCon export, preserve the original capture as an attachment or integrity-checked reference. Put derived measurement reports in analysis, linked to the input attachment and relevant dialogue. Keep diagnostic VAD, ASR, model/tool and TTS spans available when exposed; retain clock mapping for cross-host spans. A streaming system overlaps stages, so diagnose the critical path rather than summing overlapping durations or component percentiles. Native speech systems may not expose separate ASR/TTS stages. Add p90/p99 when sample size supports them; show no-response/fallback rates alongside latency and retain exclusion reasons so bad calls do not disappear. Segment comparisons by transport, model/configuration, region, device, codec, tool use, streaming and cold versus later turns. These are dashboard recommendations, not extra mandatory fields invented for the draft.
+
 ## vCon JSON explorer — slide 13
 
 “Keep the inputs, the calculations, and the model’s assessment separate. The test receiver records speech boundaries, RTP statistics, recognizer output, and tool events. Code calculates the gap and correlates the response. An optional model can judge how the agent communicated uncertainty. Neither can turn a timeout into proof that cancellation happened.”

@@ -179,6 +179,9 @@ test("vCon measurements recompute from observations without inventing WER, execu
   const report = example.analysis.find(entry => entry.schema === "illustrative-checks-v1").body;
   const metric = name => report.checks.find(check => check.metric === name);
   assert.equal(metric("response_gap").value, agent.events[0].elapsed_ms - caller.events[0].elapsed_ms);
+  assert.equal(metric("mouth_to_ear_response_latency").value, null, "a receiver gap must not silently become draft MRL");
+  assert.equal(metric("mouth_to_ear_response_latency").result, "not_measured");
+  assert.equal(metric("mouth_to_ear_response_latency").method_reference, "draft-nygate-ippm-mrl-00");
   const [before, after] = agent.rtc_stats.snapshots;
   assert.equal(before.id, after.id);
   assert.equal(before.ssrc, after.ssrc);
