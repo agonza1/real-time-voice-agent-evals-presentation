@@ -27,7 +27,7 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
         <p class="eyebrow">ASSERT + CAE · REQUIREMENT-DRIVEN VOICE TESTS</p>
         <h2 id="assert-title">Generate with ASSERT. <span>Run voice tests with CAE.</span></h2>
       </div>
-      <p class="assert-intro">ASSERT is a Python evaluation framework. CAE runs the voice workflow.</p>
+      <p class="assert-intro">ASSERT is a Python framework that orchestrates configured LLMs.</p>
       <div class="assert-flow assert-software-flow">
         <article class="assert-spec">
           <svg class="assert-icon" viewBox="0 0 80 80" aria-hidden="true"><path d="M20 12h30l12 12v44H20Z M50 12v14h12 M29 37h24 M29 48h24 M29 59h15"/></svg>
@@ -45,11 +45,11 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
         <article class="assert-engine assert-runtime">
           <p class="assert-runtime-label">WHO DOES WHAT</p>
           <h3>ASSERT + CAE</h3>
-          <ol class="assert-runtime-steps" aria-label="ASSERT generates cases, reviewed cases run in CAE, then ASSERT judges evidence">
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4Z M15 3v6h5 M8 12h8M8 16h5"/></svg><span><b>ASSERT generates caller cases</b><small>Normal · boundary · adversarial · proposed integration</small></span></li>
+          <ol class="assert-runtime-steps" aria-label="LLM drafts cases through ASSERT; approved cases run in CAE; an LLM judges saved evidence through ASSERT">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4Z M15 3v6h5 M8 12h8M8 16h5"/></svg><span><b>LLM drafts cases via ASSERT</b><small>Normal · boundary · adversarial · review required</small></span></li>
             <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h16v18H4Z M8 12l3 3 6-7"/></svg><span><b>Review and freeze in CAE</b><small>Approve a reusable test set</small></span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 12 8-12 8Z"/></svg><span><b>CAE runs the voice agent</b><small>Keep voice execution + captured evidence</small></span></li>
-            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><span><b>ASSERT judges behavior</b><small>CAE retains facts + semantic assessment</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 4 12 8-12 8Z"/></svg><span><b>CAE runs voice + code checks</b><small>Capture observations · evaluate explicit rules</small></span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><span><b>LLM judges via ASSERT</b><small>Rubric + saved evidence → semantic assessment</small></span></li>
           </ol>
         </article>
         <article class="assert-report">
@@ -64,8 +64,8 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
           <p class="assert-engine-note">Caller: <b>40 Pine St</b><br>Agent confirms: <b class="assert-trace-fail">14 Pine St</b></p>
         </article>
       </div>
-      <div class="assert-footer"><p class="takeaway"><strong>Fix the agent. Re-run the same cases.</strong></p><button class="assert-detail-button" type="button" data-evaluation-dialog="assert-details" aria-controls="assert-details" aria-haspopup="dialog">Engineering details ↗</button></div>
-      <p class="micro-note">Illustrative results · ASSERT generation integration proposed; CAE voice execution and optional ASSERT judging remain separate.</p>
+      <div class="assert-footer"><p class="takeaway"><strong>Code findings and LLM assessments stay distinct.</strong></p><button class="assert-detail-button" type="button" data-evaluation-dialog="assert-details" aria-controls="assert-details" aria-haspopup="dialog">Engineering details ↗</button></div>
+      <p class="micro-note">Illustrative results · generation and optional judging are separate model calls; each requires provider configuration.</p>
       <dialog id="assert-details" class="judge-dialog" aria-labelledby="assert-details-title">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close ASSERT engineering details">×</button>
         <p class="eyebrow">ASSERT + CAE · EXPLAIN THE SCORE</p><h2 id="assert-details-title">Keep the call behind the score.</h2>
@@ -73,19 +73,23 @@ window.VOICE_EVALS_SLIDES_PART_2 = [
         <ol class="assert-score-trail" aria-label="Linked test setup, captured call, and judgment">
           <li><svg class="assert-trail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h11l5 5v13H4Z M15 3v6h5 M8 12h8M8 16h5"/></svg><h3>Test setup</h3><strong>Case + requirements</strong><small>Approved version + agent configuration</small></li>
           <li><svg class="assert-trail-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12h3l2-7 4 14 3-10 2 3h6"/></svg><h3>Saved call</h3><strong>Audio + transcript</strong><small>Tool / state evidence when available</small></li>
-          <li><svg class="assert-trail-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><h3>Judgment</h3><strong>Verdict + evidence</strong><small>Judge model + rubric version</small></li>
+          <li><svg class="assert-trail-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6M6 10l3 3 5-6"/></svg><h3>LLM assessment</h3><strong>Scores + rationale</strong><small>Judge model + rubric version</small></li>
         </ol>
         <div class="assert-review-example">
           <section aria-label="Illustrative evidence-linked finding"><p class="assert-trail-label">WHY THIS FAILED · ILLUSTRATIVE</p><pre><code>Correction preserved: FAIL
 Caller: 40 Pine St | Agent: 14 Pine St
 Evidence: call-042 → turn 6</code></pre></section>
-          <section class="assert-human-check" aria-label="Validate the judge against independent human review"><p class="assert-trail-label">CHECK THE JUDGE, TOO</p><div><svg class="assert-trail-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-3a8 8 0 0 1 16 0v3"/></svg><strong>Human review</strong><b aria-hidden="true">↔</b><strong>ASSERT</strong></div><p>Compare on calls not used to tune the judge.<br>Count missed failures and false alarms.</p></section>
+          <section class="assert-human-check" aria-label="Validate the judge against independent human review"><p class="assert-trail-label">CHECK THE JUDGE, TOO</p><div><svg class="assert-trail-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-3a8 8 0 0 1 16 0v3"/></svg><strong>Human review</strong><b aria-hidden="true">↔</b><strong>LLM judge</strong></div><p>Compare on calls not used to tune the judge.<br>Count missed failures and false alarms.</p></section>
         </div>
-        <p class="judge-detail-note">Conversation evidence can establish a behavior failure; it does not prove a backend address changed.</p>
-        <details class="assert-more"><summary>Files and proposed integration</summary>
+        <p class="judge-detail-note">Schema-valid output can still be wrong. An LLM assessment does not prove a backend address changed.</p>
+        <details class="assert-more"><summary>Model calls, code checks, and artifacts</summary>
           <dl class="assert-artifacts assert-detail-artifacts"><div><dt><code>test_set.jsonl</code> · ASSERT</dt><dd>Generated caller prompts + behavior IDs</dd></div><div><dt>Approved suite · CAE</dt><dd>Reviewed caller cases + frozen requirements</dd></div><div><dt>Saved voice run · CAE</dt><dd>Captured call + available execution evidence</dd></div><div><dt>Judge outputs · ASSERT</dt><dd><code>scores.jsonl</code> + <code>metrics.json</code></dd></div></dl>
-          <p class="judge-detail-note">Proposed: ASSERT drafts caller cases → CAE reviews and runs voice calls → ASSERT judges saved conversations. Generated cases contain no target answers; CAE keeps voice execution. Link generation source, approved cases, agent setup, call evidence, and judge setup.</p>
-          <p class="eng-sources"><a href="https://github.com/responsibleai/ASSERT/tree/main/examples/billing_support_agent" target="_blank" rel="noopener noreferrer">ASSERT example ↗</a></p>
+          <pre class="assert-pipeline-code"><code>requirements → LLM via ASSERT → caller drafts
+approved cases → CAE voice run → saved evidence
+rubric + evidence → LLM via ASSERT → assessment
+code findings + reviewed assessment → CAE verdict policy</code></pre>
+          <p class="judge-detail-note">Generation uses ASSERT’s test_set stage; judging uses a separate judge-only call over saved evidence. Generated cases contain no target answers. CAE validates output structure, preserves code findings, and retains the semantic review for confirmation. Keep model, prompt/rubric, case version, and evidence linked; schema validation is not factual validation.</p>
+          <p class="eng-sources"><a href="https://github.com/responsibleai/ASSERT/tree/main/examples/billing_support_agent" target="_blank" rel="noopener noreferrer">ASSERT example ↗</a><a href="https://github.com/agonza1/ConversationAgentEvals/blob/main/apps/api/app/services/upstream_assert_generation.py" target="_blank" rel="noopener noreferrer">Generation adapter ↗</a><a href="https://github.com/agonza1/ConversationAgentEvals/blob/main/apps/api/app/services/upstream_assert_judge.py" target="_blank" rel="noopener noreferrer">Judge adapter ↗</a></p>
         </details>
         <details class="assert-more"><summary>Why zero failures does not mean zero risk</summary>
           <p class="judge-detail-note">Rare failures can be missed: at a true 3% failure rate, 100 independent calls still have about a 5% chance of showing none.</p>

@@ -250,6 +250,7 @@ body.presenting #close .closing-statement { font-size: clamp(2.8rem, 4.4vw, 4.8r
 .assert-more summary { cursor: pointer; color: var(--cyan); font-size: .9rem; font-weight: 650; }
 .assert-more summary:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
 .assert-more .eng-sources { margin-bottom: 0; }
+.assert-pipeline-code { margin: 16px 0; padding: 14px; border-radius: 8px; background: var(--bg-deep); color: var(--text); font: .8rem/1.6 var(--mono); white-space: pre-wrap; }
 @media (max-width: 700px) { .assert-score-trail, .assert-review-example { grid-template-columns: 1fr; } .assert-score-trail li:not(:last-child)::after { display: none; } }
 .assert-detail-artifacts { margin: 24px 0; }
 .assert-detail-artifacts > div { display: grid; grid-template-columns: 1fr 1.5fr; gap: 20px; padding: 12px 0; border-bottom: 1px solid var(--line); }
