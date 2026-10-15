@@ -77,6 +77,11 @@
 .layer-media-stats dd { margin: 8px 0 0 44px; color: var(--muted); font-size: .9rem; line-height: 1.4; }
 .layer-media-stats code { display: block; margin-top: 8px; color: var(--detail-accent); font-size: .74rem; line-height: 1.5; overflow-wrap: anywhere; }
 .layer-metric-six { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.layer-metric-nine { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 22px; margin-block: 20px; }
+.layer-metric-nine > div { padding-block: 6px; }
+.layer-semantic-question { margin: 0 0 12px; font-size: 1.05rem; font-weight: 650; }
+.layer-semantic-choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.layer-semantic-choices span { padding: 6px 13px; border: 1px solid var(--line-strong); border-radius: 8px; color: var(--detail-accent); font: .85rem var(--mono); }
 .layer-media-bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; padding-top: 16px; border-top: 1px solid var(--line); }
 .layer-media-bottom pre { margin: 0; padding: 12px 14px; background: var(--bg-deep); border-radius: 8px; font-size: .86rem; line-height: 1.6; white-space: pre-wrap; }
 .layer-media-bottom p:not(.layer-detail-label) { margin: 8px 0 0; font-size: .94rem; line-height: 1.45; }

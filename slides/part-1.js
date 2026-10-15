@@ -210,7 +210,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close Conversation engineering details">×</button>
         <p class="eyebrow">01 · CONVERSATION · MEDIA + TURN TIMING</p>
         <h2 id="layer-conversation-title">Clear audio. Natural turns.</h2>
-        <dl class="layer-media-stats" aria-label="WebRTC audio quality statistics reference">
+        <dl class="layer-media-stats layer-metric-nine" aria-label="WebRTC statistics and separate audio analysis reference">
           <div><dt>${voiceMetricIcon('wave')}Jitter</dt><dd>Arrival variation · ms</dd></div>
           <div><dt>${voiceMetricIcon('arrows')}RTT</dt><dd>ICE round trip · ms</dd></div>
           <div><dt>${voiceMetricIcon('bars')}Bitrate</dt><dd>RTP payload · kb/s</dd></div>
@@ -219,6 +219,7 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
           <div><dt>${voiceMetricIcon('speaker')}Concealment</dt><dd>Synthesized gap-fill</dd></div>
           <div><dt>${voiceMetricIcon('clock')}Buffer delay</dt><dd>Playout buffering · ms</dd></div>
           <div><dt>${voiceMetricIcon('wave')}Audio level</dt><dd>Signal · 0–1 linear</dd></div>
+          <div><dt>${voiceMetricIcon('bars')}Background noise</dt><dd>Detect / rate from audio</dd></div>
         </dl>
         <div class="layer-media-bottom">
           <section class="layer-media-timing" aria-label="Illustrative conversation timing calculations">
@@ -229,10 +230,10 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
             <p class="layer-detail-label">CAPTURE → CORRELATE</p>
             <pre><code>const stats = await pc.getStats();
 // interval deltas ↔ audio timeline</code></pre>
-            <p>Keep direction, codec, stream ID + time.</p>
+            <p>Noise → separate audio analysis.<br>Keep direction, codec, stream ID + time.</p>
           </section>
         </div>
-        <p class="layer-detail-note">Reference metrics · no live capture · RTT ≠ one-way delay. <a href="https://www.w3.org/TR/webrtc-stats/" target="_blank" rel="noopener noreferrer">WebRTC definitions ↗</a></p>
+        <p class="layer-detail-note">No live capture · RTT ≠ one-way delay · audio level ≠ noise. <a href="https://www.w3.org/TR/webrtc-stats/" target="_blank" rel="noopener noreferrer">WebRTC ↗</a> · <a href="https://github.com/microsoft/DNS-Challenge/tree/master/DNSMOS" target="_blank" rel="noopener noreferrer">Noise quality ↗</a></p>
       </dialog>
       <dialog id="layer-comprehension-details" class="judge-dialog layer-detail-dialog" aria-labelledby="layer-comprehension-title" style="--detail-accent: var(--violet)">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close Comprehension engineering details">×</button>
@@ -253,13 +254,14 @@ window.VOICE_EVALS_SLIDES_PART_1 = [
 ASR:       “… fourteen Pine Street …”
 1 substitution / 20 words → WER = 5%</code></pre>
           </section>
-          <section aria-label="Comprehension scoring inputs">
-            <p class="layer-detail-label">COMPARE WORDS → CHECK RESPONSE</p>
-            <div class="layer-evidence-sequence"><span>${voiceMetricIcon('speaker')}Human reference</span><b aria-hidden="true">↔</b><span>${voiceMetricIcon('text')}ASR output</span><b aria-hidden="true">→</b><span>${voiceMetricIcon('target')}Agent response</span></div>
+          <section aria-label="Illustrative optional decision-model comprehension check">
+            <p class="layer-detail-label">DECISION MODEL · OPTIONAL SEMANTIC JUDGE</p>
+            <p class="layer-semantic-question">Did the response preserve the caller’s intent?</p>
+            <div class="layer-semantic-choices" aria-label="Illustrative answer choices; no judgment has been run"><span>Yes</span><span>No</span><span>Unclear</span></div>
             <p class="layer-metric-insight">Low WER can hide a critical error.</p>
           </section>
         </div>
-        <p class="layer-detail-note">Illustrative ASR · WER / CER require a reference transcript. No ASR? Check audio + responses. <a href="https://github.com/usnistgov/SCTK/blob/master/doc/sclite.htm" target="_blank" rel="noopener noreferrer">Scoring definitions ↗</a></p>
+        <p class="layer-detail-note">WER / CER need a reference. No ASR? Check audio + responses. Calibrate semantic judges with human labels. <a href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/how-to-custom-speech-evaluate-data#evaluate-word-error-rate-wer" target="_blank" rel="noopener noreferrer">WER guide ↗</a> · <a href="https://developers.openai.com/api/docs/guides/decisions" target="_blank" rel="noopener noreferrer">Decision models ↗</a></p>
       </dialog>
       <dialog id="layer-conduct-details" class="judge-dialog layer-detail-dialog" aria-labelledby="layer-conduct-title" style="--detail-accent: var(--amber)">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close Conduct engineering details">×</button>
@@ -286,7 +288,7 @@ ASR:       “… fourteen Pine Street …”
           </ol>
         </section>
         <p class="layer-metric-insight layer-conduct-rule"><code>request.address === confirmedNewAddress</code><strong>Mismatch → block before execution.</strong></p>
-        <p class="layer-detail-note">Speech reflects the correction; the tool reads an old draft. Compare its value with the caller-confirmed new address: 14 ≠ 40.</p>
+        <p class="layer-detail-note">Speech uses the correction; the tool reads an old draft. Exact matches → code. Policy interpretation → optional semantic judge.</p>
       </dialog>
       <dialog id="layer-completion-details" class="judge-dialog layer-detail-dialog" aria-labelledby="layer-completion-title" style="--detail-accent: var(--green)">
         <button class="dialog-close" type="button" data-close-evaluation-dialog aria-label="Close Completion engineering details">×</button>
